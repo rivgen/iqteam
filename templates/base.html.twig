@@ -1,11 +1,15 @@
 <!DOCTYPE html>
-<html>
+<html lang="{{ app.request.locale }}">
     <head>
         <meta charset="UTF-8">
         <title>{% block title %}Welcome!{% endblock %}</title>
-        {% block stylesheets %}{% endblock %}
+        {% block stylesheets %}
+            {{ encore_entry_link_tags('app') }}
+        {% endblock %}
     </head>
     <body>
+
+    {% trans_default_domain 'app' %}
 
     {% block header %}
     <header>
@@ -31,7 +35,7 @@
                         {% block header_navigation_links %}
                             <li>
                                 <a href="#">
-                                    <i class="fa fa-home" aria-hidden="true"></i> {{ 'menu.homepage'|trans }}
+                                    <i class="fa fa-home" aria-hidden="true"></i> {{ 'menu.homepage'|trans({},'messages') }}
                                 </a>
                             </li>
 
@@ -79,7 +83,8 @@
                             </a>
                             <ul class="dropdown-menu locales" role="menu" aria-labelledby="locales">
                                 {% for locale in locales() %}
-                                    <li {% if app.request.locale == locale.code %}aria-checked="true" class="active"{% else %}aria-checked="false"{% endif %} role="menuitem"><a href="{{ path(app.request.get('_route', 'blog_index'), app.request.get('_route_params', [])|merge({_locale: locale.code})) }}">{{ locale.name|capitalize }} <small>{{ locale.code[0:2] }}</small></a></li>
+                                    <li {% if app.request.locale == locale.code %}aria-checked="true" class="active"{% else %}aria-checked="false"{% endif %} role="menuitem"><a href="{{ path(app.request.get('_route', 'index_index'), app.request.get('_route_params', [])|merge({_locale: locale.code})) }}">{{ locale.name|capitalize }} <small>{{ locale.code[0:2] }}</small></a></li>
+                                    {#<li {% if app.request.locale == locale.code %}aria-checked="true" class="active"{% else %}aria-checked="false"{% endif %} role="menuitem"><a href="#">{{ locale.name|capitalize }} <small>{{ locale.code[0:2] }}</small></a></li>#}
                                 {% endfor %}
                             </ul>
                         </li>
@@ -89,7 +94,18 @@
         </div>
     </header>
     {% endblock %}
-        {% block body %}{% endblock %}
-        {% block javascripts %}{% endblock %}
+        {% block body %}
+
+        {% endblock %}
+    {% block sidebar %}
+        {{ render_esi(controller('Symfony\\Bundle\\FrameworkBundle\\Controller\\TemplateController::templateAction', {
+            'template': 'index/blog.html.twig',
+            'sharedAge': 600,
+            '_locale': app.request.locale
+        })) }}
+    {% endblock %}
+        {% block javascripts %}
+            {{ encore_entry_script_tags('app') }}
+        {% endblock %}
     </body>
 </html>

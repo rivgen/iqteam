@@ -1,4 +1,38 @@
 {% extends 'base.html.twig' %}
 {% block body %}
-{{ number }}
+    <div class="container">
+        <div class="row">
+            <div class="col-md-3">
+                {% set menuAll = ['I', 'Q', 'T', 'I', 'E', 'M'] %}
+                {#{% set menuAll = [1->I, 2->Q] %}#}
+                {% for menu in menuAll %}
+                    <p>{{ menu }}</p>
+                {% endfor %}
+                <p>издатель и разработчик  мобильных и браузерных игр</p>
+            </div>
+            <div class="col-md-9">
+                <div class="row">
+                    <div class="col-md-6">
+                        <h2>IQTeam</h2>
+                        <p>Подходим к решению любой задачи с интеллектом! Только качественные продукты и уникальные
+                            решения!</p>
+                        <button type="button" class="btn btn-primary">Связаться</button>
+                    </div>
+                    <div class="col-md-6">
+                        <img src="/images/home_phones.png" alt=""/>
+                    </div>
+                </div>
+                <div class="row">
+                    {% set arr = [1, 2, 3, 4] %}
+                    {% for block in arr %}
+                        <div class="col-md-3">
+                            <p>Текст тут</p>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+
+    </div>
+    {#{{ number }}#}
 {% endblock %}
