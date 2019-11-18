@@ -1,4 +1,128 @@
 @import "~bootstrap/scss/bootstrap";
 body {
-  background-color: lightgray;
+  background-color: #F8FAFF;
 }
+
+h2 {
+  font-family: Archivo, sans-serif;
+  color: #3964F9;
+  font-weight: bold;
+  font-size: 64px;
+  line-height: 130%;
+}
+
+.homeClass img{
+  width: 100%;
+}
+
+.white-backgraund {
+  //background: white;
+  position: relative;
+  //width: 100px;
+  //height: 50px;
+}
+
+.letter-I{
+  background-image: url(/images/block_I/letter-I.svg);
+  background-repeat: no-repeat;
+  background-position: 80%;
+}
+
+.white-backgraund::before {
+  content: '';
+  position: absolute; /* Абсолютное позиционирование */
+  border: 577px solid transparent;
+  border-left: 1000px solid white;
+  border-top: 310px solid white;
+}
+
+.letter-I .title{
+  font-weight: bold;
+  font-size: 96px;
+  line-height: 130%;
+  color: #323232;
+  margin-top: 150px;
+}
+
+.letter-I .text {
+  margin-top: 40px;
+  font-weight: 300;
+  font-size: 24px;
+  line-height: 150%;
+  color: #323232;
+}
+
+.letter-I img {
+  margin: 75px 0;
+}
+
+.letter-I .btnBlue {
+  width: 224px;
+  height: 50px;
+  background: #3964F9;
+  border-radius: 5px;
+  box-shadow: 0px 10px 20px rgba(57, 100, 249, 0.3);
+  color: #FFFFFF;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  font-size: 12px;
+  line-height: 150%;
+  padding: 0.8rem;
+  margin-top: 40px;
+}
+
+.letter-I-block {
+  margin-top: 100px;
+}
+
+.letter-I-block .block {
+  background: #FFFFFF;
+  border-radius: 20px;
+}
+
+.letter-I-block .block object{
+  padding: 40px;
+}
+
+.letter-I-block .block p{
+  padding: 0 40px 40px 40px;
+}
+
+.letter-Q {
+  background-image: url(/images/block_Q/letter_Q.svg);
+  background-repeat: no-repeat;
+  background-position: right;
+  height: 650px;
+  position: relative;
+  background-size: contain;
+}
+
+.letter-Q h2 {
+  position: absolute;
+  top: 100%;
+  transform: translate(0, -100%);
+  padding-bottom: 20px;
+}
+
+.letter-Q p {
+  padding-top: 20px;
+  color: #323232;
+}
+
+.letter-Q .textBold{
+  font-weight: bold;
+  font-size: 24px;
+  line-height: 150%;
+
+}
+
+@media (min-width: 1600px) {
+  .container {
+    max-width: 1520px;
+  }
+  .white-backgraund::before {
+    border-left: 1500px solid white;
+    border-top: 210px solid white;
+  }
+}
+
