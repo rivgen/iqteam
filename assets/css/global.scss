@@ -3,6 +3,11 @@ body {
   background-color: #F8FAFF;
 }
 
+.container {
+  max-width: 100vw;
+  padding: 0 50px;
+}
+
 h2 {
   font-family: Archivo, sans-serif;
   color: #3964F9;
@@ -11,9 +16,13 @@ h2 {
   line-height: 130%;
 }
 
-.homeClass img{
-  width: 100%;
+p {
+  color: #323232;
 }
+
+//.homeClass img{
+//  width: 100%;
+//}
 
 .white-backgraund {
   //background: white;
@@ -32,7 +41,7 @@ h2 {
   content: '';
   position: absolute; /* Абсолютное позиционирование */
   border: 577px solid transparent;
-  border-left: 1000px solid white;
+  border-left: 100vw solid white;
   border-top: 310px solid white;
 }
 
@@ -75,12 +84,12 @@ h2 {
   margin-top: 100px;
 }
 
-.letter-I-block .block {
+.letter-I-block .block, .letter-T .block {
   background: #FFFFFF;
   border-radius: 20px;
 }
 
-.letter-I-block .block object{
+.letter-I-block .block object, .letter-T .block object{
   padding: 40px;
 }
 
@@ -88,40 +97,227 @@ h2 {
   padding: 0 40px 40px 40px;
 }
 
+.letter-Q, .letter-T, .letter-E, .letter-A, .letter-M, .footerClass {
+  background-repeat: no-repeat;
+  background-position: 80% 80px;
+  padding: 30px 0;
+}
+
 .letter-Q {
   background-image: url(/images/block_Q/letter_Q.svg);
-  background-repeat: no-repeat;
-  background-position: right;
-  height: 650px;
-  position: relative;
-  background-size: contain;
+  height: 800px;
+  //background-size: contain;
+  display: flex;
+  align-items: center
 }
 
 .letter-Q h2 {
-  position: absolute;
-  top: 100%;
-  transform: translate(0, -100%);
+  //position: absolute;
+  //top: 100%;
+  //transform: translate(0, -100%);
   padding-bottom: 20px;
 }
 
-.letter-Q p {
+.letter-Q p, .letter-T p {
   padding-top: 20px;
-  color: #323232;
+
 }
 
-.letter-Q .textBold{
+.textBold {
   font-weight: bold;
   font-size: 24px;
   line-height: 150%;
 
 }
 
+.letter-T {
+  background-image: url(/images/block_T/letter_T.svg);
+}
+
+.letter-T h2, .letter-E h2, .letter-E .block, .letter-A h2, .letter-M h2, .letter-M .mapContact {
+  margin-top: 215px;
+  padding-bottom: 20px;
+
+}
+
+.letter-T p {
+  padding-bottom: 100px;
+}
+
+.letter-T .block {
+  margin: 0 0 30px 0;
+ }
+
+.letter-T .title {
+  font-weight: bold;
+  font-size: 18px;
+  line-height: 150%;
+  margin: auto 0;
+  color: #323232;
+
+}
+
+.letter-T .text{
+  padding: 0 40px 57px 57px;
+  font-size: 12px;
+  line-height: 200%;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #323232;
+}
+
+.letter-E {
+  background-image: url(/images/block_E/letter_E.svg);
+  background-color: white;
+}
+
+.letter-E .title {
+  font-size: 12px;
+  line-height: 200%;
+  text-align: center;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #323232;
+  max-width: 105px;
+  margin: 0 auto;
+  padding-bottom: 30px;
+}
+
+.letter-A p{
+  font-size: 12px;
+  line-height: 200%;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding-bottom: 30px;
+}
+
+.letter-A {
+  background-image: url(/images/block_A/letter_A.svg);
+}
+
+.letter-A .textBold, .letter-M .textBold {
+  font-size: 21px;
+  padding-right: 86px;
+}
+
+.letter-A .projects {
+  padding-top: 60px;
+}
+
+.letter-A .projects img {
+  margin: 25px 0;
+  border: 15px solid #fff;
+  border-radius: 20px;
+  box-shadow: 0px 10px 20px rgba(57, 100, 249, 0.1);
+}
+
+.letter-A h3 {
+  font-family: Archivo, sans-serif;
+  font-weight: bold;
+  font-size: 18px;
+  line-height: 150%;
+  display: flex;
+  align-items: center;
+  color: #323232;
+  padding-bottom: 30px;
+}
+
+.letter-A .buttonProject {
+  width: 223px;
+  height: 50px;
+  color: white;
+  background: #3964F9;
+  border-radius: 5px;
+  box-shadow: 0px 10px 20px rgba(57, 100, 249, 0.3);
+  margin-bottom: 30px;
+  font-size: 12px;
+  line-height: 150%;
+  display: flex;
+  align-items: center;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.letter-A .buttonProject span {
+  margin: auto;
+  display: flex;
+  align-items: center;
+}
+
+.letter-A .buttonProject object {
+  margin-right: 10px;
+}
+
+.letter-M {
+  background-image: url(/images/block_M/letter_M.svg);
+  background-color: white;
+}
+
+.letter-M h4 {
+  font-size: 12px;
+  line-height: 200%;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #323232;
+  padding-top: 40px;
+}
+
+.letter-M p{
+  font-family: Archivo, sans-serif;
+  font-weight: bold;
+  font-size: 18px;
+  line-height: 150%;
+  padding-top: 20px;
+}
+
+.footerClass{
+  background-color: white;
+}
+
+.letter-M object {
+  padding-top: 20px;
+  padding-right: 30px;
+}
+
+.footerClass p {
+  font-size: 12px;
+  line-height: 200%;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.footerClass .rightClass {
+  text-align: right;
+}
+
+.menuClass p, .homeClass p, .homeClass a {
+  font-size: 12px;
+  line-height: 150%;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  margin: 0;
+}
+
+.menuClass .text{
+  padding-top: 200px;
+}
+
+.menuClass .row {
+  padding-bottom: 15px;
+}
+
+.homeClass .row {
+  min-height: 150px;
+}
+
+.localeRight a {
+  text-align: right;
+}
+
 @media (min-width: 1600px) {
-  .container {
-    max-width: 1520px;
-  }
+
   .white-backgraund::before {
-    border-left: 1500px solid white;
+    //border-left: 1500px solid white;
     border-top: 210px solid white;
   }
 }
