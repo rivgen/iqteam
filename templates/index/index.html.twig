@@ -6,10 +6,10 @@
                 {% set menuAll = [
                 {'list': 'I', 'menu': 'главный экран', 'anchor': '#home'},
                 {'list': 'Q', 'menu': 'о нас', 'anchor': '#letter-Q'},
-                {'list': 'T', 'menu': 'экспертиза', 'anchor': '#letter-T'},
-                {'list': 'I', 'menu': 'технологии', 'anchor': '#letter-E'},
-                {'list': 'E', 'menu': 'проекты', 'anchor': '#letter-A'},
-                {'list': 'M', 'menu': 'контакты', 'anchor': '#letter-M'}
+                {'list': '/', 'menu': 'экспертиза', 'anchor': '#slash'},
+                {'list': 'D', 'menu': 'технологии', 'anchor': '#letter-D'},
+                {'list': 'E', 'menu': 'проекты', 'anchor': '#letter-E'},
+                {'list': 'V', 'menu': 'контакты', 'anchor': '#letter-V'}
                 ] %}
                 {#{% set menuAll = [1->I, 2->Q] %}#}
                 {% for menu in menuAll %}
@@ -23,7 +23,7 @@
             <div class="col-md-8">
                 <div class="row letter-I">
                     <div class="col-md-6">
-                        <h2 class="title">IQTeam</h2>
+                        <h2 class="title">IQ Dev</h2>
                         <p class="text">Подходим к решению любой задачи с интеллектом! Только качественные продукты и
                             уникальные решения!</p>
                         <a class="btn btnBlue" href="#" role="button">Связаться</a>
@@ -79,7 +79,7 @@
             </div>
         </div>
     </div>
-    <div id="letter-T" class="container letter-T">
+    <div id="slash" class="container slash">
         <div class="row justify-content-md-center">
             <div class="col-md-8">
                 <div class="row">
@@ -91,26 +91,26 @@
                             наши клиенты дают нам экспертизу, которая позволяет создавать качественный продукт.</p>
                     </div>
                     {% set expertise = [
-                    {'img': '/images/block_T/web.svg', 'title': 'WEB-разработка', 'text': 'Создания веб-сайта или веб-приложения. Вёрстка, программирование на стороне клиента и сервера'},
-                    {'img': '/images/block_T/mobile.svg', 'title': 'Mobile-разработка', 'text': 'Разработка приложений для таких небольших портативных устройств, как КПК, смартфоны и прочее'},
-                    {'img': '/images/block_T/rocket.svg', 'title': 'Продвижение', 'text': 'Обеспечение посещаемости сайта целевыми посетителями, которые заинтересованы в продукте'},
-                    {'img': '/images/block_T/design.svg', 'title': 'UX/UI -дизайн', 'text': 'Восприятие и ответные действия пользователя на использование продукции, системы или услуги'},
-                    {'img': '/images/block_T/html5.svg', 'title': 'Создание HTML5 игр', 'text': 'Поддержка и создание игр, которые можно запускать из браузера на любом ПК или мобильном устройстве'},
-                    {'img': '/images/block_T/unity.svg', 'title': 'Создание Unity игр', 'text': 'Межплатформенная среда разработки, которая позволяет создавать кроссплатформенные  игры'},
+                    {'img': '/images/slash/web.svg', 'title': 'WEB-разработка', 'text': 'Создания веб-сайта или веб-приложения. Вёрстка, программирование на стороне клиента и сервера'},
+                    {'img': '/images/slash/mobile.svg', 'title': 'Mobile-разработка', 'text': 'Разработка приложений для таких небольших портативных устройств, как КПК, смартфоны и прочее'},
+                    {'img': '/images/slash/rocket.svg', 'title': 'Продвижение', 'text': 'Обеспечение посещаемости сайта целевыми посетителями, которые заинтересованы в продукте'},
+                    {'img': '/images/slash/design.svg', 'title': 'UX/UI -дизайн', 'text': 'Восприятие и ответные действия пользователя на использование продукции, системы или услуги'},
+                    {'img': '/images/slash/html5.svg', 'title': 'Создание HTML5 игр', 'text': 'Поддержка и создание игр, которые можно запускать из браузера на любом ПК или мобильном устройстве'},
+                    {'img': '/images/slash/unity.svg', 'title': 'Создание Unity игр', 'text': 'Межплатформенная среда разработки, которая позволяет создавать кроссплатформенные  игры'},
                     ] %}
-                    {% for block_T in expertise %}
+                    {% for slash in expertise %}
                         <div class="col-md-6">
                             <div class="row block">
                                 <div class="col-md-3">
-                                    <object type="image/svg+xml" data={{ block_T.img }}>
+                                    <object type="image/svg+xml" data={{ slash.img }}>
                                         Your browser does not support SVG
                                     </object>
                                 </div>
                                 <div class="col-md-9 title">
-                                    {{ block_T.title }}
+                                    {{ slash.title }}
                                 </div>
                                 <div class="col-md-12 text">
-                                    {{ block_T.text }}
+                                    {{ slash.text }}
                                 </div>
                             </div>
                         </div>
@@ -119,7 +119,7 @@
             </div>
         </div>
     </div>
-    <div id="letter-E" class="container letter-E">
+    <div id="letter-D" class="container letter-D">
         <div class="row justify-content-md-center">
             <div class="col-md-8">
                 <div class="row">
@@ -133,23 +133,23 @@
                     <div class="col-md-6">
                         <div class="row block">
                             {% set technologies = [
-                            {'img': '/images/block_E/java.svg', 'title': 'Oracle Java Grails'},
-                            {'img': '/images/block_E/c++.svg', 'title': 'C#'},
-                            {'img': '/images/block_E/net.svg', 'title': '.Net'},
-                            {'img': '/images/block_E/aspNet.svg', 'title': 'ASP.Net'},
-                            {'img': '/images/block_E/node.svg', 'title': 'Grails Nоde.JS'},
-                            {'img': '/images/block_E/php.svg', 'title': 'PHP'},
-                            {'img': '/images/block_E/ruby.svg', 'title': 'Ruby on rails'},
-                            {'img': '/images/block_E/swift.svg', 'title': 'SWIFT'},
-                            {'img': '/images/block_E/angular.svg', 'title': 'Angular.JS'},
-                            {'img': '/images/block_E/react.svg', 'title': 'React.JS'},
+                            {'img': '/images/block_D/java.svg', 'title': 'Oracle Java Grails'},
+                            {'img': '/images/block_D/c++.svg', 'title': 'C#'},
+                            {'img': '/images/block_D/net.svg', 'title': '.Net'},
+                            {'img': '/images/block_D/aspNet.svg', 'title': 'ASP.Net'},
+                            {'img': '/images/block_D/node.svg', 'title': 'Grails Nоde.JS'},
+                            {'img': '/images/block_D/php.svg', 'title': 'PHP'},
+                            {'img': '/images/block_D/ruby.svg', 'title': 'Ruby on rails'},
+                            {'img': '/images/block_D/swift.svg', 'title': 'SWIFT'},
+                            {'img': '/images/block_D/angular.svg', 'title': 'Angular.JS'},
+                            {'img': '/images/block_D/react.svg', 'title': 'React.JS'},
                             ] %}
-                            {% for block_E in technologies %}
+                            {% for block_D in technologies %}
                                 <div class="col-md-4">
-                                    <object type="image/svg+xml" data={{ block_E.img }}>
+                                    <object type="image/svg+xml" data={{ block_D.img }}>
                                         Your browser does not support SVG
                                     </object>
-                                    <p class="title">{{ block_E.title }}</p>
+                                    <p class="title">{{ block_D.title }}</p>
                                 </div>
                             {% endfor %}
                         </div>
@@ -158,7 +158,7 @@
             </div>
         </div>
     </div>
-    <div id="letter-A" class="container letter-A">
+    <div id="letter-E" class="container letter-E">
         <div class="row justify-content-md-center">
             <div class="col-md-8">
                 <div class="row">
@@ -179,11 +179,11 @@
                     </div>
                     <div class="row projects">
                         {% set projects = [
-                        {'img': '/images/block_A/iqeon.png', 'title': 'Платформа IQeon  |  2018', 'text': 'игровая PvP платформа, которая позволяет пользователям соревноваться между собой в различных играх популярных жанров, получая цифровой актив IQN за лучший результат.', 'button': [{'img': '/images/block_A/iqn.svg', 'btn': 'iqeon.com', 'url': 'https://iqeon.com'}]},
-                        {'img': '/images/block_A/iqgamm.png', 'title': 'Игровой портал  |  2018', 'text': 'IQGamm – информационное решение в сфере новостного обзора игровой индустрии, наличия качественной информации о компьютерных играх, ссылок на них с подробным описанием, а также площадкой для поиска единомышленников с наличием специализированных и модерируемых форумов.', 'button': [{'img': '/images/block_A/iqgamm.svg', 'btn': 'iqgamm.com', 'url': 'https://iqgamm.com'}, {'img': '/images/block_A/zenYandex.svg', 'btn': 'zen.yandex.ru', 'url': '#'}]},
-                        {'img': '/images/block_A/racing.png', 'title': 'SR:Racing  |  2018', 'text': 'Мобильный проект, симулятор гонок по оживленной трассе. Игра состоит из 5 режимов, один из которых открывается раз в день и является чисто фановым. Фреймворк Cinemachine был выбран для реализации эффектов камеры.', 'button': [{'img': '/images/block_A/apple.svg', 'btn': 'apple store', 'url': '#'}, {'img': '/images/block_A/google.svg', 'btn': 'google play', 'url': '#'}]},
-                        {'img': '/images/block_A/king.png', 'title': 'King of Dirt  |  2018', 'text': 'В King of Dirt игрок может сесть за руль крутого байка и покорить разнообразные сложные трассы. Выполняй миссии и получай очки, за которые можно прокачать байк или купить новый, а также научить своего персонажа новым головокружительным трюкам.', 'button': [{'img': '/images/block_A/apple.svg', 'btn': 'apple store', 'url': '#'}, {'img': '/images/block_A/google.svg', 'btn': 'google play', 'url': '#'}]},
-                        {'img': '/images/block_A/zombies.png', 'title': 'Zombies: Run & Bite  |  2018', 'text': 'Теперь покорять различные трассы и выполнять головокружительные трюки можно на скутере! Выполняй миссии и зарабатывай очки, с помощью которых чтобы выучить новые трюки, прокачать скутер, и даже купить новый. А включив вид от первого лица можно почувствовать себя настоящим мастером.', 'button': [{'img': '/images/block_A/apple.svg', 'btn': 'apple store', 'url': '#'}, {'img': '/images/block_A/google.svg', 'btn': 'google play', 'url': '#'}]}
+                        {'img': '/images/block_E/iqeon.png', 'title': 'Платформа IQeon  |  2018', 'text': 'игровая PvP платформа, которая позволяет пользователям соревноваться между собой в различных играх популярных жанров, получая цифровой актив IQN за лучший результат.', 'button': [{'img': '/images/block_E/iqn.svg', 'btn': 'iqeon.com', 'url': 'https://iqeon.com'}]},
+                        {'img': '/images/block_E/iqgamm.png', 'title': 'Игровой портал  |  2018', 'text': 'IQGamm – информационное решение в сфере новостного обзора игровой индустрии, наличия качественной информации о компьютерных играх, ссылок на них с подробным описанием, а также площадкой для поиска единомышленников с наличием специализированных и модерируемых форумов.', 'button': [{'img': '/images/block_E/iqgamm.svg', 'btn': 'iqgamm.com', 'url': 'https://iqgamm.com'}, {'img': '/images/block_E/zenYandex.svg', 'btn': 'zen.yandex.ru', 'url': '#'}]},
+                        {'img': '/images/block_E/racing.png', 'title': 'SR:Racing  |  2018', 'text': 'Мобильный проект, симулятор гонок по оживленной трассе. Игра состоит из 5 режимов, один из которых открывается раз в день и является чисто фановым. Фреймворк Cinemachine был выбран для реализации эффектов камеры.', 'button': [{'img': '/images/block_E/apple.svg', 'btn': 'apple store', 'url': '#'}, {'img': '/images/block_E/google.svg', 'btn': 'google play', 'url': '#'}]},
+                        {'img': '/images/block_E/king.png', 'title': 'King of Dirt  |  2018', 'text': 'В King of Dirt игрок может сесть за руль крутого байка и покорить разнообразные сложные трассы. Выполняй миссии и получай очки, за которые можно прокачать байк или купить новый, а также научить своего персонажа новым головокружительным трюкам.', 'button': [{'img': '/images/block_E/apple.svg', 'btn': 'apple store', 'url': '#'}, {'img': '/images/block_E/google.svg', 'btn': 'google play', 'url': '#'}]},
+                        {'img': '/images/block_E/zombies.png', 'title': 'Zombies: Run & Bite  |  2018', 'text': 'Теперь покорять различные трассы и выполнять головокружительные трюки можно на скутере! Выполняй миссии и зарабатывай очки, с помощью которых чтобы выучить новые трюки, прокачать скутер, и даже купить новый. А включив вид от первого лица можно почувствовать себя настоящим мастером.', 'button': [{'img': '/images/block_E/apple.svg', 'btn': 'apple store', 'url': '#'}, {'img': '/images/block_E/google.svg', 'btn': 'google play', 'url': '#'}]}
                         ] %}
                         {% for block_E in projects %}
                             <div class="col-md-6">
@@ -209,7 +209,7 @@
             </div>
         </div>
     </div>
-    <div id="letter-M" class="container letter-M">
+    <div id="letter-V" class="container letter-V">
         <div class="row justify-content-md-center">
             <div class="col-md-8">
                 <div class="row">
@@ -220,27 +220,31 @@
                         <div class="row">
                             <div class="col-md-6">
                                 <h4>приезжайте</h4>
-                                <p>Минск, Республика Беларусь, Партизанский пр-т, 4</p>
+                                <p>Минск, Республика Беларусь, пр. Партизанский 4</p>
                             </div>
                             <div class="col-md-6">
                                 <h4>пишите</h4>
-                                <p>Support@iqteam.by</p>
+                                <object type="image/svg+xml" data="/images/imgEmailContact.svg">
+                                    Your browser does not support SVG
+                                </object>
                             </div>
                             <div class="col-md-6">
                                 <h4>звоните</h4>
-                                <p>+ 375 29 890-12-34</p>
+                                <object type="image/svg+xml" data="/images/imgTelContact.svg">
+                                    Your browser does not support SVG
+                                </object>
                             </div>
                             <div class="col-md-6">
                                 <h4>ищите в соцсетях</h4>
                                 {% set social = [
-                                {'img': '/images/block_M/telegram.svg', 'url': '#'},
-                                {'img': '/images/block_M/vk.svg', 'url': '#'},
-                                {'img': '/images/block_M/facebook.svg', 'url': '#'},
-                                {'img': '/images/block_M/twitter.svg', 'url': '#'}
+                                {'img': '/images/block_V/telegram.svg', 'url': '#'},
+                                {'img': '/images/block_V/vk.svg', 'url': '#'},
+                                {'img': '/images/block_V/facebook.svg', 'url': '#'},
+                                {'img': '/images/block_V/twitter.svg', 'url': '#'}
                                 ] %}
-                                {% for block_M in social %}
-                                    <a href={{ block_M.url }}>
-                                        <object type="image/svg+xml" data={{ block_M.img }}>
+                                {% for block_V in social %}
+                                    <a href={{ block_V.url }}>
+                                        <object type="image/svg+xml" data={{ block_V.img }}>
                                             Your browser does not support SVG
                                         </object>
                                     </a>
@@ -249,7 +253,7 @@
                         </div>
                     </div>
                     <div class="col-md-6 mapContact">
-                        <img src="/images/block_M/map.png" alt=""/>
+                        <img src="/images/block_V/map.png" alt=""/>
                     </div>
                 </div>
             </div>

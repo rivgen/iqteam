@@ -12,7 +12,7 @@ h2 {
   font-family: Archivo, sans-serif;
   color: #3964F9;
   font-weight: bold;
-  font-size: 64px;
+  font-size: 68px;
   line-height: 130%;
 }
 
@@ -40,9 +40,9 @@ p {
 .white-backgraund::before {
   content: '';
   position: absolute; /* Абсолютное позиционирование */
-  border: 577px solid transparent;
-  border-left: 100vw solid white;
-  border-top: 310px solid white;
+  border: 100vh solid transparent;
+  border-left: 65vw solid white;
+  border-top: 15vw solid white;
 }
 
 .letter-I .title{
@@ -84,12 +84,12 @@ p {
   margin-top: 100px;
 }
 
-.letter-I-block .block, .letter-T .block {
+.letter-I-block .block, .slash .block {
   background: #FFFFFF;
   border-radius: 20px;
 }
 
-.letter-I-block .block object, .letter-T .block object{
+.letter-I-block .block object, .slash .block object{
   padding: 40px;
 }
 
@@ -97,7 +97,7 @@ p {
   padding: 0 40px 40px 40px;
 }
 
-.letter-Q, .letter-T, .letter-E, .letter-A, .letter-M, .footerClass {
+.letter-Q, .slash, .letter-D, .letter-E, .letter-V, .footerClass {
   background-repeat: no-repeat;
   background-position: 80% 80px;
   padding: 30px 0;
@@ -118,7 +118,7 @@ p {
   padding-bottom: 20px;
 }
 
-.letter-Q p, .letter-T p {
+.letter-Q p, .slash p {
   padding-top: 20px;
 
 }
@@ -130,25 +130,25 @@ p {
 
 }
 
-.letter-T {
-  background-image: url(/images/block_T/letter_T.svg);
+.slash {
+  background-image: url(/images/slash/slash.svg);
 }
 
-.letter-T h2, .letter-E h2, .letter-E .block, .letter-A h2, .letter-M h2, .letter-M .mapContact {
+.slash h2, .letter-D h2, .letter-D .block, .letter-E h2, .letter-V h2, .letter-V .mapContact {
   margin-top: 215px;
   padding-bottom: 20px;
 
 }
 
-.letter-T p {
+.slash p {
   padding-bottom: 100px;
 }
 
-.letter-T .block {
+.slash .block {
   margin: 0 0 30px 0;
  }
 
-.letter-T .title {
+.slash .title {
   font-weight: bold;
   font-size: 18px;
   line-height: 150%;
@@ -157,7 +157,7 @@ p {
 
 }
 
-.letter-T .text{
+.slash .text{
   padding: 0 40px 57px 57px;
   font-size: 12px;
   line-height: 200%;
@@ -166,12 +166,12 @@ p {
   color: #323232;
 }
 
-.letter-E {
-  background-image: url(/images/block_E/letter_E.svg);
+.letter-D {
+  background-image: url(/images/block_D/letter_D.svg);
   background-color: white;
 }
 
-.letter-E .title {
+.letter-D .title {
   font-size: 12px;
   line-height: 200%;
   text-align: center;
@@ -183,7 +183,7 @@ p {
   padding-bottom: 30px;
 }
 
-.letter-A p{
+.letter-E p{
   font-size: 12px;
   line-height: 200%;
   letter-spacing: 0.1em;
@@ -191,27 +191,27 @@ p {
   padding-bottom: 30px;
 }
 
-.letter-A {
-  background-image: url(/images/block_A/letter_A.svg);
+.letter-E {
+  background-image: url(/images/block_E/letter_E.svg);
 }
 
-.letter-A .textBold, .letter-M .textBold {
+.letter-E .textBold, .letter-V .textBold {
   font-size: 21px;
   padding-right: 86px;
 }
 
-.letter-A .projects {
+.letter-E .projects {
   padding-top: 60px;
 }
 
-.letter-A .projects img {
+.letter-E .projects img {
   margin: 25px 0;
   border: 15px solid #fff;
   border-radius: 20px;
   box-shadow: 0px 10px 20px rgba(57, 100, 249, 0.1);
 }
 
-.letter-A h3 {
+.letter-E h3 {
   font-family: Archivo, sans-serif;
   font-weight: bold;
   font-size: 18px;
@@ -222,7 +222,7 @@ p {
   padding-bottom: 30px;
 }
 
-.letter-A .buttonProject {
+.letter-E .buttonProject {
   width: 223px;
   height: 50px;
   color: white;
@@ -238,22 +238,22 @@ p {
   text-transform: uppercase;
 }
 
-.letter-A .buttonProject span {
+.letter-E .buttonProject span {
   margin: auto;
   display: flex;
   align-items: center;
 }
 
-.letter-A .buttonProject object {
+.letter-E .buttonProject object {
   margin-right: 10px;
 }
 
-.letter-M {
-  background-image: url(/images/block_M/letter_M.svg);
+.letter-V {
+  background-image: url(/images/block_V/letter_V.svg);
   background-color: white;
 }
 
-.letter-M h4 {
+.letter-V h4 {
   font-size: 12px;
   line-height: 200%;
   letter-spacing: 0.1em;
@@ -262,19 +262,19 @@ p {
   padding-top: 40px;
 }
 
-.letter-M p{
+.letter-V p{
   font-family: Archivo, sans-serif;
   font-weight: bold;
   font-size: 18px;
   line-height: 150%;
-  padding-top: 20px;
+  padding-top: 18px;
 }
 
 .footerClass{
   background-color: white;
 }
 
-.letter-M object {
+.letter-V object {
   padding-top: 20px;
   padding-right: 30px;
 }
@@ -318,7 +318,7 @@ p {
 
   .white-backgraund::before {
     //border-left: 1500px solid white;
-    border-top: 210px solid white;
+    //border-top: 210px solid white;
   }
 }
 
