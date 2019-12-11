@@ -13,10 +13,10 @@
                 ] %}
                 {#{% set menuAll = [1->I, 2->Q] %}#}
                 {% for menu in menuAll %}
-                <div class="row">
-                    <div class="col-md-2"><p>{{ menu.list }}</p></div>
-                    <div class="col-md-10"><a href={{ menu.anchor }}><p>{{ menu.menu }}</p></a></div>
-                </div>
+                    <div class="row">
+                        <div class="col-md-2"><p>{{ menu.list }}</p></div>
+                        <div class="col-md-10"><a href={{ menu.anchor }}><p>{{ menu.menu }}</p></a></div>
+                    </div>
                 {% endfor %}
                 <p class="text">издатель и разработчик мобильных и браузерных игр</p>
             </div>
@@ -56,6 +56,13 @@
             </div>
         </div>
     </div>
+    {#<div class="container">#}
+        {#<div class="row">#}
+            {#<div class="col-md-12">#}
+                {#<div id="root"></div>#}
+            {#</div>#}
+        {#</div>#}
+    {#</div>#}
     <div id="letter-Q" class="container letter-Q">
         <div class="row justify-content-md-center">
             <div class="col-md-8">
@@ -215,7 +222,8 @@
                 <div class="row">
                     <div class="col-md-6">
                         <h2>Контакты</h2>
-                        <p class="textBold">Готовы начать свой следующий проект? Для обсуждения или сотрудничества просто свяжитесь с
+                        <p class="textBold">Готовы начать свой следующий проект? Для обсуждения или сотрудничества
+                            просто свяжитесь с
                             нами.</p>
                         <div class="row">
                             <div class="col-md-6">
@@ -225,7 +233,7 @@
                             <div class="col-md-6">
                                 <h4>пишите</h4>
                                 {#<object type="image/svg+xml" data="/images/imgEmailContact.svg">#}
-                                    {#Your browser does not support SVG#}
+                                {#Your browser does not support SVG#}
                                 {#</object>#}
                                 <p>info@iqdev.com</p>
                             </div>
@@ -235,19 +243,21 @@
                                     Your browser does not support SVG
                                 </object>
                             </div>
-                            <div class="col-md-6">
+                            <div class="col-md-6 social">
                                 <h4>ищите в соцсетях</h4>
                                 {% set social = [
                                 {'img': '/images/block_V/telegram.svg', 'url': '#'},
-                                {'img': '/images/block_V/vk.svg', 'url': '#'},
+                                {'img': '/images/block_V/vk.svg', 'url': 'https://vk.com/iq_dev'},
                                 {'img': '/images/block_V/facebook.svg', 'url': '#'},
-                                {'img': '/images/block_V/twitter.svg', 'url': '#'}
+                                {'img': '/images/block_V/twitter.svg', 'url': '#'},
+                                {'img': '/images/block_V/instagram.svg', 'url': 'https://www.instagram.com/iq_dev_by/'}
                                 ] %}
                                 {% for block_V in social %}
-                                    <a href={{ block_V.url }}>
-                                        <object type="image/svg+xml" data={{ block_V.img }}>
-                                            Your browser does not support SVG
-                                        </object>
+                                    <a href={{ block_V.url }} target="_blank">
+                                        <img src={{ block_V.img }} alt="" />
+                                        {#<object type="image/svg+xml" data={{ block_V.img }}>#}
+                                            {#Your browser does not support SVG#}
+                                        {#</object>#}
                                     </a>
                                 {% endfor %}
                             </div>
