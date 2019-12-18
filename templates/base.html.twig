@@ -7,46 +7,64 @@
         {{ encore_entry_link_tags('app') }}
     {% endblock %}
 </head>
-<body class="white-backgraund">
+<body {% if (app.request.get('_route') == 'index_index') %}class="white-backgraund"{% endif %}>
 <div id="home" class="container homeClass">
     {% block header %}
-    {#<header>#}
-        <div class="row align-items-center">
-            <div class="col-md-2">
+    {% set menu = [
+    {'title': 'Услуги', 'url': path('service_index') },
+    {'title': 'Портфолио', 'url': path('portfolio_index')},
+    {'title': 'контакты', 'url': '#'},
+    ] %}
+    <div class="row align-items-center">
+        <div class="col-md-2">
+            {% if  (app.request.get('_route') == 'index_index') %}
                 <object type="image/svg+xml" data="/images/logo.svg">
                     Your browser does not support SVG
                 </object>
-            </div>
-            <div class="col-md-2">
-                <p>Минск, пр.  Партизанский, 4</p>
-            </div>
-            <div class="col-md-2">
-                <p>220036</p>
-            </div>
-            <div class="col-md-2">
-                {#<object type="image/svg+xml" data="/images/imgEmail.svg">#}
-                    {#Your browser does not support SVG#}
-                {#</object>#}
-                <p>info@iqdev.com</p>
-            </div>
-            <div class="col-md-2">
-                <object type="image/svg+xml" data="/images/imgTel.svg">
-                    Your browser does not support SVG
-                </object>
-            </div>
-            <div class="col-md-2">
-                <div class="row align-items-center localeRight">
-                    {% for locale in locales() %}
-                        <div class="col-md-2" {% if app.request.locale == locale.code %}aria-checked="true" class="active"
-                             {% else %}aria-checked="false"{% endif %} role="menuitem">
-                            <a href="{{ path(app.request.get('_route', 'index_index'), app.request.get('_route_params', [])|merge({_locale: locale.code})) }}">
-                                <small>{{ locale.code[0:2] }}</small>
-                            </a></div>
+            {% else %}
+                <a href="{{ path('index_index') }}" class="logoSvg">
+                    <object type="image/svg+xml" data="/images/logo.svg">
+                        Your browser does not support SVG
+                    </object>
+                </a>
+            {% endif %}
+        </div>
+        <div class="col-md-8">
+            <div class="row justify-content-between align-items-center">
+                <div class="col-md-2 menuFlex inLeft">
+                    {% for mainMenu in menu %}
+                        {% if ( path(app.request.get('_route')) == mainMenu.url ) %}
+                            <p>{{ mainMenu.title }}</p>
+                        {% else %}
+                            <a href="{{ mainMenu.url }}"><p>{{ mainMenu.title }}</p></a>
+                        {% endif %}
                     {% endfor %}
+                </div>
+                <div class="col-md-4 menuFlex inRight">
+                    {#<object type="image/svg+xml" data="/images/imgEmail.svg">#}
+                    {#Your browser does not support SVG#}
+                    {#</object>#}
+                    <p>info@iqdev.com</p>
+                    {#</div>#}
+                    {#<div class="col-md-1">#}
+                    <object type="image/svg+xml" data="/images/imgTel.svg">
+                        Your browser does not support SVG
+                    </object>
                 </div>
             </div>
         </div>
-    {#</header>#}
+        <div class="col-md-2">
+            <div class="row align-items-center justify-content-end">
+                {% for locale in locales() %}
+                    <div class="col-md-2" {% if app.request.locale == locale.code %}aria-checked="true" class="active"
+                         {% else %}aria-checked="false"{% endif %} role="menuitem">
+                        <a href="{{ path(app.request.get('_route', 'index_index'), app.request.get('_route_params', [])|merge({_locale: locale.code})) }}">
+                            <small>{{ locale.code[0:2] }}</small>
+                        </a></div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
 </div>
 {% endblock %}
 {% block body %}

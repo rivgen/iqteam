@@ -101,8 +101,8 @@ p {
 
 .letter-Q, .slash, .letter-D, .letter-E, .letter-V, .footerClass {
   background-repeat: no-repeat;
-  background-position: 80% 80px;
-  padding: 30px 0;
+  background-position: 50% 80px;
+  padding: 30px 50px;
 }
 
 .letter-Q {
@@ -320,6 +320,96 @@ p {
   margin-right: 20px;
   position: relative;
   top: 10px;
+}
+
+.menuFlex {
+  display: flex;
+  align-items: center;
+
+}
+
+.inLeft{
+  justify-content: flex-start;
+}
+
+.inRight{
+  justify-content: flex-end;
+}
+
+.menuFlex p{
+  padding-right: 50px;
+}
+
+a.logoSvg {
+  position: relative;
+  display: inline-block;
+}
+a.logoSvg:after {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left:0;
+}
+
+.titleService h1, .titlePortfolio h1{
+  font-weight: bold;
+  font-size: 96px;
+  line-height: 130%;
+  color: #3964F9;
+}
+
+.blockService h2{
+  font-weight: bold;
+  font-size: 24px;
+  line-height: 150%;
+  color: #323232;
+  margin-top: 7px;
+  margin-left: 20px;
+}
+
+.blockService{
+  margin-top: 140px;
+}
+
+.blockService .content .serviceText p {
+  font-style: normal;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 150%;
+  color: #323232;
+  padding: 0;
+}
+
+.blockService .content .serviceText li {
+  list-style-type: none;
+}
+
+.blockService .content .serviceText ul {
+  margin-left: 0; /* Отступ слева в браузере IE и Opera */
+  padding-left: 0; /* Отступ слева в браузере Firefox, Safari, Chrome */
+  font-weight: normal;
+  font-size: 12px;
+  line-height: 30px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+
+  color: #323232;
+}
+
+.blockService .content .index{
+  position: absolute;
+  top: -24px;
+  right: 0;
+  font-weight: bold;
+  font-size: 72px;
+  line-height: 130%;
+  color: #E6ECF9;
+}
+
+.blockService img {
+  width: 100%;
 }
 
 @media (min-width: 1600px) {

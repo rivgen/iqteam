@@ -14,7 +14,7 @@
                 {#{% set menuAll = [1->I, 2->Q] %}#}
                 {% for menu in menuAll %}
                     <div class="row">
-                        <div class="col-md-2"><p>{{ menu.list }}</p></div>
+                        {#<div class="col-md-2"><p>{{ menu.list }}</p></div>#}
                         <div class="col-md-10"><a href={{ menu.anchor }}><p>{{ menu.menu }}</p></a></div>
                     </div>
                 {% endfor %}

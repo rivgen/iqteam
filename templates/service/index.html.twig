@@ -1,0 +1,113 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    {% set services = [
+    {'title': 'Web-разработка',
+    'text': '<p>Создание Web-решений на базе новейших технологий  с использованием современных методов проектирования  и управления включает в себя:-веб-дизайн;</p>
+    <ul>
+    <li>
+-верстка страниц;</li>
+<li>
+-программирование для веб на стороне клиента;</li>
+<li>
+-конфигурирование веб-сервера.</li>
+    </ul>',
+    'img': 'web.png',
+    'icon': 'web.svg' },
+    {'title': 'Mobile-разработка',
+    'text': '<p>Создание Web-решений на базе новейших технологий  с использованием современных методов проектирования  и управления включает в себя:-веб-дизайн;</p>
+    <ul>
+    <li>
+-верстка страниц;</li>
+<li>
+-программирование для веб на стороне клиента;</li>
+<li>
+-конфигурирование веб-сервера.</li>
+    </ul>',
+    'img': 'mobile.png',
+    'icon': 'mobile.svg' },
+    {'title': 'Digital Marketing',
+    'text': '<p>Создание Web-решений на базе новейших технологий  с использованием современных методов проектирования  и управления включает в себя:-веб-дизайн;</p>
+    <ul>
+    <li>
+-верстка страниц;</li>
+<li>
+-программирование для веб на стороне клиента;</li>
+<li>
+-конфигурирование веб-сервера.</li>
+    </ul>',
+    'img': 'marketing.png',
+    'icon': 'marketing.svg' },
+    {'title': 'UX/UI Дизайн',
+    'text': '<p>Создание Web-решений на базе новейших технологий  с использованием современных методов проектирования  и управления включает в себя:-веб-дизайн;</p>
+    <ul>
+    <li>
+-верстка страниц;</li>
+<li>
+-программирование для веб на стороне клиента;</li>
+<li>
+-конфигурирование веб-сервера.</li>
+    </ul>',
+    'img': 'ux-ui.png',
+    'icon': 'ux-ui.svg' },
+    {'title': 'Разработка Unity игр',
+    'text': '<p>Создание Web-решений на базе новейших технологий  с использованием современных методов проектирования  и управления включает в себя:-веб-дизайн;</p>
+    <ul>
+    <li>
+-верстка страниц;</li>
+<li>
+-программирование для веб на стороне клиента;</li>
+<li>
+-конфигурирование веб-сервера.</li>
+    </ul>',
+    'img': 'unity.png',
+    'icon': 'unity.svg' },
+    {'title': 'Разработка HTML-5 игр',
+    'text': '<p>Создание Web-решений на базе новейших технологий  с использованием современных методов проектирования  и управления включает в себя:-веб-дизайн;</p>
+    <ul>
+    <li>
+-верстка страниц;</li>
+<li>
+-программирование для веб на стороне клиента;</li>
+<li>
+-конфигурирование веб-сервера.</li>
+    </ul>',
+    'img': 'html-5.png',
+    'icon': 'html-5.svg' }
+    ] %}
+    <div id="slash" class="container slash">
+        <div class="row">
+            <div class="col-md-12 text-center titleService">
+                <h1>Наши услуги</h1>
+            </div>
+        </div>
+        {% for service in services %}
+            <div class="row justify-content-center align-items-center blockService">
+                <div class="col-md-4">
+                    <img src="/images/service/{{ service.img }}" alt=""/>
+                </div>
+                <div></div>
+                <div class="col-md-4 {% if loop.index%2 == 0 %} order-first mr-5 {% else %} ml-5 {% endif %}">
+                    <div class="row content">
+                        <div class="row index">
+                            <div class="col-md-2 ">
+                                {% if loop.index < 10 %}
+                                    0{{ loop.index }}
+                                {% else %}
+                                    {{ loop.index }}
+                                {% endif %}
+                            </div>
+                        </div>
+                        <div class="col-md-1">
+                            <object type="image/svg+xml" data="/images/service/{{ service.icon }}">
+                                Your browser does not support SVG
+                            </object>
+                        </div>
+                        <div class="col-md-11"><h2>{{ service.title }}</h2></div>
+                        <div class="col-md-12 serviceText">{{ service.text|raw }}</div>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+{% endblock %}
