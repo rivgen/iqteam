@@ -1,0 +1,93 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Articles index{% endblock %}
+
+{% block body %}
+    <div id="slash" class="container slash">
+        <div class="row">
+            <div class="col-md-12 text-center titlePortfolio">
+                <h1>Портфолио</h1>
+            </div>
+        </div>
+    </div>
+    <div class="container menuClass">
+        <div class="row justify-content-md-center">
+            <div id="btn-container" class="col-md-8 btnContainer">
+                <button class="btn filter-button" data-filter="all">Все</button>
+                {% for category in categories %}
+                    <button class="btn filter-button" data-filter={{ category.id }}>{{ category.title }}</button>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+    <div class="container portfolio">
+        {% for article in articles %}
+            <div class="row justify-content-md-center projects filter {{ article.category }}">
+                <div class="col-md-4">
+                    <img src="/images/block_E/{{ article.img }}" alt=""/>
+                </div>
+                <div class="col-md-4 align-self-center">
+                    <h3>{{ article.title }}</h3>
+                    <p>{{ article.textPreview }}</p>
+                    {% for button in buttons %}
+                        {% if button.id == article.id %}
+                            <div class="title">
+                                <a href={{ button.url }} class="btn buttonProject" role="button">
+                                <span>
+                                        <object type="image/svg+xml" data="/images/batton/{{ button.icon }}">
+                                            Your browser does not support SVG
+                                        </object>
+                                            <span>{{ button.title }}</span></span></a>
+                            </div>
+                        {% endif %}
+                    {% endfor %}
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+    {#<div class="row">#}
+    {#<div id="btn-container" class="col-md-12">#}
+    {#<button class="btn filter-button" data-filter="all">Все товары</button>#}
+    {#<button class="btn filter-button" data-filter="fishing">Рыбалка</button>#}
+    {#<button class="btn filter-button" data-filter="camping">Туризм</button>#}
+    {#</div>#}
+    {#</div>#}
+    {#<div class="col-xs-12 col-sm-4 col-md-3 filter fishing">#}
+    {#<div class="product-card">#}
+    {#<span class="mbri-search"></span>#}
+    {#<a href="./images/tovar-10.jpg" data-lightbox="uslugi"  data-title="Удилища"><img class="card-img-top" src="./images/tovar-10.jpg" alt="Удилища" title="Удилища"></a>#}
+    {#<div class="card-body">#}
+    {#<h4 class="card-title">Удилища</h4>#}
+    {#</div>#}
+    {#</div>#}
+    {#</div>#}
+    {#<div class="col-xs-12 col-sm-4 col-md-3 filter fishing">#}
+    {#<div class="product-card">#}
+    {#<span class="mbri-search"></span>#}
+    {#<a href="./images/tovar-11.jpg" data-lightbox="uslugi"  data-title="Ящики"><img class="card-img-top" src="./images/tovar-11.jpg" alt="Ящики" title="Ящики"></a>#}
+    {#<div class="card-body">#}
+    {#<h4 class="card-title">Ящики</h4>#}
+    {#</div>#}
+    {#</div>#}
+    {#</div>#}
+    {#<div class="col-xs-12 col-sm-4 col-md-3 filter camping">#}
+    {#<div class="product-card">#}
+    {#<span class="mbri-search"></span>#}
+    {#<a href="./images/tovar-12.jpg" data-lightbox="uslugi"  data-title="Бинокли"><img class="card-img-top" src="./images/tovar-12.jpg" alt="Бинокли" title="Бинокли"></a>#}
+    {#<div class="card-body">#}
+    {#<h4 class="card-title">Бинокли</h4>#}
+    {#</div>#}
+    {#</div>#}
+    {#</div>#}
+    {#<div class="col-xs-12 col-sm-4 col-md-3 filter camping">#}
+    {#<div class="product-card">#}
+    {#<span class="mbri-search"></span>#}
+    {#<a href="./images/tovar-13.jpg" data-lightbox="uslugi"  data-title="Газовые плиты"><img class="card-img-top" src="./images/tovar-13.jpg" alt="Газовые плиты" title="Газовые плиты"></a>#}
+    {#<div class="card-body">#}
+    {#<h4 class="card-title">Газовые плиты</h4>#}
+    {#</div>#}
+    {#</div>#}
+    {#</div>#}
+
+    {#<a href="{{ path('articles_new') }}">Create new</a>#}
+{% endblock %}

@@ -1,33 +1,41 @@
-/*
- * Welcome to your app's main JavaScript file!
- *
- * We recommend including the built version of this JavaScript file
- * (and its CSS file) in your base layout (base.html.twig).
- */
-
-// any CSS you require will output into a single css file (app.css in this case)
 import '../css/global.scss';
 import 'bootstrap';
 import 'jquery';
-import React from 'react';
-import ReactDOM from 'react-dom';
+// import React from 'react';
+// import ReactDOM from 'react-dom';
+// import ymaps from 'ymaps';
 
 const $ = require('jquery');
 
-class App extends React.Component {
-    render() {
-        return (
-            <div>
-                <p>Hello</p>
-            </div>
-        )
-    }
-}
-ReactDOM.render(<App/>, document.getElementById('root'));
+import './filtr.js'
+
+// class App extends React.Component {
+//     render() {
+//         // ymaps.load()
+//         //     .then(maps => {
+//         //         const map = new maps.Map('your-map-container', {
+//         //             center: [-8.369326, 115.166023],
+//         //             zoom: 7
+//         //         });
+//         //         console.dir(111, map)
+//         //     })
+//         //     .catch(error => console.log('Failed to load Yandex Maps', error));
+//         // ymaps.load().then(ymaps => console.log(ymaps))
+//         // console.log(333,  ymaps)
+//         // console.log(222, ymaps.load('//api-maps.yandex.ru/2.1/?lang=en_US&load=Map'))
+//         return (
+//             <div>
+//                 <p>Hello</p>
+//
+//             </div>
+//         )
+//     }
+// }
+// ReactDOM.render(<App/>, document.getElementById('root'));
 
 // Need jQuery? Install it with "yarn add jquery", then uncomment to require it.
 
 
-console.log('Hello Webpack Encore! Edit me in assets/js/app.js');
+// console.log('Hello Webpack Encore! Edit me in assets/js/app.js');
 
 

@@ -185,29 +185,24 @@
                             выйти их бизнесу на новый уровень.</p>
                     </div>
                     <div class="row projects">
-                        {% set projects = [
-                        {'img': '/images/block_E/iqeon.png', 'title': 'Платформа IQeon  |  2018', 'text': 'игровая PvP платформа, которая позволяет пользователям соревноваться между собой в различных играх популярных жанров, получая цифровой актив IQN за лучший результат.', 'button': [{'img': '/images/block_E/iqn.svg', 'btn': 'iqeon.com', 'url': 'https://iqeon.com'}]},
-                        {'img': '/images/block_E/iqgamm.png', 'title': 'Игровой портал  |  2018', 'text': 'IQGamm – информационное решение в сфере новостного обзора игровой индустрии, наличия качественной информации о компьютерных играх, ссылок на них с подробным описанием, а также площадкой для поиска единомышленников с наличием специализированных и модерируемых форумов.', 'button': [{'img': '/images/block_E/iqgamm.svg', 'btn': 'iqgamm.com', 'url': 'https://iqgamm.com'}, {'img': '/images/block_E/zenYandex.svg', 'btn': 'zen.yandex.ru', 'url': '#'}]},
-                        {'img': '/images/block_E/racing.png', 'title': 'SR:Racing  |  2018', 'text': 'Мобильный проект, симулятор гонок по оживленной трассе. Игра состоит из 5 режимов, один из которых открывается раз в день и является чисто фановым. Фреймворк Cinemachine был выбран для реализации эффектов камеры.', 'button': [{'img': '/images/block_E/apple.svg', 'btn': 'apple store', 'url': '#'}, {'img': '/images/block_E/google.svg', 'btn': 'google play', 'url': '#'}]},
-                        {'img': '/images/block_E/king.png', 'title': 'King of Dirt  |  2018', 'text': 'В King of Dirt игрок может сесть за руль крутого байка и покорить разнообразные сложные трассы. Выполняй миссии и получай очки, за которые можно прокачать байк или купить новый, а также научить своего персонажа новым головокружительным трюкам.', 'button': [{'img': '/images/block_E/apple.svg', 'btn': 'apple store', 'url': '#'}, {'img': '/images/block_E/google.svg', 'btn': 'google play', 'url': '#'}]},
-                        {'img': '/images/block_E/zombies.png', 'title': 'Zombies: Run & Bite  |  2018', 'text': 'Теперь покорять различные трассы и выполнять головокружительные трюки можно на скутере! Выполняй миссии и зарабатывай очки, с помощью которых чтобы выучить новые трюки, прокачать скутер, и даже купить новый. А включив вид от первого лица можно почувствовать себя настоящим мастером.', 'button': [{'img': '/images/block_E/apple.svg', 'btn': 'apple store', 'url': '#'}, {'img': '/images/block_E/google.svg', 'btn': 'google play', 'url': '#'}]}
-                        ] %}
-                        {% for block_E in projects %}
+                        {% for article in articles %}
                             <div class="col-md-6">
-                                <img src={{ block_E.img }} alt=""/>
+                                <img src="/images/block_E/{{ article.img }}" alt=""/>
                             </div>
                             <div class="col-md-6 align-self-center">
-                                <h3>{{ block_E.title }}</h3>
-                                <p>{{ block_E.text }}</p>
-                                {% for button in block_E.button %}
-                                    <div class="title">
-                                        <a href={{ button.url }} class="btn buttonProject" role="button">
-                                        <span>
-                                        <object type="image/svg+xml" data={{ button.img }}>
+                                <h3>{{ article.title }}</h3>
+                                <p>{{ article.textPreview }}</p>
+                                {% for button in buttons %}
+                                    {% if button.id == article.id %}
+                                        <div class="title">
+                                            <a href={{ button.url }} class="btn buttonProject" role="button">
+                                            <span>
+                                        <object type="image/svg+xml" data="/images/batton/{{ button.icon }}">
                                             Your browser does not support SVG
                                         </object>
-                                            <span>{{ button.btn }}</span></span></a>
-                                    </div>
+                                            <span>{{ button.title }}</span></span></a>
+                                        </div>
+                                    {% endif %}
                                 {% endfor %}
                             </div>
                         {% endfor %}

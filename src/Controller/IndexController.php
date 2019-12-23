@@ -2,6 +2,8 @@
 
 namespace App\Controller;
 
+use App\Entity\Articles;
+use App\Entity\ButtonArticles;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -14,10 +16,15 @@ class IndexController extends AbstractController
      */
     public function index()
     {
-        $number = random_int(0, 100);
+        $em = $this->getDoctrine()->getManager();
+        $articlesRepository = $em->getRepository(Articles::class);
+        $buttonArticlesRepository = $em->getRepository(ButtonArticles::class);
+        $articles = $articlesRepository->articlesInCategory();
+        $button = $buttonArticlesRepository -> buttonInArticle();
 
         return $this->render('index/index.html.twig', [
-            'number' => $number,
+            'articles' => $articles,
+            'buttons' => $button
         ]);
     }
 
