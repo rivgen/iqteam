@@ -193,17 +193,17 @@ class Articles
     }
 
     /**
-     * @return \ArticlesCategories
+     * @return \ArticlesCategory
      */
-    public function getCategory(): \ArticlesCategories
+    public function getCategory(): \ArticlesCategory
     {
         return $this->category;
     }
 
     /**
-     * @param \ArticlesCategories $category
+     * @param \ArticlesCategory $category
      */
-    public function setCategory(\ArticlesCategories $category)
+    public function setCategory(\ArticlesCategory $category)
     {
         $this->category = $category;
     }
