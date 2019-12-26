@@ -62,10 +62,20 @@ class ArticlesController extends AbstractController
     /**
      * @Route("/{id}", name="articles_show", methods={"GET"})
      */
-    public function show(Articles $article): Response
+    public function show($id)
     {
+        $em = $this->getDoctrine()->getManager();
+        $articlesRepository = $em->getRepository(Articles::class);
+        $article = $articlesRepository->findArticle($id);
+        $buttonArticlesRepository = $em->getRepository(ButtonArticles::class);
+        $button = $buttonArticlesRepository -> findButton($id);
+        $prevNext = $articlesRepository->filterNextPrevious($id);
+        dump($prevNext);
+
         return $this->render('articles/show.html.twig', [
             'article' => $article,
+            'buttons' => $button,
+            'prevNext' => $prevNext
         ]);
     }
 

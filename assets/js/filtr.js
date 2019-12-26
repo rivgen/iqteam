@@ -14,11 +14,15 @@ $(document).ready(function(){
             $('.filter').filter('.'+value).show('3000');
 
         }
+
+
+        if ($(".filter-button").removeClass("active")) {
+            $(this).removeClass("active");
+        }
+
+        $(this).addClass("active")
     });
 
-    if ($(".filter-button").removeClass("active")) {
-        $(this).removeClass("active");
-    }
-    $(this).addClass("active");
 
+        // $(this).addClass("active");
 });

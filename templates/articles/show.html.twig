@@ -3,44 +3,100 @@
 {% block title %}Articles{% endblock %}
 
 {% block body %}
-    <h1>Articles</h1>
+    <div id="slash" class="container slash article">
+        <div class="row">
+            <div class="col-md-12 text-center titleService">
+                <h1>{{ article.title }}</h1>
+            </div>
+        </div>
+        <div class="row justify-content-md-center headArticle">
+            <div class="col-md-1 icon">
+                {% if article.icon %}
+                    <img src="/images/articles/{{ article.id }}/{{ article.icon }}"/>
+                {% endif %}
+            </div>
+            <div class="col-md-3 fullTitle">
+                {{ article.fullTitle }}
+            </div>
+            <div class="col-md-4 textPreview">
+                {{ article.textPreview }}
+            </div>
+        </div>
+        <div class="row justify-content-md-center">
+            <div class="col-md-8 img">
+                {% if article.img %}
+                    <img src="/images/articles/{{ article.id }}/{{ article.img }}"/>
+                {% endif %}
+            </div>
+        </div>
+        <div class="row justify-content-md-center descArticle">
+            <div class="col-md-2 technology">
+                <p class="param">технологии</p>
+                <p class="paramText">{{ article.technology }}</p>
+            </div>
+            <div class="col-md-2">
+                <p class="param">клиент</p>
+                <p class="paramText">{{ article.client }}</p>
+            </div>
+            <div class="col-md-2">
+                <p class="param">год</p>
+                <p class="paramText">{{ article.year }}</p>
+            </div>
+            <div class="col-md-2">
+                <p class="param">скачать</p>
+                {% for button in buttons %}
+                    {% if button.id == article.id %}
+                        <div class="title">
+                            <a href={{ button.url }} class="btn buttonProject" role="button">
+                            <span>
+                                        <object type="image/svg+xml" data="/images/batton/{{ button.icon }}">
+                                            Your browser does not support SVG
+                                        </object>
+                                            <span>{{ button.title }}</span></span></a>
+                        </div>
+                    {% endif %}
+                {% endfor %}
+            </div>
+        </div>
+        <div class="row justify-content-md-center">
+            <div class="col-md-8 descArticle">
+                {{ article.description|raw }}
+                {#<div class="row">#}
+                {#<div class="col-md-6">#}
+                {#<p class="param">Поставленные задачи</p>#}
+                {#<ol>#}
+                {#<li>Разработка мобильного проекта, симулятора гонок по оживленной трассе;</li>#}
+                {#<li>Добавление в состав игры 5 режимов, один из которых открывается раз в день и является чисто фановым;</li>#}
+                {#<li>Реализация мобильной игры, позволяющей зарабатывать за счет монетизации продукта.</li>#}
+                {#</ol>#}
+                {#</div>#}
+                {#<div class="col-md-6">#}
+                {#<p class="param">Достигнутые цели</p>#}
+                {#<ol>#}
+                {#<li>Разработка мобильного проекта, симулятора гонок по оживленной трассе;</li>#}
+                {#<li>Добавление в состав игры 5 режимов, один из которых открывается раз в день и является чисто фановым;</li>#}
+                {#<li>Реализация мобильной игры, позволяющей зарабатывать за счет монетизации продукта.</li>#}
+                {#</ol>#}
+                {#</div>#}
+                {#</div>#}
+            </div>
+        </div>
 
-    <table class="table">
-        <tbody>
-            <tr>
-                <th>Id</th>
-                <td>{{ article.id }}</td>
-            </tr>
-            <tr>
-                <th>Title</th>
-                <td>{{ article.title }}</td>
-            </tr>
-            <tr>
-                <th>TextPreview</th>
-                <td>{{ article.textPreview }}</td>
-            </tr>
-            <tr>
-                <th>Alias</th>
-                <td>{{ article.alias }}</td>
-            </tr>
-            <tr>
-                <th>Created</th>
-                <td>{{ article.created ? article.created|date('Y-m-d H:i:s') : '' }}</td>
-            </tr>
-            <tr>
-                <th>Updated</th>
-                <td>{{ article.updated ? article.updated|date('Y-m-d H:i:s') : '' }}</td>
-            </tr>
-            <tr>
-                <th>Author</th>
-                <td>{{ article.author }}</td>
-            </tr>
-        </tbody>
-    </table>
+    </div>
+    <div class="container prevNext">
+        <div class="row">
+            <div class="col-md-6 paddingNone">
+                <a href={{ path('articles_show', {'id': prevNext.0.id}) }}><span>Предыдущий</span></a>
+            </div>
+            <div class="col-md-6 paddingNone">
+                <a href={{ path('articles_show', {'id': prevNext.1.id}) }}><span>Следующий</span></a>
+            </div>
+        </div>
+    </div>
 
-    <a href="{{ path('articles_index') }}">back to list</a>
+    {#<a href="{{ path('articles_index') }}">back to list</a>#}
 
-    <a href="{{ path('articles_edit', {'id': article.id}) }}">edit</a>
+    {#<a href="{{ path('articles_edit', {'id': article.id}) }}">edit</a>#}
 
-    {{ include('articles/_delete_form.html.twig') }}
+    {#{{ include('articles/_delete_form.html.twig') }}#}
 {% endblock %}

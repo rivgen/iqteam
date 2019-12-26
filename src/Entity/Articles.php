@@ -2,6 +2,8 @@
 
 namespace App\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -38,13 +40,6 @@ class Articles
     /**
      * @var string
      *
-     * @ORM\Column(name="img", type="string", length=50)
-     */
-    private $img;
-
-    /**
-     * @var string
-     *
      * @ORM\Column(name="alias", type="string", length=250, nullable=false, options={"default"="''"})
      */
     private $alias = '\'\'';
@@ -71,7 +66,6 @@ class Articles
     private $author;
 
     /**
-     * @var \ArticlesCategory
      *
      * @ORM\ManyToOne(targetEntity="ArticlesCategory")
      * @ORM\JoinColumns({
@@ -79,6 +73,46 @@ class Articles
      * })
      */
     private $category;
+
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $fullTitle;
+
+    /**
+     * @ORM\Column(type="string", length=50)
+     */
+    private $icon;
+
+    /**
+     * @ORM\Column(type="string", length=20)
+     */
+    private $year;
+
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $client;
+
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $technology;
+
+    /**
+     * @ORM\Column(type="text", nullable=true)
+     */
+    private $description;
+
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\ImgArticles", mappedBy="article")
+     */
+    private $imgArticles;
+
+    public function __construct()
+    {
+        $this->imgArticles = new ArrayCollection();
+    }
 
     /**
      * @return int
@@ -147,7 +181,7 @@ class Articles
     /**
      * @return \DateTime
      */
-    public function getCreated(): \DateTime
+    public function getCreated()
     {
         return $this->created;
     }
@@ -163,7 +197,7 @@ class Articles
     /**
      * @return \DateTime
      */
-    public function getUpdated(): \DateTime
+    public function getUpdated()
     {
         return $this->updated;
     }
@@ -179,7 +213,7 @@ class Articles
     /**
      * @return string
      */
-    public function getAuthor(): string
+    public function getAuthor()
     {
         return $this->author;
     }
@@ -193,35 +227,122 @@ class Articles
     }
 
     /**
-     * @return \ArticlesCategory
+     * @return mixed
      */
-    public function getCategory(): \ArticlesCategory
+    public function getCategory()
     {
         return $this->category;
     }
 
     /**
-     * @param \ArticlesCategory $category
+     * @param mixed $category
      */
-    public function setCategory(\ArticlesCategory $category)
+    public function setCategory($category)
     {
         $this->category = $category;
     }
 
-    /**
-     * @return string
-     */
-    public function getImg(): string
+    public function getFullTitle(): ?string
     {
-        return $this->img;
+        return $this->fullTitle;
+    }
+
+    public function setFullTitle(string $fullTitle): self
+    {
+        $this->fullTitle = $fullTitle;
+
+        return $this;
+    }
+
+    public function getIcon(): ?string
+    {
+        return $this->icon;
+    }
+
+    public function setIcon(string $icon): self
+    {
+        $this->icon = $icon;
+
+        return $this;
+    }
+
+    public function getYear(): ?string
+    {
+        return $this->year;
+    }
+
+    public function setYear(string $year): self
+    {
+        $this->year = $year;
+
+        return $this;
+    }
+
+    public function getClient(): ?string
+    {
+        return $this->client;
+    }
+
+    public function setClient(string $client): self
+    {
+        $this->client = $client;
+
+        return $this;
+    }
+
+    public function getTechnology(): ?string
+    {
+        return $this->technology;
+    }
+
+    public function setTechnology(string $technology): self
+    {
+        $this->technology = $technology;
+
+        return $this;
+    }
+
+    public function getDescription(): ?string
+    {
+        return $this->description;
+    }
+
+    public function setDescription(?string $description): self
+    {
+        $this->description = $description;
+
+        return $this;
     }
 
     /**
-     * @param string $img
+     * @return Collection|ImgArticles[]
      */
-    public function setImg(string $img)
+    public function getImgArticles(): Collection
     {
-        $this->img = $img;
+        return $this->imgArticles;
+    }
+
+    public function addImgArticle(ImgArticles $imgArticle): self
+    {
+        if (!$this->imgArticles->contains($imgArticle)) {
+            $this->imgArticles[] = $imgArticle;
+            $imgArticle->setArticle($this);
+        }
+
+        return $this;
+    }
+
+    public function removeImgArticle(ImgArticles $imgArticle): self
+    {
+        if ($this->imgArticles->contains($imgArticle)) {
+            $this->imgArticles->removeElement($imgArticle);
+            // set the owning side to null (unless already changed)
+            if ($imgArticle->getArticle() === $this) {
+                $imgArticle->setArticle(null);
+            }
+        }
+
+        return $this;
     }
 
 }

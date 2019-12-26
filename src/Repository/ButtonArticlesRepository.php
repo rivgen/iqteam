@@ -29,6 +29,17 @@ class ButtonArticlesRepository extends ServiceEntityRepository
         return $qb->getQuery()->getResult();
     }
 
+    public function findButton($id)
+    {
+        $qb = $this->createQueryBuilder('bu')->select('bu.url, a.id, b.title, b.icon');
+        $qb->leftJoin(Articles::class, 'a', 'WITH', 'bu.articles = a.id');
+        $qb->leftJoin(Button::class, 'b', 'WITH', 'bu.button = b.id');
+        $qb->andWhere('a.id = :id');
+        $qb->setParameter('id', $id);
+
+        return $qb->getQuery()->getResult();
+    }
+
     // /**
     //  * @return Batton[] Returns an array of Batton objects
     //  */

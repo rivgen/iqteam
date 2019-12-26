@@ -31,7 +31,6 @@ class ButtonArticles
     private $url = '\'\'';
 
     /**
-     * @var \Articles
      *
      * @ORM\ManyToOne(targetEntity="Articles")
      * @ORM\JoinColumns({
@@ -83,17 +82,17 @@ class ButtonArticles
     }
 
     /**
-     * @return \Articles
+     * @return mixed
      */
-    public function getArticles(): \Articles
+    public function getArticles()
     {
         return $this->articles;
     }
 
     /**
-     * @param \Articles $articles
+     * @param mixed $articles
      */
-    public function setArticles(\Articles $articles)
+    public function setArticles($articles)
     {
         $this->articles = $articles;
     }

@@ -1,0 +1,67 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div id="slash" class="container slash contact">
+        <div class="row">
+            <div class="col-md-12 text-center titleService">
+                <h1>Контакты</h1>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-4 offset-md-2 textContact">
+                <p>Готовы начать свой следующий проект?<br/> Для обсуждения или сотрудничества просто свяжитесь с нами.</p>
+            </div>
+        </div>
+        <form>
+            <div class="form-group row justify-content-md-center">
+                <label for="colFormLabel" class="col-sm-2 col-form-label">Ваше имя</label>
+                <div class="col-sm-6">
+                    <input type="email" class="form-control" id="colFormLabel" placeholder="Ваше имя">
+                </div>
+            </div>
+            <div class="form-group row justify-content-md-center">
+                <label for="colFormLabel" class="col-sm-2 col-form-label">Email</label>
+                <div class="col-sm-6">
+                    <input type="email" class="form-control" id="colFormLabel" placeholder="Email">
+                </div>
+            </div>
+            <div class="form-group row justify-content-md-center">
+                <label for="colFormLabel" class="col-sm-2 col-form-label">Сообщение</label>
+                <div class="col-sm-6">
+                    <textarea class="form-control"></textarea>
+                </div>
+            </div>
+            <div class="form-group row justify-content-md-center">
+                <label for="colFormLabel" class="col-sm-2 col-form-label">Файл</label>
+                <div class="col-sm-2 title">
+                    <a href="#" class="btn buttonProject" role="button">
+                        <span>+ Добавить</span></a>
+                </div>
+                <div class="col-sm-2 title">
+                        <span>фаил мб х</span>
+                </div>
+                <div class="col-sm-2 title">
+                    <a href="#" class="btn buttonProject" role="button">
+                        <span>Отправить</span></a>
+                </div>
+            </div>
+        </form>
+        <div class="map">
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2351.603712230171!2d27.581945215991954!3d53.88547284189211!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x46dbce2d107b6c7f%3A0x21fe21a76ca5068c!2z0J_QsNGA0YLQuNC30LDQvdGB0LrQuNC5INC_0YDQvtGB0L8uIDQsINCc0LjQvdGB0Lo!5e0!3m2!1sru!2sby!4v1577083867310!5m2!1sru!2sby"
+                    width="100%" height="724" frameborder="0" style="border:0;" allowfullscreen=""></iframe>
+            <div class=" container mapBlock">
+                <div class="row">
+                    <div class="col-md-2 offset-md-2 mapInfo">
+                        <label class="col-form-label">приезжайте</label>
+                        <p class="textInfo">РБ, Минск,  Партизанский<br/>пр-т, 4</p>
+                        <label class="col-form-label">пишите</label>
+                        <p class="textInfo">info@iqclash.com</p>
+                        <label class="col-form-label">звоните</label>
+                        <p class="textInfo">+375 29 853-90-25</p>
+                        <label class="col-form-label">ищите в соцсетях</label>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
