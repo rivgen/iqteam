@@ -240,6 +240,11 @@ p {
   text-transform: uppercase;
 }
 
+.article .buttonProject{
+  width: 100%;
+  display: grid;
+}
+
 .letter-E .buttonProject span, .portfolio .buttonProject span {
   margin: auto;
   display: flex;
@@ -554,7 +559,7 @@ textarea.form-control{
 }
 
 .article .descArticle{
-  padding: 100px 0;
+  padding: 50px 0;
 }
 
 .article .descArticle .param{

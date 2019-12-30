@@ -71,6 +71,18 @@ class ArticlesRepository extends ServiceEntityRepository
         return $query->getScalarResult();
     }
 
+    public function endId(){
+        $qb = $this->createQueryBuilder('a')->select('MAX(a.id)');
+
+        return $qb->getQuery()->getSingleScalarResult();
+    }
+
+    public function startId(){
+        $qb = $this->createQueryBuilder('a')->select('MIN(a.id)');
+
+        return $qb->getQuery()->getSingleScalarResult();
+    }
+
     /*
     public function findOneBySomeField($value): ?Qwerty
     {

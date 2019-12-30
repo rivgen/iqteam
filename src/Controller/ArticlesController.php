@@ -70,7 +70,14 @@ class ArticlesController extends AbstractController
         $buttonArticlesRepository = $em->getRepository(ButtonArticles::class);
         $button = $buttonArticlesRepository -> findButton($id);
         $prevNext = $articlesRepository->filterNextPrevious($id);
-        dump($prevNext);
+        if (empty($prevNext[1]) and $prevNext[0]['id']>$id){
+            $endId = $articlesRepository->endId();
+            array_unshift($prevNext, ['id'=>$endId]);
+        }elseif (empty($prevNext[1]) and $prevNext[0]['id']<$id){
+            $startId = $articlesRepository->startId();
+            array_push($prevNext,['id'=>$startId]);
+        }
+//        dump($prevNext);
 
         return $this->render('articles/show.html.twig', [
             'article' => $article,

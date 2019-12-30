@@ -44,41 +44,25 @@
             </div>
             <div class="col-md-2">
                 <p class="param">скачать</p>
-                {% for button in buttons %}
-                    {% if button.id == article.id %}
-                        <div class="title">
-                            <a href={{ button.url }} class="btn buttonProject" role="button">
-                            <span>
+                <div class="row">
+                    {% for button in buttons %}
+                        {% if button.id == article.id %}
+                            <div class="col-md-6 title">
+                                <a href={{ button.url }} class="btn buttonProject" role="button">
+                                <span>
                                         <object type="image/svg+xml" data="/images/batton/{{ button.icon }}">
                                             Your browser does not support SVG
                                         </object>
-                                            <span>{{ button.title }}</span></span></a>
-                        </div>
-                    {% endif %}
-                {% endfor %}
+                                            </span></a>
+                            </div>
+                        {% endif %}
+                    {% endfor %}
+                </div>
             </div>
         </div>
         <div class="row justify-content-md-center">
             <div class="col-md-8 descArticle">
                 {{ article.description|raw }}
-                {#<div class="row">#}
-                {#<div class="col-md-6">#}
-                {#<p class="param">Поставленные задачи</p>#}
-                {#<ol>#}
-                {#<li>Разработка мобильного проекта, симулятора гонок по оживленной трассе;</li>#}
-                {#<li>Добавление в состав игры 5 режимов, один из которых открывается раз в день и является чисто фановым;</li>#}
-                {#<li>Реализация мобильной игры, позволяющей зарабатывать за счет монетизации продукта.</li>#}
-                {#</ol>#}
-                {#</div>#}
-                {#<div class="col-md-6">#}
-                {#<p class="param">Достигнутые цели</p>#}
-                {#<ol>#}
-                {#<li>Разработка мобильного проекта, симулятора гонок по оживленной трассе;</li>#}
-                {#<li>Добавление в состав игры 5 режимов, один из которых открывается раз в день и является чисто фановым;</li>#}
-                {#<li>Реализация мобильной игры, позволяющей зарабатывать за счет монетизации продукта.</li>#}
-                {#</ol>#}
-                {#</div>#}
-                {#</div>#}
             </div>
         </div>
 
