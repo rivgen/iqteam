@@ -3,10 +3,19 @@
 {% block title %}Articles{% endblock %}
 
 {% block body %}
+    {% if app.request.get('_route') == 'articles_edit' or app.request.get('_route') == 'articles_new' %}
+        {{ form_start(form) }}
+    {% endif %}
     <div id="slash" class="container slash article">
         <div class="row">
             <div class="col-md-12 text-center titleService">
-                <h1>{{ article.title }}</h1>
+                {% if app.request.get('_route') == 'articles_edit' or app.request.get('_route') == 'articles_new' %}
+                    {{ form_label(form.title) }}
+                    <h1>{{ form_widget(form.title) }}</h1>
+                    {{ form_errors(form.title) }}
+                {% else %}
+                    <h1>{{ article.title }}</h1>
+                {% endif %}
             </div>
         </div>
         <div class="row justify-content-md-center headArticle">
@@ -16,71 +25,122 @@
                 {% endif %}
             </div>
             <div class="col-md-3 fullTitle">
-                {{ article.fullTitle }}
+                {% if app.request.get('_route') == 'articles_edit' or app.request.get('_route') == 'articles_new' %}
+                    {% if app.request.get('_route') == 'articles_new' %}
+                        {{ form_label(form.fullTitle) }}
+                    {% endif %}
+                    {{ form_widget(form.fullTitle) }}
+                    {{ form_errors(form.fullTitle) }}
+                {% else %}
+                    {{ article.fullTitle }}
+                {% endif %}
             </div>
             <div class="col-md-4 textPreview">
-                {{ article.textPreview }}
+                {% if app.request.get('_route') == 'articles_edit' or app.request.get('_route') == 'articles_new' %}
+                    {% if app.request.get('_route') == 'articles_new' %}
+                        {{ form_label(form.textPreview) }}
+                    {% endif %}
+                    {{ form_widget(form.textPreview) }}
+                    {{ form_errors(form.textPreview) }}
+                {% else %}
+                    {{ article.textPreview }}
+                {% endif %}
             </div>
         </div>
         <div class="row justify-content-md-center">
             <div class="col-md-8 img">
-                {% if article.img %}
-                    <img src="/images/articles/{{ article.id }}/{{ article.img }}"/>
+                {% if app.request.get('_route') != 'articles_new' %}
+                    {% if images %}
+                        <img src="/images/articles/{{ article.id }}/{{ images.img }}"/>
+                    {% endif %}
                 {% endif %}
             </div>
         </div>
         <div class="row justify-content-md-center descArticle">
             <div class="col-md-2 technology">
                 <p class="param">технологии</p>
-                <p class="paramText">{{ article.technology }}</p>
+                {% if app.request.get('_route') == 'articles_edit' or app.request.get('_route') == 'articles_new' %}
+                    <p class="paramText"> {{ form_widget(form.technology) }}</p>
+                    {{ form_errors(form.technology) }}
+                {% else %}
+                    <p class="paramText">{{ article.technology }}</p>
+                {% endif %}
             </div>
             <div class="col-md-2">
                 <p class="param">клиент</p>
-                <p class="paramText">{{ article.client }}</p>
+                {% if app.request.get('_route') == 'articles_edit' or app.request.get('_route') == 'articles_new' %}
+                    <p class="paramText"> {{ form_widget(form.client) }}</p>
+                    {{ form_errors(form.client) }}
+                {% else %}
+                    <p class="paramText">{{ article.client }}</p>
+                {% endif %}
             </div>
             <div class="col-md-2">
                 <p class="param">год</p>
-                <p class="paramText">{{ article.year }}</p>
+                {% if app.request.get('_route') == 'articles_edit' or app.request.get('_route') == 'articles_new' %}
+                    <p class="paramText"> {{ form_widget(form.year) }}</p>
+                    {{ form_errors(form.year) }}
+                {% else %}
+                    <p class="paramText">{{ article.year }}</p>
+                {% endif %}
             </div>
             <div class="col-md-2">
                 <p class="param">скачать</p>
                 <div class="row">
-                    {% for button in buttons %}
-                        {% if button.id == article.id %}
-                            <div class="col-md-6 title">
-                                <a href={{ button.url }} class="btn buttonProject" role="button">
-                                <span>
+                    {% if app.request.get('_route') != 'articles_new' %}
+                        {% for button in buttons %}
+                            {% if button.id == article.id %}
+                                <div class="col-md-6 title">
+                                    <a href={{ button.url }} class="btn buttonProject" role="button">
+                                    <span>
                                         <object type="image/svg+xml" data="/images/batton/{{ button.icon }}">
                                             Your browser does not support SVG
                                         </object>
                                             </span></a>
-                            </div>
-                        {% endif %}
-                    {% endfor %}
+                                </div>
+                            {% endif %}
+                        {% endfor %}
+                    {% endif %}
                 </div>
             </div>
         </div>
         <div class="row justify-content-md-center">
             <div class="col-md-8 descArticle">
-                {{ article.description|raw }}
+                {% if app.request.get('_route') == 'articles_edit' or app.request.get('_route') == 'articles_new' %}
+                    {% if app.request.get('_route') == 'articles_new' %}
+                        {{ form_label(form.description) }}
+                    {% endif %}
+                    {{ form_widget(form.description) }}
+                    {{ form_errors(form.description) }}
+                {% else %}
+                    {{ article.description|raw }}
+                {% endif %}
             </div>
         </div>
 
     </div>
+    {% if app.request.get('_route') == 'articles_edit' or app.request.get('_route') == 'articles_new' %}
+        {{ form_end(form) }}
+    {% endif %}
     <div class="container prevNext">
         <div class="row">
-            <div class="col-md-6 paddingNone">
-                <a href={{ path('articles_show', {'id': prevNext.0.id}) }}><span>Предыдущий</span></a>
-            </div>
-            <div class="col-md-6 paddingNone">
-                <a href={{ path('articles_show', {'id': prevNext.1.id}) }}><span>Следующий</span></a>
-            </div>
+            {% if app.request.get('_route') != 'articles_new' %}
+                {% if prevNext %}
+                    <div class="col-md-6 paddingNone">
+                        <a href={{ path('articles_show', {'id': prevNext.0.id}) }}><span>Предыдущий</span></a>
+                    </div>
+                    <div class="col-md-6 paddingNone">
+                        <a href={{ path('articles_show', {'id': prevNext.1.id}) }}><span>Следующий</span></a>
+                    </div>
+                {% endif %}
+            {% endif %}
         </div>
     </div>
+    {% if app.request.get('_route') == 'articles_edit' %}
+        {#<a href="{{ path('articles_index') }}">back to list</a>#}
+        {{ include('articles/_form.html.twig', {'button_label': 'Update'}) }}
 
-    {#<a href="{{ path('articles_index') }}">back to list</a>#}
 
-    {#<a href="{{ path('articles_edit', {'id': article.id}) }}">edit</a>#}
-
-    {#{{ include('articles/_delete_form.html.twig') }}#}
+        {{ include('articles/_delete_form.html.twig') }}
+    {% endif %}
 {% endblock %}

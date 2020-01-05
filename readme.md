@@ -14,6 +14,8 @@ yarn build
 php bin/console make:entity
 
 //Создайте миграцию, сравнив вашу текущую базу данных с вашей картографической информацией.
+php bin/console make:migration
+//or
 php bin/console doctrine:migrations:diff 
 //Выполните миграцию на указанную версию или последнюю доступную версию.
 php bin/console doctrine:migrations:migrate 

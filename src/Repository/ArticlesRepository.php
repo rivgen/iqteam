@@ -25,26 +25,31 @@ class ArticlesRepository extends ServiceEntityRepository
      * @return Articles[] Returns an array of Qwerty objects
      */
 
+    protected function img()
+    {
+        return $this->createQueryBuilder('i')
+            ->select('ia.img')
+            ->leftJoin(ImgArticles::class, 'ia', 'WITH', 'ia.article = i.id')
+//            ->andWhere('i.id = :id')
+//            ->setParameter('id', $id)
+            ->getQuery()->getResult();
+    }
+
     public function articlesInCategory()
     {
-        $qb = $this->createQueryBuilder('a')->select('a.id, ia.img, a.title, a.textPreview, ac.id category');
+
+        $qb = $this->createQueryBuilder('a')->select('a.id, a.title, a.textPreview, ac.id category');
         $qb->leftJoin(ArticlesCategory::class, 'ac', 'WITH', 'a.category = ac.id');
-        $qb->leftJoin(ImgArticles::class, 'ia', 'WITH', 'ia.article = a.id');
-        $qb->andWhere('ia.general = :int');
-        $qb->setParameter('int', 1);
 
         return $qb->getQuery()->getResult();
     }
 
     public function findArticle($id)
     {
-        $qb = $this->createQueryBuilder('a')->select('a.id, ia.img, a.title, a.textPreview, ac.id category, a.icon, a.fullTitle, a.technology, a.client, a.year, a.description');
+        $qb = $this->createQueryBuilder('a')->select('a.id, a.title, a.textPreview, ac.id category, a.icon, a.fullTitle, a.technology, a.client, a.year, a.description');
         $qb->leftJoin(ArticlesCategory::class, 'ac', 'WITH', 'a.category = ac.id');
-        $qb->leftJoin(ImgArticles::class, 'ia', 'WITH', 'ia.article = a.id');
         $qb->andWhere('a.id = :id');
         $qb->setParameter('id', $id);
-        $qb->andWhere('ia.general = :int');
-        $qb->setParameter('int', 1);
 
         return $qb->getQuery()->getOneOrNullResult();
     }
@@ -71,27 +76,18 @@ class ArticlesRepository extends ServiceEntityRepository
         return $query->getScalarResult();
     }
 
-    public function endId(){
+    public function endId()
+    {
         $qb = $this->createQueryBuilder('a')->select('MAX(a.id)');
 
         return $qb->getQuery()->getSingleScalarResult();
     }
 
-    public function startId(){
+    public function startId()
+    {
         $qb = $this->createQueryBuilder('a')->select('MIN(a.id)');
 
         return $qb->getQuery()->getSingleScalarResult();
     }
 
-    /*
-    public function findOneBySomeField($value): ?Qwerty
-    {
-        return $this->createQueryBuilder('q')
-            ->andWhere('q.exampleField = :val')
-            ->setParameter('val', $value)
-            ->getQuery()
-            ->getOneOrNullResult()
-        ;
-    }
-    */
 }

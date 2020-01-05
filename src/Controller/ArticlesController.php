@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\Articles;
 use App\Entity\ArticlesCategory;
 use App\Entity\ButtonArticles;
+use App\Entity\ImgArticles;
 use App\Form\ArticlesType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -25,14 +26,17 @@ class ArticlesController extends AbstractController
         $articlesRepository = $em->getRepository(Articles::class);
         $buttonArticlesRepository = $em->getRepository(ButtonArticles::class);
         $articlesCategoryRepository = $em->getRepository(ArticlesCategory::class);
+        $imgArticlesRepository = $em->getRepository(ImgArticles::class);
         $articles = $articlesRepository->articlesInCategory();
         $button = $buttonArticlesRepository -> buttonInArticle();
         $categories = $articlesCategoryRepository -> allCategory();
+        $images = $imgArticlesRepository->imageInArticle();
 
         return $this->render('articles/index.html.twig', [
             'articles' => $articles,
             'buttons' => $button,
-            'categories' => $categories
+            'categories' => $categories,
+            'images' => $images
         ]);
     }
 
@@ -53,7 +57,7 @@ class ArticlesController extends AbstractController
             return $this->redirectToRoute('articles_index');
         }
 
-        return $this->render('articles/new.html.twig', [
+        return $this->render('articles/show.html.twig', [
             'article' => $article,
             'form' => $form->createView(),
         ]);
@@ -66,33 +70,52 @@ class ArticlesController extends AbstractController
     {
         $em = $this->getDoctrine()->getManager();
         $articlesRepository = $em->getRepository(Articles::class);
+        $imgArticlesRepository = $em->getRepository(ImgArticles::class);
         $article = $articlesRepository->findArticle($id);
         $buttonArticlesRepository = $em->getRepository(ButtonArticles::class);
         $button = $buttonArticlesRepository -> findButton($id);
+        $images = $imgArticlesRepository->findImage($id);
         $prevNext = $articlesRepository->filterNextPrevious($id);
+        if (!empty($prevNext)){
         if (empty($prevNext[1]) and $prevNext[0]['id']>$id){
             $endId = $articlesRepository->endId();
             array_unshift($prevNext, ['id'=>$endId]);
         }elseif (empty($prevNext[1]) and $prevNext[0]['id']<$id){
             $startId = $articlesRepository->startId();
             array_push($prevNext,['id'=>$startId]);
-        }
-//        dump($prevNext);
+        }}
 
         return $this->render('articles/show.html.twig', [
             'article' => $article,
             'buttons' => $button,
-            'prevNext' => $prevNext
+            'prevNext' => $prevNext,
+            'images' => $images
         ]);
     }
 
     /**
      * @Route("/{id}/edit", name="articles_edit", methods={"GET","POST"})
      */
-    public function edit(Request $request, Articles $article): Response
+    public function edit(Request $request, Articles $article, $id): Response
     {
+        $em = $this->getDoctrine()->getManager();
+        $articlesRepository = $em->getRepository(Articles::class);
+        $imgArticlesRepository = $em->getRepository(ImgArticles::class);
+        $buttonArticlesRepository = $em->getRepository(ButtonArticles::class);
+        $button = $buttonArticlesRepository -> findButton($id);
+        $prevNext = $articlesRepository->filterNextPrevious($id);
         $form = $this->createForm(ArticlesType::class, $article);
         $form->handleRequest($request);
+        $images = $imgArticlesRepository->findImage($id);;
+
+        if (!empty($prevNext)){
+            if (empty($prevNext[1]) and $prevNext[0]['id']>$id){
+                $endId = $articlesRepository->endId();
+                array_unshift($prevNext, ['id'=>$endId]);
+            }elseif (empty($prevNext[1]) and $prevNext[0]['id']<$id){
+                $startId = $articlesRepository->startId();
+                array_push($prevNext,['id'=>$startId]);
+            }}
 
         if ($form->isSubmitted() && $form->isValid()) {
             $this->getDoctrine()->getManager()->flush();
@@ -100,8 +123,11 @@ class ArticlesController extends AbstractController
             return $this->redirectToRoute('articles_index');
         }
 
-        return $this->render('articles/edit.html.twig', [
+        return $this->render('articles/show.html.twig', [
             'article' => $article,
+            'images' => $images,
+            'buttons' => $button,
+            'prevNext' => $prevNext,
             'form' => $form->createView(),
         ]);
     }

@@ -19,6 +19,25 @@ class ImgArticlesRepository extends ServiceEntityRepository
         parent::__construct($registry, ImgArticles::class);
     }
 
+    public function findImage($id)
+    {
+        $qb = $this->createQueryBuilder('i')->select('i.img');
+        $qb->andWhere('i.article = :id');
+        $qb->setParameter('id', $id);
+        $qb->andWhere('i.general = :int');
+        $qb->setParameter('int', true);
+
+        return $qb->getQuery()->getResult();
+    }
+
+    public function imageInArticle()
+    {
+        $qb = $this->createQueryBuilder('i')->select('i.id, i.img');
+        $qb->andWhere('i.general = :int');
+        $qb->setParameter('int', true);
+
+        return $qb->getQuery()->getResult();
+    }
     // /**
     //  * @return ImgArticles[] Returns an array of ImgArticles objects
     //  */

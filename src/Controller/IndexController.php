@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Articles;
 use App\Entity\ButtonArticles;
+use App\Entity\ImgArticles;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -18,13 +19,16 @@ class IndexController extends AbstractController
     {
         $em = $this->getDoctrine()->getManager();
         $articlesRepository = $em->getRepository(Articles::class);
+        $imgArticlesRepository = $em->getRepository(ImgArticles::class);
         $buttonArticlesRepository = $em->getRepository(ButtonArticles::class);
         $articles = $articlesRepository->articlesInCategory();
         $button = $buttonArticlesRepository -> buttonInArticle();
+        $images = $imgArticlesRepository->imageInArticle();
 
         return $this->render('index/index.html.twig', [
             'articles' => $articles,
-            'buttons' => $button
+            'buttons' => $button,
+            'images' => $images
         ]);
     }
 

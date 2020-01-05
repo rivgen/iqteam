@@ -57,11 +57,11 @@
         </div>
     </div>
     {#<div class="container">#}
-        {#<div class="row">#}
-            {#<div class="col-md-12">#}
-                {#<div id="root"></div>#}
-            {#</div>#}
-        {#</div>#}
+    {#<div class="row">#}
+    {#<div class="col-md-12">#}
+    {#<div id="root"></div>#}
+    {#</div>#}
+    {#</div>#}
     {#</div>#}
     <div id="letter-Q" class="container letter-Q">
         <div class="row justify-content-md-center">
@@ -187,7 +187,13 @@
                     <div class="row projects">
                         {% for article in articles %}
                             <div class="col-md-6">
-                                <img src="/images/block_E/{{ article.img }}" alt=""/>
+                                {% if images %}
+                                    {% for image in images %}
+                                        {% if image.id == article.id %}
+                                            <img src="/images/block_E/{{ image.img }}" alt=""/>
+                                        {% endif %}
+                                    {% endfor %}
+                                {% endif %}
                             </div>
                             <div class="col-md-6 align-self-center">
                                 <h3>{{ article.title }}</h3>
@@ -249,9 +255,9 @@
                                 ] %}
                                 {% for block_V in social %}
                                     <a href={{ block_V.url }} target="_blank">
-                                        <img src={{ block_V.img }} alt="" />
+                                        <img src={{ block_V.img }} alt=""/>
                                         {#<object type="image/svg+xml" data={{ block_V.img }}>#}
-                                            {#Your browser does not support SVG#}
+                                        {#Your browser does not support SVG#}
                                         {#</object>#}
                                     </a>
                                 {% endfor %}
