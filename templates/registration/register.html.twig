@@ -3,14 +3,18 @@
 {% block title %}Register{% endblock %}
 
 {% block body %}
-    <h1>Register</h1>
+    <div class="container">
+        <div class="row justify-content-md-center">
+            <form class="col-md-8 form-signin" method="post">
+            <h1>Register</h1>
 
-    {{ form_start(registrationForm) }}
-    {{ form_row(registrationForm.email) }}
-    {{ form_row(registrationForm.firstName) }}
-    {{ form_row(registrationForm.plainPassword) }}
-    {{ form_row(registrationForm.agreeTerms) }}
+            {{ form_row(registrationForm.email) }}
+            {{ form_row(registrationForm.firstName) }}
+            {{ form_row(registrationForm.plainPassword) }}
+            {{ form_row(registrationForm.agreeTerms) }}
 
-    <button class="btn">Register</button>
-    {{ form_end(registrationForm) }}
+            <button class="btn btn-lg btn-primary" type="submit">Register</button>
+            </form>
+        </div>
+    </div>
 {% endblock %}

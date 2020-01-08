@@ -27,7 +27,9 @@ class ImgArticles
     private $article;
 
     /**
-     * @ORM\Column(type="boolean")
+     * @var null
+     *
+     * @ORM\Column(type="integer", nullable=true)
      */
     private $general;
 
@@ -36,39 +38,52 @@ class ImgArticles
         return $this->id;
     }
 
-    public function getImg(): ?string
+    /**
+     * @return mixed
+     */
+    public function getImg()
     {
         return $this->img;
     }
 
-    public function setImg(string $img): self
+    /**
+     * @param mixed $img
+     */
+    public function setImg($img)
     {
         $this->img = $img;
-
-        return $this;
     }
 
-    public function getArticle(): ?Articles
+    /**
+     * @return mixed
+     */
+    public function getArticle()
     {
         return $this->article;
     }
 
-    public function setArticle(?Articles $article): self
+    /**
+     * @param mixed $article
+     */
+    public function setArticle($article)
     {
         $this->article = $article;
-
-        return $this;
     }
 
-    public function getGeneral(): ?bool
+    /**
+     * @return null
+     */
+    public function getGeneral()
     {
         return $this->general;
     }
 
-    public function setGeneral(bool $general): self
+    /**
+     * @param null $general
+     */
+    public function setGeneral($general)
     {
         $this->general = $general;
-
-        return $this;
     }
+
 }

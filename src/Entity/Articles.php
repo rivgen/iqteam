@@ -75,7 +75,9 @@ class Articles
     private $category;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @var string|null
+     *
+     * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $fullTitle;
 
@@ -85,17 +87,23 @@ class Articles
     private $icon;
 
     /**
-     * @ORM\Column(type="string", length=20)
+     * @var string|null
+     *
+     * @ORM\Column(type="string", length=20, nullable=true)
      */
     private $year;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @var string|null
+     *
+     * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $client;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @var string|null
+     *
+     * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $technology;
 
@@ -117,7 +125,7 @@ class Articles
     /**
      * @return int
      */
-    public function getId(): int
+    public function getId()
     {
         return $this->id;
     }
@@ -125,7 +133,7 @@ class Articles
     /**
      * @param int $id
      */
-    public function setId(int $id)
+    public function setId($id)
     {
         $this->id = $id;
     }
@@ -242,16 +250,20 @@ class Articles
         $this->category = $category;
     }
 
-    public function getFullTitle(): ?string
+    /**
+     * @return null|string
+     */
+    public function getFullTitle()
     {
         return $this->fullTitle;
     }
 
-    public function setFullTitle(string $fullTitle): self
+    /**
+     * @param null|string $fullTitle
+     */
+    public function setFullTitle($fullTitle)
     {
         $this->fullTitle = $fullTitle;
-
-        return $this;
     }
 
     public function getIcon(): ?string
@@ -266,40 +278,52 @@ class Articles
         return $this;
     }
 
-    public function getYear(): ?string
+    /**
+     * @return null|string
+     */
+    public function getYear()
     {
         return $this->year;
     }
 
-    public function setYear(string $year): self
+    /**
+     * @param null|string $year
+     */
+    public function setYear($year)
     {
         $this->year = $year;
-
-        return $this;
     }
 
-    public function getClient(): ?string
+    /**
+     * @return null|string
+     */
+    public function getClient()
     {
         return $this->client;
     }
 
-    public function setClient(string $client): self
+    /**
+     * @param null|string $client
+     */
+    public function setClient($client)
     {
         $this->client = $client;
-
-        return $this;
     }
 
-    public function getTechnology(): ?string
+    /**
+     * @return null|string
+     */
+    public function getTechnology()
     {
         return $this->technology;
     }
 
-    public function setTechnology(string $technology): self
+    /**
+     * @param null|string $technology
+     */
+    public function setTechnology($technology)
     {
         $this->technology = $technology;
-
-        return $this;
     }
 
     public function getDescription(): ?string
