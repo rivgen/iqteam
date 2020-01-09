@@ -48,20 +48,20 @@
             </div>
         </div>
         {% if app.request.get('_route') == 'articles_edit' or app.request.get('_route') == 'articles_new' %}
-        <div class="row justify-content-md-center">
-            <div class="col-md-8 icon">
-                {{ form_label(form.iconFile) }}<br/>
-                {{ form_widget(form.iconFile) }}
-                {{ form_errors(form.iconFile) }}
+            <div class="row justify-content-md-center">
+                <div class="col-md-8 icon">
+                    {{ form_label(form.iconFile) }}<br/>
+                    {{ form_widget(form.iconFile) }}
+                    {{ form_errors(form.iconFile) }}
+                </div>
             </div>
-        </div>
         {% endif %}
         <div class="row justify-content-md-center">
             <div class="col-md-8 img">
                 {% if app.request.get('_route') != 'articles_new' %}
                     {% if images %}
                         {% for image in images %}
-                            <img src="/images/articles/{{ article.id }}/{{ image.img }}"/>
+                            <img src="{{ uploaded_asset(article.id, image.img) }}"/>
                         {% endfor %}
                     {% endif %}
                 {% endif %}
@@ -69,11 +69,18 @@
         </div>
         {% if app.request.get('_route') == 'articles_edit' or app.request.get('_route') == 'articles_new' %}
             <div class="row justify-content-md-center">
-                <div class="col-md-8 icon">
+                <div class="col-md-3">
+                    {% for image in images %}
+                        <img src="{{ uploaded_asset(article.id, image.img)|imagine_filter('squared_thumbnail_small') }}" height="100"/>
+                    {% endfor %}
+                </div>
+                <div class="col-md-5"></div>
+                <div class="col-md-8">
                     {{ form_label(form.imageFile) }}<br/>
                     {{ form_widget(form.imageFile) }}
                     {{ form_errors(form.imageFile) }}
                 </div>
+
             </div>
         {% endif %}
         <div class="row justify-content-md-center descArticle">
@@ -127,9 +134,7 @@
         <div class="row justify-content-md-center">
             <div class="col-md-8 descArticle">
                 {% if app.request.get('_route') == 'articles_edit' or app.request.get('_route') == 'articles_new' %}
-                    {% if app.request.get('_route') == 'articles_new' %}
-                        {{ form_label(form.description) }}
-                    {% endif %}
+                    {{ form_label(form.description) }}
                     {{ form_widget(form.description) }}
                     {{ form_errors(form.description) }}
                 {% else %}
@@ -137,7 +142,18 @@
                 {% endif %}
             </div>
         </div>
-
+        {% if app.request.get('_route') == 'articles_edit' or app.request.get('_route') == 'articles_new' %}
+            <div class="row justify-content-md-center">
+                <div class="col-md-8 descArticle">
+                    {{ form_label(form.alias) }}
+                    {{ form_widget(form.alias) }}
+                    {{ form_errors(form.alias) }}
+                    {{ form_label(form.author) }}
+                    {{ form_widget(form.author) }}
+                    {{ form_errors(form.author) }}
+                </div>
+            </div>
+        {% endif %}
     </div>
     <div class="container prevNext">
         <div class="row">
@@ -171,7 +187,7 @@
     {% if app.request.get('_route') == 'articles_edit' or app.request.get('_route') == 'articles_new' %}
         {{ form_end(form) }}
     {% endif %}
-    {% if is_granted('ROLE_CONTENT_MANAGER') and app.request.get('_route') != 'articles_new' %}
+    {% if is_granted('ROLE_CONTENT_MANAGER') and app.request.get('_route') != 'articles_new' and app.request.get('_route') != 'articles_edit' %}
         <a href="{{ path('articles_edit', {'id': article.id}) }}">edit</a>
     {% endif %}
 {% endblock %}

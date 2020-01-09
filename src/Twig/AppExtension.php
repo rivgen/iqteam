@@ -11,6 +11,7 @@
 
 namespace App\Twig;
 
+use App\Service\UploaderHelper;
 use App\Utils\Markdown;
 use Symfony\Component\Intl\Locales;
 use Twig\Extension\AbstractExtension;
@@ -32,14 +33,18 @@ class AppExtension extends AbstractExtension
     private $parser;
     private $localeCodes;
     private $locales;
+//    private $container;
+    private $uploaderHelper;
 
-    public function __construct(Markdown $parser, string $locales)
+    public function __construct(Markdown $parser, string $locales,  UploaderHelper $uploaderHelper)
     {
         $this->parser = $parser;
 
         $localeCodes = explode('|', $locales);
         sort($localeCodes);
         $this->localeCodes = $localeCodes;
+//        $this->container = $container;
+        $this->uploaderHelper = $uploaderHelper;
     }
 
     /**
@@ -59,6 +64,7 @@ class AppExtension extends AbstractExtension
     {
         return [
             new TwigFunction('locales', [$this, 'getLocales']),
+            new TwigFunction('uploaded_asset', [$this, 'getUploadedAssetPath']),
         ];
     }
 
@@ -88,4 +94,17 @@ class AppExtension extends AbstractExtension
 
         return $this->locales;
     }
+
+    public function getUploadedAssetPath($id, $imgName): string
+    {
+        return $this->uploaderHelper
+            ->getPublicPath($id, $imgName);
+    }
+
+//    public static function getSubscribedServices()
+//    {
+//        return [
+//            UploaderHelper::class,
+//        ];
+//    }
 }

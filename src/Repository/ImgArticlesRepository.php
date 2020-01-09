@@ -2,6 +2,7 @@
 
 namespace App\Repository;
 
+use App\Entity\Articles;
 use App\Entity\ImgArticles;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Common\Persistence\ManagerRegistry;
@@ -32,7 +33,8 @@ class ImgArticlesRepository extends ServiceEntityRepository
 
     public function imageInArticle()
     {
-        $qb = $this->createQueryBuilder('i')->select('i.id, i.img');
+        $qb = $this->createQueryBuilder('i')->select('i.id, i.img, a.id article');
+        $qb->leftJoin(Articles::class, 'a', 'WITH','i.article = a.id' );
         $qb->andWhere('i.general = :int');
         $qb->setParameter('int', true);
 

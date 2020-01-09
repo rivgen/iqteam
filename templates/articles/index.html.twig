@@ -51,8 +51,8 @@
                 <div class="col-md-4">
                     {% if images %}
                         {% for image in images %}
-                            {% if image.id == article.id %}
-                                <img src="/images/block_E/{{ image.img }}" alt=""/>
+                            {% if image.article == article.id %}
+                                <img src="/images/articles/{{ article.id }}/{{ image.img }}" alt="" class="embed-responsive"/>
                             {% endif %}
                         {% endfor %}
                     {% endif %}
