@@ -2,9 +2,7 @@
 
 namespace App\Form;
 
-use App\Entity\Role;
 use App\Entity\User;
-use App\Repository\RoleRepository;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\HiddenType;
@@ -14,26 +12,29 @@ use Symfony\Component\Security\Core\Security;
 
 class UserType extends AbstractType
 {
-    private $roleRepository;
     private $security;
+    private $allRoles = ["ROLE_CONTENT_MANAGER", "ROLE_USER"];
 
-    public function __construct(RoleRepository $roleRepository, Security $security)
+    public function __construct(Security $security)
     {
-        $this->roleRepository = $roleRepository;
         $this->security = $security;
     }
 
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $role = "ROLE_SUPER_ADMIN";
 //        dump($this->security->getUser());
         if ($this->security->isGranted("ROLE_SUPER_ADMIN")){
-            $role = '';
+            $role = 'ROLE_SUPER_ADMIN';
+            array_unshift ($this->allRoles, $role);
         }
+        foreach ($this->allRoles as $out) {
+            $allRole[$out] = $out;
+        }
+//        dump($allRole);
         $builder
             ->add('email')
             ->add('roles', ChoiceType::class,[
-                'choices' => $this->roleRepository->getNameRole($role),
+                'choices' => [$allRole],
                 'expanded' => true,
                 'multiple' => true,
             ])

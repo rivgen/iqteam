@@ -31,3 +31,10 @@ php bin/console doctrine:migrations:migrate
 // doctrine:migrations:status              [status] View the status of a set of migrations.
 // doctrine:migrations:up-to-date          [up-to-date] Tells you if your schema is up-to-date.
 // doctrine:migrations:version             [version] Manually add and delete migration versions from the version table.
+
+
+//очистка кеша картинок
+php bin/console liip:imagine:cache:remove
+
+//создание кеша картинок 
+php bin/console liip:imagine:cache:resolve <PATH-OF-IMAGES>
