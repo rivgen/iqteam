@@ -9,7 +9,7 @@ class UploaderHelper
 {
     const ARTICLE_IMAGE = '/images/articles/';
 
-    private $uploadsPath;
+    private $uploadsPath = '/public';
 
     public function __construct(string $uploadsPath)
     {
@@ -18,7 +18,8 @@ class UploaderHelper
 
     public function uploadIcon(UploadedFile $uploadedFile, $id): string
     {
-        $destination = $this->uploadsPath . self::ARTICLE_IMAGE . $id . '/';
+        $destination = $this->uploadsPath .'/public'. self::ARTICLE_IMAGE . $id . '/';
+//        dd($destination);
         $originalFilename = pathinfo($uploadedFile->getClientOriginalName(), PATHINFO_FILENAME);
         $newFilename = Urlizer::urlize($originalFilename) . '.' . $uploadedFile->guessExtension();
         $uploadedFile->move(

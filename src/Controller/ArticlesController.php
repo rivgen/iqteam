@@ -117,8 +117,14 @@ class ArticlesController extends AbstractController
         $imgArticle = new ImgArticles();
         $form = $this->createForm(ArticlesType::class, $article);
         $form->handleRequest($request);
-        $images = $imgArticlesRepository->findImage($id);;
-
+        $images = $imgArticlesRepository->findAllImage($id);
+        $general = false;
+        foreach ($images as $image){
+            if ($image['general']){
+                $general = $image['general'];
+            }
+        }
+        dump($general);
         if (!empty($prevNext)) {
             if (empty($prevNext[1]) and $prevNext[0]['id'] > $id) {
                 $endId = $articlesRepository->endId();
@@ -141,6 +147,9 @@ class ArticlesController extends AbstractController
                 $newImageName = $uploaderHelper->uploadIcon($uploadedImage, $id);
                 $imgArticle->setImg($newImageName);
                 $imgArticle->setArticle($article);
+                if (!$general){
+                    $imgArticle->setGeneral(true);
+                }
             }
             $entityManager =$this->getDoctrine()->getManager();
             $entityManager->persist($article);
