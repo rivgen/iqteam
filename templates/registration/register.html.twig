@@ -6,6 +6,7 @@
     <div class="container">
         <div class="row justify-content-md-center">
             <form class="col-md-8 form-signin" method="post">
+                {{ form_start(registrationForm) }}
             <h1>Register</h1>
 
             {{ form_row(registrationForm.email) }}
@@ -14,6 +15,7 @@
             {{ form_row(registrationForm.agreeTerms) }}
 
             <button class="btn btn-lg btn-primary" type="submit">Register</button>
+                {{ form_end(registrationForm) }}
             </form>
         </div>
     </div>
