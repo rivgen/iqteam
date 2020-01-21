@@ -199,12 +199,13 @@
     {% if app.request.get('_route') == 'articles_edit' or app.request.get('_route') == 'articles_new' %}
         <div class="container">
             <div class="row">
-                <a href="{{ path('articles_index') }}">back to list</a>
-                <div class="col">
+                <div class="col-1"> <a href="{{ path('articles_index') }}">back to list</a></div>
+                <div class="col-1"><a href="{{ path('articles_show', {'id': article.id}) }}">show</a></div>
+                <div class="col-1">
                     {{ include('articles/_form.html.twig', {'button_label': 'Update'}) }}
                 </div>
                 {% if app.request.get('_route') != 'articles_new' %}
-                    <div class="col">
+                    <div class="col-1">
                         {{ include('articles/_delete_form.html.twig') }}
                     </div>
                 {% endif %}
