@@ -3,7 +3,11 @@
 namespace App\Form;
 
 use App\Entity\Articles;
+use App\Entity\ImgArticles;
+use Doctrine\ORM\EntityRepository;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -22,6 +26,9 @@ class ArticlesType extends AbstractType
     }
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
+//        dump($options['data']->getImgArticles());
+        $id = $options['data']->getId();
+
         $builder
             ->add('title', null,[
                 'attr' => ['class' => 'form-control']
@@ -80,6 +87,17 @@ class ArticlesType extends AbstractType
                     ])
                 ],
             ])
+            ->add('imgArticles', CollectionType::class, [
+                'entry_type' => ImgArticlesType::class,
+                'allow_delete' => true,
+//                "data" => $id,
+//                'query_builder' => function (EntityRepository $er) use ( $id ) {
+//                    return $er->createQueryBuilder('img')->andWhere('img.article = :id')->setParameter('id', $id);
+//                },
+//                'choice_label' => 'general',
+//                'expanded' => true,
+//                'multiple' => false
+            ]);
 //            ->add('category')
         ;
     }

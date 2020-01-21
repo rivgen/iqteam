@@ -1,6 +1,21 @@
 {% extends 'base.html.twig' %}
 
 {% block title %}Articles{% endblock %}
+{% block javascripts %}
+    {{ parent() }}
+
+    <script>
+        jQuery(document).ready(function () {
+            var $wrapper = $('.js-genus-scientist-wrapper');
+            $wrapper.on('click', '.js-remove-scientist', function (e) {
+                e.preventDefault();
+                $(this).closest('.js-genus-scientist-item')
+                    .fadeOut()
+                    .remove();
+            });
+        });
+    </script>
+{% endblock %}
 
 {% block body %}
     {% if app.request.get('_route') == 'articles_edit' or app.request.get('_route') == 'articles_new' %}
@@ -67,14 +82,26 @@
                 {% endif %}
             </div>
         </div>
-        {% if app.request.get('_route') == 'articles_edit' or app.request.get('_route') == 'articles_new' %}
-            <div class="row justify-content-md-center">
-                <div class="col-md-3">
-                    {% for image in images %}
-                        <img src="{{ uploaded_asset(article.id, image.img)|imagine_filter('squared_thumbnail_small') }}" height="100"/>
-                    {% endfor %}
+        {% if (app.request.get('_route') == 'articles_edit' or app.request.get('_route') == 'articles_new') %}
+            <div class="row js-genus-scientist-wrapper">
+            {% for radio in form.imgArticles %}
+                <div class="col-md-8 offset-md-2 js-genus-scientist-item">
+                    <div class="row">
+                        <div class="col-md-3">
+                            {{ form_help(radio) }}
+                            {{ form_widget(radio) }}
+                        </div>
+                        {#<div class="col-md-2">#}
+                            {#{{ form_help(radio) }}#}
+                        {#</div>#}
+                        <div class="col-md-2">
+                            <button type="button" class="js-remove-scientist btn btn-primary">Удалить</button>
+                        </div>
+                    </div>
                 </div>
-                <div class="col-md-5"></div>
+            {% endfor %}
+            </div>
+            <div class="row justify-content-md-center">
                 <div class="col-md-8">
                     {{ form_label(form.imageFile) }}<br/>
                     {{ form_widget(form.imageFile) }}

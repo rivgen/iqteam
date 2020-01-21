@@ -113,7 +113,7 @@ class Articles
     private $description;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\ImgArticles", mappedBy="article")
+     * @ORM\OneToMany(targetEntity="App\Entity\ImgArticles", mappedBy="article", orphanRemoval=true)
      */
     private $imgArticles;
 

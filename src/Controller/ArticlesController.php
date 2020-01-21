@@ -124,7 +124,7 @@ class ArticlesController extends AbstractController
                 $general = $image['general'];
             }
         }
-        dump($general);
+//        dump($general);
         if (!empty($prevNext)) {
             if (empty($prevNext[1]) and $prevNext[0]['id'] > $id) {
                 $endId = $articlesRepository->endId();

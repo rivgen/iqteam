@@ -33,7 +33,7 @@ class ImgArticlesRepository extends ServiceEntityRepository
 
     public function findAllImage($id)
     {
-        $qb = $this->createQueryBuilder('i')->select('i.img, i.general');
+        $qb = $this->createQueryBuilder('i')->select('i.id, i.img, i.general');
         $qb->andWhere('i.article = :id');
         $qb->setParameter('id', $id);
 
