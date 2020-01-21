@@ -58,7 +58,7 @@
                     {% endif %}
                 </div>
                 <div class="col-md-4 align-self-center">
-                    <h3>{{ article.title }}</h3>
+                    <a href={{ path('articles_show', {'id': article.id}) }}><h3>{{ article.title }}</h3></a>
                     <p>{{ article.textPreview }}</p>
                     {% for button in buttons %}
                         {% if button.id == article.id %}
