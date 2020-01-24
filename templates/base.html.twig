@@ -22,7 +22,7 @@
     <div class="row align-items-center">
         <div class="col-md-2">
             {% if  (app.request.get('_route') == 'index_index') %}
-                <object type="image/svg+xml" data="/images/logo.svg">
+                <object type="image/svg+xml" data="/images/logo.svg" class="embed-responsive">
                     Your browser does not support SVG
                 </object>
             {% else %}
@@ -35,7 +35,7 @@
         </div>
         <div class="col-md-8">
             <div class="row justify-content-between align-items-center">
-                <div class="col-md-2 menuFlex inLeft">
+                <div class="col-md-3 menuFlex inLeft">
                     {#{{  dump(app.request.get('_route')) }}#}
                     {% for mainMenu in menu %}
                         {% if ( app.request.get('_route') == mainMenu.url ) %}
@@ -44,8 +44,11 @@
                             <a href="{{ path(mainMenu.url) }}"><p>{{ mainMenu.title }}</p></a>
                         {% endif %}
                     {% endfor %}
+                    {% if is_granted('ROLE_CONTENT_MANAGER') %}
+                        <a href="{{ path('admin_user') }}"><p>Admin Users</p></a>
+                    {% endif %}
                 </div>
-                <div class="col-md-4 menuFlex inRight">
+                <div class="col-md-3 menuFlex inRight">
                     {#<object type="image/svg+xml" data="/images/imgEmail.svg">#}
                     {#Your browser does not support SVG#}
                     {#</object>#}

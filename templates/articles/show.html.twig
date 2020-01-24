@@ -15,6 +15,86 @@
             });
         });
     </script>
+    {#<script>#}
+        {#let radio = document.getElementById('radioChecked').getElementsByClassName('radio')#}
+        {#//        let radio = document.getElementById('articles_imgArticles_'+ "\d" +'_general_1')#}
+        {#let id#}
+        {#radioFunc()#}
+        {#function radioFunc() {#}
+
+            {#for (let i = 0; i < radio.length; i++) {#}
+{#//            for (let a = 0; a < 2; a++){#}
+{#//            document.getElementById('articles_imgArticles_' + i + '_general_'+a).setAttribute('style', 'display: none')#}
+{#//                }#}
+                {#document.getElementById('articles_imgArticles_' + i + '_general').insertAdjacentHTML("afterbegin", '<input type="radio" id="articles_imgArticles_' + i + '" name="imgArticles"/>')#}
+                {#document.getElementById('articles_imgArticles_' + i).addEventListener('click', eventArticles, false);#}
+{#//                document.getElementById('articles_imgArticles_' + i).removeEventListener("click", eventArticles);#}
+            {#}#}
+        {#}#}
+        {#function eventArticles(e) {#}
+            {#let clikArticle#}
+            {#id = e.target.parentElement.id;#}
+            {#console.log(id)#}
+{#//            document.querySelector('#test strong').innerHTML = id; // For example#}
+            {#for (let a = 0; a < radio.length; a++) {#}
+                {#let input = document.getElementById('articles_imgArticles_' + a + '_general')#}
+{#//            for (let a = 0; a < radio.length; a++) {#}
+                {#if (id != 'articles_imgArticles_' + a + '_general') {#}
+                    {#let input2 = document.getElementById('articles_imgArticles_' + a + '_general')#}
+                            {#document.getElementById('articles_imgArticles_' + a + '_general_1').click()#}
+                    {#console.log(a)#}
+                    {#console.log(input2)#}
+                    {#break;#}
+                {#} else {#}
+                    {#if (e.defaultPrevented) return#}
+                    {#clikArticle = document.getElementById('articles_imgArticles_' + a + '_general_0').click()#}
+                    {#console.log('clikArticle')#}
+                    {#break;#}
+
+                {#}#}
+            {#}#}
+{#//                    radioFunc()#}
+{#//                    radioClick(id)#}
+{#//                if (id == 'articles_imgArticles_' + i + '_general') {#}
+{#//                    document.getElementById('articles_imgArticles_' + i + '_general_0').click()#}
+{#//                    document.getElementById('articles_imgArticles_' + i + '_general_1').removeAttribute('checked')#}
+{#//                    window.setTimeout(function() {#}
+{#//                        document.getElementById('articles_imgArticles_' + i + '_general_0').focus()#}
+{#////                        document.getElementById('articles_imgArticles_' + i + '_general_1').blur()#}
+{#//                    })#}
+{#//                    console.log(0)#}
+{#//                } else {#}
+{#//                    document.getElementById('articles_imgArticles_' + i + '_general_1').click()#}
+{#//                    document.getElementById('articles_imgArticles_' + i + '_general_0').removeAttribute('checked')#}
+{#//                    window.setTimeout(function() {#}
+{#////                        document.getElementById('articles_imgArticles_' + i + '_general_0').blur()#}
+{#//                        document.getElementById('articles_imgArticles_' + i + '_general_1').focus()#}
+{#//                    })#}
+{#//                    console.log(1)#}
+{#//                }#}
+
+{#//                    console.log(input)#}
+{#//                }#}
+        {#}#}
+        {#function radioClick(id) {#}
+            {#for (let a = 0; a < radio.length; a++) {#}
+                {#if (id == 'articles_imgArticles_' + a + '_general') {#}
+                    {#document.getElementById('articles_imgArticles_' + a + '_general_0').click()#}
+                    {#console.log(0)#}
+                {#} else {#}
+                    {#document.getElementById('articles_imgArticles_' + a + '_general_1').click()#}
+                    {#console.log(1)#}
+                {#}#}
+            {#}#}
+        {#}#}
+
+        {#//        for (let i = 0; i<radio.length; i++){#}
+        {#//            let input = document.getElementById('articles_imgArticles_'+i+'_general')#}
+        {#//            document.getElementById('articles_imgArticles_'+i+'_general_1').setAttribute('checked', 'checked')#}
+        {#//            console.log(input)#}
+        {#//        }#}
+        {#//        console.log(radio)#}
+    {#</script>#}
 {% endblock %}
 
 {% block body %}
@@ -36,7 +116,7 @@
         <div class="row justify-content-md-center headArticle">
             <div class="col-md-1 icon">
                 {% if article.icon %}
-                    <img src="/images/articles/{{ article.id }}/{{ article.icon }}"/>
+                    <img src="{{ uploaded_asset(article.id, article.icon) }}"/>
                 {% endif %}
             </div>
             <div class="col-md-3 fullTitle">
@@ -76,30 +156,30 @@
                 {% if app.request.get('_route') != 'articles_new' %}
                     {% if images %}
                         {% for image in images %}
-                            <img src="{{ uploaded_asset(article.id, image.img) }}"/>
+                            <img src="{{ uploaded_asset(article.id, image.img)|imagine_filter('squared_thumbnail_small') }}"/>
                         {% endfor %}
                     {% endif %}
                 {% endif %}
             </div>
         </div>
         {% if (app.request.get('_route') == 'articles_edit' or app.request.get('_route') == 'articles_new') %}
-            <div class="row js-genus-scientist-wrapper">
-            {% for radio in form.imgArticles %}
-                <div class="col-md-8 offset-md-2 js-genus-scientist-item">
-                    <div class="row">
-                        <div class="col-md-3">
-                            {{ form_help(radio) }}
-                            {{ form_widget(radio) }}
-                        </div>
-                        {#<div class="col-md-2">#}
+            <div class="row js-genus-scientist-wrapper" id="radioChecked">
+                {% for radio in form.imgArticles %}
+                    <div class="col-md-8 offset-md-2 js-genus-scientist-item">
+                        <div class="row">
+                            <div class="col-md-3">
+                                {{ form_help(radio) }}
+                                {{ form_widget(radio) }}
+                            </div>
+                            {#<div class="col-md-2">#}
                             {#{{ form_help(radio) }}#}
-                        {#</div>#}
-                        <div class="col-md-2">
-                            <button type="button" class="js-remove-scientist btn btn-primary">Удалить</button>
+                            {#</div>#}
+                            <div class="col-md-2">
+                                <button type="button" class="js-remove-scientist btn btn-primary">Удалить</button>
+                            </div>
                         </div>
                     </div>
-                </div>
-            {% endfor %}
+                {% endfor %}
             </div>
             <div class="row justify-content-md-center">
                 <div class="col-md-8">
@@ -199,8 +279,12 @@
     {% if app.request.get('_route') == 'articles_edit' or app.request.get('_route') == 'articles_new' %}
         <div class="container">
             <div class="row">
-                <div class="col-1"> <a href="{{ path('articles_index') }}">back to list</a></div>
-                <div class="col-1"><a href="{{ path('articles_show', {'id': article.id}) }}">show</a></div>
+                <div class="col-1"><a href="{{ path('articles_index') }}">back to list</a></div>
+                <div class="col-1">
+                    {% if app.request.get('_route') != 'articles_new' %}
+                        <a href="{{ path('articles_show', {'id': article.id}) }}">show</a>
+                    {% endif %}
+                </div>
                 <div class="col-1">
                     {{ include('articles/_form.html.twig', {'button_label': 'Update'}) }}
                 </div>
