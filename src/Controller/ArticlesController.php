@@ -83,7 +83,7 @@ class ArticlesController extends AbstractController
         $article = $articlesRepository->findArticle($id);
         $buttonArticlesRepository = $em->getRepository(ButtonArticles::class);
         $button = $buttonArticlesRepository->findButton($id);
-        $images = $imgArticlesRepository->findImage($id);
+        $images = $imgArticlesRepository->findAllImage($id);
         $prevNext = $articlesRepository->filterNextPrevious($id);
         if (!empty($prevNext)) {
             if (empty($prevNext[1]) and $prevNext[0]['id'] > $id) {
@@ -143,7 +143,7 @@ class ArticlesController extends AbstractController
 
             }
             $uploadedImage = $form['imageFile']->getData();
-            if ($uploadedImage) {
+            if (isset($uploadedImage)) {
                 $newImageName = $uploaderHelper->uploadIcon($uploadedImage, $id);
                 $imgArticle->setImg($newImageName);
                 $imgArticle->setArticle($article);
@@ -153,7 +153,9 @@ class ArticlesController extends AbstractController
             }
             $entityManager =$this->getDoctrine()->getManager();
             $entityManager->persist($article);
-            $entityManager->persist($imgArticle);
+            if(isset($uploadedImage)) {
+                $entityManager->persist($imgArticle);
+            }
             $entityManager->flush();
 
             return $this->redirectToRoute('articles_edit', ['id'=> $id]);

@@ -30,16 +30,16 @@ class ArticlesType extends AbstractType
         $id = $options['data']->getId();
 
         $builder
-            ->add('title', null,[
+            ->add('title', null, [
                 'attr' => ['class' => 'form-control']
             ])
             ->add('fullTitle', TextareaType::class, [
                 'attr' => ['class' => 'form-control'],
                 'required' => false,
             ])
-            ->add('textPreview', TextareaType::class,[
+            ->add('textPreview', TextareaType::class, [
                 'attr' => ['class' => 'form-control']
-             ])
+            ])
             ->add('technology', TextareaType::class, [
                 'attr' => ['class' => 'form-control'],
                 'required' => false,
@@ -62,7 +62,7 @@ class ArticlesType extends AbstractType
             ])
 //            ->add('created')
 //            ->add('updated')
-            ->add('author', null,[
+            ->add('author', null, [
                 'data' => $this->security->getUser()->getFirstName(),
                 'attr' => ['class' => 'form-control']
             ])
@@ -90,15 +90,11 @@ class ArticlesType extends AbstractType
             ->add('imgArticles', CollectionType::class, [
                 'entry_type' => ImgArticlesType::class,
                 'allow_delete' => true,
-//                "data" => $id,
-//                'query_builder' => function (EntityRepository $er) use ( $id ) {
-//                    return $er->createQueryBuilder('img')->andWhere('img.article = :id')->setParameter('id', $id);
-//                },
-//                'choice_label' => 'general',
-//                'expanded' => true,
-//                'multiple' => false
+//                'empty_data' => false,
+                'delete_empty' => true,
+                'allow_add' => true,
+//                'required' => false,
             ]);
-//            ->add('category')
         ;
     }
 

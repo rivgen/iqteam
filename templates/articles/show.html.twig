@@ -14,87 +14,22 @@
                     .remove();
             });
         });
+        let radio = document.getElementsByName('radioName')
+        for (let i = 0; i < radio.length; i++) {
+            radio[i].onclick = function () {
+                removeValue()
+                document.getElementById('articles_imgArticles_' + i + '_general').value = 1
+//                console.log(222, radio[i].value)
+            }
+        }
+
+        function removeValue() {
+            for (let i = 0; i < radio.length; i++) {
+                document.getElementById('articles_imgArticles_' + i + '_general').removeAttribute('value')
+            }
+        }
+
     </script>
-    {#<script>#}
-        {#let radio = document.getElementById('radioChecked').getElementsByClassName('radio')#}
-        {#//        let radio = document.getElementById('articles_imgArticles_'+ "\d" +'_general_1')#}
-        {#let id#}
-        {#radioFunc()#}
-        {#function radioFunc() {#}
-
-            {#for (let i = 0; i < radio.length; i++) {#}
-{#//            for (let a = 0; a < 2; a++){#}
-{#//            document.getElementById('articles_imgArticles_' + i + '_general_'+a).setAttribute('style', 'display: none')#}
-{#//                }#}
-                {#document.getElementById('articles_imgArticles_' + i + '_general').insertAdjacentHTML("afterbegin", '<input type="radio" id="articles_imgArticles_' + i + '" name="imgArticles"/>')#}
-                {#document.getElementById('articles_imgArticles_' + i).addEventListener('click', eventArticles, false);#}
-{#//                document.getElementById('articles_imgArticles_' + i).removeEventListener("click", eventArticles);#}
-            {#}#}
-        {#}#}
-        {#function eventArticles(e) {#}
-            {#let clikArticle#}
-            {#id = e.target.parentElement.id;#}
-            {#console.log(id)#}
-{#//            document.querySelector('#test strong').innerHTML = id; // For example#}
-            {#for (let a = 0; a < radio.length; a++) {#}
-                {#let input = document.getElementById('articles_imgArticles_' + a + '_general')#}
-{#//            for (let a = 0; a < radio.length; a++) {#}
-                {#if (id != 'articles_imgArticles_' + a + '_general') {#}
-                    {#let input2 = document.getElementById('articles_imgArticles_' + a + '_general')#}
-                            {#document.getElementById('articles_imgArticles_' + a + '_general_1').click()#}
-                    {#console.log(a)#}
-                    {#console.log(input2)#}
-                    {#break;#}
-                {#} else {#}
-                    {#if (e.defaultPrevented) return#}
-                    {#clikArticle = document.getElementById('articles_imgArticles_' + a + '_general_0').click()#}
-                    {#console.log('clikArticle')#}
-                    {#break;#}
-
-                {#}#}
-            {#}#}
-{#//                    radioFunc()#}
-{#//                    radioClick(id)#}
-{#//                if (id == 'articles_imgArticles_' + i + '_general') {#}
-{#//                    document.getElementById('articles_imgArticles_' + i + '_general_0').click()#}
-{#//                    document.getElementById('articles_imgArticles_' + i + '_general_1').removeAttribute('checked')#}
-{#//                    window.setTimeout(function() {#}
-{#//                        document.getElementById('articles_imgArticles_' + i + '_general_0').focus()#}
-{#////                        document.getElementById('articles_imgArticles_' + i + '_general_1').blur()#}
-{#//                    })#}
-{#//                    console.log(0)#}
-{#//                } else {#}
-{#//                    document.getElementById('articles_imgArticles_' + i + '_general_1').click()#}
-{#//                    document.getElementById('articles_imgArticles_' + i + '_general_0').removeAttribute('checked')#}
-{#//                    window.setTimeout(function() {#}
-{#////                        document.getElementById('articles_imgArticles_' + i + '_general_0').blur()#}
-{#//                        document.getElementById('articles_imgArticles_' + i + '_general_1').focus()#}
-{#//                    })#}
-{#//                    console.log(1)#}
-{#//                }#}
-
-{#//                    console.log(input)#}
-{#//                }#}
-        {#}#}
-        {#function radioClick(id) {#}
-            {#for (let a = 0; a < radio.length; a++) {#}
-                {#if (id == 'articles_imgArticles_' + a + '_general') {#}
-                    {#document.getElementById('articles_imgArticles_' + a + '_general_0').click()#}
-                    {#console.log(0)#}
-                {#} else {#}
-                    {#document.getElementById('articles_imgArticles_' + a + '_general_1').click()#}
-                    {#console.log(1)#}
-                {#}#}
-            {#}#}
-        {#}#}
-
-        {#//        for (let i = 0; i<radio.length; i++){#}
-        {#//            let input = document.getElementById('articles_imgArticles_'+i+'_general')#}
-        {#//            document.getElementById('articles_imgArticles_'+i+'_general_1').setAttribute('checked', 'checked')#}
-        {#//            console.log(input)#}
-        {#//        }#}
-        {#//        console.log(radio)#}
-    {#</script>#}
 {% endblock %}
 
 {% block body %}
@@ -155,9 +90,43 @@
             <div class="col-md-8 img">
                 {% if app.request.get('_route') != 'articles_new' %}
                     {% if images %}
+                        {% set secondValue = null %}
                         {% for image in images %}
-                            <img src="{{ uploaded_asset(article.id, image.img)|imagine_filter('squared_thumbnail_small') }}"/>
+                            {% set secondValue = loop.index0 %}
                         {% endfor %}
+                        {% if secondValue > 0 %}
+                            <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+                                <ol class="carousel-indicators">
+                                    {% for image in images %}
+                                        {% set i = loop.index0 %}
+                                        <li data-target="#carouselExampleIndicators"
+                                            data-slide-to={{ i }} {% if image.general %}class="active"{% endif %}></li>
+                                    {% endfor %}
+                                </ol>
+                                <div class="carousel-inner">
+                                    {% for image in images %}
+                                        <div class="carousel-item {% if image.general %}active{% endif %}">
+                                            <img src="{{ uploaded_asset(article.id, image.img) }}" class="d-block w-100"
+                                                 alt=""/>
+                                        </div>
+                                    {% endfor %}
+                                </div>
+                                <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button"
+                                   data-slide="prev">
+                                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                    <span class="sr-only">Previous</span>
+                                </a>
+                                <a class="carousel-control-next" href="#carouselExampleIndicators" role="button"
+                                   data-slide="next">
+                                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                    <span class="sr-only">Next</span>
+                                </a>
+                            </div>
+                        {% else %}
+                            {% for image in images %}
+                                <img src="{{ uploaded_asset(article.id, image.img) }}" alt=""/>
+                            {% endfor %}
+                        {% endif %}
                     {% endif %}
                 {% endif %}
             </div>
@@ -165,18 +134,26 @@
         {% if (app.request.get('_route') == 'articles_edit' or app.request.get('_route') == 'articles_new') %}
             <div class="row js-genus-scientist-wrapper" id="radioChecked">
                 {% for radio in form.imgArticles %}
+                    {% set i = loop.index0 %}
                     <div class="col-md-8 offset-md-2 js-genus-scientist-item">
                         <div class="row">
                             <div class="col-md-3">
-                                {{ form_help(radio) }}
-                                {{ form_widget(radio) }}
+                                <img src="{{ uploaded_asset(article.id, radio.vars.value.img)|imagine_filter('squared_thumbnail_small') }}"/>
+                                {{ radio.vars.value.img }}
+                                {{ form_widget(radio.img) }}
                             </div>
-                            {#<div class="col-md-2">#}
-                            {#{{ form_help(radio) }}#}
-                            {#</div>#}
                             <div class="col-md-2">
-                                <button type="button" class="js-remove-scientist btn btn-primary">Удалить</button>
+                                {{ form_widget(radio.general) }}
+                                <input class="form-check-input" type="radio" name="radioName" id="radios{{ i }}"
+                                       value="{{ i }}"{% if radio.vars.value.general == 1 %} checked{% endif %}>
                             </div>
+                            {% if radio.vars.value.general %}
+                                <p>Эта картинка выбрана основной</p>
+                            {% else %}
+                                <div class="col-md-2">
+                                    <button type="button" class="js-remove-scientist btn btn-primary">Удалить</button>
+                                </div>
+                            {% endif %}
                         </div>
                     </div>
                 {% endfor %}
