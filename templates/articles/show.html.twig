@@ -1,6 +1,22 @@
 {% extends 'base.html.twig' %}
+{% import _self as formMacros %}
+{% macro printButtonRow(button) %}
+    <li>
+        {{ form_label(button.url) }}
+        {{ form_row(button.url) }}
+        {{ form_errors(button.url) }}
 
+        {{ form_label(button.button) }}
+        {{ form_row(button.button) }}
+        {{ form_errors(button.button) }}
+    </li>
+{% endmacro %}
 {% block title %}Articles{% endblock %}
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+{% endblock %}
+
 {% block javascripts %}
     {{ parent() }}
 
@@ -29,10 +45,33 @@
             }
         }
 
+        jQuery(document).ready(function () {
+            jQuery('.add-another-collection-widget').click(function (e) {
+                var list = jQuery(jQuery(this).attr('data-list-selector'));
+                // Try to find the counter of the list or use the length of the list
+                var counter = list.data('widget-counter') || list.children().length;
+
+                // grab the prototype template
+                var newWidget = list.attr('data-prototype');
+                // replace the "__name__" used in the id and name of the prototype
+                // with a number that's unique to your emails
+                // end name attribute looks like name="contact[emails][2]"
+                newWidget = newWidget.replace(/__name__/g, counter);
+                // Increase the counter
+                counter++;
+                // And store it, the length cannot be used if deleting widgets is allowed
+                list.data('widget-counter', counter);
+
+                // create a new list element and add it to the list
+                var newElem = jQuery(list.attr('data-widget-tags')).html(newWidget);
+                newElem.appendTo(list);
+            });
+        });
     </script>
 {% endblock %}
 
 {% block body %}
+
     {% if app.request.get('_route') == 'articles_edit' or app.request.get('_route') == 'articles_new' %}
         {{ form_start(form) }}
     {% endif %}
@@ -133,30 +172,48 @@
         </div>
         {% if (app.request.get('_route') == 'articles_edit' or app.request.get('_route') == 'articles_new') %}
             <div class="row js-genus-scientist-wrapper" id="radioChecked">
-                {% for radio in form.imgArticles %}
-                    {% set i = loop.index0 %}
-                    <div class="col-md-8 offset-md-2 js-genus-scientist-item">
-                        <div class="row">
-                            <div class="col-md-3">
-                                <img src="{{ uploaded_asset(article.id, radio.vars.value.img)|imagine_filter('squared_thumbnail_small') }}"/>
-                                {{ radio.vars.value.img }}
-                                {{ form_widget(radio.img) }}
-                            </div>
-                            <div class="col-md-2">
-                                {{ form_widget(radio.general) }}
-                                <input class="form-check-input" type="radio" name="radioName" id="radios{{ i }}"
-                                       value="{{ i }}"{% if radio.vars.value.general == 1 %} checked{% endif %}>
-                            </div>
-                            {% if radio.vars.value.general %}
-                                <p>Эта картинка выбрана основной</p>
-                            {% else %}
-                                <div class="col-md-2">
-                                    <button type="button" class="js-remove-scientist btn btn-primary">Удалить</button>
+
+                <div class="col-md-8 offset-md-2 js-genus-scientist-item previewContainer">
+                    <div class="row">
+                        {% for radio in form.imgArticles %}
+                            {% set i = loop.index0 %}
+
+                            <div class="col-md-2 previewImg">
+
+                                <img src="{{ uploaded_asset(article.id, radio.vars.value.img)|imagine_filter('squared_thumbnail_small') }}"
+                                     class="embed-responsive"/>
+                                {% if radio.vars.value.general %}
+                                {% else %}
+                                    <button class="btn"><i class="fa fa-close"></i></button>
+                                {% endif %}
+                                {#</div>#}
+                                {#<div class="col-md-2">#}
+                                {#{{ form_widget(radio.general) }}#}
+                                {#<input class="form-check-input" type="radio" name="radioName" id="radios{{ i }}"#}
+                                {#value="{{ i }}"{% if radio.vars.value.general == 1 %} checked{% endif %}>#}
+                                <label class="containerCheck">
+                                    <input class="form-check-input" type="radio" name="radioName" id="radios{{ i }}"
+                                           value="{{ i }}"{% if radio.vars.value.general == 1 %} checked{% endif %}>
+                                    <span class="checkmark"></span>
+                                </label>
+                                <div class="titleImg">
+                                    {{ radio.vars.value.img }}
                                 </div>
-                            {% endif %}
-                        </div>
+                            </div>
+                            {{ form_widget(radio.img) }}
+
+                            {#{% if radio.vars.value.general %}#}
+                            {#<p>Эта картинка выбрана основной</p>#}
+                            {#{% else %}#}
+                            {#<div class="col-md-2">#}
+                            {#<button type="button" class="js-remove-scientist btn btn-primary">Удалить</button>#}
+
+                            {#</div>#}
+                            {#{% endif %}#}
+
+                        {% endfor %}
                     </div>
-                {% endfor %}
+                </div>
             </div>
             <div class="row justify-content-md-center">
                 <div class="col-md-8">
@@ -212,6 +269,29 @@
                             {% endif %}
                         {% endfor %}
                     {% endif %}
+                    {{ form_label(form.buttonArticles) }}
+                    {{ dump(form_widget(form.buttonArticles.vars.prototype.parent.children[0])|e('html_attr')) }}
+                    <ul id="email-fields-list"
+                        data-prototype="{{ form_widget(form.buttonArticles.vars.prototype.parent.children[0])|e('html_attr') }}"
+                        data-widget-tags="{{ '<li></li>'|e }}"
+                        data-widget-counter="{{ form.buttonArticles|length }}">
+                    {% for button in form.buttonArticles %}
+                        {#{{ formMacros.printButtonRow(button) }}#}
+                        <li>
+                            {{ form_label(button.url) }}
+                            {{ form_widget(button.url) }}
+                            {{ form_errors(button.url) }}
+
+                            {{ form_label(button.button) }}
+                            {{ form_widget(button.button) }}
+                            {{ form_errors(button.button) }}
+                        </li>
+                        {#{{ dump(button.vars.value.button.icon) }}#}
+                    {% endfor %}
+                    </ul>
+                    <button type="button"
+                            class="add-another-collection-widget"
+                            data-list-selector="#email-fields-list">Add another Button</button>
                 </div>
             </div>
         </div>
@@ -235,7 +315,13 @@
                     {{ form_label(form.author) }}
                     {{ form_widget(form.author) }}
                     {{ form_errors(form.author) }}
+                    {{ form_label(form.category) }}
+                    {{ form_widget(form.category) }}
+                    {{ form_errors(form.category) }}
                 </div>
+            </div>
+            <div style="display: none">
+                {{ form_rest(form) }}
             </div>
         {% endif %}
     </div>
@@ -272,6 +358,7 @@
                 {% endif %}
             </div>
         </div>
+
     {% endif %}
     {% if app.request.get('_route') == 'articles_edit' or app.request.get('_route') == 'articles_new' %}
         {{ form_end(form) }}

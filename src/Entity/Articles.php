@@ -117,9 +117,15 @@ class Articles
      */
     private $imgArticles;
 
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\ButtonArticles", mappedBy="articles", orphanRemoval=true)
+     */
+    private $buttonArticles;
+
     public function __construct()
     {
         $this->imgArticles = new ArrayCollection();
+        $this->buttonArticles = new ArrayCollection();
     }
 
     /**
@@ -367,6 +373,22 @@ class Articles
         }
 
         return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getButtonArticles()
+    {
+        return $this->buttonArticles;
+    }
+
+    /**
+     * @param mixed $buttonArticles
+     */
+    public function setButtonArticles($buttonArticles)
+    {
+        $this->buttonArticles = $buttonArticles;
     }
 
 }

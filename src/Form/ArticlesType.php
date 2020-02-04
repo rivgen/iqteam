@@ -3,6 +3,7 @@
 namespace App\Form;
 
 use App\Entity\Articles;
+use App\Entity\ArticlesCategory;
 use App\Entity\ImgArticles;
 use Doctrine\ORM\EntityRepository;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
@@ -24,6 +25,7 @@ class ArticlesType extends AbstractType
     {
         $this->security = $security;
     }
+
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
 //        dump($options['data']->getImgArticles());
@@ -94,8 +96,21 @@ class ArticlesType extends AbstractType
                 'delete_empty' => true,
                 'allow_add' => true,
 //                'required' => false,
+            ])
+            ->add('buttonArticles', CollectionType::class, [
+                'entry_type' => ButtonArticlesType::class,
+                'allow_delete' => true,
+//                'empty_data' => false,
+                'delete_empty' => true,
+                'allow_add' => true,
+                'entry_options' => ['label' => false],
+//                'required' => false,
+            ])
+            ->add('category', EntityType::class, [
+                'class' => ArticlesCategory::class,
+                'choice_label' => 'title',
+                'attr' => ['class' => 'form-control']
             ]);
-        ;
     }
 
     public function configureOptions(OptionsResolver $resolver)

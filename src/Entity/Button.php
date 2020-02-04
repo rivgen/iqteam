@@ -28,15 +28,15 @@ class Button
      */
     private $title;
 
-    /**
-     * @ORM\OneToMany(targetEntity="App\Entity\ButtonArticles", mappedBy="button")
-     */
-    private $buttonArticles;
+//    /**
+//     * @ORM\ManyToOne(targetEntity="App\Entity\ButtonArticles", inversedBy="button")
+//     */
+//    private $buttonArticles;
 
-    public function __construct()
-    {
-        $this->buttonArticles = new ArrayCollection();
-    }
+//    public function __construct()
+//    {
+//        $this->buttonArticles = new ArrayCollection();
+//    }
 
     public function getId(): ?int
     {

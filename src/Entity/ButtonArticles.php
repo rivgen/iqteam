@@ -31,16 +31,15 @@ class ButtonArticles
     private $url = '\'\'';
 
     /**
-     *
-     * @ORM\ManyToOne(targetEntity="Articles")
-     * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="articles_id", referencedColumnName="id")
-     * })
+     * @ORM\ManyToOne(targetEntity="App\Entity\Articles", inversedBy="buttonArticles")
      */
     private $articles;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\Button", inversedBy="buttonArticles")
+     * @ORM\ManyToOne(targetEntity="App\Entity\Button")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="button_id", referencedColumnName="id")
+     * })
      */
     private $button;
 
