@@ -1,7 +1,6 @@
 {% extends 'base.html.twig' %}
 {% import _self as formMacros %}
 {% macro printButtonRow(button) %}
-    <li>
         {{ form_label(button.url) }}
         {{ form_row(button.url) }}
         {{ form_errors(button.url) }}
@@ -9,7 +8,6 @@
         {{ form_label(button.button) }}
         {{ form_row(button.button) }}
         {{ form_errors(button.button) }}
-    </li>
 {% endmacro %}
 {% block title %}Articles{% endblock %}
 {% block stylesheets %}
@@ -270,22 +268,23 @@
                         {% endfor %}
                     {% endif %}
                     {{ form_label(form.buttonArticles) }}
-                    {{ dump(form_widget(form.buttonArticles.vars.prototype.parent.children[0])|e('html_attr')) }}
                     <ul id="email-fields-list"
-                        data-prototype="{{ form_widget(form.buttonArticles.vars.prototype.parent.children[0])|e('html_attr') }}"
+                        data-prototype="{{ formMacros.printButtonRow(form.buttonArticles.vars.prototype)|e('html_attr') }}"
                         data-widget-tags="{{ '<li></li>'|e }}"
                         data-widget-counter="{{ form.buttonArticles|length }}">
                     {% for button in form.buttonArticles %}
-                        {#{{ formMacros.printButtonRow(button) }}#}
                         <li>
-                            {{ form_label(button.url) }}
-                            {{ form_widget(button.url) }}
-                            {{ form_errors(button.url) }}
-
-                            {{ form_label(button.button) }}
-                            {{ form_widget(button.button) }}
-                            {{ form_errors(button.button) }}
+                        {{ formMacros.printButtonRow(button) }}
                         </li>
+                        {#<li>#}
+                            {#{{ form_label(button.url) }}#}
+                            {#{{ form_widget(button.url) }}#}
+                            {#{{ form_errors(button.url) }}#}
+
+                            {#{{ form_label(button.button) }}#}
+                            {#{{ form_widget(button.button) }}#}
+                            {#{{ form_errors(button.button) }}#}
+                        {#</li>#}
                         {#{{ dump(button.vars.value.button.icon) }}#}
                     {% endfor %}
                     </ul>

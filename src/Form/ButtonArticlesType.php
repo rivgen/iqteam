@@ -31,27 +31,37 @@ class ButtonArticlesType extends AbstractType
 
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->addEventListener(FormEvents::PRE_SET_DATA, function (FormEvent $event) {
-            $data = $event->getData();
-            if (!isset($data)) {
-                unset($event);
-                return;
-            }
-            $form = $event->getForm();
-            $form
-//                ->add('articles', null, [
-//                'required' => false,
-//            ])
-                ->add('button', EntityType::class, [
-                    'class' => Button::class,
-                    'choice_label' => 'title',
-                    'attr' => ['class' => 'form-control'],
-                    'required' => false,
-                ])
+//        $builder->addEventListener(FormEvents::PRE_SET_DATA, function (FormEvent $event) {
+//            $data = $event->getData();
+//            if (!isset($data)) {
+//                unset($event);
+//                return;
+//            }
+//            $form = $event->getForm();
+//            $form
+////                ->add('articles', null, [
+////                'required' => false,
+////            ])
+//                ->add('button', EntityType::class, [
+//                    'class' => Button::class,
+//                    'choice_label' => 'title',
+//                    'attr' => ['class' => 'form-control'],
+//                    'required' => false,
+//                ])
+//                ->add('url', null, [
+//                    'attr' => ['class' => 'form-control'],
+//                ]);
+// });
+            $builder->add('button', EntityType::class, [
+                'class' => Button::class,
+                'choice_label' => 'title',
+                'attr' => ['class' => 'form-control'],
+                'required' => false,
+            ])
                 ->add('url', null, [
                     'attr' => ['class' => 'form-control'],
                 ]);
-        });
+
     }
 
     public function configureOptions(OptionsResolver $resolver)
