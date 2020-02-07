@@ -106,9 +106,10 @@ class ArticlesController extends AbstractController
     /**
      * @Route("/{id}/edit", name="articles_edit", methods={"GET","POST"})
      */
-    public function edit(Request $request, Articles $article, UploaderHelper $uploaderHelper, $id): Response
+    public function edit(Request $request, UploaderHelper $uploaderHelper, $id): Response
     {
         $em = $this->getDoctrine()->getManager();
+        $article = new Articles();
         $articlesRepository = $em->getRepository(Articles::class);
         $imgArticlesRepository = $em->getRepository(ImgArticles::class);
         $buttonArticlesRepository = $em->getRepository(ButtonArticles::class);
