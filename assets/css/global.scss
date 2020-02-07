@@ -1,4 +1,6 @@
-@import "~bootstrap/scss/bootstrap";
+@import "custom";
+@import "~bootstrap/dist/css/bootstrap.min.css";
+
 body {
   background-color: #F8FAFF;
 }
@@ -25,18 +27,33 @@ p {
 //}
 
 .white-backgraund {
-  //background: white;
   position: relative;
   background-image: url(/images/white_fone.svg);
   background-repeat: no-repeat;
-  width: 100vw;
-  //height: 50px;
+  background-size: inherit;
 }
 
-.letter-I{
+.letter-I {
+  position: relative;
+  overflow: hidden;
+  //background-image: url(/images/block_I/letter-I.svg);
+  //background-repeat: no-repeat;
+  //background-position: 80%;
+}
+
+.letter-I:before {
+  content: '';
+  position: absolute;
+  width: 14%;
+  //height: calc(18rem + 30 * (100vw - 520px) / 80);
+  height: 100vh;
+  top: 0;
+  left: 50%;
+  z-index: -1;
   background-image: url(/images/block_I/letter-I.svg);
   background-repeat: no-repeat;
-  background-position: 80%;
+  background-size: cover;
+  transform: translateX(118%);
 }
 
 //.white-backgraund::before {
@@ -47,12 +64,16 @@ p {
 //  border-top: 15vw solid white;
 //}
 
-.letter-I .title{
+.letter-I .title {
   font-weight: bold;
-  font-size: 96px;
+  font-size: calc(4rem + 30 * (100vw - 320px) / 880);
   line-height: 130%;
   color: #323232;
-  margin-top: 150px;
+  margin-top: 75px;
+  @media (min-width: 1200px) {
+    margin-top: 150px;
+  }
+
 }
 
 .letter-I .text {
@@ -64,7 +85,10 @@ p {
 }
 
 .letter-I img {
-  margin: 75px 0;
+  margin: 12px 0;
+  @media (min-width: 1200px) {
+    margin: 75px 0;
+  }
 }
 
 .letter-I .btnBlue {
@@ -83,19 +107,28 @@ p {
 }
 
 .letter-I-block {
-  margin-top: 100px;
+    margin-top: 30px;
+  @media (min-width: 1200px) {
+    margin-top: 100px;
+  }
 }
 
 .letter-I-block .block, .slash .block {
   background: #FFFFFF;
   border-radius: 20px;
+  height: 100%;
+  box-shadow: 0px 10px 20px rgba(57, 100, 249, 0.1);
 }
 
-.letter-I-block .block object, .slash .block object{
+.blockMargin {
+  margin: 15px 0;
+}
+
+.letter-I-block .block object, .slash .block object {
   padding: 40px;
 }
 
-.letter-I-block .block p{
+.letter-I-block .block p {
   padding: 0 40px 40px 40px;
 }
 
@@ -142,13 +175,13 @@ p {
 
 }
 
-.slash .textBold  {
+.slash .textBold {
   padding-bottom: 100px;
 }
 
 .slash .block {
   margin: 0 0 30px 0;
- }
+}
 
 .slash .title {
   font-weight: bold;
@@ -159,7 +192,7 @@ p {
 
 }
 
-.slash .text{
+.slash .text {
   padding: 0 40px 57px 57px;
   font-size: 12px;
   line-height: 200%;
@@ -185,7 +218,7 @@ p {
   padding-bottom: 30px;
 }
 
-.letter-E p, .portfolio p{
+.letter-E p, .portfolio p {
   font-size: 12px;
   line-height: 200%;
   letter-spacing: 0.1em;
@@ -224,7 +257,7 @@ p {
   padding-bottom: 30px;
 }
 
-.buttonProject{
+.buttonProject {
   width: 223px;
   height: 50px;
   color: white;
@@ -240,7 +273,7 @@ p {
   text-transform: uppercase;
 }
 
-.article .buttonProject{
+.article .buttonProject {
   width: 100%;
   display: grid;
 }
@@ -269,7 +302,7 @@ p {
   padding-top: 40px;
 }
 
-.letter-V p{
+.letter-V p {
   font-family: Archivo, sans-serif;
   font-weight: bold;
   font-size: 18px;
@@ -277,14 +310,17 @@ p {
   padding-top: 18px;
 }
 
-.footerClass, .menuClass{
+.footerClass {
   background-color: white;
 }
 
 .menuClass {
   position: relative;
-  height: 80px;
-
+  height: 80vh;
+  display: none;
+  @media (min-width: 1200px){
+    display: block;
+  }
 }
 
 .menuClass button {
@@ -297,11 +333,11 @@ p {
   height: 100%;
 }
 
-.btn:focus{
+.btn:focus {
   box-shadow: none;
 }
 
-.menuClass button:hover::after, .menuClass .active::after{
+.menuClass button:hover::after, .menuClass .active::after {
   content: '';
   border-bottom: 2px solid #3964F9;
   position: absolute;
@@ -310,7 +346,7 @@ p {
   width: 100%;
 }
 
-.menuClass .btnContainer{
+.menuClass .btnContainer {
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
@@ -341,7 +377,7 @@ p {
   margin: 0;
 }
 
-.menuClass .text{
+.menuClass .text {
   padding-top: 200px;
 }
 
@@ -349,15 +385,26 @@ p {
   padding-bottom: 15px;
 }
 
-.homeClass .row {
-  min-height: 150px;
+.homeClass {
+  .row {
+    min-height: 63px;
+  }
+  box-shadow: 0px 10px 20px rgba(57, 100, 249, 0.1);
+  margin-bottom: 47px;
+  @media (min-width: 1200px)  {
+    .row {
+      min-height: 150px;
+    }
+    box-shadow: none;
+    margin-bottom: 0;
+  }
 }
 
 .localeRight a {
   text-align: right;
 }
 
-.social a{
+.social a {
   margin-right: 20px;
   position: relative;
   top: 10px;
@@ -369,15 +416,15 @@ p {
 
 }
 
-.inLeft{
+.inLeft {
   justify-content: flex-start;
 }
 
-.inRight{
+.inRight {
   justify-content: flex-end;
 }
 
-.menuFlex p{
+.menuFlex p {
   padding-right: 50px;
 }
 
@@ -385,23 +432,24 @@ a.logoSvg {
   position: relative;
   display: inline-block;
 }
+
 a.logoSvg:after {
   content: "";
   position: absolute;
   top: 0;
   right: 0;
   bottom: 0;
-  left:0;
+  left: 0;
 }
 
-.titleService h1, .titlePortfolio h1{
+.titleService h1, .titlePortfolio h1 {
   font-weight: bold;
   font-size: 96px;
   line-height: 130%;
   color: #3964F9;
 }
 
-.blockService h2{
+.blockService h2 {
   font-weight: bold;
   font-size: 24px;
   line-height: 150%;
@@ -410,7 +458,7 @@ a.logoSvg:after {
   margin-left: 20px;
 }
 
-.blockService{
+.blockService {
   margin-top: 140px;
 }
 
@@ -439,7 +487,7 @@ a.logoSvg:after {
   color: #323232;
 }
 
-.blockService .content .index{
+.blockService .content .index {
   position: absolute;
   top: -24px;
   right: 0;
@@ -453,19 +501,19 @@ a.logoSvg:after {
   width: 100%;
 }
 
-.map{
+.map {
   position: relative;
   margin-top: 110px;
 }
 
 .map .mapBlock {
   position: absolute;
-  top:50%;
-  left:0;
+  top: 50%;
+  left: 0;
   transform: translateY(-50%);
 }
 
-.map .mapBlock .mapInfo{
+.map .mapBlock .mapInfo {
   background-color: white;
   border-radius: 20px;
   box-shadow: 0px 10px 20px rgba(57, 100, 249, 0.1);
@@ -476,11 +524,11 @@ a.logoSvg:after {
   max-width: 260px;
 }
 
-.map .mapBlock .mapInfo .titleInfo span{
+.map .mapBlock .mapInfo .titleInfo span {
   font-size: 50px;
 }
 
-.map .mapBlock .mapInfo .titleInfo{
+.map .mapBlock .mapInfo .titleInfo {
   color: #3964F9;
   font-weight: bold;
   font-size: 20px;
@@ -498,31 +546,31 @@ a.logoSvg:after {
   color: #3964F9;
 }
 
-.contact .textContact p{
+.contact .textContact p {
   font-weight: bold;
   font-size: 24px;
   line-height: 150%;
   color: #323232;
 }
 
-.contact .textContact{
+.contact .textContact {
   padding-top: 120px;
   padding-bottom: 100px;
   max-width: 570px;
 }
 
-.contact label{
+.contact label {
   font-size: 12px;
   letter-spacing: 0.1em;
   text-transform: uppercase;
   color: #323232;
 }
 
-textarea.form-control{
+textarea.form-control {
   height: 150px;
 }
 
-.article .icon img{
+.article .icon img {
   border: 11px solid #FFFFFF;
   box-sizing: border-box;
   box-shadow: 0px 10px 20px rgba(57, 100, 249, 0.1);
@@ -537,7 +585,7 @@ textarea.form-control{
   color: #323232;
 }
 
-.article .textPreview{
+.article .textPreview {
   font-size: 12px;
   line-height: 200%;
   letter-spacing: 0.1em;
@@ -545,7 +593,7 @@ textarea.form-control{
   color: #323232;
 }
 
-.article .icon, .article .fullTitle{
+.article .icon, .article .fullTitle {
   padding-right: 35px;
 }
 
@@ -554,15 +602,15 @@ textarea.form-control{
   padding-bottom: 90px;
 }
 
-.article .img img{
+.article .img img {
   width: 100%;
 }
 
-.article .descArticle{
+.article .descArticle {
   padding: 50px 0;
 }
 
-.article .descArticle .param{
+.article .descArticle .param {
   font-size: 12px;
   line-height: 200%;
   letter-spacing: 0.1em;
@@ -571,7 +619,7 @@ textarea.form-control{
   padding-top: 0;
 }
 
-.article .descArticle .paramText{
+.article .descArticle .paramText {
   font-weight: bold;
   font-size: 18px;
   line-height: 150%;
@@ -579,14 +627,14 @@ textarea.form-control{
   padding-right: 50px;
 }
 
-.article .descArticle ol{
+.article .descArticle ol {
 
   counter-reset: myCounter;
   list-style-position: outside;
   //padding-left: 0;
 }
 
-.article .descArticle li{
+.article .descArticle li {
   list-style: none;
   padding-bottom: 30px;
   font-weight: bold;
@@ -598,7 +646,7 @@ textarea.form-control{
 
 .article .descArticle li:before {
   counter-increment: myCounter;
-  content:counter(myCounter);
+  content: counter(myCounter);
   line-height: 200%;
   letter-spacing: 0.1em;
   color: #3964F9;
@@ -620,7 +668,7 @@ textarea.form-control{
   line-height: 100px;
 }
 
-.prevNext .paddingNone{
+.prevNext .paddingNone {
   padding: 0;
   text-align: center;
   font-weight: bold;
@@ -634,18 +682,18 @@ textarea.form-control{
   height: 100%;
 }
 
-.prevNext .paddingNone a:hover{
+.prevNext .paddingNone a:hover {
   background: #3964F9;
   color: #FFF;
   text-decoration: none;
 }
 
-.radio{
+.radio {
   float: right;
   padding-top: 50px;
 }
 
-.js-genus-scientist-item button{
+.js-genus-scientist-item button {
   margin-top: 50px;
 }
 
@@ -669,7 +717,7 @@ textarea.form-control{
 
 .previewImg button {
   position: absolute;
-  right:15px;
+  right: 15px;
   top: 0;
   margin: 0;
 }
@@ -733,11 +781,137 @@ textarea.form-control{
   background: white;
 }
 
-@media (min-width: 1600px) {
-
-.white-backgraund::before {
-//border-left: 1500px solid white;
-//border-top: 210px solid white;
+.socialBlockHeight {
+  height: 80vh;
+  display: none;
+  @media (min-width: 1200px) {
+    display: block;
+  }
+  //position: fixed;
+  //right: 23px;
 }
+
+.socialBlock {
+  position: fixed;
+  //margin: 10px 0;
+  //width: 20px;
+  top: 50%;
+  right: 0;
+  transform: translate(-50%, -50%)
 }
 
+.socialBlock .socialButton, .downButton a, .mainMenuSocial .socialButton {
+  background: #FFFFFF;
+  border-radius: 50%;
+  display: block;
+  width: 50px;
+  height: 50px;
+  margin: 10px;
+  box-shadow: 0px 10px 20px rgba(57, 100, 249, 0.1);
+}
+
+.mainMenuSocial {
+  display: flex;
+}
+
+.socialBlock .socialButton img, .downButton img, .mainMenuSocial .socialButton img {
+  position: relative;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -76%);
+}
+
+.mainMenuSocial .socialButton img {
+  transform: translate(-50%, -65%);
+}
+
+.downButton {
+  position: fixed;
+  bottom: 29px;
+  right: 0;
+  transform: translate(-50%, -50%);
+}
+
+.downButton img {
+  //position: relative;
+  top: 35%;
+  left: 52%;
+  transform: translate(-50%, -50%);
+
+}
+
+.menuLeft {
+  position: fixed;
+  //margin: 10px 0;
+  width: 11%;
+  top: 48%;
+  left: -2%;
+  transform: translate(46%, -50%)
+}
+
+.copyrightLeft {
+  position: fixed;
+  bottom: 29px;
+  width: 11%;
+  left: -2%;
+  transform: translate(46%, -50%);
+}
+
+.navbarToggler{
+  display: block;
+  @media (min-width: 1200px) {
+    display: none;
+  }
+}
+
+.navbarToggler object{
+  position: relative;
+  z-index: -1;
+  max-width: 25px;
+  max-height: 18px;
+}
+
+.hadMenu{
+  display: none;
+  @media (min-width: 1200px) {
+    display: block;
+  }
+}
+
+.logoHad{
+  max-width: 178px;
+  max-height: 52px;
+}
+
+#dropdownMenuButton{
+  cursor: pointer;
+}
+
+.dropdown-menu {
+  min-width: 17rem;
+  border: none;
+  box-shadow: 0px 10px 20px rgba(57, 100, 249, 0.1);
+}
+
+.dropdown-menu .mainMenu .mainMenuSocial{
+  margin: 30px;
+}
+
+.dropdown-menu .mainMenu p{
+  margin: 30px;
+}
+
+.dropdown-menu .mainMenu object{
+  max-width: 133px;
+  max-height: 10px;
+}
+
+.dropdown-menu .mainMenu:after {
+  content: '';
+  display: block;
+  border: 1px solid #323232;
+  opacity: 0.05;
+  width: 77%;
+  margin: 0 30px;
+
+}

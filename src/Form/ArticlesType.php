@@ -92,6 +92,7 @@ class ArticlesType extends AbstractType
             ->add('imgArticles', CollectionType::class, [
                 'entry_type' => ImgArticlesType::class,
                 'allow_delete' => true,
+//                'by_reference' => false,
 //                'empty_data' => false,
                 'delete_empty' => true,
                 'allow_add' => true,
@@ -100,6 +101,7 @@ class ArticlesType extends AbstractType
             ->add('buttonArticles', CollectionType::class, [
                 'entry_type' => ButtonArticlesType::class,
                 'allow_delete' => true,
+//                'by_reference' => false,
 //                'empty_data' => false,
                 'delete_empty' => true,
                 'allow_add' => true,

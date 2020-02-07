@@ -26,9 +26,9 @@ class ButtonArticles
        /**
      * @var string
      *
-     * @ORM\Column(name="url", type="string", length=100, nullable=false, options={"default"="''"})
+     * @ORM\Column(name="url", type="string", length=100)
      */
-    private $url = '\'\'';
+    private $url;
 
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\Articles", inversedBy="buttonArticles")
@@ -36,17 +36,14 @@ class ButtonArticles
     private $articles;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\Button")
-     * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="button_id", referencedColumnName="id")
-     * })
+     * @ORM\ManyToOne(targetEntity="App\Entity\Button", inversedBy="buttonArticles")
      */
     private $button;
 
-    public function __construct()
-    {
-        $this->button = new ArrayCollection();
-    }
+//    public function __construct()
+//    {
+//        $this->button = new ArrayCollection();
+//    }
 
     /**
      * @return int
@@ -67,7 +64,7 @@ class ButtonArticles
     /**
      * @return string
      */
-    public function getUrl(): string
+    public function getUrl(): ?string
     {
         return $this->url;
     }
@@ -75,7 +72,7 @@ class ButtonArticles
     /**
      * @param string $url
      */
-    public function setUrl(string $url)
+    public function setUrl(?string $url)
     {
         $this->url = $url;
     }

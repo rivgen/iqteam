@@ -28,6 +28,11 @@ class Button
      */
     private $title;
 
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\ButtonArticles", mappedBy="button", orphanRemoval=true)
+     */
+    private $buttonArticles;
+
 //    /**
 //     * @ORM\ManyToOne(targetEntity="App\Entity\ButtonArticles", inversedBy="button")
 //     */

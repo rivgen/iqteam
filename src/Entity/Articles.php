@@ -118,7 +118,7 @@ class Articles
     private $imgArticles;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\ButtonArticles", mappedBy="articles", orphanRemoval=true)
+     * @ORM\OneToMany(targetEntity="App\Entity\ButtonArticles", mappedBy="articles", cascade = {"persist"}, orphanRemoval=true)
      */
     private $buttonArticles;
 
@@ -345,32 +345,37 @@ class Articles
     }
 
     /**
-     * @return Collection|ImgArticles[]
+     * @return ArrayCollection|imgArticles[]
      */
     public function getImgArticles(): Collection
     {
         return $this->imgArticles;
     }
 
-    public function addImgArticle(ImgArticles $imgArticle): self
+    public function addImgArticle(ImgArticles $imgArticles): self
     {
-        if (!$this->imgArticles->contains($imgArticle)) {
-            $this->imgArticles[] = $imgArticle;
-            $imgArticle->setArticle($this);
+        if (!$this->imgArticles->contains($imgArticles)) {
+            $this->imgArticles[] = $imgArticles;
+            $imgArticles->setArticle($this);
         }
 
         return $this;
     }
 
-    public function removeImgArticle(ImgArticles $imgArticle): self
+    public function removeImgArticle(ImgArticles $imgArticles): self
     {
-        if ($this->imgArticles->contains($imgArticle)) {
-            $this->imgArticles->removeElement($imgArticle);
+        if (!$this->imgArticles->contains($imgArticles)) {
+            $this->imgArticles->removeElement($imgArticles);
             // set the owning side to null (unless already changed)
-            if ($imgArticle->getArticle() === $this) {
-                $imgArticle->setArticle(null);
+            if ($imgArticles->getArticle() === $this) {
+                $imgArticles->setArticle(null);
             }
+//            return $this;
         }
+
+//        $this->imgArticles->removeElement($imgArticle);
+        // needed to update the owning side of the relationship!
+//        $imgArticle->setArticle(null);
 
         return $this;
     }
@@ -383,12 +388,32 @@ class Articles
         return $this->buttonArticles;
     }
 
-    /**
-     * @param mixed $buttonArticles
-     */
-    public function setButtonArticles($buttonArticles)
+    public function addButtonArticle(ButtonArticles $ButtonArticles): self
     {
-        $this->buttonArticles = $buttonArticles;
+        if (!$this->buttonArticles->contains($ButtonArticles)) {
+            $this->buttonArticles[] = $ButtonArticles;
+            $ButtonArticles->setArticles($this);
+        }
+
+        return $this;
+    }
+
+    public function removeButtonArticle(ButtonArticles $ButtonArticles): self
+    {
+        if (!$this->buttonArticles->contains($ButtonArticles)) {
+//            $this->imgArticles->removeElement($imgArticle);
+            // set the owning side to null (unless already changed)
+//            if ($imgArticle->getArticle() === $this) {
+//                $imgArticle->setArticle(null);
+//            }
+            return $this;
+        }
+
+        $this->buttonArticles->removeElement($ButtonArticles);
+        // needed to update the owning side of the relationship!
+        $ButtonArticles->setArticles(null);
+
+//        return $this;
     }
 
 }

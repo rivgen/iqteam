@@ -2,6 +2,7 @@
 
 namespace App\Form;
 
+use App\Entity\Articles;
 use App\Entity\Button;
 use App\Entity\ButtonArticles;
 use App\Entity\ImgArticles;
@@ -13,19 +14,22 @@ use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\FormEvent;
 use Symfony\Component\Form\FormEvents;
+use Symfony\Component\HttpFoundation\RequestStack;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class ButtonArticlesType extends AbstractType
 {
 
     private $uploaderHelper;
+    protected $requestStack;
 
 //    private $filter = "";
 
-    public function __construct(UploaderHelper $uploaderHelper)
+    public function __construct(UploaderHelper $uploaderHelper, RequestStack $requestStack)
     {
 
         $this->uploaderHelper = $uploaderHelper;
+        $this->requestStack = $requestStack;
 //        $this->filter = $filter;
     }
 
@@ -33,6 +37,7 @@ class ButtonArticlesType extends AbstractType
     {
 //        $builder->addEventListener(FormEvents::PRE_SET_DATA, function (FormEvent $event) {
 //            $data = $event->getData();
+//            dump($data);
 //            if (!isset($data)) {
 //                unset($event);
 //                return;
@@ -52,14 +57,27 @@ class ButtonArticlesType extends AbstractType
 //                    'attr' => ['class' => 'form-control'],
 //                ]);
 // });
+//        $id = $options['data']->getId();
+        $request = $this->requestStack->getCurrentRequest();
+//        dump($request->attributes);
+        $id = $request->attributes->get('id');
             $builder->add('button', EntityType::class, [
                 'class' => Button::class,
                 'choice_label' => 'title',
                 'attr' => ['class' => 'form-control'],
                 'required' => false,
             ])
+                ->add('articles', EntityType::class, [
+                    'class' => Articles::class,
+                    'choice_label' => 'id',
+//                    'attr' => ['class' => 'form-control'],
+                    'data' => $id,
+                    'empty_data' => $id,
+                    'required' => false,
+                ])
                 ->add('url', null, [
                     'attr' => ['class' => 'form-control'],
+//                    'required' => false,
                 ]);
 
     }

@@ -1,8 +1,28 @@
 {% extends 'base.html.twig' %}
+{% import _self as macros %}
+{% macro printFooterMenu() %}
+    <p>издатель и разработчик мобильных и браузерных игр</p>
+{% endmacro %}
+{% macro printSocialBlock(social) %}
+    {% for block_soc in social %}
+        <a href={{ block_soc.url }} target="_blank" rel="noreferrer" class="socialButton">
+            <img src={{ block_soc.img }} alt=""/>
+            {#<object type="image/svg+xml" data={{ block_V.img }}>#}
+            {#Your browser does not support SVG#}
+            {#</object>#}
+        </a>
+    {% endfor %}
+{% endmacro %}
 {% block body %}
+    {% set social = [
+    {'img': '/images/block_V/telegram.svg', 'url': '#'},
+    {'img': '/images/block_V/vk.svg', 'url': 'https://vk.com/iq_dev'},
+    {'img': '/images/block_V/facebook.svg', 'url': '#'},
+    {'img': '/images/block_V/twitter.svg', 'url': '#'},
+    ] %}
     <div class="container">
         <div class="row">
-            <div class="col-md-2 align-self-center menuClass">
+            <div class="col-md-2 menuClass">
                 {% set menuAll = [
                 {'list': 'I', 'menu': 'главный экран', 'anchor': '#home'},
                 {'list': 'Q', 'menu': 'о нас', 'anchor': '#letter-Q'},
@@ -12,15 +32,19 @@
                 {'list': 'V', 'menu': 'контакты', 'anchor': '#letter-V'}
                 ] %}
                 {#{% set menuAll = [1->I, 2->Q] %}#}
-                {% for menu in menuAll %}
-                    <div class="row">
-                        {#<div class="col-md-2"><p>{{ menu.list }}</p></div>#}
-                        <div class="col-md-10"><a href={{ menu.anchor }}><p>{{ menu.menu }}</p></a></div>
-                    </div>
-                {% endfor %}
-                <p class="text">издатель и разработчик мобильных и браузерных игр</p>
+                <div class="menuLeft">
+                    {% for menu in menuAll %}
+                        <div class="row">
+                            {#<div class="col-md-2"><p>{{ menu.list }}</p></div>#}
+                            <div class="col-md-12"><a href={{ menu.anchor }}><p>{{ menu.menu }}</p></a></div>
+                        </div>
+                    {% endfor %}
+                </div>
+                <div class="copyrightLeft">
+                    {{ macros.printFooterMenu() }}
+                </div>
             </div>
-            <div class="col-md-8">
+            <div class="col-xl-8 col-md-12">
                 <div class="row letter-I">
                     <div class="col-md-6">
                         <h2 class="title">IQ Dev</h2>
@@ -30,7 +54,7 @@
                         {#<button type="button" class="btn btn-primary">Связаться</button>#}
                     </div>
                     <div class="col-md-6">
-                        <img src="/images/home_phones.png" alt=""/>
+                        <img src="/images/home_phones.png" alt="" class="embed-responsive"/>
                     </div>
                 </div>
                 <div class="row letter-I-block">
@@ -41,7 +65,7 @@
                     {'img':'/images/block_I/download.svg', 'text':'Более 1 млн. загрузок игр и приложений'}
                     ] %}
                     {% for block_I in arr %}
-                        <div class="col-md-3">
+                        <div class="col-xl-3 col-md-6 col-sm-12 blockMargin">
                             <div class="block">
                                 <object type="image/svg+xml" data={{ block_I.img }}>
                                     Your browser does not support SVG
@@ -52,7 +76,15 @@
                     {% endfor %}
                 </div>
             </div>
-            <div class="col-md-2">
+            <div class="col-md-2 socialBlockHeight">
+                <div class="socialBlock">
+                    {{ macros.printSocialBlock(social) }}
+                </div>
+                <div class="downButton">
+                    <a href='#' class="">
+                        <img src="/images/down.svg" alt=""/>
+                    </a>
+                </div>
             </div>
         </div>
     </div>
@@ -190,13 +222,14 @@
                                 {% if images %}
                                     {% for image in images %}
                                         {% if image.article == article.id %}
-                                            <img src="{{  uploaded_asset(article.id, image.img) }}" alt="" class="embed-responsive"/>
+                                            <img src="{{ uploaded_asset(article.id, image.img) }}" alt=""
+                                                 class="embed-responsive"/>
                                         {% endif %}
                                     {% endfor %}
                                 {% endif %}
                             </div>
                             <div class="col-md-6 align-self-center">
-                                <h3>{{ article.title }}</h3>
+                                <a href={{ path('articles_show', {'id': article.id}) }}><h3>{{ article.title }}</h3></a>
                                 <p>{{ article.textPreview }}</p>
                                 {% for button in buttons %}
                                     {% if button.id == article.id %}
@@ -233,9 +266,9 @@
                             </div>
                             <div class="col-md-6">
                                 <h4>пишите</h4>
-                                {#<object type="image/svg+xml" data="/images/imgEmailContact.svg">#}
-                                {#Your browser does not support SVG#}
-                                {#</object>#}
+                                <object type="image/svg+xml" data="/images/imgEmailContact.svg">
+                                    Your browser does not support SVG
+                                </object>
                                 <p>info@iqdev.com</p>
                             </div>
                             <div class="col-md-6">
@@ -246,25 +279,18 @@
                             </div>
                             <div class="col-md-6 social">
                                 <h4>ищите в соцсетях</h4>
-                                {% set social = [
-                                {'img': '/images/block_V/telegram.svg', 'url': '#'},
-                                {'img': '/images/block_V/vk.svg', 'url': 'https://vk.com/iq_dev'},
-                                {'img': '/images/block_V/facebook.svg', 'url': '#'},
-                                {'img': '/images/block_V/twitter.svg', 'url': '#'},
-                                {'img': '/images/block_V/instagram.svg', 'url': 'https://www.instagram.com/iq_dev_by/'}
-                                ] %}
                                 {% for block_V in social %}
                                     <a href={{ block_V.url }} target="_blank">
                                         <img src={{ block_V.img }} alt=""/>
-                                        {#<object type="image/svg+xml" data={{ block_V.img }}>#}
-                                        {#Your browser does not support SVG#}
-                                        {#</object>#}
+                                        <object type="image/svg+xml" data={{ block_V.img }}>
+                                            Your browser does not support SVG
+                                        </object>
                                     </a>
                                 {% endfor %}
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-6 mapContact">
+                    <div class="col-md-6 mapContact embed-responsive">
                         <img src="/images/block_V/map.png" alt=""/>
                     </div>
                 </div>

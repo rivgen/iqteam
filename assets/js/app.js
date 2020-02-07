@@ -1,11 +1,16 @@
-import '../css/global.scss';
 import 'bootstrap';
 import 'jquery';
+import '../css/global.scss';
 // import React from 'react';
 // import ReactDOM from 'react-dom';
 // import ymaps from 'ymaps';
 
-const $ = require('jquery');
+import $ from 'jquery';
+// require('bootstrap');
+
+$(document).ready(function() {
+    $('[data-toggle="popover"]').popover();
+});
 
 import './filtr.js'
 

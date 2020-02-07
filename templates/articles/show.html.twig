@@ -1,13 +1,17 @@
 {% extends 'base.html.twig' %}
 {% import _self as formMacros %}
 {% macro printButtonRow(button) %}
-        {{ form_label(button.url) }}
-        {{ form_row(button.url) }}
-        {{ form_errors(button.url) }}
+    <button class="js-remove-scientist btn"><i class="fa fa-close"></i></button>
+    {{ form_label(button.button) }}
+    {{ form_widget(button.button) }}
+    {{ form_errors(button.button) }}
 
-        {{ form_label(button.button) }}
-        {{ form_row(button.button) }}
-        {{ form_errors(button.button) }}
+    {{ form_label(button.url) }}
+    {{ form_widget(button.url) }}
+    {{ form_errors(button.url) }}
+    <div style="display: none">
+        {{ form_widget(button.articles) }}
+    </div>
 {% endmacro %}
 {% block title %}Articles{% endblock %}
 {% block stylesheets %}
@@ -171,18 +175,19 @@
         {% if (app.request.get('_route') == 'articles_edit' or app.request.get('_route') == 'articles_new') %}
             <div class="row js-genus-scientist-wrapper" id="radioChecked">
 
-                <div class="col-md-8 offset-md-2 js-genus-scientist-item previewContainer">
+                <div class="col-md-8 offset-md-2  previewContainer">
                     <div class="row">
                         {% for radio in form.imgArticles %}
                             {% set i = loop.index0 %}
 
-                            <div class="col-md-2 previewImg">
+                            <div class="col-md-2 previewImg js-genus-scientist-item">
 
                                 <img src="{{ uploaded_asset(article.id, radio.vars.value.img)|imagine_filter('squared_thumbnail_small') }}"
                                      class="embed-responsive"/>
                                 {% if radio.vars.value.general %}
                                 {% else %}
-                                    <button class="btn"><i class="fa fa-close"></i></button>
+                                    <button type="button" class="js-remove-scientist btn"><i class="fa fa-close"></i>
+                                    </button>
                                 {% endif %}
                                 {#</div>#}
                                 {#<div class="col-md-2">#}
@@ -197,9 +202,8 @@
                                 <div class="titleImg">
                                     {{ radio.vars.value.img }}
                                 </div>
+                                {{ form_widget(radio) }}
                             </div>
-                            {{ form_widget(radio.img) }}
-
                             {#{% if radio.vars.value.general %}#}
                             {#<p>Эта картинка выбрана основной</p>#}
                             {#{% else %}#}
@@ -208,7 +212,6 @@
 
                             {#</div>#}
                             {#{% endif %}#}
-
                         {% endfor %}
                     </div>
                 </div>
@@ -267,30 +270,25 @@
                             {% endif %}
                         {% endfor %}
                     {% endif %}
-                    {{ form_label(form.buttonArticles) }}
-                    <ul id="email-fields-list"
-                        data-prototype="{{ formMacros.printButtonRow(form.buttonArticles.vars.prototype)|e('html_attr') }}"
-                        data-widget-tags="{{ '<li></li>'|e }}"
-                        data-widget-counter="{{ form.buttonArticles|length }}">
-                    {% for button in form.buttonArticles %}
-                        <li>
-                        {{ formMacros.printButtonRow(button) }}
-                        </li>
-                        {#<li>#}
-                            {#{{ form_label(button.url) }}#}
-                            {#{{ form_widget(button.url) }}#}
-                            {#{{ form_errors(button.url) }}#}
-
-                            {#{{ form_label(button.button) }}#}
-                            {#{{ form_widget(button.button) }}#}
-                            {#{{ form_errors(button.button) }}#}
-                        {#</li>#}
-                        {#{{ dump(button.vars.value.button.icon) }}#}
-                    {% endfor %}
-                    </ul>
-                    <button type="button"
-                            class="add-another-collection-widget"
-                            data-list-selector="#email-fields-list">Add another Button</button>
+                    {% if app.request.get('_route') == 'articles_edit' or app.request.get('_route') == 'articles_new' %}
+                        {{ form_label(form.buttonArticles) }}
+                        <ul id="email-fields-list"
+                            class="js-genus-scientist-wrapper"
+                            data-prototype="{{ formMacros.printButtonRow(form.buttonArticles.vars.prototype)|e('html_attr') }}"
+                            data-widget-tags="{{ '<div class="js-genus-scientist-item"></div>'|e }}"
+                            data-widget-counter="{{ form.buttonArticles|length }}">
+                            {% for button in form.buttonArticles %}
+                                <div class="js-genus-scientist-item">
+                                    {{ formMacros.printButtonRow(button) }}
+                                </div>
+                            {% endfor %}
+                        </ul>
+                        <button type="button"
+                                class="add-another-collection-widget"
+                                data-list-selector="#email-fields-list">
+                            Add Button
+                        </button>
+                    {% endif %}
                 </div>
             </div>
         </div>
@@ -324,7 +322,7 @@
             </div>
         {% endif %}
     </div>
-    <div class="container prevNext">
+    <div class="container-fluid prevNext">
         <div class="row">
             {% if app.request.get('_route') != 'articles_new' and app.request.get('_route') != 'articles_edit' %}
                 {% if prevNext %}
@@ -339,7 +337,7 @@
         </div>
     </div>
     {% if app.request.get('_route') == 'articles_edit' or app.request.get('_route') == 'articles_new' %}
-        <div class="container">
+        <div class="container-fluid">
             <div class="row">
                 <div class="col-1"><a href="{{ path('articles_index') }}">back to list</a></div>
                 <div class="col-1">
