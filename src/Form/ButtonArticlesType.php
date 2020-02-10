@@ -59,9 +59,10 @@ class ButtonArticlesType extends AbstractType
 // });
 //        $id = $options['data']->getId();
         $request = $this->requestStack->getCurrentRequest();
-//        dump($request->attributes);
         $id = $request->attributes->get('id');
-            $builder->add('button', EntityType::class, [
+//        dump($id);
+        $builder
+                ->add('button', EntityType::class, [
                 'class' => Button::class,
                 'choice_label' => 'title',
                 'attr' => ['class' => 'form-control'],
@@ -71,7 +72,7 @@ class ButtonArticlesType extends AbstractType
                     'class' => Articles::class,
                     'choice_label' => 'id',
 //                    'attr' => ['class' => 'form-control'],
-                    'data' => $id,
+//                    'data' => $id,
                     'empty_data' => $id,
                     'required' => false,
                 ])

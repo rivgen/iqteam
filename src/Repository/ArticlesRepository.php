@@ -4,6 +4,8 @@ namespace App\Repository;
 
 use App\Entity\Articles;
 use App\Entity\ArticlesCategory;
+use App\Entity\Button;
+use App\Entity\ButtonArticles;
 use App\Entity\ImgArticles;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Common\Persistence\ManagerRegistry;
@@ -52,6 +54,19 @@ class ArticlesRepository extends ServiceEntityRepository
         $qb->setParameter('id', $id);
 
         return $qb->getQuery()->getOneOrNullResult();
+    }
+
+    public function findArticleEdit($id)
+    {
+        $qb = $this->createQueryBuilder('a')->select('b.title buttonTitle, b.icon buttonIcon, ba.url, img.general, img.img, a.id, a.title, a.textPreview, ac.id category, a.icon, a.fullTitle, a.technology, a.client, a.year, a.description, a.alias, a.author');
+        $qb->leftJoin(ArticlesCategory::class, 'ac', 'WITH', 'a.category = ac.id');
+        $qb->leftJoin(ImgArticles::class, 'img', 'WITH', 'img.article = a.id');
+        $qb->leftJoin(ButtonArticles::class, 'ba', 'WITH', 'ba.articles = a.id');
+        $qb->leftJoin(Button::class, 'b', 'WITH', 'b.id = ba.button');
+        $qb->andWhere('a.id = :id');
+        $qb->setParameter('id', $id);
+
+        return $qb->getQuery()->getResult();
     }
 
     public function filterNextPrevious($id)

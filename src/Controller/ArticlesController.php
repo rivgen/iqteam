@@ -106,17 +106,16 @@ class ArticlesController extends AbstractController
     /**
      * @Route("/{id}/edit", name="articles_edit", methods={"GET","POST"})
      */
-    public function edit(Request $request, UploaderHelper $uploaderHelper, $id): Response
+    public function edit(Request $request, Articles $articles, UploaderHelper $uploaderHelper, $id): Response
     {
         $em = $this->getDoctrine()->getManager();
-        $article = new Articles();
         $articlesRepository = $em->getRepository(Articles::class);
         $imgArticlesRepository = $em->getRepository(ImgArticles::class);
         $buttonArticlesRepository = $em->getRepository(ButtonArticles::class);
         $button = $buttonArticlesRepository->findButton($id);
         $prevNext = $articlesRepository->filterNextPrevious($id);
         $imgArticle = new ImgArticles();
-        $form = $this->createForm(ArticlesType::class, $article);
+        $form = $this->createForm(ArticlesType::class, $articles);
         $form->handleRequest($request);
         $images = $imgArticlesRepository->findAllImage($id);
         $general = false;
@@ -140,20 +139,20 @@ class ArticlesController extends AbstractController
             $uploadedFile = $form['iconFile']->getData();
             if ($uploadedFile) {
                 $newFilename = $uploaderHelper->uploadIcon($uploadedFile, $id);
-                $article->setIcon($newFilename);
+                $articles->setIcon($newFilename);
 
             }
             $uploadedImage = $form['imageFile']->getData();
             if (isset($uploadedImage)) {
                 $newImageName = $uploaderHelper->uploadIcon($uploadedImage, $id);
                 $imgArticle->setImg($newImageName);
-                $imgArticle->setArticle($article);
+                $imgArticle->setArticle($articles);
                 if (!$general){
                     $imgArticle->setGeneral(true);
                 }
             }
             $entityManager =$this->getDoctrine()->getManager();
-            $entityManager->persist($article);
+            $entityManager->persist($articles);
             if(isset($uploadedImage)) {
                 $entityManager->persist($imgArticle);
             }
@@ -163,7 +162,7 @@ class ArticlesController extends AbstractController
         }
 
         return $this->render('articles/show.html.twig', [
-            'article' => $article,
+            'article' => $articles,
             'images' => $images,
             'buttons' => $button,
             'prevNext' => $prevNext,

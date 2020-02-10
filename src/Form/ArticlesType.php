@@ -105,7 +105,7 @@ class ArticlesType extends AbstractType
 //                'empty_data' => false,
                 'delete_empty' => true,
                 'allow_add' => true,
-                'entry_options' => ['label' => false],
+//                'entry_options' => ['label' => false],
 //                'required' => false,
             ])
             ->add('category', EntityType::class, [

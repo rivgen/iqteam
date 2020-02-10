@@ -345,7 +345,7 @@ class Articles
     }
 
     /**
-     * @return ArrayCollection|imgArticles[]
+     * @return mixed
      */
     public function getImgArticles(): Collection
     {
