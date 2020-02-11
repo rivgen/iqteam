@@ -19,10 +19,11 @@
     {'img': '/images/block_V/vk.svg', 'url': 'https://vk.com/iq_dev'},
     {'img': '/images/block_V/facebook.svg', 'url': '#'},
     {'img': '/images/block_V/twitter.svg', 'url': '#'},
+    {'img': '/images/block_V/instagram.svg', 'url': 'https://www.instagram.com/iq_dev_by/'},
     ] %}
-    <div class="container">
-        <div class="row">
-            <div class="col-md-2 menuClass">
+    <div id="letter-I">
+        <div class="letter-I-row justify-content-center">
+            <div class="menuClass">
                 {% set menuAll = [
                 {'list': 'I', 'menu': 'главный экран', 'anchor': '#home'},
                 {'list': 'Q', 'menu': 'о нас', 'anchor': '#letter-Q'},
@@ -34,9 +35,9 @@
                 {#{% set menuAll = [1->I, 2->Q] %}#}
                 <div class="menuLeft">
                     {% for menu in menuAll %}
-                        <div class="row">
+                        <div class="menu-row">
                             {#<div class="col-md-2"><p>{{ menu.list }}</p></div>#}
-                            <div class="col-md-12"><a href={{ menu.anchor }}><p>{{ menu.menu }}</p></a></div>
+                            <div class="menu-col"><a href={{ menu.anchor }}><p>{{ menu.menu }}</p></a></div>
                         </div>
                     {% endfor %}
                 </div>
@@ -44,20 +45,22 @@
                     {{ macros.printFooterMenu() }}
                 </div>
             </div>
-            <div class="col-xl-8 col-md-12">
-                <div class="row letter-I">
-                    <div class="col-md-6">
+            <div class="letter-I-content-make">
+                <div class="letter-I">
+                    {#<div class="row">#}
+                    {#<div class="col-12 col-sm-3 col-lg-6 ">#}
+                    <div class="textBlock">
                         <h2 class="title">IQ Dev</h2>
                         <p class="text">Подходим к решению любой задачи с интеллектом! Только качественные продукты и
                             уникальные решения!</p>
                         <a class="btn btnBlue" href="#" role="button">Связаться</a>
                         {#<button type="button" class="btn btn-primary">Связаться</button>#}
                     </div>
-                    <div class="col-md-6">
+                    <div class="imgBlock">
                         <img src="/images/home_phones.png" alt="" class="embed-responsive"/>
                     </div>
                 </div>
-                <div class="row letter-I-block">
+                <div class="letter-I-block">
                     {% set arr = [
                     {'img':'/images/block_I/games.svg', 'text':'Более 30 собственных игр'},
                     {'img':'/images/block_I/people.svg', 'text':'100% довольных клиентов'},
@@ -65,11 +68,13 @@
                     {'img':'/images/block_I/download.svg', 'text':'Более 1 млн. загрузок игр и приложений'}
                     ] %}
                     {% for block_I in arr %}
-                        <div class="col-xl-3 col-md-6 col-sm-12 blockMargin">
+                        <div class="block-col">
                             <div class="block">
-                                <object type="image/svg+xml" data={{ block_I.img }}>
-                                    Your browser does not support SVG
-                                </object>
+                                <div class="icon">
+                                    <object type="image/svg+xml" data={{ block_I.img }}>
+                                        Your browser does not support SVG
+                                    </object>
+                                </div>
                                 <p>{{ block_I.text }}</p>
                             </div>
                         </div>
@@ -95,22 +100,22 @@
     {#</div>#}
     {#</div>#}
     {#</div>#}
-    <div id="letter-Q" class="container letter-Q">
-        <div class="row justify-content-md-center">
-            <div class="col-md-8">
-                <div class="row">
-                    <div class="col-md-12">
+    <div id="letter-Q" class="letter-Q">
+        <div class="letter-Q-row justify-content-center">
+            <div class="letter-Q-col">
+                <div class="letter-Q-row">
+                    <div class="title">
                         <h2>О нас</h2>
                     </div>
-                    <div class="col-md-6 textBold">
+                    <div class="text">
                         <p>IQ Dev – команда профессионалов, занимающаяся как разработкой собственных решений, так и
                             сторонних заказов.</p>
                     </div>
-                    <div class="col-md-3">
+                    <div class="text1">
                         <p>Нас отличает высокопрофессиональный подход к разработке и использование инновационных решений
                             для каждого клиента.</p>
                     </div>
-                    <div class="col-md-3">
+                    <div class="text2">
                         <p>Нас отличает высокопрофессиональный подход к разработке и использование инновационных решений
                             для каждого клиента.</p>
                     </div>
@@ -118,14 +123,14 @@
             </div>
         </div>
     </div>
-    <div id="slash" class="container slash">
-        <div class="row justify-content-md-center">
-            <div class="col-md-8">
-                <div class="row">
-                    <div class="col-md-12">
+    <div id="slash" class="slash">
+        <div class="slash-row justify-content-center">
+            <div class="slash-col">
+                <div class="slash-row">
+                    <div class="title">
                         <h2>Экспертиза</h2>
                     </div>
-                    <div class="col-md-12 textBold">
+                    <div class="textBold">
                         <p>Мы ценим огромный опыт, который мы получили в ходе работы с каждым клиентом – ведь именно
                             наши клиенты дают нам экспертизу, которая позволяет создавать качественный продукт.</p>
                     </div>
@@ -138,17 +143,17 @@
                     {'img': '/images/slash/unity.svg', 'title': 'Создание Unity игр', 'text': 'Межплатформенная среда разработки, которая позволяет создавать кроссплатформенные  игры'},
                     ] %}
                     {% for slash in expertise %}
-                        <div class="col-md-6">
-                            <div class="row block">
-                                <div class="col-md-3">
+                        <div class="block-col">
+                            <div class="block">
+                                <div class="icon">
                                     <object type="image/svg+xml" data={{ slash.img }}>
                                         Your browser does not support SVG
                                     </object>
                                 </div>
-                                <div class="col-md-9 title">
+                                <div class="title">
                                     {{ slash.title }}
                                 </div>
-                                <div class="col-md-12 text">
+                                <div class="text">
                                     {{ slash.text }}
                                 </div>
                             </div>
@@ -158,19 +163,19 @@
             </div>
         </div>
     </div>
-    <div id="letter-D" class="container letter-D">
-        <div class="row justify-content-md-center">
-            <div class="col-md-8">
-                <div class="row">
-                    <div class="col-md-6">
+    <div id="letter-D" class="letter-D">
+        <div class="letter-D-row justify-content-center">
+            <div class="letter-D-col">
+                <div class="letter-D-row">
+                    <div class="text-col">
                         <h2>Технологии</h2>
                         <p class="textBold">В повседневной работе мы используем трендовые технологии, те, которые
                             приносят ощутимый
                             результат (мы называем это словом value — «ценность»)
                             как для клиента, так и для собственной разработки.</p>
                     </div>
-                    <div class="col-md-6">
-                        <div class="row block">
+                    <div class="block-col">
+                        <div class="block">
                             {% set technologies = [
                             {'img': '/images/block_D/java.svg', 'title': 'Oracle Java Grails'},
                             {'img': '/images/block_D/c++.svg', 'title': 'C#'},
@@ -184,10 +189,12 @@
                             {'img': '/images/block_D/react.svg', 'title': 'React.JS'},
                             ] %}
                             {% for block_D in technologies %}
-                                <div class="col-md-4">
-                                    <object type="image/svg+xml" data={{ block_D.img }}>
-                                        Your browser does not support SVG
-                                    </object>
+                                <div class="icon-col">
+                                    <div class="icon">
+                                        <object type="image/svg+xml" data={{ block_D.img }}>
+                                            Your browser does not support SVG
+                                        </object>
+                                    </div>
                                     <p class="title">{{ block_D.title }}</p>
                                 </div>
                             {% endfor %}
@@ -282,9 +289,9 @@
                                 {% for block_V in social %}
                                     <a href={{ block_V.url }} target="_blank">
                                         <img src={{ block_V.img }} alt=""/>
-                                        <object type="image/svg+xml" data={{ block_V.img }}>
-                                            Your browser does not support SVG
-                                        </object>
+                                        {#<object type="image/svg+xml" data={{ block_V.img }}>#}
+                                        {#Your browser does not support SVG#}
+                                        {#</object>#}
                                     </a>
                                 {% endfor %}
                             </div>

@@ -16,6 +16,7 @@
 <html lang="{{ app.request.locale }}">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>{% block title %}Welcome!{% endblock %}</title>
     <script
             src="https://code.jquery.com/jquery-3.4.1.min.js"
@@ -26,7 +27,7 @@
     {% endblock %}
 </head>
 <body {% if (app.request.get('_route') == 'index_index') %}class="white-backgraund"{% endif %}>
-<div id="home" class="container homeClass">
+<div id="home" class="homeClass">
     {% block header %}
     {% set menu = [
     {'title': 'Услуги', 'url': 'service_index' },
@@ -38,44 +39,50 @@
     {'img': '/images/block_V/vk.svg', 'url': 'https://vk.com/iq_dev'},
     {'img': '/images/block_V/facebook.svg', 'url': '#'},
     {'img': '/images/block_V/twitter.svg', 'url': '#'},
+    {'img': '/images/block_V/instagram.svg', 'url': 'https://www.instagram.com/iq_dev_by/'},
     ] %}
-    <div class="row align-items-center">
-        <div class="col-md-2 navbarToggler dropdown">
+    <div class="homeClass-row align-items-center">
+        <div class="navbarToggler dropdown">
             <div class="" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 <object type="image/svg+xml" data="/images/navBarIcon.svg">
                     Your browser does not support SVG
                 </object>
             </div>
-            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                <div class="mainMenu">
-                    <a href="/"><p>Главная</p></a>
-                    {{ mainManuMacros.printMainMenu(menu) }}
-                </div>
-                <div class="mainMenu">
-                    <a href="#"><p>условия соглашения</p></a>
-                    <a href="#"><p class="rightClass">политика конфиденциальности</p></a>
-                </div>
-                <div class="mainMenu">
-                    <p>Минск, Республика Беларусь, пр. Партизанский 4</p>
-                    <p>220036</p>
-                    <p>info@iqdev.com</p>
-                    <p>
-                        <object type="image/svg+xml" data="/images/imgTel.svg">
-                            Your browser does not support SVG
-                        </object>
-                    </p>
-                </div>
-                <div class="mainMenu">
-                    <div class="mainMenuSocial">
-                        {{ indexMacros.printSocialBlock(social) }}
+            <div class="dropdown-menuBlock">
+                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                    <div class="mainMenu">
+                        <a href="/"><p>Главная</p></a>
+                        {{ mainManuMacros.printMainMenu(menu) }}
                     </div>
-                </div>
-                <div class="mainMenu">
-                    {{ indexMacros.printFooterMenu() }}
+                    <div class="mainMenu">
+                        <a href="#"><p>условия соглашения</p></a>
+                        <a href="#"><p class="rightClass">политика конфиденциальности</p></a>
+                    </div>
+                    <div class="mainMenu">
+                        <p>Минск, Республика Беларусь, пр. Партизанский 4</p>
+                        <p>220036</p>
+                        <p>info@iqdev.com</p>
+                        <p>
+                            <object type="image/svg+xml" data="/images/imgTel.svg">
+                                Your browser does not support SVG
+                            </object>
+                        </p>
+                    </div>
+                    <div class="mainMenu">
+                        <div class="mainMenuSocial">
+                            {{ indexMacros.printSocialBlock(social) }}
+                        </div>
+                    </div>
+                    <div class="mainMenu">
+                        {{ indexMacros.printFooterMenu() }}
+                    </div>
+                    <div class="dropButton">
+                        <a  href="#" role="button">Связаться</a>
+                    </div>
                 </div>
             </div>
         </div>
-        <div class="col-xl-2 col-sm-8">
+        <div class="home-content-main">
             {% if  (app.request.get('_route') == 'index_index') %}
                 <object type="image/svg+xml" data="/images/logo.svg" class="embed-responsive logoHad">
                     Your browser does not support SVG
@@ -88,13 +95,13 @@
                 </a>
             {% endif %}
         </div>
-        <div class="col-xl-8 col-12 hadMenu">
+        <div class="hadMenu">
             <div class="row justify-content-between align-items-center">
-                <div class="col-xl-3 col-12 menuFlex inLeft">
+                <div class="menuFlex inLeft">
                     {#{{  dump(app.request.get('_route')) }}#}
                     {{ mainManuMacros.printMainMenu(menu) }}
                 </div>
-                <div class="col-xl-3 col-12 menuFlex inRight">
+                <div class="menuFlex inRight">
                     {#<object type="image/svg+xml" data="/images/imgEmail.svg">#}
                     {#Your browser does not support SVG#}
                     {#</object>#}
@@ -107,10 +114,10 @@
                 </div>
             </div>
         </div>
-        <div class="col-md-2">
-            <div class="row align-items-center justify-content-end">
+        <div class="homeLocale">
+            <div class="homeLocale-row align-items-center justify-content-end">
                 {% for locale in locales() %}
-                    <div class="col-md-2" {% if app.request.locale == locale.code %}aria-checked="true" class="active"
+                    <div class="locale" {% if app.request.locale == locale.code %}aria-checked="true" class="active"
                          {% else %}aria-checked="false"{% endif %} role="menuitem">
                         <a href="{{ path(app.request.get('_route', 'index_index'), app.request.get('_route_params', [])|merge({_locale: locale.code})) }}">
                             <small>{{ locale.code[0:2] }}</small>

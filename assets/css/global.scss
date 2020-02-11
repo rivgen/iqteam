@@ -1,6 +1,27 @@
 @import "custom";
 @import "~bootstrap/dist/css/bootstrap.min.css";
 
+%content-main-col-2{
+  @include make-col-ready();
+  @include make-col(2);
+}
+
+%content-main-col-xl-3-col-12{
+  @include make-col-ready();
+  @include make-col(12);
+  @include media-breakpoint-up(xl) {
+    @include make-col(3);
+  }
+}
+
+%content-main-col-xl-8-col-11{
+  @include make-col-ready();
+  @include make-col(11);
+  @include media-breakpoint-up(xl) {
+    @include make-col(8);
+  }
+}
+
 body {
   background-color: #F8FAFF;
 }
@@ -33,7 +54,20 @@ p {
   background-size: inherit;
 }
 
+#letter-I{
+  @include make-container();
+}
+
+.letter-I-row, .letter-Q-row, .slash-row, .letter-D-row{
+  @include make-row();
+}
+
+.letter-I-content-make, .letter-Q-col, .slash-col, .letter-D-col{
+  @extend %content-main-col-xl-8-col-11;
+}
+
 .letter-I {
+  @include make-row();
   position: relative;
   overflow: hidden;
   //background-image: url(/images/block_I/letter-I.svg);
@@ -41,19 +75,32 @@ p {
   //background-position: 80%;
 }
 
-.letter-I:before {
+.letter-I .textBlock, .letter-I .imgBlock {
+  @include media-breakpoint-up(sm) {
+    @include make-col (6);
+  }
+}
+
+.letter-I .imgBlock{
+  position: relative;
+  @include media-breakpoint-down(xs) {
+    margin: 60px 0;
+  }
+}
+
+.letter-I .imgBlock:after {
   content: '';
   position: absolute;
-  width: 14%;
+  width: 26%;
   //height: calc(18rem + 30 * (100vw - 520px) / 80);
-  height: 100vh;
+  height: 100%;
   top: 0;
   left: 50%;
   z-index: -1;
   background-image: url(/images/block_I/letter-I.svg);
   background-repeat: no-repeat;
   background-size: cover;
-  transform: translateX(118%);
+  transform: translateX(-49%);
 }
 
 //.white-backgraund::before {
@@ -79,20 +126,30 @@ p {
 .letter-I .text {
   margin-top: 40px;
   font-weight: 300;
-  font-size: 24px;
+  font-size: 18px;
   line-height: 150%;
   color: #323232;
+  @include media-breakpoint-up(sm){
+    font-size: calc(0.5rem + 10 * (100vw - 20px) / 880);
+  }
 }
 
 .letter-I img {
-  margin: 12px 0;
-  @media (min-width: 1200px) {
+  @include media-breakpoint-down(md) {
+    position: relative;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+  @include media-breakpoint-up(md){
+    margin: 12px 0;
+  }
+  @include media-breakpoint-up(xl){
     margin: 75px 0;
   }
 }
 
 .letter-I .btnBlue {
-  width: 224px;
+  width: 100%;
   height: 50px;
   background: #3964F9;
   border-radius: 5px;
@@ -103,12 +160,17 @@ p {
   font-size: 12px;
   line-height: 150%;
   padding: 0.8rem;
-  margin-top: 40px;
+  margin-top: 20px;
+  @include media-breakpoint-up(md){
+    width: 224px;
+    margin-top: 40px;
+  }
 }
 
 .letter-I-block {
+  @include make-row();
     margin-top: 30px;
-  @media (min-width: 1200px) {
+  @include media-breakpoint-up(xl){
     margin-top: 100px;
   }
 }
@@ -120,41 +182,115 @@ p {
   box-shadow: 0px 10px 20px rgba(57, 100, 249, 0.1);
 }
 
-.blockMargin {
-  margin: 15px 0;
+.letter-I-block .block{
+  @include make-row();
+  margin: 0;
 }
 
-.letter-I-block .block object, .slash .block object {
-  padding: 40px;
+.block-col {
+  margin: 15px 0;
+  @include make-col-ready();
+  @include make-col(12);
+  @include media-breakpoint-up(md){
+    @include make-col(6)
+  }
+  @include media-breakpoint-up(xl){
+    @include make-col(3)
+  }
+}
+
+.letter-I-block .block .icon{
+  margin: 40px;
+  @include media-breakpoint-down(sm) {
+    margin: auto 15px;
+    -webkit-transform: translateY(-25%);
+    -moz-transform: translateY(-25%);
+    -ms-transform: translateY(-25%);
+    -o-transform: translateY(-25%);
+    transform: translateY(-25%);
+    max-width: 40px;
+    max-height: 40px;
+  }
+  @include media-breakpoint-down(lg) {
+    @include make-col-ready();
+    @include make-col(6);
+    max-width: 54px;
+  }
+  max-width: 54px;
+  max-height: 54px;
 }
 
 .letter-I-block .block p {
   padding: 0 40px 40px 40px;
+  font-weight: bold;
+  font-size: 18px;
+  @include media-breakpoint-down(lg) {
+    @include make-col-ready();
+    @include make-col(6);
+    padding: 40px;
+  }
+  @include media-breakpoint-down(xs) {
+    padding: 30px;
+  }
 }
 
 .letter-Q, .slash, .letter-D, .letter-E, .letter-V, .footerClass {
+  @include make-container();
   background-repeat: no-repeat;
-  background-position: 50% 80px;
-  padding: 30px 50px;
+  background-position: 50% calc(100vw / 21 + 20px);
+  background-size: contain;
+  @include media-breakpoint-up(xl){
+    background-position: 50% 100px;
+  }@include media-breakpoint-up(md){
+    background-size: auto;
+  }
+
+
+  //padding: 30px 50px;
 }
 
 .letter-Q {
   background-image: url(/images/block_Q/letter_Q.svg);
-  height: 800px;
+  height: auto;
   //background-size: contain;
   display: flex;
-  align-items: center
+  align-items: center;
+  @include media-breakpoint-up(sm){
+    height: 800px;
+  }
 }
 
-.letter-Q h2 {
-  //position: absolute;
-  //top: 100%;
-  //transform: translate(0, -100%);
-  padding-bottom: 20px;
+.letter-Q .title {
+  @include make-col-ready();
+  @include make-col(12)
 }
 
-.letter-Q p, .slash p {
-  padding-top: 20px;
+.letter-Q .text {
+  font-weight: bold;
+  font-size: 20px;
+  line-height: 150%;
+  color: #323232;
+  @include make-col-ready();
+  @include make-col(12);
+  @include media-breakpoint-up(lg){
+    @include make-col(6);
+  }
+}
+
+.letter-Q .text1, .letter-Q .text2 {
+  font-size: 12px;
+  line-height: 200%;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #323232;
+  @include make-col-ready();
+  @include make-col(12);
+  @include media-breakpoint-up(sm){
+  @include make-col(6);
+  }
+  @include media-breakpoint-up(lg){
+    @include make-col(3);
+  }
 
 }
 
@@ -166,13 +302,27 @@ p {
 }
 
 .slash {
+  @include make-container();
   background-image: url(/images/slash/slash.svg);
 }
 
-.slash h2, .letter-D h2, .letter-D .block, .letter-E h2, .letter-V h2, .letter-V .mapContact, .portfolio h2 {
-  margin-top: 215px;
-  padding-bottom: 20px;
+.slash .title, .slash .textBold {
+  @include make-col-ready();
+  @include make-col(12)
+}
 
+.slash .block-col{
+  @include make-col-ready();
+  @include make-col(12);
+  @include media-breakpoint-up(sm){
+    @include make-col(6)
+  }
+}
+
+.letter-Q h2, .slash h2, .letter-D h2, .letter-D .block, .letter-E h2, .letter-V h2, .letter-V .mapContact, .portfolio h2 {
+  margin-top: 60px;
+  padding-bottom: 20px;
+  font-size: calc(3rem + 15 * (100vw - 620px) / 880)
 }
 
 .slash .textBold {
@@ -180,20 +330,41 @@ p {
 }
 
 .slash .block {
+  @include make-row();
   margin: 0 0 30px 0;
+  padding: 30px;
 }
 
-.slash .title {
+//.slash .block .icon {
+//  width: 54px;
+//  height: 54px;
+//  @include make-col-ready();
+//  @include make-col(3);
+//}
+
+.slash .block .title {
   font-weight: bold;
   font-size: 18px;
   line-height: 150%;
   margin: auto 0;
   color: #323232;
+  @include make-col-ready();
+  @include make-col(8);
+  padding-left: 40px;
+}
 
+.slash .block .icon{
+  @include make-col-ready();
+  @include make-col(2);
+  transform: translate(-31%, -2%);
+  max-width: 50px;
+  max-height: 50px;
 }
 
 .slash .text {
-  padding: 0 40px 57px 57px;
+  @include make-col-ready();
+  @include make-col(12);
+  padding: 0;
   font-size: 12px;
   line-height: 200%;
   letter-spacing: 0.1em;
@@ -202,8 +373,16 @@ p {
 }
 
 .letter-D {
+  @include make-container();
   background-image: url(/images/block_D/letter_D.svg);
   background-color: white;
+}
+
+.letter-D .text-col, .letter-D .block-col{
+  @include make-col-ready();
+  @include media-breakpoint-up(md) {
+    @include make-col(6)
+  }
 }
 
 .letter-D .title {
@@ -216,6 +395,24 @@ p {
   max-width: 105px;
   margin: 0 auto;
   padding-bottom: 30px;
+}
+
+.letter-D .block {
+  @include make-row()
+}
+
+.letter-D .block .icon-col {
+  .icon {
+    position: relative;
+    height: 130px;
+    object{
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+    };
+  }
+  @include make-col-ready();
+  @include make-col(4);
 }
 
 .letter-E p, .portfolio p {
@@ -315,6 +512,7 @@ p {
 }
 
 .menuClass {
+  @extend  %content-main-col-2;
   position: relative;
   height: 80vh;
   display: none;
@@ -381,22 +579,35 @@ p {
   padding-top: 200px;
 }
 
-.menuClass .row {
-  padding-bottom: 15px;
-}
-
 .homeClass {
-  .row {
+  @include make-container ();
+  .homeClass-row {
     min-height: 63px;
   }
   box-shadow: 0px 10px 20px rgba(57, 100, 249, 0.1);
   margin-bottom: 47px;
-  @media (min-width: 1200px)  {
-    .row {
+  @include media-breakpoint-up(xl)  {
+    .homeClass-row {
       min-height: 150px;
     }
     box-shadow: none;
     margin-bottom: 0;
+  }
+
+}
+
+.homeClass-row{
+  @include make-row();
+  margin: 0 15px;
+}
+
+.home-content-main {
+  @include make-col-ready();
+  //@include media-breakpoint-up(md) {
+    @include make-col(8);
+  //}
+  @include media-breakpoint-up(xl) {
+    @include make-col(2);
   }
 }
 
@@ -410,6 +621,10 @@ p {
   top: 10px;
 }
 
+.social a:hover{
+text-decoration: none;
+}
+
 .menuFlex {
   display: flex;
   align-items: center;
@@ -418,10 +633,12 @@ p {
 
 .inLeft {
   justify-content: flex-start;
+  @extend %content-main-col-xl-3-col-12;
 }
 
 .inRight {
   justify-content: flex-end;
+  @extend %content-main-col-xl-3-col-12;
 }
 
 .menuFlex p {
@@ -782,9 +999,10 @@ textarea.form-control {
 }
 
 .socialBlockHeight {
+  @extend %content-main-col-2;
   height: 80vh;
   display: none;
-  @media (min-width: 1200px) {
+  @include media-breakpoint-up(xl){
     display: block;
   }
   //position: fixed;
@@ -849,6 +1067,16 @@ textarea.form-control {
   transform: translate(46%, -50%)
 }
 
+.menuLeft .menu-row{
+  @include make-row();
+  padding-bottom: 15px;
+}
+
+.menu-col {
+  @include make-col-ready();
+  @include make-col(12);
+}
+
 .copyrightLeft {
   position: fixed;
   bottom: 29px;
@@ -857,7 +1085,12 @@ textarea.form-control {
   transform: translate(46%, -50%);
 }
 
+%content-main-col-2{
+  @include make-col-ready();
+  @include make-col(2);
+}
 .navbarToggler{
+  @extend %content-main-col-2;
   display: block;
   @media (min-width: 1200px) {
     display: none;
@@ -871,7 +1104,24 @@ textarea.form-control {
   max-height: 18px;
 }
 
+.homeLocale {
+  @extend %content-main-col-2;
+}
+
+.homeLocale .locale {
+  @extend %content-main-col-2;
+}
+
+.homeLocale-row{
+  @include make-row();
+}
+
 .hadMenu{
+  @include make-col-ready();
+  @include make-col(12);
+  @include media-breakpoint-up(xl) {
+    @include make-col(8);
+  }
   display: none;
   @media (min-width: 1200px) {
     display: block;
@@ -879,18 +1129,33 @@ textarea.form-control {
 }
 
 .logoHad{
+  left: 50%;
+  transform: translateX(-50%);
   max-width: 178px;
   max-height: 52px;
+  @media (min-width: 1200px) {
+    left: 0;
+    transform: translateX(0);
+  }
 }
 
 #dropdownMenuButton{
   cursor: pointer;
 }
 
+.dropdown-menuBlock {
+  position: relative;
+  top: 30px;
+  left: -20px;
+
+}
+
 .dropdown-menu {
   min-width: 17rem;
   border: none;
   box-shadow: 0px 10px 20px rgba(57, 100, 249, 0.1);
+  border-radius: unset;
+  padding: 0;
 }
 
 .dropdown-menu .mainMenu .mainMenuSocial{
@@ -914,4 +1179,21 @@ textarea.form-control {
   width: 77%;
   margin: 0 30px;
 
+}
+
+.dropButton {
+  width: 100%;
+  height: 60px;
+  background: #3964F9;
+}
+
+.dropButton a{
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  font-size: 12px;
+  line-height: 150%;
+  color: #FFFFFF;
+  position: relative;
+  top: 25%;
+  left: 42%;
 }
