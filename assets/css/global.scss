@@ -1,12 +1,12 @@
 @import "custom";
 @import "~bootstrap/dist/css/bootstrap.min.css";
 
-%content-main-col-2{
+%content-main-col-2 {
   @include make-col-ready();
   @include make-col(2);
 }
 
-%content-main-col-xl-3-col-12{
+%content-main-col-xl-3-col-12 {
   @include make-col-ready();
   @include make-col(12);
   @include media-breakpoint-up(xl) {
@@ -14,7 +14,7 @@
   }
 }
 
-%content-main-col-xl-8-col-11{
+%content-main-col-xl-8-col-11 {
   @include make-col-ready();
   @include make-col(11);
   @include media-breakpoint-up(xl) {
@@ -54,15 +54,15 @@ p {
   background-size: inherit;
 }
 
-#letter-I{
+#letter-I {
   @include make-container();
 }
 
-.letter-I-row, .letter-Q-row, .slash-row, .letter-D-row{
+.letter-I-row, .letter-Q-row, .slash-row, .letter-D-row, .letter-E-row {
   @include make-row();
 }
 
-.letter-I-content-make, .letter-Q-col, .slash-col, .letter-D-col{
+.letter-I-content-make, .letter-Q-col, .slash-col, .letter-D-col, .letter-E-col {
   @extend %content-main-col-xl-8-col-11;
 }
 
@@ -81,7 +81,7 @@ p {
   }
 }
 
-.letter-I .imgBlock{
+.letter-I .imgBlock {
   position: relative;
   @include media-breakpoint-down(xs) {
     margin: 60px 0;
@@ -129,7 +129,7 @@ p {
   font-size: 18px;
   line-height: 150%;
   color: #323232;
-  @include media-breakpoint-up(sm){
+  @include media-breakpoint-up(sm) {
     font-size: calc(0.5rem + 10 * (100vw - 20px) / 880);
   }
 }
@@ -140,10 +140,10 @@ p {
     top: 50%;
     transform: translateY(-50%);
   }
-  @include media-breakpoint-up(md){
+  @include media-breakpoint-up(md) {
     margin: 12px 0;
   }
-  @include media-breakpoint-up(xl){
+  @include media-breakpoint-up(xl) {
     margin: 75px 0;
   }
 }
@@ -161,7 +161,7 @@ p {
   line-height: 150%;
   padding: 0.8rem;
   margin-top: 20px;
-  @include media-breakpoint-up(md){
+  @include media-breakpoint-up(md) {
     width: 224px;
     margin-top: 40px;
   }
@@ -169,8 +169,8 @@ p {
 
 .letter-I-block {
   @include make-row();
-    margin-top: 30px;
-  @include media-breakpoint-up(xl){
+  margin-top: 30px;
+  @include media-breakpoint-up(xl) {
     margin-top: 100px;
   }
 }
@@ -182,7 +182,7 @@ p {
   box-shadow: 0px 10px 20px rgba(57, 100, 249, 0.1);
 }
 
-.letter-I-block .block{
+.letter-I-block .block {
   @include make-row();
   margin: 0;
 }
@@ -191,15 +191,15 @@ p {
   margin: 15px 0;
   @include make-col-ready();
   @include make-col(12);
-  @include media-breakpoint-up(md){
+  @include media-breakpoint-up(md) {
     @include make-col(6)
   }
-  @include media-breakpoint-up(xl){
+  @include media-breakpoint-up(xl) {
     @include make-col(3)
   }
 }
 
-.letter-I-block .block .icon{
+.letter-I-block .block .icon {
   margin: 40px;
   @include media-breakpoint-down(sm) {
     margin: auto 15px;
@@ -239,12 +239,12 @@ p {
   background-repeat: no-repeat;
   background-position: 50% calc(100vw / 21 + 20px);
   background-size: contain;
-  @include media-breakpoint-up(xl){
+  @include media-breakpoint-up(xl) {
     background-position: 50% 100px;
-  }@include media-breakpoint-up(md){
+  }
+  @include media-breakpoint-up(md) {
     background-size: auto;
   }
-
 
   //padding: 30px 50px;
 }
@@ -255,7 +255,7 @@ p {
   //background-size: contain;
   display: flex;
   align-items: center;
-  @include media-breakpoint-up(sm){
+  @include media-breakpoint-up(sm) {
     height: 800px;
   }
 }
@@ -272,7 +272,7 @@ p {
   color: #323232;
   @include make-col-ready();
   @include make-col(12);
-  @include media-breakpoint-up(lg){
+  @include media-breakpoint-up(lg) {
     @include make-col(6);
   }
 }
@@ -285,10 +285,10 @@ p {
   color: #323232;
   @include make-col-ready();
   @include make-col(12);
-  @include media-breakpoint-up(sm){
-  @include make-col(6);
+  @include media-breakpoint-up(sm) {
+    @include make-col(6);
   }
-  @include media-breakpoint-up(lg){
+  @include media-breakpoint-up(lg) {
     @include make-col(3);
   }
 
@@ -311,10 +311,10 @@ p {
   @include make-col(12)
 }
 
-.slash .block-col{
+.slash .block-col {
   @include make-col-ready();
   @include make-col(12);
-  @include media-breakpoint-up(sm){
+  @include media-breakpoint-up(sm) {
     @include make-col(6)
   }
 }
@@ -353,7 +353,7 @@ p {
   padding-left: 40px;
 }
 
-.slash .block .icon{
+.slash .block .icon {
   @include make-col-ready();
   @include make-col(2);
   transform: translate(-31%, -2%);
@@ -378,7 +378,7 @@ p {
   background-color: white;
 }
 
-.letter-D .text-col, .letter-D .block-col{
+.letter-D .text-col, .letter-D .block-col {
   @include make-col-ready();
   @include media-breakpoint-up(md) {
     @include make-col(6)
@@ -405,14 +405,21 @@ p {
   .icon {
     position: relative;
     height: 130px;
-    object{
+    object {
       position: absolute;
       left: 50%;
       transform: translateX(-50%);
-    };
+    }
+  ;
   }
   @include make-col-ready();
-  @include make-col(4);
+  @include make-col(6);
+  @include media-breakpoint-up(sm) {
+    @include make-col(3);
+  }
+  @include media-breakpoint-up(md) {
+    @include make-col(4);
+  }
 }
 
 .letter-E p, .portfolio p {
@@ -420,11 +427,38 @@ p {
   line-height: 200%;
   letter-spacing: 0.1em;
   text-transform: uppercase;
-  padding-bottom: 30px;
 }
 
 .letter-E {
+  @include make-container();
   background-image: url(/images/block_E/letter_E.svg);
+}
+
+.letter-E .textBold {
+  @include make-col-ready();
+  @include make-col(12);
+  @include media-breakpoint-up(md) {
+    @include make-col(6);
+  }
+  @include media-breakpoint-down(sm){
+    margin-bottom: 27px;
+  }
+}
+
+.letter-E .title {
+  @include make-col-ready();
+  @include make-col(12);
+}
+
+.letter-E .text {
+  @include make-col-ready();
+  @include make-col(12);
+  @include media-breakpoint-up(sm) {
+    @include make-col(6);
+  }
+  @include media-breakpoint-up(md) {
+    @include make-col(3);
+  }
 }
 
 .letter-E .textBold, .letter-V .textBold {
@@ -432,15 +466,40 @@ p {
   padding-right: 86px;
 }
 
+.letter-E .buttonE {
+  padding-top: 15px;
+}
+
 .letter-E .projects, .portfolio .projects {
+  @include make-row();
+  padding-top: calc(100vw/20);;
+}
+
+.letter-E .blockImg, .letter-E .blockText {
+  @include make-col-ready();
+  @include media-breakpoint-up(md){
+  @include make-col(6);
   padding-top: 60px;
+  }
+}
+
+.letter-E .blockImg{
+  @include media-breakpoint-down(xs){
+    padding: 50px 0 30px;
+  }
 }
 
 .letter-E .projects img, .portfolio .projects img {
-  margin: 25px 0;
-  border: 15px solid #fff;
-  border-radius: 20px;
-  box-shadow: 0px 10px 20px rgba(57, 100, 249, 0.1);
+  @include media-breakpoint-down(xs) {
+    position: relative;
+    width: 100vw;
+  }
+  @include media-breakpoint-up(sm) {
+    margin: 25px 0;
+    border: 15px solid #fff;
+    border-radius: 20px;
+    box-shadow: 0px 10px 20px rgba(57, 100, 249, 0.1);
+  }
 }
 
 .letter-E h3, .portfolio h3 {
@@ -461,7 +520,6 @@ p {
   background: #3964F9;
   border-radius: 5px;
   box-shadow: 0px 10px 20px rgba(57, 100, 249, 0.3);
-  margin-bottom: 30px;
   font-size: 12px;
   line-height: 150%;
   display: flex;
@@ -512,11 +570,11 @@ p {
 }
 
 .menuClass {
-  @extend  %content-main-col-2;
+  @extend %content-main-col-2;
   position: relative;
   height: 80vh;
   display: none;
-  @media (min-width: 1200px){
+  @media (min-width: 1200px) {
     display: block;
   }
 }
@@ -586,7 +644,7 @@ p {
   }
   box-shadow: 0px 10px 20px rgba(57, 100, 249, 0.1);
   margin-bottom: 47px;
-  @include media-breakpoint-up(xl)  {
+  @include media-breakpoint-up(xl) {
     .homeClass-row {
       min-height: 150px;
     }
@@ -596,7 +654,7 @@ p {
 
 }
 
-.homeClass-row{
+.homeClass-row {
   @include make-row();
   margin: 0 15px;
 }
@@ -604,7 +662,7 @@ p {
 .home-content-main {
   @include make-col-ready();
   //@include media-breakpoint-up(md) {
-    @include make-col(8);
+  @include make-col(8);
   //}
   @include media-breakpoint-up(xl) {
     @include make-col(2);
@@ -621,8 +679,8 @@ p {
   top: 10px;
 }
 
-.social a:hover{
-text-decoration: none;
+.social a:hover {
+  text-decoration: none;
 }
 
 .menuFlex {
@@ -1002,7 +1060,7 @@ textarea.form-control {
   @extend %content-main-col-2;
   height: 80vh;
   display: none;
-  @include media-breakpoint-up(xl){
+  @include media-breakpoint-up(xl) {
     display: block;
   }
   //position: fixed;
@@ -1067,7 +1125,7 @@ textarea.form-control {
   transform: translate(46%, -50%)
 }
 
-.menuLeft .menu-row{
+.menuLeft .menu-row {
   @include make-row();
   padding-bottom: 15px;
 }
@@ -1085,11 +1143,12 @@ textarea.form-control {
   transform: translate(46%, -50%);
 }
 
-%content-main-col-2{
+%content-main-col-2 {
   @include make-col-ready();
   @include make-col(2);
 }
-.navbarToggler{
+
+.navbarToggler {
   @extend %content-main-col-2;
   display: block;
   @media (min-width: 1200px) {
@@ -1097,7 +1156,7 @@ textarea.form-control {
   }
 }
 
-.navbarToggler object{
+.navbarToggler object {
   position: relative;
   z-index: -1;
   max-width: 25px;
@@ -1112,11 +1171,11 @@ textarea.form-control {
   @extend %content-main-col-2;
 }
 
-.homeLocale-row{
+.homeLocale-row {
   @include make-row();
 }
 
-.hadMenu{
+.hadMenu {
   @include make-col-ready();
   @include make-col(12);
   @include media-breakpoint-up(xl) {
@@ -1128,7 +1187,7 @@ textarea.form-control {
   }
 }
 
-.logoHad{
+.logoHad {
   left: 50%;
   transform: translateX(-50%);
   max-width: 178px;
@@ -1139,7 +1198,7 @@ textarea.form-control {
   }
 }
 
-#dropdownMenuButton{
+#dropdownMenuButton {
   cursor: pointer;
 }
 
@@ -1158,15 +1217,15 @@ textarea.form-control {
   padding: 0;
 }
 
-.dropdown-menu .mainMenu .mainMenuSocial{
+.dropdown-menu .mainMenu .mainMenuSocial {
   margin: 30px;
 }
 
-.dropdown-menu .mainMenu p{
+.dropdown-menu .mainMenu p {
   margin: 30px;
 }
 
-.dropdown-menu .mainMenu object{
+.dropdown-menu .mainMenu object {
   max-width: 133px;
   max-height: 10px;
 }
@@ -1187,7 +1246,7 @@ textarea.form-control {
   background: #3964F9;
 }
 
-.dropButton a{
+.dropButton a {
   letter-spacing: 0.1em;
   text-transform: uppercase;
   font-size: 12px;

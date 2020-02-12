@@ -204,28 +204,28 @@
             </div>
         </div>
     </div>
-    <div id="letter-E" class="container letter-E">
-        <div class="row justify-content-md-center">
-            <div class="col-md-8">
-                <div class="row">
-                    <div class="col-md-12">
+    <div id="letter-E" class="letter-E">
+        <div class="letter-E-row justify-content-center">
+            <div class="letter-E-col">
+                <div class="letter-E-row">
+                    <div class="title">
                         <h2>Проекты</h2>
                     </div>
-                    <div class="col-md-6 textBold">
+                    <div class="textBold">
                         <span>Мы состоим в парке высоких технологий, одной из крупнейших заводей мирового IT-аутсорса, что
                             является показателем высокой технологичности нашей работы.</span>
                     </div>
-                    <div class="col-md-3">
+                    <div class="text">
                         <p>Мы оцениваем результаты нашей работы по конверсии и прибыли — красота нас интересует
                             постольку, поскольку она не мешает монетизации.</p>
                     </div>
-                    <div class="col-md-3">
+                    <div class="text">
                         <p>Поэтому, заказывая у нас, клиенты уверены, что получат эффективное решение, которое позволит
                             выйти их бизнесу на новый уровень.</p>
                     </div>
-                    <div class="row projects">
+                    <div class="projects">
                         {% for article in articles %}
-                            <div class="col-md-6">
+                            <div class="blockImg">
                                 {% if images %}
                                     {% for image in images %}
                                         {% if image.article == article.id %}
@@ -235,12 +235,12 @@
                                     {% endfor %}
                                 {% endif %}
                             </div>
-                            <div class="col-md-6 align-self-center">
+                            <div class="blockText align-self-center">
                                 <a href={{ path('articles_show', {'id': article.id}) }}><h3>{{ article.title }}</h3></a>
                                 <p>{{ article.textPreview }}</p>
                                 {% for button in buttons %}
                                     {% if button.id == article.id %}
-                                        <div class="title">
+                                        <div class="buttonE">
                                             <a href={{ button.url }} class="btn buttonProject" role="button">
                                             <span>
                                         <object type="image/svg+xml" data="/images/batton/{{ button.icon }}">
