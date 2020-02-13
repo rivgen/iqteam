@@ -644,6 +644,11 @@ p {
   }
   box-shadow: 0px 10px 20px rgba(57, 100, 249, 0.1);
   margin-bottom: 47px;
+  @include media-breakpoint-down(lg){
+    position: fixed;
+    z-index: 10;
+    background: #fff;
+  }
   @include media-breakpoint-up(xl) {
     .homeClass-row {
       min-height: 150px;
@@ -1204,8 +1209,8 @@ textarea.form-control {
 
 .dropdown-menuBlock {
   position: relative;
-  top: 30px;
-  left: -20px;
+  top: 881px;
+  left: -72px;
 
 }
 

@@ -12,7 +12,8 @@ $(document).ready(function() {
     $('[data-toggle="popover"]').popover();
 });
 
-import './filtr.js'
+import './filtr'
+import './internalText'
 
 // class App extends React.Component {
 //     render() {
