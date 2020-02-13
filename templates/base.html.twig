@@ -16,7 +16,7 @@
 <html lang="{{ app.request.locale }}">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0, minimum-scale=1.0">
     <title>{% block title %}Welcome!{% endblock %}</title>
     <script
             src="https://code.jquery.com/jquery-3.4.1.min.js"
@@ -42,14 +42,14 @@
     {'img': '/images/block_V/instagram.svg', 'url': 'https://www.instagram.com/iq_dev_by/'},
     ] %}
     <div class="homeClass-row align-items-center">
-        <div class="navbarToggler dropdown" id="dd">
-            <div class="" id="dropdownMenuButton" data-boundary="dd" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        <div class="navbarToggler nav-item dropdown" id="dd">
+            <div class="" id="dropdownMenuButton" data-boundary="dd" data-toggle="dropdown" aria-haspopup="true"
+                 aria-expanded="false" data-offset="-30,-939">
                 <object type="image/svg+xml" data="/images/navBarIcon.svg">
                     <div id="internalText"></div>
                 </object>
             </div>
-            <div class="dropdown-menuBlock">
-                <div class="dropdown-menu" >
+                <div class="dropdown-menu">
                     <div class="mainMenu">
                         <a href="/"><p>Главная</p></a>
                         {{ mainManuMacros.printMainMenu(menu) }}
@@ -77,10 +77,9 @@
                         {{ indexMacros.printFooterMenu() }}
                     </div>
                     <div class="dropButton">
-                        <a  href="#" role="button">Связаться</a>
+                        <a href="#" role="button">Связаться</a>
                     </div>
                 </div>
-            </div>
         </div>
         <div class="home-content-main">
             {% if  (app.request.get('_route') == 'index_index') %}
