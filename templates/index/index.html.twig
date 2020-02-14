@@ -3,6 +3,9 @@
 {% macro printFooterMenu() %}
     <p>издатель и разработчик мобильных и браузерных игр</p>
 {% endmacro %}
+{% macro printFeedback(class) %}
+    <a class="{{ class }}" href="#" role="button">Связаться</a>
+{% endmacro %}
 {% macro printSocialBlock(social) %}
     {% for block_soc in social %}
         <a href={{ block_soc.url }} target="_blank" rel="noreferrer" class="socialButton">
@@ -47,14 +50,11 @@
             </div>
             <div class="letter-I-content-make">
                 <div class="letter-I">
-                    {#<div class="row">#}
-                    {#<div class="col-12 col-sm-3 col-lg-6 ">#}
                     <div class="textBlock">
                         <h2 class="title">IQ Dev</h2>
                         <p class="text">Подходим к решению любой задачи с интеллектом! Только качественные продукты и
                             уникальные решения!</p>
-                        <a class="btn btnBlue" href="#" role="button">Связаться</a>
-                        {#<button type="button" class="btn btn-primary">Связаться</button>#}
+                        {{ macros.printFeedback('btn btnBlue') }}
                     </div>
                     <div class="imgBlock">
                         <img src="/images/home_phones.png" alt="" class="embed-responsive"/>
@@ -241,7 +241,7 @@
                                 {% for button in buttons %}
                                     {% if button.id == article.id %}
                                         <div class="buttonE">
-                                            <a href={{ button.url }} class="btn buttonProject" role="button">
+                                            <a href={{ button.url }} class="btn buttonProject" role="button" target="_blank" rel="noreferrer">
                                             <span>
                                         <object type="image/svg+xml" data="/images/batton/{{ button.icon }}">
                                             <div id="internalText"></div>
@@ -257,48 +257,54 @@
             </div>
         </div>
     </div>
-    <div id="letter-V" class="container letter-V">
-        <div class="row justify-content-md-center">
-            <div class="col-md-8">
-                <div class="row">
-                    <div class="col-md-6">
+    <div id="letter-V" class="letter-V">
+        <div class="letter-V-row justify-content-center">
+            <div class="letter-V-col">
+                <div class="letter-V-row">
+                    <div class="blockContact">
                         <h2>Контакты</h2>
                         <p class="textBold">Готовы начать свой следующий проект? Для обсуждения или сотрудничества
                             просто свяжитесь с
                             нами.</p>
-                        <div class="row">
-                            <div class="col-md-6">
+                        <div class="letter-V-row">
+                            <div class="textContact">
                                 <h4>приезжайте</h4>
                                 <p>Минск, Республика Беларусь, пр. Партизанский 4</p>
                             </div>
-                            <div class="col-md-6">
+                            <div class="textContact">
                                 <h4>пишите</h4>
-                                <object type="image/svg+xml" data="/images/imgEmailContact.svg">
-                                    <div id="internalText"></div>
-                                </object>
+                                {#<object type="image/svg+xml" data="/images/imgEmailContact.svg">#}
+                                    {#<div id="internalText"></div>#}
+                                {#</object>#}
                                 <p>info@iqdev.com</p>
                             </div>
-                            <div class="col-md-6">
+                            <div class="textContact">
                                 <h4>звоните</h4>
                                 <object type="image/svg+xml" data="/images/imgTelContact.svg">
                                     <div id="internalText"></div>
                                 </object>
                             </div>
-                            <div class="col-md-6 social">
+                            <div class="textContact">
                                 <h4>ищите в соцсетях</h4>
+                                <div class="social">
                                 {% for block_V in social %}
-                                    <a href={{ block_V.url }} target="_blank">
+                                    <a href={{ block_V.url }} target="_blank" rel="noreferrer">
                                         <img src={{ block_V.img }} alt=""/>
                                         {#<object type="image/svg+xml" data={{ block_V.img }}>#}
                                         {#Your browser does not support SVG#}
                                         {#</object>#}
                                     </a>
                                 {% endfor %}
+                                </div>
+                            </div>
+                            <div class="textContact">
+                                {{ macros.printFeedback("btn btnBlue") }}
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-6 mapContact embed-responsive">
-                        <img src="/images/block_V/map.png" alt=""/>
+                    <div class="mapContact embed-responsive">
+                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2351.603712230171!2d27.581945215991954!3d53.88547284189211!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x46dbce2d107b6c7f%3A0x21fe21a76ca5068c!2z0J_QsNGA0YLQuNC30LDQvdGB0LrQuNC5INC_0YDQvtGB0L8uIDQsINCc0LjQvdGB0Lo!5e0!3m2!1sru!2sby!4v1577083867310!5m2!1sru!2sby"
+                                width="100%" height="724" frameborder="0" style="border:0;" allowfullscreen=""></iframe>
                     </div>
                 </div>
             </div>

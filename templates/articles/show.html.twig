@@ -30,7 +30,7 @@
     {% if app.request.get('_route') == 'articles_edit' or app.request.get('_route') == 'articles_new' %}
         {{ form_start(form) }}
     {% endif %}
-    <div id="slash" class="container slash article">
+    <div id="slash" class="slash article">
         <div class="row justify-content-md-center">
             <div class="col-md-8 text-center titleService">
                 {% if app.request.get('_route') == 'articles_edit' or app.request.get('_route') == 'articles_new' %}

@@ -1,5 +1,6 @@
 {% import _self as mainManuMacros %}
 {% import 'index/index.html.twig' as indexMacros %}
+{% import 'index/index.html.twig' as indexMacros %}
 {% macro printMainMenu(menu) %}
     {% for mainMenu in menu %}
         {% if ( app.request.get('_route') == mainMenu.url ) %}
@@ -44,12 +45,13 @@
     <div class="homeClass-row align-items-center">
         <div class="navbarToggler nav-item dropdown" id="dd">
             <div class="" id="dropdownMenuButton" data-boundary="dd" data-toggle="dropdown" aria-haspopup="true"
-                 aria-expanded="false" data-offset="-30,-939">
+                 aria-expanded="false" data-offset="-31,10">
                 <object type="image/svg+xml" data="/images/navBarIcon.svg">
                     <div id="internalText"></div>
                 </object>
             </div>
-                <div class="dropdown-menu">
+            <div class="dropdown-menu">
+                <div class="dropdown-overflow">
                     <div class="mainMenu">
                         <a href="/"><p>Главная</p></a>
                         {{ mainManuMacros.printMainMenu(menu) }}
@@ -77,9 +79,10 @@
                         {{ indexMacros.printFooterMenu() }}
                     </div>
                     <div class="dropButton">
-                        <a href="#" role="button">Связаться</a>
+                        {{ indexMacros.printFeedback() }}
                     </div>
                 </div>
+            </div>
         </div>
         <div class="home-content-main">
             {% if  (app.request.get('_route') == 'index_index') %}
@@ -131,21 +134,21 @@
 
 {% endblock %}
 {% block footer %}
-    <div class="container footerClass">
-        <div class="row justify-content-md-center">
-            <div class="col-md-8">
-                <div class="row">
-                    <div class="col-md-3 align-self-center">
+    <div class="footerClass">
+        <div class="footer-row justify-content-center">
+            <div class="footer-col">
+                <div class="footer-row footerHeight">
+                    <div class="text align-self-center">
                         <p>ООО "Ай кью Клаш"  УНП 192740628</p>
                     </div>
-                    <div class="col-md-3 align-self-center">
+                    <div class="text align-self-center">
                         <p>© 2019 Все права защищены</p>
                     </div>
-                    <div class="col-md-3 align-self-center">
+                    <div class="text align-self-center confiden">
                         <a href="#"><p>условия соглашения</p></a>
                     </div>
-                    <div class="col-md-3 align-self-center">
-                        <a href="#"><p class="rightClass">политика конфиденциальности</p></a>
+                    <div class="text align-self-center confiden">
+                        <a href="#"><p>политика конфиденциальности</p></a>
                     </div>
                 </div>
             </div>
