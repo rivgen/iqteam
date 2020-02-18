@@ -3,9 +3,9 @@
 {% block title %}Log in!{% endblock %}
 
 {% block body %}
-    <div class="container">
-        <div class="row justify-content-md-center">
-            <form class="col-md-8 form-signin" method="post">
+    <div class="login">
+        <div class="login-row justify-content-md-center">
+            <form class="login-col form-signin" method="post">
                 {% if error %}
                     <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
                 {% endif %}

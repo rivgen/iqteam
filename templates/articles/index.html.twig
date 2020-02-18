@@ -37,9 +37,9 @@
             </div>
         </div>
     </div>
-    <div class="container menuClass">
+    <div class="filterButton">
         <div class="slash-row justify-content-center">
-            <div id="btn-container" class="col-md-8 btnContainer">
+            <div id="btn-container" class="slash-col btnContainer">
                 <button class="btn filter-button active" data-filter="all">Все</button>
                 {% for category in categories %}
                     <button class="btn filter-button" data-filter={{ category.id }}>{{ category.title }}</button>
@@ -47,40 +47,68 @@
             </div>
         </div>
     </div>
-    <div class="container portfolio">
-        {% for article in articles %}
-            <div class="slash-row justify-content-center projects filter {{ article.category }}">
-                <div class="col-md-4">
-                    {% if images %}
-                        {% for image in images %}
-                            {% if image.article == article.id %}
-                                <img src="/images/articles/{{ article.id }}/{{ image.img }}" alt=""
-                                     class="embed-responsive"/>
-                            {% endif %}
-                        {% endfor %}
-                    {% endif %}
-                </div>
-                <div class="col-md-4 align-self-center">
-                    <a href={{ path('articles_show', {'id': article.id}) }}><h3>{{ article.title }}</h3></a>
-                    <p>{{ article.textPreview }}</p>
-                    {% for button in buttons %}
-                        {% if button.id == article.id %}
-                            <div class="title">
-                                <a href={{ button.url }} class="btn buttonProject" role="button">
-                                <span>
-                                        <object type="image/svg+xml" data="/images/batton/{{ button.icon }}">
-                                            Your browser does not support SVG
-                                        </object>
-                                            <span>{{ button.title }}</span></span></a>
-                            </div>
-                        {% endif %}
+    <div class="filterButton360vw">
+        <div class="slash-row justify-content-center rowCenter">
+            <div class="btn-group slash-col" id="cc">
+                <button id="button360vw" data-boundary="cc" class="btn active" data-filter="all" type="button"
+                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-offset="-15,0">Все
+                    <object id="downButton" type="image/svg+xml" data="/images/downBlack.svg">
+                        <div class="internalText"></div>
+                    </object>
+                </button>
+
+                <div class="dropdown-menu filterMenu">
+                    <button class="dropdown-item filter-button active" type="button" data-filter="all" value="Все">Все
+                    </button>
+                    {% for category in categories %}
+                        <button class="dropdown-item filter-button" type="button"
+                                data-filter={{ category.id }} value="{{ category.title }}">{{ category.title }}</button>
                     {% endfor %}
                 </div>
-                {% if is_granted('ROLE_CONTENT_MANAGER') %}
-                    <a href="{{ path('articles_edit', {'id': article.id}) }}">edit</a>
-                {% endif %}
             </div>
-        {% endfor %}
+        </div>
+    </div>
+    <div class="portfolio">
+        <div class="letter-E-row justify-content-center">
+            <div class="letter-E-col">
+                <div class="projects">
+                    {% for article in articles %}
+                        <div class="letter-E-row justify-content-center filter {{ article.category }}">
+                            <div class="blockImg">
+                                {% if images %}
+                                    {% for image in images %}
+                                        {% if image.article == article.id %}
+                                            <img src={{ uploaded_asset(article.id, image.img) }} alt=""
+                                                 class="embed-responsive"/>
+                                        {% endif %}
+                                    {% endfor %}
+                                {% endif %}
+                            </div>
+                            <div class="blockText align-self-center">
+                                <a href={{ path('articles_show', {'id': article.id}) }}><h3>{{ article.title }}</h3>
+                                </a>
+                                <p>{{ article.textPreview }}</p>
+                                {% for button in buttons %}
+                                    {% if button.id == article.id %}
+                                        <div class="buttonE">
+                                            <a href={{ button.url }} class="btn buttonProject" role="button">
+                                            <span>
+                                        <object type="image/svg+xml" data="/images/batton/{{ button.icon }}">
+                                            <div class="internalText"></div>
+                                        </object>
+                                            <span>{{ button.title }}</span></span></a>
+                                        </div>
+                                    {% endif %}
+                                {% endfor %}
+                            </div>
+                            {% if is_granted('ROLE_CONTENT_MANAGER') %}
+                                <a href="{{ path('articles_edit', {'id': article.id}) }}">edit</a>
+                            {% endif %}
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
     </div>
     {% if is_granted('ROLE_CONTENT_MANAGER') %}
         <a href="{{ path('articles_new') }}">Create new</a>

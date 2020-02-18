@@ -65,7 +65,7 @@ p {
   @include make-row();
 }
 
-.letter-I-content-make, .letter-Q-col, .slash-col, .letter-D-col, .letter-E-col, .letter-V-col, .footer-col {
+.letter-I-content-make, .letter-Q-col, .slash-col, .letter-D-col, .letter-E-col, .letter-V-col, .footer-col, .login-col, .register-col {
   @extend %content-main-col-xl-8-col-11;
 }
 
@@ -488,16 +488,20 @@ p {
   }
 }
 
-.letter-E .buttonE {
+.buttonE {
   padding-top: 15px;
 }
 
-.letter-E .projects, .portfolio .projects {
+.letter-E .projects {
   @include make-row();
   padding-top: calc(100vw/20);;
 }
 
-.letter-E .blockImg, .letter-E .blockText {
+.portfolio .projects {
+  @include make-row();
+}
+
+.letter-E .blockImg, .letter-E .blockText, .portfolio .blockImg, .portfolio .blockText {
   @include make-col-ready();
   @include media-breakpoint-up(md){
   @include make-col(6);
@@ -505,7 +509,7 @@ p {
   }
 }
 
-.letter-E .blockImg{
+.letter-E .blockImg, .portfolio .blockImg{
   @include media-breakpoint-down(xs){
     padding: 50px 0 30px;
   }
@@ -650,22 +654,65 @@ p {
   min-height: 100px;
 }
 
-.menuClass {
-  @extend %content-main-col-2;
-  position: relative;
-  height: 80vh;
+.portfolio{
+  @include make-container();
+}
+
+.menuClass{
   display: none;
-  @media (min-width: 1200px) {
+  @extend %content-main-col-2;
+  @include media-breakpoint-up(xl){
     display: block;
   }
 }
 
-.menuClass button {
+.filterButton{
+  display: none;
+  @include make-container();
+  @include media-breakpoint-up(sm){
+    display: block;
+  }
+}
+
+.menuClass, .filterButton {
+  position: relative;
+  height: 80px;
+  background: #fff;
+}
+
+.filterButton360vw{
+  @include make-container();
+  position: relative;
+  height: 60px;
+  display: none;
+  background: #fff;
+  margin-top: 580px;
+  z-index: 5;
+  @include media-breakpoint-down(xs){
+    display: block;
+  }
+}
+
+#button360vw {
+  text-align: left;
+  #downButton{
+    position: relative;
+    right: -85%;
+    z-index: -10;
+  }
+}
+
+.filterButton button, .menuClass button, #button360vw {
   font-size: 12px;
   line-height: 150%;
   letter-spacing: 0.1em;
   text-transform: uppercase;
-  width: 396px;
+  @include media-breakpoint-up(sm){
+    width: 28vw;
+  }
+  @include media-breakpoint-up(xl){
+    width: 21vw;
+  }
   position: relative;
   height: 100%;
 }
@@ -674,7 +721,10 @@ p {
   box-shadow: none;
 }
 
-.menuClass button:hover::after, .menuClass .active::after {
+.filterButton button:hover::after,
+.filterButton .active::after,
+.menuClass button:hover::after,
+.menuClass .active::after {
   content: '';
   border-bottom: 2px solid #3964F9;
   position: absolute;
@@ -683,7 +733,7 @@ p {
   width: 100%;
 }
 
-.menuClass .btnContainer {
+.filterButton .btnContainer, .menuClass .btnContainer {
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
@@ -702,7 +752,7 @@ p {
   text-transform: uppercase;
 }
 
-.menuClass p, .homeClass p, .homeClass a {
+.filterButton p, .menuClass p, .homeClass p, .homeClass a {
   font-size: 12px;
   line-height: 150%;
   letter-spacing: 0.1em;
@@ -710,7 +760,7 @@ p {
   margin: 0;
 }
 
-.menuClass .text {
+.filterButton .text, .menuClass .text {
   padding-top: 200px;
 }
 
@@ -809,7 +859,7 @@ a.logoSvg:after {
   left: 0;
 }
 
-.titlePortfolio{
+.titlePortfolio, .titleService{
   @include make-col-ready();
   @include make-col(12);
 }
@@ -1331,7 +1381,7 @@ textarea.form-control {
 
 }
 
-.dropdown-menu {
+.baseMenu{
   min-width: 17rem;
   border: none;
   box-shadow: 0px 10px 20px rgba(57, 100, 249, 0.1);
@@ -1341,25 +1391,25 @@ textarea.form-control {
   height: 80vh;
 }
 
-.dropdown-menu .dropdown-overflow{
+.baseMenu .dropdown-overflow{
   overflow: scroll;
   height: 100%;
 }
 
-.dropdown-menu .mainMenu .mainMenuSocial {
+.baseMenu .mainMenu .mainMenuSocial {
   margin: 30px;
 }
 
-.dropdown-menu .mainMenu p {
+.baseMenu .mainMenu p {
   margin: 30px;
 }
 
-.dropdown-menu .mainMenu object {
+.baseMenu .mainMenu object {
   max-width: 133px;
   max-height: 10px;
 }
 
-.dropdown-menu .mainMenu:after {
+.baseMenu .mainMenu:after {
   content: '';
   display: block;
   border: 1px solid #323232;
@@ -1384,4 +1434,24 @@ textarea.form-control {
   position: relative;
   top: 25%;
   left: 42%;
+}
+
+.rowCenter{
+  position: relative;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.filterMenu .filter-button{
+  font-size: 12px;
+  text-transform: uppercase;
+}
+
+.login, .register {
+  @include make-container();
+  padding-top: 150px;
+}
+
+.login-row, .register-row{
+  @include make-row()
 }

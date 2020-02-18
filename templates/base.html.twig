@@ -47,10 +47,10 @@
             <div class="" id="dropdownMenuButton" data-boundary="dd" data-toggle="dropdown" aria-haspopup="true"
                  aria-expanded="false" data-offset="-31,10">
                 <object type="image/svg+xml" data="/images/navBarIcon.svg">
-                    <div id="internalText"></div>
+                    <div class="internalText"></div>
                 </object>
             </div>
-            <div class="dropdown-menu">
+            <div class="dropdown-menu baseMenu">
                 <div class="dropdown-overflow">
                     <div class="mainMenu">
                         <a href="/"><p>Главная</p></a>
@@ -66,7 +66,7 @@
                         <p>info@iqdev.com</p>
                         <p>
                             <object type="image/svg+xml" data="/images/imgTel.svg">
-                                <div id="internalText"></div>
+                                <div class="internalText"></div>
                             </object>
                         </p>
                     </div>
@@ -87,12 +87,12 @@
         <div class="home-content-main">
             {% if  (app.request.get('_route') == 'index_index') %}
                 <object type="image/svg+xml" data="/images/logo.svg" class="embed-responsive logoHad">
-                    <div id="internalText"></div>
+                    <div class="internalText"></div>
                 </object>
             {% else %}
                 <a href="{{ path('index_index') }}" class="logoSvg">
                     <object type="image/svg+xml" data="/images/logo.svg">
-                        <div id="internalText"></div>
+                        <div class="internalText"></div>
                     </object>
                 </a>
             {% endif %}
@@ -111,7 +111,7 @@
                     {#</div>#}
                     {#<div class="col-md-1">#}
                     <object type="image/svg+xml" data="/images/imgTel.svg">
-                        <div id="internalText"></div>
+                        <div class="internalText"></div>
                     </object>
                 </div>
             </div>
