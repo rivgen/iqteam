@@ -61,7 +61,7 @@ p {
   }
 }
 
-.letter-I-row, .letter-Q-row, .slash-row, .letter-D-row, .letter-E-row, .letter-V-row, .footer-row {
+.letter-I-row, .letter-Q-row, .slash-row, .letter-D-row, .letter-E-row, .letter-V-row, .footer-row, .article-row {
   @include make-row();
 }
 
@@ -1016,6 +1016,10 @@ textarea.form-control {
   height: 150px;
 }
 
+.article {
+  @include make-container();
+}
+
 .article .icon img {
   border: 11px solid #FFFFFF;
   box-sizing: border-box;
@@ -1104,6 +1108,10 @@ textarea.form-control {
   padding: 3px 6px 4px 8px;
   position: relative;
   left: -40px;
+}
+
+.article .title {
+  margin-bottom: 15px;
 }
 
 .prevNext {

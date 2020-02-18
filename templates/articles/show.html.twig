@@ -30,9 +30,9 @@
     {% if app.request.get('_route') == 'articles_edit' or app.request.get('_route') == 'articles_new' %}
         {{ form_start(form) }}
     {% endif %}
-    <div id="slash" class="slash article">
-        <div class="row justify-content-md-center">
-            <div class="col-md-8 text-center titleService">
+    <div id="slash" class="slash intoPage">
+        <div class="slash-row">
+            <div class="text-center titlePortfolio">
                 {% if app.request.get('_route') == 'articles_edit' or app.request.get('_route') == 'articles_new' %}
                     {{ form_label(form.title) }}
                     <h1>{{ form_widget(form.title) }}</h1>
@@ -42,7 +42,9 @@
                 {% endif %}
             </div>
         </div>
-        <div class="row justify-content-md-center headArticle">
+    </div>
+    <div class="article">
+        <div class="article-row justify-content-center headArticle">
             <div class="col-md-1 icon">
                 {% if article.icon %}
                     <img src="{{ uploaded_asset(article.id, article.icon) }}"/>
@@ -203,7 +205,7 @@
                                     <a href={{ button.url }} class="btn buttonProject" role="button">
                                     <span>
                                         <object type="image/svg+xml" data="/images/batton/{{ button.icon }}">
-                                            Your browser does not support SVG
+                                             <div class="internalText"></div>
                                         </object>
                                             </span></a>
                                 </div>
