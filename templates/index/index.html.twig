@@ -111,18 +111,18 @@
         <div class="letter-Q-row justify-content-center">
             <div class="letter-Q-col">
                 <div class="letter-Q-row">
-                    <div class="title">
+                    <div class="title wow fadeInUp">
                         <h2>О нас</h2>
                     </div>
-                    <div class="text">
+                    <div class="text wow fadeInUp">
                         <p>IQ Dev – команда профессионалов, занимающаяся как разработкой собственных решений, так и
                             сторонних заказов.</p>
                     </div>
-                    <div class="text1">
+                    <div class="text1 wow fadeInUp">
                         <p>Нас отличает высокопрофессиональный подход к разработке и использование инновационных решений
                             для каждого клиента.</p>
                     </div>
-                    <div class="text2">
+                    <div class="text2 wow fadeInUp">
                         <p>Нас отличает высокопрофессиональный подход к разработке и использование инновационных решений
                             для каждого клиента.</p>
                     </div>
@@ -134,10 +134,10 @@
         <div class="slash-row justify-content-center">
             <div class="slash-col">
                 <div class="slash-row">
-                    <div class="title">
+                    <div class="title wow fadeInUp">
                         <h2>Экспертиза</h2>
                     </div>
-                    <div class="textBold">
+                    <div class="textBold wow fadeInUp">
                         <p>Мы ценим огромный опыт, который мы получили в ходе работы с каждым клиентом – ведь именно
                             наши клиенты дают нам экспертизу, которая позволяет создавать качественный продукт.</p>
                     </div>
@@ -150,7 +150,7 @@
                     {'img': '/images/slash/unity.svg', 'title': 'Создание Unity игр', 'text': 'Межплатформенная среда разработки, которая позволяет создавать кроссплатформенные  игры'},
                     ] %}
                     {% for slash in expertise %}
-                        <div class="block-col">
+                        <div class="block-col wow fadeInUp">
                             <div class="block">
                                 <div class="icon">
                                     <object type="image/svg+xml" data={{ slash.img }}>
@@ -174,14 +174,14 @@
         <div class="letter-D-row justify-content-center">
             <div class="letter-D-col">
                 <div class="letter-D-row">
-                    <div class="text-col">
+                    <div class="text-col wow fadeInUp">
                         <h2>Технологии</h2>
                         <p class="textBold">В повседневной работе мы используем трендовые технологии, те, которые
                             приносят ощутимый
                             результат (мы называем это словом value — «ценность»)
                             как для клиента, так и для собственной разработки.</p>
                     </div>
-                    <div class="block-col">
+                    <div class="block-col wow fadeInUp">
                         <div class="block">
                             {% set technologies = [
                             {'img': '/images/block_D/java.svg', 'title': 'Oracle Java Grails'},
@@ -215,24 +215,24 @@
         <div class="letter-E-row justify-content-center">
             <div class="letter-E-col">
                 <div class="letter-E-row">
-                    <div class="title">
+                    <div class="title wow fadeInUp">
                         <h2>Проекты</h2>
                     </div>
-                    <div class="textBold">
+                    <div class="textBold wow fadeInUp">
                         <span>Мы состоим в парке высоких технологий, одной из крупнейших заводей мирового IT-аутсорса, что
                             является показателем высокой технологичности нашей работы.</span>
                     </div>
-                    <div class="text">
+                    <div class="text wow fadeInUp">
                         <p>Мы оцениваем результаты нашей работы по конверсии и прибыли — красота нас интересует
                             постольку, поскольку она не мешает монетизации.</p>
                     </div>
-                    <div class="text">
+                    <div class="text wow fadeInUp">
                         <p>Поэтому, заказывая у нас, клиенты уверены, что получат эффективное решение, которое позволит
                             выйти их бизнесу на новый уровень.</p>
                     </div>
                     <div class="projects">
                         {% for article in articles %}
-                            <div class="blockImg">
+                            <div class="blockImg wow fadeInUp">
                                 {% if images %}
                                     {% for image in images %}
                                         {% if image.article == article.id %}
@@ -242,7 +242,7 @@
                                     {% endfor %}
                                 {% endif %}
                             </div>
-                            <div class="blockText align-self-center">
+                            <div class="blockText align-self-center wow fadeInUp">
                                 <a href={{ path('articles_show', {'id': article.id}) }}><h3>{{ article.title }}</h3></a>
                                 <p>{{ article.textPreview }}</p>
                                 {% for button in buttons %}
@@ -268,7 +268,7 @@
         <div class="letter-V-row justify-content-center">
             <div class="letter-V-col">
                 <div class="letter-V-row">
-                    <div class="blockContact">
+                    <div class="blockContact wow fadeInUp">
                         <h2>Контакты</h2>
                         <p class="textBold">Готовы начать свой следующий проект? Для обсуждения или сотрудничества
                             просто свяжитесь с
@@ -309,7 +309,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="mapContact embed-responsive">
+                    <div class="mapContact embed-responsive wow fadeInUp">
                         <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2351.603712230171!2d27.581945215991954!3d53.88547284189211!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x46dbce2d107b6c7f%3A0x21fe21a76ca5068c!2z0J_QsNGA0YLQuNC30LDQvdGB0LrQuNC5INC_0YDQvtGB0L8uIDQsINCc0LjQvdGB0Lo!5e0!3m2!1sru!2sby!4v1577083867310!5m2!1sru!2sby"
                                 width="100%" height="724" frameborder="0" style="border:0;" allowfullscreen=""></iframe>
                     </div>
