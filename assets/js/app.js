@@ -1,5 +1,6 @@
 import 'bootstrap';
 import 'jquery';
+import WOW from 'wow.js';
 import '../css/global.scss';
 // import React from 'react';
 // import ReactDOM from 'react-dom';
@@ -11,6 +12,8 @@ import $ from 'jquery';
 $(document).ready(function() {
     $('[data-toggle="popover"]').popover();
 });
+
+new WOW().init();
 
 import './filtr'
 import './internalText'

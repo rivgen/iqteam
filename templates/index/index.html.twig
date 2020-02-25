@@ -16,6 +16,13 @@
         </a>
     {% endfor %}
 {% endmacro %}
+{% block javascripts %}
+    {{ parent() }}
+    <script>
+        document.querySelectorAll('.hoverEffects').forEach(button =>
+            button.innerHTML = '<div><span>' + button.textContent.trim().split('').join('</span><span>') + '</span></div>');
+    </script>
+{% endblock %}
 {% block body %}
     {% set social = [
     {'img': '/images/block_V/telegram.svg', 'url': '#'},
@@ -54,13 +61,13 @@
                         <h2 class="title">IQ Dev</h2>
                         <p class="text">Подходим к решению любой задачи с интеллектом! Только качественные продукты и
                             уникальные решения!</p>
-                        {{ macros.printFeedback('btn btnBlue') }}
+                        {{ macros.printFeedback('btn btnBlue hoverEffects') }}
                     </div>
                     <div class="imgBlock">
                         <img src="/images/home_phones.png" alt="" class="embed-responsive"/>
                     </div>
                 </div>
-                <div class="letter-I-block">
+                <div class="letter-I-block wow fadeInUp">
                     {% set arr = [
                     {'img':'/images/block_I/games.svg', 'text':'Более 30 собственных игр'},
                     {'img':'/images/block_I/people.svg', 'text':'100% довольных клиентов'},
@@ -246,7 +253,7 @@
                                         <object type="image/svg+xml" data="/images/batton/{{ button.icon }}">
                                             <div class="internalText"></div>
                                         </object>
-                                            <span>{{ button.title }}</span></span></a>
+                                            <span class="hoverEffects">{{ button.title }}</span></span></a>
                                         </div>
                                     {% endif %}
                                 {% endfor %}
@@ -298,7 +305,7 @@
                                 </div>
                             </div>
                             <div class="textContact">
-                                {{ macros.printFeedback("btn btnBlue") }}
+                                {{ macros.printFeedback("btn btnBlue hoverEffects") }}
                             </div>
                         </div>
                     </div>

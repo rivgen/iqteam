@@ -1,5 +1,6 @@
 @import "custom";
 @import "~bootstrap/dist/css/bootstrap.min.css";
+@import "~animate.css";
 
 %content-main-col-2 {
   @include make-col-ready();
@@ -43,6 +44,13 @@ p {
   color: #323232;
 }
 
+a:hover{
+  text-decoration: none;
+}
+
+a p:hover {
+  color: #3964F9;
+}
 //.homeClass img{
 //  width: 100%;
 //}
@@ -79,6 +87,7 @@ p {
 }
 
 .letter-I .textBlock, .letter-I .imgBlock {
+  @include make-col-ready();
   @include media-breakpoint-up(sm) {
     @include make-col (6);
   }
@@ -173,184 +182,192 @@ p {
   }
 }
 
+.btnBlue div {
+  position: relative;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: max-content;
+}
+
 .letter-I-block {
-  @include make-row();
-  margin-top: 30px;
-  @include media-breakpoint-up(xl) {
-    margin-top: 100px;
-  }
+@include make-row();
+margin-top: 30px;
+@include media-breakpoint-up(xl) {
+margin-top: 100px;
+}
 }
 
 .letter-I-block .block, .slash .block {
-  background: #FFFFFF;
-  border-radius: 20px;
-  height: 100%;
-  box-shadow: 0px 10px 20px rgba(57, 100, 249, 0.1);
+background: #FFFFFF;
+border-radius: 20px;
+height: 100%;
+box-shadow: 0px 10px 20px rgba(57, 100, 249, 0.1);
 }
 
 .letter-I-block .block {
-  @include make-row();
-  margin: 0;
+@include make-row();
+margin: 0;
 }
 
 .block-col {
-  margin: 15px 0;
-  @include make-col-ready();
-  @include make-col(12);
-  @include media-breakpoint-up(md) {
-    @include make-col(6)
-  }
-  @include media-breakpoint-up(xl) {
-    @include make-col(3)
-  }
+margin: 15px 0;
+@include make-col-ready();
+@include make-col(12);
+@include media-breakpoint-up(md) {
+@include make-col(6)
+}
+@include media-breakpoint-up(xl) {
+@include make-col(3)
+}
 }
 
 .letter-I-block .block .icon {
-  margin: 40px;
-  @include media-breakpoint-down(sm) {
-    margin: auto 15px;
-    -webkit-transform: translateY(-25%);
-    -moz-transform: translateY(-25%);
-    -ms-transform: translateY(-25%);
-    -o-transform: translateY(-25%);
-    transform: translateY(-25%);
-    max-width: 40px;
-    max-height: 40px;
-  }
-  @include media-breakpoint-down(lg) {
-    @include make-col-ready();
-    @include make-col(6);
-    max-width: 54px;
-  }
-  max-width: 54px;
-  max-height: 54px;
+margin: 40px;
+@include media-breakpoint-down(sm) {
+margin: auto 15px;
+-webkit-transform: translateY(-25%);
+-moz-transform: translateY(-25%);
+-ms-transform: translateY(-25%);
+-o-transform: translateY(-25%);
+transform: translateY(-25%);
+max-width: 40px;
+max-height: 40px;
+}
+@include media-breakpoint-down(lg) {
+@include make-col-ready();
+@include make-col(6);
+max-width: 54px;
+}
+max-width: 54px;
+max-height: 54px;
 }
 
 .letter-I-block .block p {
-  padding: 0 40px 40px 40px;
-  font-weight: bold;
-  font-size: 18px;
-  @include media-breakpoint-down(lg) {
-    @include make-col-ready();
-    @include make-col(6);
-    padding: 40px;
-  }
-  @include media-breakpoint-down(xs) {
-    padding: 30px;
-  }
+padding: 0 40px 40px 40px;
+font-weight: bold;
+font-size: 18px;
+@include media-breakpoint-down(lg) {
+@include make-col-ready();
+@include make-col(6);
+padding: 40px;
+}
+@include media-breakpoint-down(xs) {
+padding: 30px;
+}
 }
 
 .letter-Q, .slash, .letter-D, .letter-E, .letter-V, .footerClass {
-  @include make-container();
-  background-repeat: no-repeat;
-  background-position: 50% calc(100vw / 21 + 20px);
-  background-size: contain;
-  @include media-breakpoint-up(xl) {
-    background-position: 50% 100px;
-  }
-  @include media-breakpoint-up(md) {
-    background-size: auto;
-  }
+@include make-container();
+background-repeat: no-repeat;
+background-position: 50% calc(100vw / 21 + 20px);
+background-size: contain;
+@include media-breakpoint-up(xl) {
+background-position: 50% 100px;
+}
+@include media-breakpoint-up(md) {
+background-size: auto;
+}
 
-  //padding: 30px 50px;
+//padding: 30px 50px;
 }
 
 .letter-Q {
-  background-image: url(/images/block_Q/letter_Q.svg);
-  height: auto;
-  //background-size: contain;
-  display: flex;
-  align-items: center;
-  @include media-breakpoint-up(sm) {
-    height: 800px;
-  }
+background-image: url(/images/block_Q/letter_Q.svg);
+height: auto;
+//background-size: contain;
+display: flex;
+align-items: center;
+@include media-breakpoint-up(sm) {
+height: 800px;
+}
 }
 
 .letter-Q .title {
-  @include make-col-ready();
-  @include make-col(12)
+@include make-col-ready();
+@include make-col(12)
 }
 
 .letter-Q .text {
-  font-weight: bold;
-  font-size: 20px;
-  line-height: 150%;
-  color: #323232;
-  @include make-col-ready();
-  @include make-col(12);
-  @include media-breakpoint-up(lg) {
-    @include make-col(6);
-  }
+font-weight: bold;
+font-size: 20px;
+line-height: 150%;
+color: #323232;
+@include make-col-ready();
+@include make-col(12);
+@include media-breakpoint-up(lg) {
+@include make-col(6);
+}
 }
 
 .letter-Q .text1, .letter-Q .text2 {
-  font-size: 12px;
-  line-height: 200%;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: #323232;
-  @include make-col-ready();
-  @include make-col(12);
-  @include media-breakpoint-up(sm) {
-    @include make-col(6);
-  }
-  @include media-breakpoint-up(lg) {
-    @include make-col(3);
-  }
+font-size: 12px;
+line-height: 200%;
+letter-spacing: 0.1em;
+text-transform: uppercase;
+color: #323232;
+@include make-col-ready();
+@include make-col(12);
+@include media-breakpoint-up(sm) {
+@include make-col(6);
+}
+@include media-breakpoint-up(lg) {
+@include make-col(3);
+}
 
 }
 
 .textBold {
-  font-weight: bold;
-  font-size: 24px;
-  line-height: 150%;
+font-weight: bold;
+font-size: 24px;
+line-height: 150%;
 
 }
 
 .slash {
-  background-image: url(/images/slash/slash.svg);
+background-image: url(/images/slash/slash.svg);
 }
 
 .slash .title, .slash .textBold {
-  @include make-col-ready();
-  @include make-col(12)
+@include make-col-ready();
+@include make-col(12)
 }
 
 .slash .block-col {
-  @include make-col-ready();
-  @include make-col(12);
-  @include media-breakpoint-up(sm) {
-    @include make-col(6)
-  }
+@include make-col-ready();
+@include make-col(12);
+@include media-breakpoint-up(sm) {
+@include make-col(6)
+}
 }
 
 .letter-Q h2, .slash h2, .letter-D h2, .letter-D .block, .letter-E h2, .letter-V h2, .letter-V .mapContact, .portfolio h2 {
-  margin-top: 60px;
-  padding-bottom: 20px;
-  font-size: calc(3rem + 15 * (100vw - 620px) / 880)
+margin-top: 60px;
+padding-bottom: 20px;
+font-size: calc(3rem + 15 * (100vw - 620px) / 880)
 }
 
 .slash .textBold {
-  padding-bottom: 100px;
+padding-bottom: 100px;
 }
 
 .slash.intoPage{
-  background-size: calc(100vw/4);
-  background-position: 50% 60%;
-  padding-top: 90px;
-  padding-bottom: 15px;
-  @include media-breakpoint-up(md) {
-    padding-top: calc(100vw/10);
-    padding-bottom: 55px;
-  }
+background-size: calc(100vw/4);
+background-position: 50% 60%;
+padding-top: 90px;
+padding-bottom: 15px;
+@include media-breakpoint-up(md) {
+padding-top: calc(100vw/10);
+padding-bottom: 55px;
+}
 
-  //background-size: auto;
+//background-size: auto;
 }
 
 .slash .block {
-  @include make-row();
-  margin: 0 0 30px 0;
-  padding: 30px;
+@include make-row();
+margin: 0 0 30px 0;
+padding: 30px;
 }
 
 //.slash .block .icon {
@@ -361,544 +378,548 @@ p {
 //}
 
 .slash .block .title {
-  font-weight: bold;
-  font-size: 18px;
-  line-height: 150%;
-  margin: auto 0;
-  color: #323232;
-  @include make-col-ready();
-  @include make-col(8);
-  padding-left: 40px;
+font-weight: bold;
+font-size: 18px;
+line-height: 150%;
+margin: auto 0;
+color: #323232;
+@include make-col-ready();
+@include make-col(8);
+padding-left: 40px;
 }
 
 .slash .block .icon {
-  @include make-col-ready();
-  @include make-col(2);
-  transform: translate(-31%, -2%);
-  max-width: 50px;
-  max-height: 50px;
+@include make-col-ready();
+@include make-col(2);
+transform: translate(-31%, -2%);
+max-width: 50px;
+max-height: 50px;
 }
 
 .slash .text {
-  @include make-col-ready();
-  @include make-col(12);
-  padding: 0;
-  font-size: 12px;
-  line-height: 200%;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: #323232;
+@include make-col-ready();
+@include make-col(12);
+padding: 0;
+font-size: 12px;
+line-height: 200%;
+letter-spacing: 0.1em;
+text-transform: uppercase;
+color: #323232;
 }
 
 .letter-D {
-  background-image: url(/images/block_D/letter_D.svg);
-  background-color: white;
+background-image: url(/images/block_D/letter_D.svg);
+background-color: white;
 }
 
 .letter-D .text-col, .letter-D .block-col {
-  @include make-col-ready();
-  @include media-breakpoint-up(md) {
-    @include make-col(6)
-  }
+@include make-col-ready();
+@include media-breakpoint-up(md) {
+@include make-col(6)
+}
 }
 
 .letter-D .title {
-  font-size: 12px;
-  line-height: 200%;
-  text-align: center;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: #323232;
-  max-width: 105px;
-  margin: 0 auto;
-  padding-bottom: 30px;
+font-size: 12px;
+line-height: 200%;
+text-align: center;
+letter-spacing: 0.1em;
+text-transform: uppercase;
+color: #323232;
+max-width: 105px;
+margin: 0 auto;
+padding-bottom: 30px;
 }
 
 .letter-D .block {
-  @include make-row()
+@include make-row()
 }
 
 .letter-D .block .icon-col {
-  .icon {
-    position: relative;
-    height: 130px;
-    object {
-      position: absolute;
-      left: 50%;
-      transform: translateX(-50%);
-    }
-  ;
-  }
-  @include make-col-ready();
-  @include make-col(6);
-  @include media-breakpoint-up(sm) {
-    @include make-col(3);
-  }
-  @include media-breakpoint-up(md) {
-    @include make-col(4);
-  }
+.icon {
+position: relative;
+height: 130px;
+object {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+}
+;
+}
+@include make-col-ready();
+@include make-col(6);
+@include media-breakpoint-up(sm) {
+@include make-col(3);
+}
+@include media-breakpoint-up(md) {
+@include make-col(4);
+}
 }
 
 .letter-E p, .portfolio p {
-  font-size: 12px;
-  line-height: 200%;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
+font-size: 12px;
+line-height: 200%;
+letter-spacing: 0.1em;
+text-transform: uppercase;
 }
 
 .letter-E {
-  background-image: url(/images/block_E/letter_E.svg);
+background-image: url(/images/block_E/letter_E.svg);
 }
 
 .letter-E .textBold {
-  @include make-col-ready();
-  @include make-col(12);
-  @include media-breakpoint-up(md) {
-    @include make-col(6);
-  }
-  @include media-breakpoint-down(sm){
-    margin-bottom: 27px;
-  }
+@include make-col-ready();
+@include make-col(12);
+@include media-breakpoint-up(md) {
+@include make-col(6);
+}
+@include media-breakpoint-down(sm){
+margin-bottom: 27px;
+}
 }
 
 .letter-E .title {
-  @include make-col-ready();
-  @include make-col(12);
+@include make-col-ready();
+@include make-col(12);
 }
 
 .letter-E .text {
-  @include make-col-ready();
-  @include make-col(12);
-  @include media-breakpoint-up(sm) {
-    @include make-col(6);
-  }
-  @include media-breakpoint-up(md) {
-    @include make-col(3);
-  }
+@include make-col-ready();
+@include make-col(12);
+@include media-breakpoint-up(sm) {
+@include make-col(6);
+}
+@include media-breakpoint-up(md) {
+@include make-col(3);
+}
 }
 
 .letter-E .textBold, .letter-V .textBold {
-  font-size: 21px;
-  padding-right: 86px;
+font-size: 21px;
+padding-right: 86px;
 }
 
 .letter-V .textBold{
-  @include media-breakpoint-down(lg){
-    display: none;
-  }
+@include media-breakpoint-down(lg){
+display: none;
+}
 }
 
 .buttonE {
-  padding-top: 15px;
+padding-top: 15px;
 }
 
 .letter-E .projects {
-  @include make-row();
-  padding-top: calc(100vw/20);;
+@include make-row();
+padding-top: calc(100vw/20);;
 }
 
 .portfolio .projects {
-  @include make-row();
+@include make-row();
 }
 
 .letter-E .blockImg, .letter-E .blockText, .portfolio .blockImg, .portfolio .blockText {
-  @include make-col-ready();
-  @include media-breakpoint-up(md){
-  @include make-col(6);
-  padding-top: 60px;
-  }
+@include make-col-ready();
+@include media-breakpoint-up(md){
+@include make-col(6);
+padding-top: 60px;
+}
 }
 
 .letter-E .blockImg, .portfolio .blockImg{
-  @include media-breakpoint-down(xs){
-    padding: 50px 0 30px;
-  }
+@include media-breakpoint-down(xs){
+padding: 50px 0 30px;
+}
 }
 
 .letter-E .projects img, .portfolio .projects img {
-  @include media-breakpoint-down(xs) {
-    position: relative;
-  }
-  @include media-breakpoint-up(sm) {
-    margin: 25px 0;
-    border: 15px solid #fff;
-    border-radius: 20px;
-    box-shadow: 0px 10px 20px rgba(57, 100, 249, 0.1);
-  }
+@include media-breakpoint-down(xs) {
+position: relative;
+}
+@include media-breakpoint-up(sm) {
+margin: 25px 0;
+border: 15px solid #fff;
+border-radius: 20px;
+box-shadow: 0px 10px 20px rgba(57, 100, 249, 0.1);
+}
 }
 
 .letter-E h3, .portfolio h3 {
-  font-family: Archivo, sans-serif;
-  font-weight: bold;
-  font-size: 18px;
-  line-height: 150%;
-  display: flex;
-  align-items: center;
-  color: #323232;
-  padding-bottom: 30px;
+font-family: Archivo, sans-serif;
+font-weight: bold;
+font-size: 18px;
+line-height: 150%;
+display: flex;
+align-items: center;
+color: #323232;
+padding-bottom: 30px;
 }
 
 .buttonProject {
-  width: 223px;
-  height: 50px;
-  color: white;
-  background: #3964F9;
-  border-radius: 5px;
-  box-shadow: 0px 10px 20px rgba(57, 100, 249, 0.3);
-  font-size: 12px;
-  line-height: 150%;
-  display: flex;
-  align-items: center;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
+width: 223px;
+height: 50px;
+color: white;
+background: #3964F9;
+border-radius: 5px;
+box-shadow: 0px 10px 20px rgba(57, 100, 249, 0.3);
+font-size: 12px;
+line-height: 150%;
+display: flex;
+align-items: center;
+letter-spacing: 0.1em;
+text-transform: uppercase;
+  &:hover{
+    color: #fff;
+  }
 }
 
 .article .buttonProject {
-  width: 100%;
-  display: grid;
+width: 100%;
+display: grid;
 }
 
 .letter-E .buttonProject span, .portfolio .buttonProject span {
-  margin: auto;
-  display: flex;
-  align-items: center;
+margin: auto;
+display: flex;
+align-items: center;
+  line-height: 100%;
 }
 
 .letter-E .buttonProject object, .portfolio .buttonProject object {
-  margin-right: 10px;
+margin-right: 10px;
 }
 
 .letter-V {
-  background-image: url(/images/block_V/letter_V.svg);
-  background-color: white;
+background-image: url(/images/block_V/letter_V.svg);
+background-color: white;
 }
 
 .letter-V h4 {
-  font-size: 12px;
-  line-height: 200%;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: #323232;
-  padding-top: 40px;
+font-size: 12px;
+line-height: 200%;
+letter-spacing: 0.1em;
+text-transform: uppercase;
+color: #323232;
+padding-top: 40px;
 }
 
 .letter-V p {
-  font-family: Archivo, sans-serif;
-  font-weight: bold;
-  font-size: 18px;
-  line-height: 150%;
-  padding-top: 18px;
+font-family: Archivo, sans-serif;
+font-weight: bold;
+font-size: 18px;
+line-height: 150%;
+padding-top: 18px;
 }
 
 .letter-V .blockContact, .letter-V .mapContact{
-  @include make-col-ready();
-  @include make-col(12);
-  @include media-breakpoint-up(md){
-    @include make-col(6);
-    margin-bottom: 100px;
+@include make-col-ready();
+@include make-col(12);
+@include media-breakpoint-up(md){
+@include make-col(6);
+margin-bottom: 100px;
 
-  }
+}
 }
 
 .letter-V .mapContact{
-  @include media-breakpoint-down(sm){
-    padding: 0;
-  }
-  @include media-breakpoint-up(md) {
-    overflow: unset;
-  }
+@include media-breakpoint-down(sm){
+padding: 0;
+}
+@include media-breakpoint-up(md) {
+overflow: unset;
+}
 }
 
 .letter-V .mapContact iframe{
-  @include media-breakpoint-down(sm) {
-    position: inherit;
-    height: 50vh;
-  }
-  @include media-breakpoint-up(md) {
-    position: absolute;
-    left: 25px;
-    width: calc(50vw - 25px);
-  }
+@include media-breakpoint-down(sm) {
+position: inherit;
+height: 50vh;
+}
+@include media-breakpoint-up(md) {
+position: absolute;
+left: 25px;
+width: calc(50vw - 25px);
+}
 }
 
 .letter-V .blockContact .textContact{
-  @include make-col-ready();
-  @include make-col(12);
-  @include media-breakpoint-up(sm){
-    @include make-col(6)
-  }
+@include make-col-ready();
+@include make-col(12);
+@include media-breakpoint-up(sm){
+@include make-col(6)
+}
 }
 
 .footerClass {
-  background-color: white;
+background-color: white;
 }
 
 .footerClass .text {
-  @include make-col-ready();
-  @include make-col(12);
-  @include media-breakpoint-up(sm){
-    @include make-col(6);
-  }
-  @include media-breakpoint-up(md) {
-    @include make-col(3);
-  }
+@include make-col-ready();
+@include make-col(12);
+@include media-breakpoint-up(sm){
+@include make-col(6);
+}
+@include media-breakpoint-up(md) {
+@include make-col(3);
+}
 }
 
 .footerClass .confiden {
-  @include media-breakpoint-down(xs){
-    display: none;
-  }
+@include media-breakpoint-down(xs){
+display: none;
+}
 }
 
 .footerHeight{
-  min-height: 100px;
+min-height: 100px;
 }
 
 .portfolio{
-  @include make-container();
+@include make-container();
 }
 
 .menuClass{
-  display: none;
-  @extend %content-main-col-2;
-  @include media-breakpoint-up(xl){
-    display: block;
-  }
+display: none;
+@extend %content-main-col-2;
+@include media-breakpoint-up(xl){
+display: block;
+}
 }
 
 .filterButton{
-  display: none;
-  @include make-container();
-  @include media-breakpoint-up(sm){
-    display: block;
-  }
+display: none;
+@include make-container();
+@include media-breakpoint-up(sm){
+display: block;
+}
 }
 
 .menuClass, .filterButton {
-  position: relative;
-  height: 80px;
-  background: #fff;
+position: relative;
+height: 80px;
+background: #fff;
 }
 
 .filterButton360vw{
-  @include make-container();
-  position: relative;
-  height: 60px;
-  display: none;
-  background: #fff;
-  margin-top: 580px;
-  z-index: 5;
-  @include media-breakpoint-down(xs){
-    display: block;
-  }
+@include make-container();
+position: relative;
+height: 60px;
+display: none;
+background: #fff;
+margin-top: 580px;
+z-index: 5;
+@include media-breakpoint-down(xs){
+display: block;
+}
 }
 
 #button360vw {
-  text-align: left;
-  #downButton{
-    position: relative;
-    right: -85%;
-    z-index: -10;
-  }
+text-align: left;
+#downButton{
+position: relative;
+right: -85%;
+z-index: -10;
+}
 }
 
 .filterButton button, .menuClass button, #button360vw {
-  font-size: 12px;
-  line-height: 150%;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  @include media-breakpoint-up(sm){
-    width: 28vw;
-  }
-  @include media-breakpoint-up(xl){
-    width: 21vw;
-  }
-  position: relative;
-  height: 100%;
+font-size: 12px;
+line-height: 150%;
+letter-spacing: 0.1em;
+text-transform: uppercase;
+@include media-breakpoint-up(sm){
+width: 28vw;
+}
+@include media-breakpoint-up(xl){
+width: 21vw;
+}
+position: relative;
+height: 100%;
 }
 
 .btn:focus {
-  box-shadow: none;
+box-shadow: none;
 }
 
 .filterButton button:hover::after,
 .filterButton .active::after,
 .menuClass button:hover::after,
 .menuClass .active::after {
-  content: '';
-  border-bottom: 2px solid #3964F9;
-  position: absolute;
-  bottom: -1px;
-  left: 0;
-  width: 100%;
+content: '';
+border-bottom: 2px solid #3964F9;
+position: absolute;
+bottom: -1px;
+left: 0;
+width: 100%;
 }
 
 .filterButton .btnContainer, .menuClass .btnContainer {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  height: 100%;
+position: absolute;
+top: 50%;
+transform: translateY(-50%);
+height: 100%;
 }
 
 .letter-V object {
-  padding-top: 20px;
-  padding-right: 30px;
+padding-top: 20px;
+padding-right: 30px;
 }
 
 .footerClass p {
-  font-size: 12px;
-  line-height: 200%;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
+font-size: 12px;
+line-height: 200%;
+letter-spacing: 0.1em;
+text-transform: uppercase;
 }
 
 .filterButton p, .menuClass p, .homeClass p, .homeClass a {
-  font-size: 12px;
-  line-height: 150%;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  margin: 0;
+font-size: 12px;
+line-height: 150%;
+letter-spacing: 0.1em;
+text-transform: uppercase;
+margin: 0;
 }
 
 .filterButton .text, .menuClass .text {
-  padding-top: 200px;
+padding-top: 200px;
 }
 
 .homeClass {
-  @include make-container ();
-  .homeClass-row {
-    min-height: 63px;
-  }
-  box-shadow: 0px 10px 20px rgba(57, 100, 249, 0.1);
-  margin-bottom: 47px;
-  @include media-breakpoint-down(lg){
-    position: fixed;
-    z-index: 10;
-    background: #fff;
-  }
-  @include media-breakpoint-up(xl) {
-    .homeClass-row {
-      min-height: 150px;
-    }
-    box-shadow: none;
-    margin-bottom: 0;
-    position: absolute;
-    z-index: 10;
-  }
+@include make-container ();
+.homeClass-row {
+min-height: 63px;
+}
+box-shadow: 0px 10px 20px rgba(57, 100, 249, 0.1);
+margin-bottom: 47px;
+@include media-breakpoint-down(lg){
+position: fixed;
+z-index: 10;
+background: #fff;
+}
+@include media-breakpoint-up(xl) {
+.homeClass-row {
+  min-height: 150px;
+}
+box-shadow: none;
+margin-bottom: 0;
+position: absolute;
+z-index: 10;
+}
 
 }
 
 .homeClass-row {
-  @include make-row();
-  margin: 0 15px;
+@include make-row();
+margin: 0 15px;
 }
 
 .home-content-main {
-  @include make-col-ready();
-  //@include media-breakpoint-up(md) {
-  @include make-col(8);
-  //}
-  @include media-breakpoint-up(xl) {
-    @include make-col(2);
-  }
+@include make-col-ready();
+//@include media-breakpoint-up(md) {
+@include make-col(8);
+//}
+@include media-breakpoint-up(xl) {
+@include make-col(2);
+}
 }
 
 .localeRight a {
-  text-align: right;
+text-align: right;
 }
 
 .letter-V .social{
-  display: flex;
-  padding-top: 10px;
+display: flex;
+padding-top: 10px;
 }
 
 .letter-V .social a {
-  margin-right: 20px;
-  //position: relative;
-  //top: 10px;
-  display: block;
-  width: 50px;
-  height: 50px;
+margin-right: 20px;
+//position: relative;
+//top: 10px;
+display: block;
+width: 50px;
+height: 50px;
 }
 
 .letter-V .social a:hover {
-  text-decoration: none;
+text-decoration: none;
 }
 
 .menuFlex {
-  display: flex;
-  align-items: center;
+display: flex;
+align-items: center;
 
 }
 
 .inLeft {
-  justify-content: flex-start;
-  @extend %content-main-col-xl-3-col-12;
+justify-content: flex-start;
+@extend %content-main-col-xl-3-col-12;
 }
 
 .inRight {
-  justify-content: flex-end;
-  @extend %content-main-col-xl-3-col-12;
+justify-content: flex-end;
+@extend %content-main-col-xl-3-col-12;
 }
 
 .menuFlex p {
-  padding-right: 50px;
+padding-right: 50px;
 }
 
 a.logoSvg {
-  position: relative;
-  display: inline-block;
+position: relative;
+display: inline-block;
 }
 
 a.logoSvg:after {
-  content: "";
-  position: absolute;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
+content: "";
+position: absolute;
+top: 0;
+right: 0;
+bottom: 0;
+left: 0;
 }
 
 .titlePortfolio, .titleService{
-  @include make-col-ready();
-  @include make-col(12);
+@include make-col-ready();
+@include make-col(12);
 }
 
 .titleService h1, .titlePortfolio h1 {
-  font-weight: bold;
-  font-size: calc(3rem + 40 * (100vw - 520px) / 880);
-  line-height: 130%;
-  color: #3964F9;
+font-weight: bold;
+font-size: calc(3rem + 40 * (100vw - 520px) / 880);
+line-height: 130%;
+color: #3964F9;
 }
 
 .blockService h2 {
-  font-weight: bold;
-  font-size: 24px;
-  line-height: 150%;
-  color: #323232;
-  margin-top: 7px;
-  margin-left: 20px;
+font-weight: bold;
+font-size: 24px;
+line-height: 150%;
+color: #323232;
+margin-top: 7px;
+margin-left: 20px;
 }
 
 .blockService {
-  margin-top: 140px;
+margin-top: 140px;
 }
 
 .blockService .content .serviceText p {
-  font-style: normal;
-  font-weight: 500;
-  font-size: 18px;
-  line-height: 150%;
-  color: #323232;
-  padding: 0;
+font-style: normal;
+font-weight: 500;
+font-size: 18px;
+line-height: 150%;
+color: #323232;
+padding: 0;
 }
 
 .blockService .content .serviceText li {
-  list-style-type: none;
+list-style-type: none;
 }
 
 .blockService .content .serviceText ul {
-  margin-left: 0; /* Отступ слева в браузере IE и Opera */
+margin-left: 0; /* Отступ слева в браузере IE и Opera */
   padding-left: 0; /* Отступ слева в браузере Firefox, Safari, Chrome */
   font-weight: normal;
   font-size: 12px;
@@ -1462,4 +1483,51 @@ textarea.form-control {
 
 .login-row, .register-row{
   @include make-row()
+}
+
+.hoverEffects {
+  --text: #fff;
+  --font-size: 16px;
+  --duration: .44s;
+  --move-hover: -4px;
+  //--shadow: 0 2px 8px -1px #{rgba(#275efe, .32)};
+  //--shadow-hover: 0 4px 20px -2px #{rgba(#275efe, .5)};
+  --font-shadow: var(--font-size);
+  transform: translateY(var(--y));
+  transition: transform var(--duration) ease, box-shadow var(--duration) ease;
+  div {
+    display: flex;
+    overflow: hidden;
+    text-shadow: 0 var(--font-shadow) 0 var(--text);
+    span {
+      display: block;
+      backface-visibility: hidden;
+      font-style: normal;
+      transition: transform var(--duration) ease;
+      transform: translateY(var(--m));
+      $i: 1;
+      @while $i < 15 {
+        &:nth-child(#{$i}) {
+          transition-delay: $i / 20 + s;
+        }
+        $i: $i + 1;
+      }
+    }
+  }
+  &:hover {
+    --y: var(--move-hover);
+    --shadow: var(--shadow-hover);
+    span {
+      --m: calc(var(--font-size) * -1);
+    }
+    color: #fff;
+  }
+  &.reverse {
+    --font-shadow: calc(var(--font-size) * -1);
+    &:hover {
+      span {
+        --m: calc(var(--font-size));
+      }
+    }
+  }
 }
