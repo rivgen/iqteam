@@ -1,0 +1,70 @@
+%transformButtonUp {
+  --move-hover: -6px;
+  --duration: .44s;
+  transform: translateY(var(--y));
+  transition: transform var(--duration) ease, box-shadow var(--duration) ease;
+  box-shadow: var(--shadow);
+  &:hover{
+    --y: var(--move-hover);
+    --shadow: var(--shadow-hover);
+  }
+}
+
+.hoverEffects {
+  --text: #fff;
+  --font-size: 16px;
+  --duration: .44s;
+  --move-hover: -4px;
+  //--shadow: 0 2px 8px -1px #{rgba(#275efe, .32)};
+  //--shadow-hover: 0 4px 20px -2px #{rgba(#275efe, .5)};
+  --font-shadow: var(--font-size);
+  //transform: translateY(var(--y));
+  transition: transform var(--duration) ease, box-shadow var(--duration) ease;
+  div {
+    display: flex;
+    overflow: hidden;
+    text-shadow: 0 var(--font-shadow) 0 var(--text);
+    span {
+      display: block;
+      backface-visibility: hidden;
+      font-style: normal;
+      transition: transform var(--duration) ease;
+      transform: translateY(var(--m));
+      $i: 1;
+      @while $i < 15 {
+        &:nth-child(#{$i}) {
+          transition-delay: $i / 80 + s;
+        }
+        $i: $i + 1;
+      }
+    }
+  }
+  &:hover {
+    span {
+      --m: calc(var(--font-size) * -1);
+    }
+    color: #fff;
+  }
+  &.reverse {
+    --font-shadow: calc(var(--font-size) * -1);
+    &:hover {
+      span {
+        --m: calc(var(--font-size));
+      }
+    }
+  }
+}
+
+.socialBlock {
+  .socialButton{
+    --shadow: 0px 10px 20px rgba(57, 100, 249, 0.1);
+    --shadow-hover: 0px 10px 20px rgba(57, 100, 249, 0.2);
+    @extend %transformButtonUp;
+  }
+}
+
+.btnBlue, .buttonProject {
+  --shadow: 0px 10px 20px rgba(57, 100, 249, 0.3);
+  --shadow-hover: 0px 12px 20px rgba(57, 100, 249, 0.4);
+  @extend %transformButtonUp;
+}

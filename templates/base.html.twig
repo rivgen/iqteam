@@ -1,6 +1,5 @@
 {% import _self as mainManuMacros %}
 {% import 'index/index.html.twig' as indexMacros %}
-{% import 'index/index.html.twig' as indexMacros %}
 {% macro printMainMenu(menu) %}
     {% for mainMenu in menu %}
         {% if ( app.request.get('_route') == mainMenu.url ) %}
@@ -65,7 +64,7 @@
                         <p>220036</p>
                         <p>info@iqdev.com</p>
                         <p>
-                            <object type="image/svg+xml" data="/images/imgTel.svg">
+                            <object class="emailImg" type="image/svg+xml" data="/images/imgTel.svg">
                                 <div class="internalText"></div>
                             </object>
                         </p>

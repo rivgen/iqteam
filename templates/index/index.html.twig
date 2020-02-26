@@ -9,10 +9,11 @@
 {% macro printSocialBlock(social) %}
     {% for block_soc in social %}
         <a href={{ block_soc.url }} target="_blank" rel="noreferrer" class="socialButton">
-            <img src={{ block_soc.img }} alt=""/>
-            {#<object type="image/svg+xml" data={{ block_V.img }}>#}
-            {#Your browser does not support SVG#}
-            {#</object>#}
+            <div class="svgObj">
+                <object type="image/svg+xml" data={{ block_soc.img }}>
+                    <div class="internalText"></div>
+                </object>
+            </div>
         </a>
     {% endfor %}
 {% endmacro %}
@@ -20,7 +21,7 @@
     {{ parent() }}
     <script>
         document.querySelectorAll('.hoverEffects').forEach(button =>
-            button.innerHTML = '<div><span>' + button.textContent.trim().split('').join('</span><span>') + '</span></div>');
+            button.innerHTML = '<div><span>' + button.textContent.trim().split('').join('</span><span>').replace('<span>_', "<span class='lineInvisible'>_") + '</span></div>');
     </script>
 {% endblock %}
 {% block body %}
@@ -94,7 +95,10 @@
                 </div>
                 <div class="downButton">
                     <a href='#' class="">
-                        <img src="/images/down.svg" alt=""/>
+                        {#<img src="/images/down.svg" alt=""/>#}
+                        <object type="image/svg+xml" data="/images/down.svg">
+                            <div class="internalText"></div>
+                        </object>
                     </a>
                 </div>
             </div>
@@ -248,12 +252,13 @@
                                 {% for button in buttons %}
                                     {% if button.id == article.id %}
                                         <div class="buttonE">
-                                            <a href={{ button.url }} class="btn buttonProject" role="button" target="_blank" rel="noreferrer">
+                                            <a href={{ button.url }} class="btn buttonProject" role="button"
+                                            target="_blank" rel="noreferrer">
                                             <span>
                                         <object type="image/svg+xml" data="/images/batton/{{ button.icon }}">
                                             <div class="internalText"></div>
                                         </object>
-                                            <span class="hoverEffects">{{ button.title }}</span></span></a>
+                                            <span class="hoverEffects">{{ button.title|replace({' ': '_'}) }}</span></span></a>
                                         </div>
                                     {% endif %}
                                 {% endfor %}
@@ -281,7 +286,7 @@
                             <div class="textContact">
                                 <h4>пишите</h4>
                                 {#<object type="image/svg+xml" data="/images/imgEmailContact.svg">#}
-                                    {#<div id="internalText"></div>#}
+                                {#<div id="internalText"></div>#}
                                 {#</object>#}
                                 <p>info@iqdev.com</p>
                             </div>
@@ -294,14 +299,14 @@
                             <div class="textContact">
                                 <h4>ищите в соцсетях</h4>
                                 <div class="social">
-                                {% for block_V in social %}
-                                    <a href={{ block_V.url }} target="_blank" rel="noreferrer">
-                                        <img src={{ block_V.img }} alt=""/>
-                                        {#<object type="image/svg+xml" data={{ block_V.img }}>#}
-                                        {#Your browser does not support SVG#}
-                                        {#</object>#}
-                                    </a>
-                                {% endfor %}
+                                    {% for block_V in social %}
+                                        <a href={{ block_V.url }} target="_blank" rel="noreferrer">
+                                            <img src={{ block_V.img }} alt=""/>
+                                            {#<object type="image/svg+xml" data={{ block_V.img }}>#}
+                                            {#Your browser does not support SVG#}
+                                            {#</object>#}
+                                        </a>
+                                    {% endfor %}
                                 </div>
                             </div>
                             <div class="textContact">
