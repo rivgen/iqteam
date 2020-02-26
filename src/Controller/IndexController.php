@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\Articles;
 use App\Entity\ButtonArticles;
 use App\Entity\ImgArticles;
+use App\Form\ContactType;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -24,11 +25,18 @@ class IndexController extends AbstractController
         $articles = $articlesRepository->articlesInCategory();
         $button = $buttonArticlesRepository -> buttonInArticle();
         $images = $imgArticlesRepository->imageInArticle();
+        $url = $this->generateUrl('mail_index');
+        $form = $this->createForm(ContactType::class,null,[
+            // To set the action use $this->generateUrl('route_identifier')
+            'action' => $url,
+            'method' => 'POST'
+        ]);
 
         return $this->render('index/index.html.twig', [
             'articles' => $articles,
             'buttons' => $button,
-            'images' => $images
+            'images' => $images,
+            'formContact' => $form->createView()
         ]);
     }
 

@@ -24,12 +24,6 @@ class ContactType extends AbstractType
                     ],
                 ]
             )
-            ->add('subject', TextType::class, [
-                'attr' => ['placeholder' => 'Тема', 'class' => 'form-control'],
-                'constraints' => [
-                    new NotBlank(["message" => "Пожалуйста, напишите тему сообщения"]),
-                ],
-            ])
             ->add('email', EmailType::class, [
                 'attr' => ['placeholder' => 'Ваш email', 'class' => 'form-control'],
                 'constraints' => [

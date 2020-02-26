@@ -4,7 +4,7 @@
     <p>издатель и разработчик мобильных и браузерных игр</p>
 {% endmacro %}
 {% macro printFeedback(class) %}
-    <a class="{{ class }}" href="#" role="button">Связаться</a>
+    <button class="{{ class }}" role="button" data-toggle="modal" data-target="#exampleModal">Связаться</button>
 {% endmacro %}
 {% macro printSocialBlock(social) %}
     {% for block_soc in social %}
@@ -17,13 +17,6 @@
         </a>
     {% endfor %}
 {% endmacro %}
-{% block javascripts %}
-    {{ parent() }}
-    <script>
-        document.querySelectorAll('.hoverEffects').forEach(button =>
-            button.innerHTML = '<div><span>' + button.textContent.trim().split('').join('</span><span>').replace('<span>_', "<span class='lineInvisible'>_") + '</span></div>');
-    </script>
-{% endblock %}
 {% block body %}
     {% set social = [
     {'img': '/images/block_V/telegram.svg', 'url': '#'},
