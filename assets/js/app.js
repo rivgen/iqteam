@@ -17,6 +17,7 @@ new WOW().init();
 
 import './filtr'
 import './internalText'
+import './dropMenu'
 
 // class App extends React.Component {
 //     render() {

@@ -1,15 +1,24 @@
 {% import _self as mainManuMacros %}
 {% import 'index/index.html.twig' as indexMacros %}
-{% macro printMainMenu(menu) %}
+{% macro printMainMenu() %}
+    {% set menu = [
+    {'title': 'Услуги', 'url': 'service_index' },
+    {'title': 'Портфолио', 'url': 'articles_index'},
+    {'title': 'контакты', 'url': 'contact_index'},
+    ] %}
     {% for mainMenu in menu %}
         {% if ( app.request.get('_route') == mainMenu.url ) %}
-            <p>{{ mainMenu.title }}</p>
+            <p class="activeMenu">{{ mainMenu.title }}</p>
         {% else %}
             <a href="{{ path(mainMenu.url) }}"><p>{{ mainMenu.title }}</p></a>
         {% endif %}
     {% endfor %}
     {% if is_granted('ROLE_CONTENT_MANAGER') %}
-        <a href="{{ path('admin_user') }}"><p>Admin Users</p></a>
+        <a href="{{ path('admin_user') }}"><p
+                    {% if ( app.request.get('_route') in ['user_show', 'user_edit', 'user_new', 'admin_user'] ) %}
+                        class="activeMenu"
+                    {% endif %}
+            >Admin Users</p></a>
     {% endif %}
 {% endmacro %}
 {% macro printLogo() %}
@@ -25,11 +34,6 @@
         </a>
     {% endif %}
 {% endmacro %}
-{% set menu = [
-{'title': 'Услуги', 'url': 'service_index' },
-{'title': 'Портфолио', 'url': 'articles_index'},
-{'title': 'контакты', 'url': 'contact_index'},
-] %}
 <!DOCTYPE html>
 <html lang="{{ app.request.locale }}">
 <head>
@@ -66,7 +70,7 @@
             <div class="row justify-content-between align-items-center">
                 <div class="menuFlex inLeft">
                     {#{{  dump(app.request.get('_route')) }}#}
-                    {{ mainManuMacros.printMainMenu(menu) }}
+                    {{ mainManuMacros.printMainMenu() }}
                 </div>
                 <div class="menuFlex inRight">
                     {#<object type="image/svg+xml" data="/images/imgEmail.svg">#}
@@ -83,13 +87,13 @@
         </div>
         <div class="homeLocale">
             <div class="homeLocale-row align-items-center justify-content-end">
-                {% for locale in locales() %}
-                    <div class="locale" {% if app.request.locale == locale.code %}aria-checked="true" class="active"
-                         {% else %}aria-checked="false"{% endif %} role="menuitem">
-                        <a href="{{ path(app.request.get('_route', 'index_index'), app.request.get('_route_params', [])|merge({_locale: locale.code})) }}">
-                            <small>{{ locale.code[0:2] }}</small>
-                        </a></div>
-                {% endfor %}
+                {#{% for locale in locales() %}#}
+                    {#<div class="locale" {% if app.request.locale == locale.code %}aria-checked="true" class="active"#}
+                         {#{% else %}aria-checked="false"{% endif %} role="menuitem">#}
+                        {#<a href="{{ path(app.request.get('_route', 'index_index'), app.request.get('_route_params', [])|merge({_locale: locale.code})) }}">#}
+                            {#<p>{{ locale.code[0:2] }}</p>#}
+                        {#</a></div>#}
+                {#{% endfor %}#}
             </div>
         </div>
     </div>
@@ -173,7 +177,7 @@
                 </div>
                 <div class="mainMenu">
                     <a href="/"><p>Главная</p></a>
-                    {{ mainManuMacros.printMainMenu(menu) }}
+                    {{ mainManuMacros.printMainMenu() }}
                 </div>
                 <div class="mainMenu">
                     <a href="#"><p>условия соглашения</p></a>
@@ -215,32 +219,6 @@
 
 {% block javascripts %}
     {{ encore_entry_script_tags('app') }}
-    <script>
-        dropdownMenu()
-        function dropdownMenu() {
-            let dropdown = document.querySelector('#dropdownMenuButton')
-            let baseMenu = document.querySelector('#menuBase')
-            dropdown.addEventListener('click', dropdownMenu);
-            function dropdownMenu() {
-                baseMenu.querySelector('.baseMenu').classList.add('slideInLeft')
-                baseMenu.querySelector('.baseMenu').classList.remove('slideOutLeft')
-                baseMenu.style.display = "block"
-            }
-
-            window.onclick = function (event) {
-                if (event.target == document.querySelector('#menuBase')) {
-                    console.log(event.target)
-                    let baseMenuNone = baseMenu
-                    baseMenu.querySelector('.baseMenu').classList.add('slideOutLeft')
-                    baseMenu.querySelector('.baseMenu').classList.remove('slideInLeft')
-                    setTimeout(function () {
-                        baseMenuNone.style.display = "none"
-                    }, 1500)
-                }
-            }
-        }
-
-    </script>
 {% endblock %}
 </body>
 </html>

@@ -855,7 +855,22 @@ a p:hover {
 .menuFlex {
   display: flex;
   align-items: center;
-
+  p {
+    padding-right: 50px;
+  }
+  .activeMenu{
+    color: #3964F9;
+    position: relative;
+    &:after{
+      content: '';
+      width: 30%;
+      height: 1px;
+      border-bottom: 3px solid #3964F9;
+      position: absolute;
+      bottom: -15px;
+      left: 0;
+    }
+  }
 }
 
 .inLeft {
@@ -866,10 +881,6 @@ a p:hover {
 .inRight {
   justify-content: flex-end;
   @extend %content-main-col-xl-3-col-12;
-}
-
-.menuFlex p {
-  padding-right: 50px;
 }
 
 a.logoSvg {
@@ -1489,6 +1500,10 @@ textarea.form-control {
       position: relative;
       left: 50%;
       transform: translate(-50%,25%);
+    }
+    .activeMenu{
+      color: #3964F9;
+      position: relative;
     }
   }
 }
