@@ -6,7 +6,14 @@
 {% macro printFeedback(class) %}
     <button class="{{ class }}" role="button" data-toggle="modal" data-target="#exampleModal">Связаться</button>
 {% endmacro %}
-{% macro printSocialBlock(social) %}
+{% macro printSocialBlock() %}
+    {% set social = [
+    {'img': '/images/block_V/telegram.svg', 'url': '#'},
+    {'img': '/images/block_V/vk.svg', 'url': 'https://vk.com/iq_dev'},
+    {'img': '/images/block_V/facebook.svg', 'url': '#'},
+    {'img': '/images/block_V/twitter.svg', 'url': '#'},
+    {'img': '/images/block_V/instagram.svg', 'url': 'https://www.instagram.com/iq_dev_by/'},
+    ] %}
     {% for block_soc in social %}
         <a href={{ block_soc.url }} target="_blank" rel="noreferrer" class="socialButton">
             <div class="svgObj">
@@ -84,7 +91,7 @@
             </div>
             <div class="socialBlockHeight">
                 <div class="socialBlock">
-                    {{ macros.printSocialBlock(social) }}
+                    {{ macros.printSocialBlock() }}
                 </div>
                 <div class="downButton">
                     <a href='#' class="">

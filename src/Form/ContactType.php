@@ -18,22 +18,31 @@ class ContactType extends AbstractType
     {
         $builder
             ->add('name', TextType::class, [
-                    'attr' => ['placeholder' => 'Ваше имя', 'class' => 'form-control'],
+                    'attr' => [
+//                        'placeholder' => 'Ваше имя',
+                        'class' => 'form-control'],
+                    'label' => 'Ваше имя',
                     'constraints' => [
                         new NotBlank(["message" => "Пожалуйста, укажите ваше имя"])
                     ],
                 ]
             )
             ->add('email', EmailType::class, [
-                'attr' => ['placeholder' => 'Ваш email', 'class' => 'form-control'],
+                'attr' => [
+//                    'placeholder' => 'Ваш email',
+                    'class' => 'form-control'],
+                'label' => 'e-mail',
                 'constraints' => [
                     new NotBlank(["message" => "Пожалуйста, предоставьте действительный адрес электронной почты"]),
                     new Email(["message" => "Ваш адрес электронной почты не является действительным"]),
                 ]
             ])
             ->add('message', TextareaType::class, [
-                'attr' => ['placeholder' => 'Ваше сообщение', 'class' => 'form-control'],
-                'constraints' =>[
+                'attr' => [
+//                    'placeholder' => 'Ваше сообщение',
+                    'class' => 'form-control'],
+                'label' => 'сообщение',
+                'constraints' => [
                     new NotBlank(["message" => "Пожалуйста, оставьте сообщение здесь"]),
                 ]
             ]);

@@ -12,14 +12,32 @@
         <a href="{{ path('admin_user') }}"><p>Admin Users</p></a>
     {% endif %}
 {% endmacro %}
+{% macro printLogo() %}
+    {% if  (app.request.get('_route') == 'index_index') %}
+        <object type="image/svg+xml" data="/images/logo.svg" class="embed-responsive logoHad">
+            <div class="internalText"></div>
+        </object>
+    {% else %}
+        <a href="{{ path('index_index') }}" class="logoSvg">
+            <object type="image/svg+xml" data="/images/logo.svg">
+                <div class="internalText"></div>
+            </object>
+        </a>
+    {% endif %}
+{% endmacro %}
+{% set menu = [
+{'title': 'Услуги', 'url': 'service_index' },
+{'title': 'Портфолио', 'url': 'articles_index'},
+{'title': 'контакты', 'url': 'contact_index'},
+] %}
 <!DOCTYPE html>
 <html lang="{{ app.request.locale }}">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0, minimum-scale=1.0">
-    <link rel="icon" type="image/png" href="favicon.png">
-    <link rel="mask-icon" href="icon.svg" color="blue">
-    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <link rel="icon" type="image/png" href="/favicon.png">
+    <link rel="mask-icon" href="/icon.svg" color="blue">
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg">
     <title>{% block title %}Welcome!{% endblock %}</title>
     <script
             src="https://code.jquery.com/jquery-3.4.1.min.js"
@@ -32,72 +50,17 @@
 <body {% if (app.request.get('_route') == 'index_index') %}class="white-backgraund"{% endif %}>
 <div id="home" class="homeClass">
     {% block header %}
-    {% set menu = [
-    {'title': 'Услуги', 'url': 'service_index' },
-    {'title': 'Портфолио', 'url': 'articles_index'},
-    {'title': 'контакты', 'url': 'contact_index'},
-    ] %}
-    {% set social = [
-    {'img': '/images/block_V/telegram.svg', 'url': '#'},
-    {'img': '/images/block_V/vk.svg', 'url': 'https://vk.com/iq_dev'},
-    {'img': '/images/block_V/facebook.svg', 'url': '#'},
-    {'img': '/images/block_V/twitter.svg', 'url': '#'},
-    {'img': '/images/block_V/instagram.svg', 'url': 'https://www.instagram.com/iq_dev_by/'},
-    ] %}
+
     <div class="homeClass-row align-items-center">
-        <div class="navbarToggler nav-item dropdown" id="dd">
-            <div class="" id="dropdownMenuButton" data-boundary="dd" data-toggle="dropdown" aria-haspopup="true"
-                 aria-expanded="false" data-offset="-31,10">
+        <div class="navbarToggler nav-item dropdown">
+            <div class="" id="dropdownMenuButton">
                 <object type="image/svg+xml" data="/images/navBarIcon.svg">
                     <div class="internalText"></div>
                 </object>
             </div>
-            <div class="dropdown-menu baseMenu">
-                <div class="dropdown-overflow">
-                    <div class="mainMenu">
-                        <a href="/"><p>Главная</p></a>
-                        {{ mainManuMacros.printMainMenu(menu) }}
-                    </div>
-                    <div class="mainMenu">
-                        <a href="#"><p>условия соглашения</p></a>
-                        <a href="#"><p class="rightClass">политика конфиденциальности</p></a>
-                    </div>
-                    <div class="mainMenu">
-                        <p>Минск, Республика Беларусь, пр. Партизанский 4</p>
-                        <p>220036</p>
-                        <p>info@iqdev.com</p>
-                        <p>
-                            <object class="emailImg" type="image/svg+xml" data="/images/imgTel.svg">
-                                <div class="internalText"></div>
-                            </object>
-                        </p>
-                    </div>
-                    <div class="mainMenu">
-                        <div class="mainMenuSocial">
-                            {{ indexMacros.printSocialBlock(social) }}
-                        </div>
-                    </div>
-                    <div class="mainMenu">
-                        {{ indexMacros.printFooterMenu() }}
-                    </div>
-                    <div class="dropButton">
-                        {{ indexMacros.printFeedback() }}
-                    </div>
-                </div>
-            </div>
         </div>
         <div class="home-content-main">
-            {% if  (app.request.get('_route') == 'index_index') %}
-                <object type="image/svg+xml" data="/images/logo.svg" class="embed-responsive logoHad">
-                    <div class="internalText"></div>
-                </object>
-            {% else %}
-                <a href="{{ path('index_index') }}" class="logoSvg">
-                    <object type="image/svg+xml" data="/images/logo.svg">
-                        <div class="internalText"></div>
-                    </object>
-                </a>
-            {% endif %}
+            {{ mainManuMacros.printLogo() }}
         </div>
         <div class="hadMenu">
             <div class="row justify-content-between align-items-center">
@@ -131,6 +94,7 @@
         </div>
     </div>
 </div>
+
 {% endblock %}
 {% block body %}
 
@@ -161,24 +125,26 @@
          aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Обратная связь</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
+
                 {% if formContact is defined %}
                     {{ form_start(formContact) }}
                     <div class="modal-body">
-                        <div class="form-group">
+                        <h5 class="modal-col-12 modal-title" id="exampleModalLabel">Напишите нам</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                        <div class="modal-col-6 form-group">
+                            {{ form_label(formContact.name) }}
                             {{ form_widget(formContact.name) }}
                             {{ form_errors(formContact.name) }}
                         </div>
-                        <div class="form-group">
+                        <div class="modal-col-6 form-group">
+                            {{ form_label(formContact.email) }}
                             {{ form_widget(formContact.email) }}
                             {{ form_errors(formContact.email) }}
                         </div>
-                        <div class="form-group">
+                        <div class="modal-col-12 form-group">
+                            {{ form_label(formContact.message) }}
                             {{ form_widget(formContact.message) }}
                             {{ form_errors(formContact.message) }}
                         </div>
@@ -186,15 +152,57 @@
                             {{ form_rest(formContact) }}
                         </div>
                         {#<input type="submit" value="Submit">#}
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">{% trans %}сloseWindow{% endtrans %}</button>
-                        <button type="submit" class="btn btn-primary" value="Submit">{% trans %}sendMessage{% endtrans %}</button>
+                        <div class="modal-col-12">
+                            <button class="btn buttonProject hoverEffects" role="button">
+                                Отправить_запрос
+                            </button>
+                        </div>
                     </div>
                     {{ form_end(formContact) }}
                 {% endif %}
             </div>
         </div>
+    </div>
+    {#end modal#}
+    <div id="menuBase" style="display: none">
+        {#dropdown-menu#}
+        <div class="baseMenu animated">
+            <div class="dropdown-overflow">
+                <div class="mainMenu">
+                    {{ mainManuMacros.printLogo() }}
+                </div>
+                <div class="mainMenu">
+                    <a href="/"><p>Главная</p></a>
+                    {{ mainManuMacros.printMainMenu(menu) }}
+                </div>
+                <div class="mainMenu">
+                    <a href="#"><p>условия соглашения</p></a>
+                    <a href="#"><p class="rightClass">политика конфиденциальности</p></a>
+                </div>
+                <div class="mainMenu">
+                    <p>Минск, Республика Беларусь, пр. Партизанский 4</p>
+                    <p>220036</p>
+                    <p>info@iqdev.com</p>
+                    <p>
+                        <object class="emailImg" type="image/svg+xml" data="/images/imgTel.svg">
+                            <div class="internalText"></div>
+                        </object>
+                    </p>
+                </div>
+                <div class="mainMenu">
+                    <div class="mainMenuSocial">
+                        {{ indexMacros.printSocialBlock() }}
+                    </div>
+                </div>
+                <div class="mainMenu endMenu">
+                    {{ indexMacros.printFooterMenu() }}
+                </div>
+                <div class="dropButton">
+                    {{ indexMacros.printFeedback('btn btnBlue') }}
+                </div>
+            </div>
+        </div>
+        {#end dropdown-menu#}
     </div>
 {% endblock %}
 {#{% block sidebar %}#}
@@ -207,6 +215,32 @@
 
 {% block javascripts %}
     {{ encore_entry_script_tags('app') }}
+    <script>
+        dropdownMenu()
+        function dropdownMenu() {
+            let dropdown = document.querySelector('#dropdownMenuButton')
+            let baseMenu = document.querySelector('#menuBase')
+            dropdown.addEventListener('click', dropdownMenu);
+            function dropdownMenu() {
+                baseMenu.querySelector('.baseMenu').classList.add('slideInLeft')
+                baseMenu.querySelector('.baseMenu').classList.remove('slideOutLeft')
+                baseMenu.style.display = "block"
+            }
+
+            window.onclick = function (event) {
+                if (event.target == document.querySelector('#menuBase')) {
+                    console.log(event.target)
+                    let baseMenuNone = baseMenu
+                    baseMenu.querySelector('.baseMenu').classList.add('slideOutLeft')
+                    baseMenu.querySelector('.baseMenu').classList.remove('slideInLeft')
+                    setTimeout(function () {
+                        baseMenuNone.style.display = "none"
+                    }, 1500)
+                }
+            }
+        }
+
+    </script>
 {% endblock %}
 </body>
 </html>
