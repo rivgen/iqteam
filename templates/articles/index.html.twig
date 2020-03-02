@@ -10,104 +10,145 @@
             </div>
         </div>
     </div>
-    <div class="map">
-        {#<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2351.603712230171!2d27.581945215991954!3d53.88547284189211!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x46dbce2d107b6c7f%3A0x21fe21a76ca5068c!2z0J_QsNGA0YLQuNC30LDQvdGB0LrQuNC5INC_0YDQvtGB0L8uIDQsINCc0LjQvdGB0Lo!5e0!3m2!1sru!2sby!4v1577083867310!5m2!1sru!2sby"#}
-        {#width="100%" height="724" frameborder="0" style="border:0;" allowfullscreen=""></iframe>#}
-        <img src="/images/mapPortfolio.png" class="imgMap"/>
-        <div class="mapBlock">
-            <div class="slash-row justify-content-center">
-                <div class="slash-col">
-                    <div class="mapInfo">
-                        <p class="titleInfo"><span>35</span></p>
-                        <p class="textInfo">Проектов</p>
-                    </div>
-                </div>
-                <div class="slash-col">
-                    <div class="mapInfo">
-                        <p class="titleInfo"><span>1</span> млн</p>
-                        <p class="textInfo">Пользователей</p>
-                    </div>
-                </div>
-                <div class="slash-col">
-                    <div class="mapInfo">
-                        <p class="titleInfo"><span>2</span> млн</p>
-                        <p class="textInfo">Загрузок</p>
-                    </div>
-                </div>
+    {#<div class="map">#}
+    {#<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2351.603712230171!2d27.581945215991954!3d53.88547284189211!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x46dbce2d107b6c7f%3A0x21fe21a76ca5068c!2z0J_QsNGA0YLQuNC30LDQvdGB0LrQuNC5INC_0YDQvtGB0L8uIDQsINCc0LjQvdGB0Lo!5e0!3m2!1sru!2sby!4v1577083867310!5m2!1sru!2sby"#}
+    {#width="100%" height="724" frameborder="0" style="border:0;" allowfullscreen=""></iframe>#}
+    {#<img src="/images/mapPortfolio.png" class="imgMap"/>#}
+    {#<div class="mapBlock">#}
+    {#<div class="slash-row justify-content-center">#}
+    {#<div class="slash-col">#}
+    {#<div class="mapInfo">#}
+    {#<p class="titleInfo"><span>35</span></p>#}
+    {#<p class="textInfo">Проектов</p>#}
+    {#</div>#}
+    {#</div>#}
+    {#<div class="slash-col">#}
+    {#<div class="mapInfo">#}
+    {#<p class="titleInfo"><span>1</span> млн</p>#}
+    {#<p class="textInfo">Пользователей</p>#}
+    {#</div>#}
+    {#</div>#}
+    {#<div class="slash-col">#}
+    {#<div class="mapInfo">#}
+    {#<p class="titleInfo"><span>2</span> млн</p>#}
+    {#<p class="textInfo">Загрузок</p>#}
+    {#</div>#}
+    {#</div>#}
+    {#</div>#}
+    {#</div>#}
+    {#</div>#}
+    <div class="infoPortfolio">
+        <div class="infoPortfolio-row justify-content-center">
+            <div class="infoPortfolio-col">
+                <object class="img1" type="image/svg+xml" data="/images/35.svg">
+                    <div class="internalText"></div>
+                </object>
+                <p class="textInfo1">Проектов</p>
+            </div>
+            <div class="infoPortfolio-col">
+                <object class="img2" type="image/svg+xml" data="/images/1mln.svg">
+                    <div class="internalText"></div>
+                </object>
+                <p class="textInfo2">Пользователей</p>
+            </div>
+            <div class="infoPortfolio-col">
+                <object class="img3" type="image/svg+xml" data="/images/2mln.svg">
+                    <div class="internalText"></div>
+                </object>
+                <p class="textInfo3">Загрузок</p>
             </div>
         </div>
     </div>
     <div class="filterButton">
-        <div class="slash-row justify-content-center">
-            <div id="btn-container" class="slash-col btnContainer">
-                <button class="btn filter-button active" data-filter="all">Все</button>
-                {% for category in categories %}
-                    <button class="btn filter-button" data-filter={{ category.id }}>{{ category.title }}</button>
-                {% endfor %}
-            </div>
+        <div class="filterButton-row">
+            <button class="btn filter-button active" data-filter="all">Все</button>
+            {% for category in categories %}
+                <button class="btn filter-button" data-filter={{ category.id }}>{{ category.title }}</button>
+            {% endfor %}
         </div>
     </div>
     <div class="filterButton360vw">
-        <div class="slash-row justify-content-center rowCenter">
-            <div class="btn-group slash-col" id="cc">
-                <button id="button360vw" data-boundary="cc" class="btn active" data-filter="all" type="button"
-                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-offset="-15,0">Все
-                    <object id="downButton" type="image/svg+xml" data="/images/downBlack.svg">
-                        <div class="internalText"></div>
-                    </object>
+        <div class="btn-group filterButton-row">
+            <button id="button360vw" class="btn active" type="button">Все
+                <object id="downButton" type="image/svg+xml" data="/images/downBlack.svg">
+                    <div class="internalText"></div>
+                </object>
+            </button>
+        </div>
+        {#modal#}
+        <div id="fixedBackground" style="display: none"></div>
+        <div id="filterMenu" style="display: none">
+            <div class="filterMenu animated">
+                <button class="filter-button active" type="button" data-filter="all" value="Все<object id='downButton' type='image/svg+xml' data='/images/downBlack.svg'>
+                <div class='internalText'></div>
+                </object>">Все
                 </button>
-
-                <div class="dropdown-menu filterMenu">
-                    <button class="dropdown-item filter-button active" type="button" data-filter="all" value="Все">Все
-                    </button>
-                    {% for category in categories %}
-                        <button class="dropdown-item filter-button" type="button"
-                                data-filter={{ category.id }} value="{{ category.title }}">{{ category.title }}</button>
-                    {% endfor %}
-                </div>
+                {% for category in categories %}
+                    <button class="filter-button" type="button"
+                            data-filter={{ category.id }} value="{{ category.title }}<object id='downButton'
+                            type='image/svg+xml' data='/images/downBlack.svg'>
+                        <div class='internalText'></div>
+                        </object>">{{ category.title }}</button>
+                {% endfor %}
             </div>
         </div>
+        {#end modal#}
     </div>
     <div class="portfolio">
-        <div class="letter-E-row justify-content-center">
-            <div class="letter-E-col">
-                <div class="projects">
-                    {% for article in articles %}
-                        <div class="letter-E-row justify-content-center filter {{ article.category }}">
-                            <div class="blockImg">
-                                {% if images %}
-                                    {% for image in images %}
-                                        {% if image.article == article.id %}
-                                            <img src={{ uploaded_asset(article.id, image.img) }} alt=""
-                                                 class="embed-responsive"/>
-                                        {% endif %}
-                                    {% endfor %}
+        <div class="projects">
+            {% for article in articles %}
+                <div class="projects-col filter {{ article.category }}">
+                    {#<div class="blockImg">#}
+                        {#{% if images %}#}
+                            {#{% for image in images %}#}
+                                {#{% if image.article == article.id %}#}
+                                    {#<img src={{ uploaded_asset(article.id, image.img) }} alt=""#}
+                                         {#class="embed-responsive"/>#}
+                                {#{% endif %}#}
+                            {#{% endfor %}#}
+                        {#{% endif %}#}
+                    {#</div>#}
+                    <figure class="effect-zoe blockImg">
+                        {% if images %}
+                            {% for image in images %}
+                                {% if image.article == article.id %}
+                                    <img src={{ uploaded_asset(article.id, image.img) }} alt=""
+                                         class="embed-responsive"/>
                                 {% endif %}
-                            </div>
-                            <div class="blockText align-self-center">
-                                <a href={{ path('articles_show', {'id': article.id}) }}><h3>{{ article.title }}</h3>
-                                </a>
-                                <p>{{ article.textPreview }}</p>
-                                {% for button in buttons %}
-                                    {% if button.id == article.id %}
-                                        <div class="buttonE">
-                                            <a href={{ button.url }} class="btn buttonProject" role="button">
-                                            <span>
+                            {% endfor %}
+                        {% endif %}
+                        <figcaption>
+                            {#<h2>Creative <span>Zoe</span></h2>#}
+                            <p class="icon-links">
+                                <a href="#"><span class="icon-heart"></span></a>
+                                <a href="#"><span class="icon-eye"></span></a>
+                                <a href="#"><span class="icon-paper-clip"></span></a>
+                            </p>
+                            {#<p class="description">Zoe never had the patience of her sisters. She deliberately punched the bear in his face.</p>#}
+                        </figcaption>
+                    </figure>
+                    <div class="blockText align-self-center">
+                        <a href={{ path('articles_show', {'id': article.id}) }}><h3>{{ article.title }}</h3>
+                        </a>
+                        <p>{{ article.textPreview }}</p>
+                        {% for button in buttons %}
+                            {% if button.id == article.id %}
+                                <div class="buttonE">
+                                    <a href={{ button.url }} class="btn buttonProject" role="button">
+                                    <span>
                                         <object type="image/svg+xml" data="/images/batton/{{ button.icon }}">
                                             <div class="internalText"></div>
                                         </object>
                                             <span>{{ button.title }}</span></span></a>
-                                        </div>
-                                    {% endif %}
-                                {% endfor %}
-                            </div>
-                            {% if is_granted('ROLE_CONTENT_MANAGER') %}
-                                <a href="{{ path('articles_edit', {'id': article.id}) }}">edit</a>
+                                </div>
                             {% endif %}
-                        </div>
-                    {% endfor %}
+                        {% endfor %}
+                    </div>
+                    {% if is_granted('ROLE_CONTENT_MANAGER') %}
+                        <a href="{{ path('articles_edit', {'id': article.id}) }}">edit</a>
+                    {% endif %}
                 </div>
-            </div>
+            {% endfor %}
         </div>
     </div>
     {% if is_granted('ROLE_CONTENT_MANAGER') %}

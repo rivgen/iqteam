@@ -1,4 +1,5 @@
 @import "custom";
+@import "effeclZoe.css";
 @import "~bootstrap/dist/css/bootstrap.min.css";
 @import "~animate.css";
 
@@ -79,7 +80,7 @@ a p:hover {
   @include make-row();
 }
 
-.letter-I-content-make, .letter-Q-col, .slash-col, .letter-D-col, .letter-E-col, .letter-V-col, .footer-col, .login-col, .register-col {
+.letter-I-content-make, .letter-Q-col, .letter-D-col, .slash-col, .letter-E-col, .letter-V-col, .footer-col, .login-col, .register-col {
   @extend %content-main-col-xl-8-col-11;
 }
 
@@ -449,7 +450,7 @@ a p:hover {
   }
 }
 
-.letter-E p, .portfolio p {
+.letter-E p {
   font-size: 12px;
   line-height: 200%;
   letter-spacing: 0.1em;
@@ -507,11 +508,65 @@ a p:hover {
   padding-top: calc(100vw / 20);;
 }
 
-.portfolio .projects {
-  @include make-row();
+.portfolio {
+  max-width: 1200px;
+  @include make-container();
+  //@include media-breakpoint-up(xl){
+  //  padding: 0;
+  //}
+  .projects {
+    @include make-row();
+    .projects-col {
+      @include make-col-ready();
+      @include media-breakpoint-up(sm) {
+        @include make-col(6);
+      }
+    }
+    .blockImg {
+      --width: 100%;
+      width: var(--width);
+      height: auto;
+      @include media-breakpoint-up(sm) {
+        --width: 46.5vw;
+        height: calc(var(--width) * 0.75);
+      }
+      @include media-breakpoint-up(xl) {
+        --width: 570px;
+      }
+      img {
+        height: 100%;
+        width: 100%;
+        object-fit: cover;
+        object-position: 50% 50%;
+      }
+    }
+    .blockText {
+      padding-top: 20px;
+      p {
+        font-size: 12px;
+        //line-height: 200%;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        overflow: hidden;
+        height: 75px;
+        width: 100%;
+        line-height: 25px;
+      }
+      h3 {
+        font-family: Archivo, sans-serif;
+        font-weight: bold;
+        font-size: 18px;
+        line-height: 150%;
+        display: flex;
+        align-items: center;
+        color: #323232;
+        padding-bottom: 5px;
+      }
+    }
+  }
 }
 
-.letter-E .blockImg, .letter-E .blockText, .portfolio .blockImg, .portfolio .blockText {
+.letter-E .blockImg, .letter-E .blockText {
   @include make-col-ready();
   @include media-breakpoint-up(md) {
     @include make-col(6);
@@ -520,24 +575,22 @@ a p:hover {
 }
 
 .letter-E .blockImg, .portfolio .blockImg {
+
   @include media-breakpoint-down(xs) {
     padding: 50px 0 30px;
   }
 }
 
 .letter-E .projects img, .portfolio .projects img {
-  @include media-breakpoint-down(xs) {
-    position: relative;
-  }
+  //@include media-breakpoint-down(xs) {
+  //  position: relative;
+  //}
   @include media-breakpoint-up(sm) {
     margin: 25px 0;
-    border: 15px solid #fff;
-    border-radius: 20px;
-    box-shadow: 0px 10px 20px rgba(57, 100, 249, 0.1);
   }
 }
 
-.letter-E h3, .portfolio h3 {
+.letter-E h3 {
   font-family: Archivo, sans-serif;
   font-weight: bold;
   font-size: 18px;
@@ -681,10 +734,6 @@ a p:hover {
   min-height: 100px;
 }
 
-.portfolio {
-  @include make-container();
-}
-
 .menuClass {
   display: none;
   @extend %content-main-col-2;
@@ -695,53 +744,80 @@ a p:hover {
 
 .filterButton {
   display: none;
+  max-width: 1200px;
   @include make-container();
   @include media-breakpoint-up(sm) {
     display: block;
   }
 }
 
-.menuClass, .filterButton {
+.filterButton-row {
+  height: 100%;
+  @include make-row();
+  box-shadow: 0px 10px 20px rgba(57, 100, 249, 0.1);
+  background: #fff;
+  @include media-breakpoint-up(xl) {
+    margin: 0;
+  }
+}
+
+.menuClass {
   position: relative;
   height: 80px;
   background: #fff;
 }
 
+.filterButton {
+  position: relative;
+  height: 80px;
+}
+
 .filterButton360vw {
+  max-width: 1200px;
   @include make-container();
   position: relative;
   height: 60px;
   display: none;
   background: #fff;
-  margin-top: 580px;
+  //margin-top: 580px;
   z-index: 5;
   @include media-breakpoint-down(xs) {
     display: block;
   }
 }
 
+button:focus {
+  outline: 0;
+  outline: 0;
+}
+
 #button360vw {
   text-align: left;
+  text-transform: uppercase;
+  font-size: 12px;
+  padding: 0 30px;
   #downButton {
-    position: relative;
-    right: -85%;
+    position: absolute;
+    right: 30px;
     z-index: -10;
   }
 }
 
-.filterButton button, .menuClass button, #button360vw {
+.filterButton button, .menuClass button {
   font-size: 12px;
   line-height: 150%;
   letter-spacing: 0.1em;
   text-transform: uppercase;
-  @include media-breakpoint-up(sm) {
-    width: 28vw;
-  }
-  @include media-breakpoint-up(xl) {
-    width: 21vw;
-  }
-  position: relative;
-  height: 100%;
+  @include make-col-ready();
+  @include make-col(4);
+  //@include media-breakpoint-up(sm) {
+  //  width: 28vw;
+  //}
+  //@include media-breakpoint-up(xl) {
+  //  width: 21vw;
+  //}
+  //position: relative;
+  //height: 100%;
 }
 
 .btn:focus {
@@ -765,6 +841,7 @@ a p:hover {
   top: 50%;
   transform: translateY(-50%);
   height: 100%;
+  width: 100%;
 }
 
 .letter-V object {
@@ -858,10 +935,10 @@ a p:hover {
   p {
     padding-right: 50px;
   }
-  .activeMenu{
+  .activeMenu {
     color: #3964F9;
     position: relative;
-    &:after{
+    &:after {
       content: '';
       width: 30%;
       height: 1px;
@@ -959,6 +1036,110 @@ a.logoSvg:after {
 
 .blockService img {
   width: 100%;
+}
+
+%fontInfoPortfolio {
+  font-weight: bold;
+  font-size: 12px;
+  @include media-breakpoint-up(md) {
+    font-size: calc(0.2rem + 9 * (100vw - 20px) / 880);
+  }
+  color: #323232;
+}
+
+%positionCenter {
+  position: var(--position);
+  left: 50%;
+  height: var(--height);
+  transform: translateX(-50%);
+}
+
+.infoPortfolio {
+  max-width: 1200px;
+  @include make-container();
+  .infoPortfolio-row {
+    @include make-row();
+    margin-top: 15px;
+    @include media-breakpoint-up(md) {
+      margin-top: 0;
+    }
+    .infoPortfolio-col {
+      @include make-col-ready();
+      @include media-breakpoint-up(md) {
+        @include make-col(2);
+      }
+      height: 28px;
+      margin: 0px 0 50px;
+      @include media-breakpoint-up(md) {
+        height: 3vw;
+        margin: 70px 0 100px;
+      }
+      @include media-breakpoint-up(lg) {
+        height: 41px;
+      }
+      --position: absolute;
+      --height: 100%;
+      --top: 145%;
+      .img2 {
+        @extend %positionCenter;
+        @include media-breakpoint-up(md) {
+          position: var(--position);
+          left: 50%;
+          height: var(--height);
+          transform: translateX(-70%);
+        }
+      }
+      .textInfo2 {
+        @extend %positionCenter;
+        @include media-breakpoint-up(md) {
+          position: var(--position);
+          left: 50%;
+          height: var(--height);
+          transform: translateX(-70%);
+        }
+        top: var(--top);
+        @extend %fontInfoPortfolio;
+      }
+      .img1 {
+        @extend %positionCenter;
+        @include media-breakpoint-up(md) {
+          position: var(--position);
+          left: 0;
+          height: var(--height);
+        }
+      }
+      .textInfo1 {
+        @extend %positionCenter;
+        @include media-breakpoint-up(md) {
+          position: var(--position);
+          left: 0;
+          height: var(--height);
+          transform: translateX(-50%);
+        }
+        top: var(--top);
+        @extend %fontInfoPortfolio;
+      }
+      .img3 {
+        @extend %positionCenter;
+        @include media-breakpoint-up(md) {
+          position: var(--position);
+          right: 0;
+          height: var(--height);
+        }
+      }
+      .textInfo3 {
+        @extend %positionCenter;
+        @include media-breakpoint-up(md) {
+          position: var(--position);
+          right: 0;
+          height: var(--height);
+          transform: translateX(-45%);
+        }
+        top: var(--top);
+        @extend %fontInfoPortfolio;
+      }
+    }
+  }
 }
 
 .map {
@@ -1472,7 +1653,7 @@ textarea.form-control {
     overflow: scroll;
     height: 100%;
   }
-  .mainMenuLogo{
+  .mainMenuLogo {
 
   }
   .mainMenu {
@@ -1495,13 +1676,13 @@ textarea.form-control {
     p {
       margin: 30px;
     }
-    .logoSvg{
+    .logoSvg {
       height: 100px;
       position: relative;
       left: 50%;
-      transform: translate(-50%,25%);
+      transform: translate(-50%, 25%);
     }
-    .activeMenu{
+    .activeMenu {
       color: #3964F9;
       position: relative;
     }
@@ -1546,9 +1727,29 @@ textarea.form-control {
   transform: translateY(-50%);
 }
 
-.filterMenu .filter-button {
-  font-size: 12px;
-  text-transform: uppercase;
+#fixedBackground {
+  height: 100vh;
+  width: 100vw;
+  position: fixed;
+  top: 0;
+  left: 0;
+}
+
+#filterMenu {
+  width: 260px;
+}
+
+.filterMenu {
+  background: #fff;
+  .filter-button {
+    font-size: 12px;
+    text-transform: uppercase;
+    width: 100%;
+    background-color: #fff;
+    border: none;
+    text-align: left;
+    margin: 10px 0;
+  }
 }
 
 .login, .register {
