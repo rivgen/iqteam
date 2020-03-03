@@ -1,5 +1,5 @@
 @import "custom";
-@import "effeclZoe.css";
+@import "effeclZoe";
 @import "~bootstrap/dist/css/bootstrap.min.css";
 @import "~animate.css";
 
@@ -23,9 +23,12 @@
 
 %content-main-col-xl-8-col-11 {
   @include make-col-ready();
-  @include make-col(11);
+  @include make-col(12);
   @include media-breakpoint-up(xl) {
     @include make-col(8);
+  }
+  @media (min-width: 1800px) {
+    @include make-col(12);
   }
 }
 
@@ -67,12 +70,20 @@ a p:hover {
   background-image: url(/images/white_fone.svg);
   background-repeat: no-repeat;
   background-size: inherit;
+  //@include media-breakpoint-up(xl){
+  @media (min-width: 1800px){
+    background-size: contain;
+    overflow-x: hidden;
+  }
 }
 
 #letter-I {
   @include make-container();
   @include media-breakpoint-up(xl) {
     padding-top: 29px;
+  }
+  @media (min-width: 1800px) {
+    width: 1200px;
   }
 }
 
@@ -100,7 +111,7 @@ a p:hover {
     @include media-breakpoint-down(xs) {
       margin: 60px 0;
     }
-    @include media-breakpoint-between(sm, xl) {
+    @include media-breakpoint-between(sm, lg) {
       margin-top: 90px;
     }
     &:after {
@@ -124,8 +135,10 @@ a p:hover {
     line-height: 130%;
     color: #323232;
     margin-top: 75px;
-    @media (min-width: 1200px) {
+    //@media (min-width: 1200px) {
+    @include media-breakpoint-up(xl) {
       margin-top: 150px;
+      font-size: 96px;
     }
   }
   .text {
@@ -136,6 +149,9 @@ a p:hover {
     color: #323232;
     @include media-breakpoint-up(sm) {
       font-size: calc(0.5rem + 10 * (100vw - 20px) / 880);
+    }
+    @include media-breakpoint-up(xl) {
+      font-size: 24px;
     }
   }
   img {
@@ -249,6 +265,9 @@ a p:hover {
 
 .letter-Q, .slash, .letter-D, .letter-E, .letter-V, .footerClass {
   @include make-container();
+  @media (min-width: 1800px) {
+    width: 1200px;
+  }
   background-repeat: no-repeat;
   background-position: 50% calc(100vw / 21 + 20px);
   background-size: contain;
@@ -401,52 +420,54 @@ a p:hover {
   color: #323232;
 }
 
-.letter-D {
-  background-image: url(/images/block_D/letter_D.svg);
+#letter-D {
   background-color: white;
-}
 
-.letter-D .text-col, .letter-D .block-col {
-  @include make-col-ready();
-  @include media-breakpoint-up(md) {
-    @include make-col(6)
-  }
-}
+  .letter-D {
+    background-image: url(/images/block_D/letter_D.svg);
 
-.letter-D .title {
-  font-size: 12px;
-  line-height: 200%;
-  text-align: center;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: #323232;
-  max-width: 105px;
-  margin: 0 auto;
-  padding-bottom: 30px;
-}
-
-.letter-D .block {
-  @include make-row()
-}
-
-.letter-D .block .icon-col {
-  .icon {
-    position: relative;
-    height: 130px;
-    object {
-      position: absolute;
-      left: 50%;
-      transform: translateX(-50%);
+    .text-col, .block-col {
+      @include make-col-ready();
+      @include media-breakpoint-up(md) {
+        @include make-col(6)
+      }
     }
-  ;
-  }
-  @include make-col-ready();
-  @include make-col(6);
-  @include media-breakpoint-up(sm) {
-    @include make-col(3);
-  }
-  @include media-breakpoint-up(md) {
-    @include make-col(4);
+
+    .title {
+      font-size: 12px;
+      line-height: 200%;
+      text-align: center;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: #323232;
+      max-width: 105px;
+      margin: 0 auto;
+      padding-bottom: 30px;
+    }
+
+    .block {
+      @include make-row();
+      .icon-col {
+        .icon {
+          position: relative;
+          height: 130px;
+          object {
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+          }
+        ;
+        }
+        @include make-col-ready();
+        @include make-col(6);
+        @include media-breakpoint-up(sm) {
+          @include make-col(3);
+        }
+        @include media-breakpoint-up(md) {
+          @include make-col(4);
+        }
+      }
+    }
   }
 }
 
@@ -524,7 +545,6 @@ a p:hover {
     }
     .blockImg {
       --width: 100%;
-      width: var(--width);
       height: auto;
       @include media-breakpoint-up(sm) {
         --width: 46.5vw;
@@ -648,64 +668,67 @@ a p:hover {
   pointer-events: none;
 }
 
-.letter-V {
-  background-image: url(/images/block_V/letter_V.svg);
+#letter-V {
   background-color: white;
-}
 
-.letter-V h4 {
-  font-size: 12px;
-  line-height: 200%;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: #323232;
-  padding-top: 40px;
-}
+  .letter-V {
+    background-image: url(/images/block_V/letter_V.svg);
 
-.letter-V p {
-  font-family: Archivo, sans-serif;
-  font-weight: bold;
-  font-size: 18px;
-  line-height: 150%;
-  padding-top: 18px;
-}
+    h4 {
+      font-size: 12px;
+      line-height: 200%;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: #323232;
+      padding-top: 40px;
+    }
 
-.letter-V .blockContact, .letter-V .mapContact {
-  @include make-col-ready();
-  @include make-col(12);
-  @include media-breakpoint-up(md) {
-    @include make-col(6);
-    margin-bottom: 100px;
+    p {
+      font-family: Archivo, sans-serif;
+      font-weight: bold;
+      font-size: 18px;
+      line-height: 150%;
+      padding-top: 18px;
+    }
 
-  }
-}
+    .blockContact, .mapContact {
+      @include make-col-ready();
+      @include make-col(12);
+      @include media-breakpoint-up(md) {
+        @include make-col(6);
+        margin-bottom: 100px;
 
-.letter-V .mapContact {
-  @include media-breakpoint-down(sm) {
-    padding: 0;
-  }
-  @include media-breakpoint-up(md) {
-    overflow: unset;
-  }
-}
+      }
+    }
 
-.letter-V .mapContact iframe {
-  @include media-breakpoint-down(sm) {
-    position: inherit;
-    height: 50vh;
-  }
-  @include media-breakpoint-up(md) {
-    position: absolute;
-    left: 25px;
-    width: calc(50vw - 25px);
-  }
-}
+    .mapContact {
+      @include media-breakpoint-down(sm) {
+        padding: 0;
+      }
+      @include media-breakpoint-up(md) {
+        overflow: unset;
+      }
+    }
 
-.letter-V .blockContact .textContact {
-  @include make-col-ready();
-  @include make-col(12);
-  @include media-breakpoint-up(sm) {
-    @include make-col(6)
+    .mapContact iframe {
+      @include media-breakpoint-down(sm) {
+        position: inherit;
+        height: 50vh;
+      }
+      @include media-breakpoint-up(md) {
+        position: absolute;
+        left: 25px;
+        width: calc(50vw - 25px);
+      }
+    }
+
+    .blockContact .textContact {
+      @include make-col-ready();
+      @include make-col(12);
+      @include media-breakpoint-up(sm) {
+        @include make-col(6)
+      }
+    }
   }
 }
 
@@ -736,16 +759,23 @@ a p:hover {
 
 .menuClass {
   display: none;
+  height: 80px;
+  background: #fff;
   @extend %content-main-col-2;
   @include media-breakpoint-up(xl) {
     display: block;
+    height: 0;
   }
+
 }
 
 .filterButton {
   display: none;
   max-width: 1200px;
   @include make-container();
+  @include media-breakpoint-down(sm){
+    margin-top: 40px;
+  }
   @include media-breakpoint-up(sm) {
     display: block;
   }
@@ -756,15 +786,9 @@ a p:hover {
   @include make-row();
   box-shadow: 0px 10px 20px rgba(57, 100, 249, 0.1);
   background: #fff;
-  @include media-breakpoint-up(xl) {
+  //@include media-breakpoint-up(xl) {
     margin: 0;
-  }
-}
-
-.menuClass {
-  position: relative;
-  height: 80px;
-  background: #fff;
+  //}
 }
 
 .filterButton {
@@ -778,11 +802,11 @@ a p:hover {
   position: relative;
   height: 60px;
   display: none;
-  background: #fff;
   //margin-top: 580px;
   z-index: 5;
   @include media-breakpoint-down(xs) {
     display: block;
+    margin-top: 40px;
   }
 }
 
@@ -870,8 +894,13 @@ button:focus {
 
 .homeClass {
   @include make-container ();
+  @media (min-width: 1800px) {
+    width: 1200px;
+  }
   .homeClass-row {
     min-height: 63px;
+    @include make-row();
+    margin: 0;
   }
   box-shadow: 0px 10px 20px rgba(57, 100, 249, 0.1);
   margin-bottom: 47px;
@@ -886,15 +915,10 @@ button:focus {
     }
     box-shadow: none;
     margin-bottom: 0;
-    position: absolute;
+    //position: absolute;
     z-index: 10;
   }
 
-}
-
-.homeClass-row {
-  @include make-row();
-  margin: 0 15px;
 }
 
 .home-content-main {
@@ -904,6 +928,11 @@ button:focus {
   //}
   @include media-breakpoint-up(xl) {
     @include make-col(2);
+  }
+  @media (min-width: 1800px) {
+    position: absolute;
+    left: 50px;
+    top: 50px;
   }
 }
 
@@ -1040,7 +1069,7 @@ a.logoSvg:after {
 
 %fontInfoPortfolio {
   font-weight: bold;
-  font-size: 12px;
+  font-size: 15px;
   @include media-breakpoint-up(md) {
     font-size: calc(0.2rem + 9 * (100vw - 20px) / 880);
   }
@@ -1068,10 +1097,10 @@ a.logoSvg:after {
       @include media-breakpoint-up(md) {
         @include make-col(2);
       }
-      height: 28px;
+      height: 50px;
       margin: 0px 0 50px;
       @include media-breakpoint-up(md) {
-        height: 3vw;
+        height: 4.3vw;
         margin: 70px 0 100px;
       }
       @include media-breakpoint-up(lg) {
@@ -1572,6 +1601,7 @@ textarea.form-control {
 }
 
 .navbarToggler {
+  padding: 0;
   @extend %content-main-col-2;
   display: block;
   @media (min-width: 1200px) {
@@ -1600,13 +1630,15 @@ textarea.form-control {
 
 .hadMenu {
   @include make-col-ready();
-  @include make-col(12);
+  display: none;
   @include media-breakpoint-up(xl) {
     @include make-col(8);
-  }
-  display: none;
-  @media (min-width: 1200px) {
     display: block;
+  }
+  @media (min-width: 1800px) {
+    @include make-col(12);
+    width: 1200px;
+    padding-top: 43px;
   }
 }
 

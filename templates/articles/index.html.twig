@@ -112,17 +112,32 @@
                         {% if images %}
                             {% for image in images %}
                                 {% if image.article == article.id %}
-                                    <img src={{ uploaded_asset(article.id, image.img) }} alt=""
-                                         class="embed-responsive"/>
+                        <a href={{ path('articles_show', {'id': article.id}) }}>
+                            <img src={{ uploaded_asset(article.id, image.img) }} alt=""
+                                                                                     class="embed-responsive"/>
+                        </a>
                                 {% endif %}
                             {% endfor %}
                         {% endif %}
                         <figcaption>
                             {#<h2>Creative <span>Zoe</span></h2>#}
                             <p class="icon-links">
-                                <a href="#"><span class="icon-heart"></span></a>
-                                <a href="#"><span class="icon-eye"></span></a>
-                                <a href="#"><span class="icon-paper-clip"></span></a>
+                                {% for button in buttons %}
+                                {% if button.id == article.id %}
+                            {#<div class="buttonE">#}
+                                <a href={{ button.url }} class="btn" role="button">
+                                <span>
+                                        <object type="image/svg+xml" data="/images/batton/{{ button.icon }}">
+                                            <div class="internalText"></div>
+                                        </object>
+                                           </span>
+                                </a>
+                            {#</div>#}
+                            {% endif %}
+                            {% endfor %}
+                                {#<a href="#"><span class="icon-heart"></span></a>#}
+                                {#<a href="#"><span class="icon-eye"></span></a>#}
+                                {#<a href="#"><span class="icon-paper-clip"></span></a>#}
                             </p>
                             {#<p class="description">Zoe never had the patience of her sisters. She deliberately punched the bear in his face.</p>#}
                         </figcaption>
@@ -131,18 +146,18 @@
                         <a href={{ path('articles_show', {'id': article.id}) }}><h3>{{ article.title }}</h3>
                         </a>
                         <p>{{ article.textPreview }}</p>
-                        {% for button in buttons %}
-                            {% if button.id == article.id %}
-                                <div class="buttonE">
-                                    <a href={{ button.url }} class="btn buttonProject" role="button">
-                                    <span>
-                                        <object type="image/svg+xml" data="/images/batton/{{ button.icon }}">
-                                            <div class="internalText"></div>
-                                        </object>
-                                            <span>{{ button.title }}</span></span></a>
-                                </div>
-                            {% endif %}
-                        {% endfor %}
+                        {#{% for button in buttons %}#}
+                            {#{% if button.id == article.id %}#}
+                                {#<div class="buttonE">#}
+                                    {#<a href={{ button.url }} class="btn buttonProject" role="button">#}
+                                    {#<span>#}
+                                        {#<object type="image/svg+xml" data="/images/batton/{{ button.icon }}">#}
+                                            {#<div class="internalText"></div>#}
+                                        {#</object>#}
+                                            {#<span>{{ button.title }}</span></span></a>#}
+                                {#</div>#}
+                            {#{% endif %}#}
+                        {#{% endfor %}#}
                     </div>
                     {% if is_granted('ROLE_CONTENT_MANAGER') %}
                         <a href="{{ path('articles_edit', {'id': article.id}) }}">edit</a>

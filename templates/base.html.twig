@@ -27,7 +27,7 @@
             <div class="internalText"></div>
         </object>
     {% else %}
-        <a href="{{ path('index_index') }}" class="logoSvg">
+        <a href="{{ path('index_index') }}" class="logoSvg logoHad">
             <object type="image/svg+xml" data="/images/logo.svg">
                 <div class="internalText"></div>
             </object>
@@ -52,7 +52,7 @@
     {% endblock %}
 </head>
 <body {% if (app.request.get('_route') == 'index_index') %}class="white-backgraund"{% endif %}>
-<div id="home" class="homeClass">
+<div id="home" class="homeClass" style="position: fixed;">
     {% block header %}
 
     <div class="homeClass-row align-items-center">

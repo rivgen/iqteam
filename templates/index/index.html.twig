@@ -174,41 +174,43 @@
             </div>
         </div>
     </div>
-    <div id="letter-D" class="letter-D">
-        <div class="letter-D-row justify-content-center">
-            <div class="letter-D-col">
-                <div class="letter-D-row">
-                    <div class="text-col wow fadeInUp">
-                        <h2>Технологии</h2>
-                        <p class="textBold">В повседневной работе мы используем трендовые технологии, те, которые
-                            приносят ощутимый
-                            результат (мы называем это словом value — «ценность»)
-                            как для клиента, так и для собственной разработки.</p>
-                    </div>
-                    <div class="block-col wow fadeInUp">
-                        <div class="block">
-                            {% set technologies = [
-                            {'img': '/images/block_D/java.svg', 'title': 'Oracle Java Grails'},
-                            {'img': '/images/block_D/c++.svg', 'title': 'C#'},
-                            {'img': '/images/block_D/net.svg', 'title': '.Net'},
-                            {'img': '/images/block_D/aspNet.svg', 'title': 'ASP.Net'},
-                            {'img': '/images/block_D/node.svg', 'title': 'Grails Nоde.JS'},
-                            {'img': '/images/block_D/php.svg', 'title': 'PHP'},
-                            {'img': '/images/block_D/ruby.svg', 'title': 'Ruby on rails'},
-                            {'img': '/images/block_D/swift.svg', 'title': 'SWIFT'},
-                            {'img': '/images/block_D/angular.svg', 'title': 'Angular.JS'},
-                            {'img': '/images/block_D/react.svg', 'title': 'React.JS'},
-                            ] %}
-                            {% for block_D in technologies %}
-                                <div class="icon-col">
-                                    <div class="icon">
-                                        <object type="image/svg+xml" data={{ block_D.img }}>
-                                            <div class="internalText"></div>
-                                        </object>
+    <div id="letter-D">
+        <div class="letter-D">
+            <div class="letter-D-row justify-content-center">
+                <div class="letter-D-col">
+                    <div class="letter-D-row">
+                        <div class="text-col wow fadeInUp">
+                            <h2>Технологии</h2>
+                            <p class="textBold">В повседневной работе мы используем трендовые технологии, те, которые
+                                приносят ощутимый
+                                результат (мы называем это словом value — «ценность»)
+                                как для клиента, так и для собственной разработки.</p>
+                        </div>
+                        <div class="block-col wow fadeInUp">
+                            <div class="block">
+                                {% set technologies = [
+                                {'img': '/images/block_D/java.svg', 'title': 'Oracle Java Grails'},
+                                {'img': '/images/block_D/c++.svg', 'title': 'C#'},
+                                {'img': '/images/block_D/net.svg', 'title': '.Net'},
+                                {'img': '/images/block_D/aspNet.svg', 'title': 'ASP.Net'},
+                                {'img': '/images/block_D/node.svg', 'title': 'Grails Nоde.JS'},
+                                {'img': '/images/block_D/php.svg', 'title': 'PHP'},
+                                {'img': '/images/block_D/ruby.svg', 'title': 'Ruby on rails'},
+                                {'img': '/images/block_D/swift.svg', 'title': 'SWIFT'},
+                                {'img': '/images/block_D/angular.svg', 'title': 'Angular.JS'},
+                                {'img': '/images/block_D/react.svg', 'title': 'React.JS'},
+                                ] %}
+                                {% for block_D in technologies %}
+                                    <div class="icon-col">
+                                        <div class="icon">
+                                            <object type="image/svg+xml" data={{ block_D.img }}>
+                                                <div class="internalText"></div>
+                                            </object>
+                                        </div>
+                                        <p class="title">{{ block_D.title }}</p>
                                     </div>
-                                    <p class="title">{{ block_D.title }}</p>
-                                </div>
-                            {% endfor %}
+                                {% endfor %}
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -269,54 +271,57 @@
             </div>
         </div>
     </div>
-    <div id="letter-V" class="letter-V">
-        <div class="letter-V-row justify-content-center">
-            <div class="letter-V-col">
-                <div class="letter-V-row">
-                    <div class="blockContact wow fadeInUp">
-                        <h2>Контакты</h2>
-                        <p class="textBold">Готовы начать свой следующий проект? Для обсуждения или сотрудничества
-                            просто свяжитесь с
-                            нами.</p>
-                        <div class="letter-V-row">
-                            <div class="textContact">
-                                <h4>приезжайте</h4>
-                                <p>Минск, Республика Беларусь, пр. Партизанский 4</p>
-                            </div>
-                            <div class="textContact">
-                                <h4>пишите</h4>
-                                {#<object type="image/svg+xml" data="/images/imgEmailContact.svg">#}
-                                {#<div id="internalText"></div>#}
-                                {#</object>#}
-                                <p>info@iqdev.com</p>
-                            </div>
-                            <div class="textContact">
-                                <h4>звоните</h4>
-                                <object type="image/svg+xml" data="/images/imgTelContact.svg">
-                                    <div id="internalText"></div>
-                                </object>
-                            </div>
-                            <div class="textContact">
-                                <h4>ищите в соцсетях</h4>
-                                <div class="social">
-                                    {% for block_V in social %}
-                                        <a href={{ block_V.url }} target="_blank" rel="noreferrer">
-                                            <img src={{ block_V.img }} alt=""/>
-                                            {#<object type="image/svg+xml" data={{ block_V.img }}>#}
-                                            {#Your browser does not support SVG#}
-                                            {#</object>#}
-                                        </a>
-                                    {% endfor %}
+    <div id="letter-V">
+        <div class="letter-V">
+            <div class="letter-V-row justify-content-center">
+                <div class="letter-V-col">
+                    <div class="letter-V-row">
+                        <div class="blockContact wow fadeInUp">
+                            <h2>Контакты</h2>
+                            <p class="textBold">Готовы начать свой следующий проект? Для обсуждения или сотрудничества
+                                просто свяжитесь с
+                                нами.</p>
+                            <div class="letter-V-row">
+                                <div class="textContact">
+                                    <h4>приезжайте</h4>
+                                    <p>Минск, Республика Беларусь, пр. Партизанский 4</p>
+                                </div>
+                                <div class="textContact">
+                                    <h4>пишите</h4>
+                                    {#<object type="image/svg+xml" data="/images/imgEmailContact.svg">#}
+                                    {#<div id="internalText"></div>#}
+                                    {#</object>#}
+                                    <p>info@iqdev.com</p>
+                                </div>
+                                <div class="textContact">
+                                    <h4>звоните</h4>
+                                    <object type="image/svg+xml" data="/images/imgTelContact.svg">
+                                        <div id="internalText"></div>
+                                    </object>
+                                </div>
+                                <div class="textContact">
+                                    <h4>ищите в соцсетях</h4>
+                                    <div class="social">
+                                        {% for block_V in social %}
+                                            <a href={{ block_V.url }} target="_blank" rel="noreferrer">
+                                                <img src={{ block_V.img }} alt=""/>
+                                                {#<object type="image/svg+xml" data={{ block_V.img }}>#}
+                                                {#Your browser does not support SVG#}
+                                                {#</object>#}
+                                            </a>
+                                        {% endfor %}
+                                    </div>
+                                </div>
+                                <div class="textContact">
+                                    {{ macros.printFeedback("btn btnBlue hoverEffects") }}
                                 </div>
                             </div>
-                            <div class="textContact">
-                                {{ macros.printFeedback("btn btnBlue hoverEffects") }}
-                            </div>
                         </div>
-                    </div>
-                    <div class="mapContact embed-responsive wow fadeInUp">
-                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2351.603712230171!2d27.581945215991954!3d53.88547284189211!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x46dbce2d107b6c7f%3A0x21fe21a76ca5068c!2z0J_QsNGA0YLQuNC30LDQvdGB0LrQuNC5INC_0YDQvtGB0L8uIDQsINCc0LjQvdGB0Lo!5e0!3m2!1sru!2sby!4v1577083867310!5m2!1sru!2sby"
-                                width="100%" height="724" frameborder="0" style="border:0;" allowfullscreen=""></iframe>
+                        <div class="mapContact embed-responsive wow fadeInUp">
+                            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2351.603712230171!2d27.581945215991954!3d53.88547284189211!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x46dbce2d107b6c7f%3A0x21fe21a76ca5068c!2z0J_QsNGA0YLQuNC30LDQvdGB0LrQuNC5INC_0YDQvtGB0L8uIDQsINCc0LjQvdGB0Lo!5e0!3m2!1sru!2sby!4v1577083867310!5m2!1sru!2sby"
+                                    width="100%" height="724" frameborder="0" style="border:0;"
+                                    allowfullscreen=""></iframe>
+                        </div>
                     </div>
                 </div>
             </div>

@@ -6,7 +6,9 @@ function dropdownMenu() {
     let filter = document.querySelector('#filterMenu')
     let background = document.querySelector('#fixedBackground')
     dropdown.addEventListener('click', dropdownMenu);
-    button.addEventListener('click', filterMenu);
+    if (filter) {
+        button.addEventListener('click', filterMenu);
+    }
     function dropdownMenu() {
         baseMenu.querySelector('.baseMenu').classList.add('slideInLeft')
         baseMenu.querySelector('.baseMenu').classList.remove('slideOutLeft')
