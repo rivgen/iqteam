@@ -79,6 +79,7 @@ a p:hover {
 
 #letter-I {
   @include make-container();
+  margin-bottom: 70px;
   @include media-breakpoint-up(xl) {
     padding-top: 29px;
   }
@@ -272,7 +273,7 @@ a p:hover {
   background-position: 50% calc(100vw / 21 + 20px);
   background-size: contain;
   @include media-breakpoint-up(xl) {
-    background-position: 50% 100px;
+    background-position: 50% 20px;
   }
   @include media-breakpoint-up(md) {
     background-size: auto;
@@ -282,7 +283,7 @@ a p:hover {
 }
 
 .letter-Q, .slash, .letter-D, .letter-E {
-  padding-bottom: 100px;
+  padding-bottom: 25px;
 }
 
 .letter-Q {
@@ -337,6 +338,10 @@ a p:hover {
 
 }
 
+#slash, #letter-D, #letter-E, #letter-V {
+  height: 150px;
+}
+
 .slash {
   background-image: url(/images/slash/slash.svg);
 }
@@ -355,7 +360,7 @@ a p:hover {
 }
 
 .letter-Q h2, .slash h2, .letter-D h2, .letter-D .block, .letter-E h2, .letter-V h2, .letter-V .mapContact, .portfolio h2 {
-  margin-top: 60px;
+  //margin-top: 60px;
   padding-bottom: 20px;
   font-size: calc(3rem + 15 * (100vw - 620px) / 880)
 }
@@ -420,7 +425,7 @@ a p:hover {
   color: #323232;
 }
 
-#letter-D {
+.letter-D-back {
   background-color: white;
 
   .letter-D {
@@ -581,6 +586,14 @@ a p:hover {
   }
 }
 
+.portfolio-E {
+  max-width: none;
+  @media (min-width: 1800px) {
+    width: 1200px;
+  }
+
+}
+
 .letter-E .blockImg, .letter-E .blockText {
   @include make-col-ready();
   @include media-breakpoint-up(md) {
@@ -663,7 +676,9 @@ a p:hover {
   pointer-events: none;
 }
 
-#letter-V {
+
+
+#letter-V-back {
   background-color: white;
 
   .letter-V {
@@ -1947,6 +1962,7 @@ textarea.form-control {
       width: 100%;
       background-color: #fff;
       height: 80px;
+      box-shadow: 0px 10px 20px rgba(57, 100, 249, 0.1);
     }
   }
 
@@ -1992,5 +2008,10 @@ textarea.form-control {
       padding-right: 2.5px;
     }
   }
+
+.blockToFix {
+  display: none;
+  height: 150px;
+}
 
   @import "animationGlobal";

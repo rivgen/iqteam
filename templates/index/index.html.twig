@@ -37,7 +37,7 @@
         <div class="letter-I-row justify-content-center">
             <div class="menuClass">
                 {% set menuAll = [
-                {'list': 'I', 'menu': 'главный экран', 'anchor': '#home'},
+                {'list': 'I', 'menu': 'главный экран', 'anchor': '#'},
                 {'list': 'Q', 'menu': 'о нас', 'anchor': '#letter-Q'},
                 {'list': '/', 'menu': 'экспертиза', 'anchor': '#slash'},
                 {'list': 'D', 'menu': 'технологии', 'anchor': '#letter-D'},
@@ -94,14 +94,15 @@
                 <div class="socialBlock">
                     {{ macros.printSocialBlock() }}
                 </div>
-                <div class="downButton">
-                    <a href='#' class="">
+                {#сделать скрипт перехода по якорю#}
+                {#<div class="downButton">#}
+                    {#<a href='#' class="">#}
                         {#<img src="/images/down.svg" alt=""/>#}
-                        <object type="image/svg+xml" data="/images/down.svg">
-                            <div class="internalText"></div>
-                        </object>
-                    </a>
-                </div>
+                        {#<object type="image/svg+xml" data="/images/down.svg">#}
+                            {#<div class="internalText"></div>#}
+                        {#</object>#}
+                    {#</a>#}
+                {#</div>#}
             </div>
         </div>
     </div>
@@ -135,7 +136,8 @@
             </div>
         </div>
     </div>
-    <div id="slash" class="slash">
+    <div id="slash"></div>
+    <div class="slash">
         <div class="slash-row justify-content-center">
             <div class="slash-col">
                 <div class="slash-row">
@@ -175,7 +177,8 @@
             </div>
         </div>
     </div>
-    <div id="letter-D">
+    <div class="letter-D-back">
+        <div id="letter-D"></div>
         <div class="letter-D">
             <div class="letter-D-row justify-content-center">
                 <div class="letter-D-col">
@@ -218,7 +221,8 @@
             </div>
         </div>
     </div>
-    <div id="letter-E" class="letter-E">
+    <div id="letter-E"></div>
+    <div class="letter-E">
         <div class="letter-E-row justify-content-center">
             <div class="letter-E-col">
                 <div class="letter-E-row">
@@ -242,14 +246,20 @@
             </div>
         </div>
     </div>
-    <div class="portfolio">
-        <div class="projects">
-            {% for article in articles %}
-                {{ articleMacros.printAticle(article, images, buttons) }}
-            {% endfor %}
+    <div class="portfolio portfolio-E">
+        <div class="letter-E-row justify-content-center">
+        <div class="letter-E-col">
+            <div class="projects">
+
+                {% for article in articles %}
+                    {{ articleMacros.printAticle(article, images, buttons) }}
+                {% endfor %}
+            </div>
+        </div>
         </div>
     </div>
-    <div id="letter-V">
+    <div id="letter-V-back">
+        <div id="letter-V"></div>
         <div class="letter-V">
             <div class="letter-V-row justify-content-center">
                 <div class="letter-V-col">

@@ -39,6 +39,7 @@ class ContactController extends AbstractController
         $message = 'Письмо не отправлено.';
         if ($request->isMethod('POST')) {
             $form->handleRequest($request);
+//            dd($form['file']->getData());
             if($form->isValid()){
                 if($this->sendEmail($form->getData())){
                     $message = 'Письмо отправлено.';
