@@ -1,5 +1,6 @@
 {% extends 'base.html.twig' %}
 {% import _self as macros %}
+{% import 'articles/index.html.twig' as articleMacros %}
 {% macro printFooterMenu() %}
     <p>издатель и разработчик мобильных и браузерных игр</p>
 {% endmacro %}
@@ -236,39 +237,16 @@
                         <p>Поэтому, заказывая у нас, клиенты уверены, что получат эффективное решение, которое позволит
                             выйти их бизнесу на новый уровень.</p>
                     </div>
-                    <div class="projects">
-                        {% for article in articles %}
-                            <div class="blockImg wow fadeInUp">
-                                {% if images %}
-                                    {% for image in images %}
-                                        {% if image.article == article.id %}
-                                            <img src="{{ uploaded_asset(article.id, image.img) }}" alt=""
-                                                 class="embed-responsive"/>
-                                        {% endif %}
-                                    {% endfor %}
-                                {% endif %}
-                            </div>
-                            <div class="blockText align-self-center wow fadeInUp">
-                                <a href={{ path('articles_show', {'id': article.id}) }}><h3>{{ article.title }}</h3></a>
-                                <p>{{ article.textPreview }}</p>
-                                {% for button in buttons %}
-                                    {% if button.id == article.id %}
-                                        <div class="buttonE">
-                                            <a href={{ button.url }} class="btn buttonProject" role="button"
-                                            target="_blank" rel="noreferrer">
-                                            <span>
-                                        <object type="image/svg+xml" data="/images/batton/{{ button.icon }}">
-                                            <div class="internalText"></div>
-                                        </object>
-                                            <span class="hoverEffects">{{ button.title|replace({' ': '_'}) }}</span></span></a>
-                                        </div>
-                                    {% endif %}
-                                {% endfor %}
-                            </div>
-                        {% endfor %}
-                    </div>
+
                 </div>
             </div>
+        </div>
+    </div>
+    <div class="portfolio">
+        <div class="projects">
+            {% for article in articles %}
+                {{ articleMacros.printAticle(article, images, buttons) }}
+            {% endfor %}
         </div>
     </div>
     <div id="letter-V">

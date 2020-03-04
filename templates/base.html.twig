@@ -52,7 +52,7 @@
     {% endblock %}
 </head>
 <body {% if (app.request.get('_route') == 'index_index') %}class="white-backgraund"{% endif %}>
-<div id="home" class="homeClass" style="position: fixed;">
+<div id="home" class="homeClass animated faster">
     {% block header %}
 
     <div class="homeClass-row align-items-center">
@@ -86,13 +86,18 @@
         </div>
         <div class="homeLocale">
             <div class="homeLocale-row align-items-center justify-content-end">
-                {#{% for locale in locales() %}#}
-                    {#<div class="locale" {% if app.request.locale == locale.code %}aria-checked="true" class="active"#}
-                         {#{% else %}aria-checked="false"{% endif %} role="menuitem">#}
-                        {#<a href="{{ path(app.request.get('_route', 'index_index'), app.request.get('_route_params', [])|merge({_locale: locale.code})) }}">#}
-                            {#<p>{{ locale.code[0:2] }}</p>#}
-                        {#</a></div>#}
-                {#{% endfor %}#}
+                {#<div class="homeLocale-row align-items-center">#}
+                {% for locale in locales() %}
+                    <div class="locale" {% if app.request.locale == locale.code %}aria-checked="true" class="active"
+                         {% else %}aria-checked="false"{% endif %} role="menuitem">
+                        <a href="{{ path(app.request.get('_route', 'index_index'), app.request.get('_route_params', [])|merge({_locale: locale.code})) }}">
+                            <p>{{ locale.code[0:2] }}</p>
+                        </a>
+                    </div>
+                {% endfor %}
+                <div class="homeButton" style="display: none">
+                    {{ indexMacros.printFeedback('btn btnBlue') }}
+                </div>
             </div>
         </div>
     </div>
@@ -103,21 +108,23 @@
 
 {% endblock %}
 {% block footer %}
-    <div class="footerClass">
-        <div class="footer-row justify-content-center">
-            <div class="footer-col">
-                <div class="footer-row footerHeight">
-                    <div class="text align-self-center">
-                        <p>ООО "Ай кью Клаш"  УНП 192740628</p>
-                    </div>
-                    <div class="text align-self-center">
-                        <p>© 2019 Все права защищены</p>
-                    </div>
-                    <div class="text align-self-center confiden">
-                        <a href="#"><p>условия соглашения</p></a>
-                    </div>
-                    <div class="text align-self-center confiden">
-                        <a href="#"><p>политика конфиденциальности</p></a>
+    <div {% if (app.request.get('_route') == 'index_index') %}class="footerBackground"{% endif %}>
+        <div class="footerClass">
+            <div class="footer-row justify-content-center">
+                <div class="footer-col">
+                    <div class="footer-row footerHeight">
+                        <div class="text align-self-center">
+                            <p>ООО "Ай кью Клаш" УНП&nbsp;192740628</p>
+                        </div>
+                        <div class="text align-self-center br1">
+                            <p>©&nbsp;2019&nbsp;Все&nbsp;права защищены</p>
+                        </div>
+                        <div class="text align-self-center confiden br2">
+                            <a href="#"><p>условия соглашения</p></a>
+                        </div>
+                        <div class="text align-self-center confiden br3">
+                            <a href="#"><p>политика конфиденциальности</p></a>
+                        </div>
                     </div>
                 </div>
             </div>

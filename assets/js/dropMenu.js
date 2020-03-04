@@ -41,3 +41,22 @@ function dropdownMenu() {
         }
     }
 }
+// mainmenu
+$(window).scroll(function(){
+    if($(window).scrollTop()>500){
+        $('#home.homeClass').addClass('slideInDown fixedClass')
+        $('#home .home-content-main').addClass('fixedLogo')
+        $('#home .hadMenu').addClass('fixedCenter')
+        $('#home .homeLocale').addClass('fixedLocale')
+        $('#home .homeButton').show()
+    }
+})
+$(window).scroll(function(){
+    if($(window).scrollTop()<=500){
+        $('#home.homeClass').removeClass('slideInDown fixedClass')
+        $('#home .home-content-main').removeClass('fixedLogo')
+        $('#home .hadMenu').removeClass('fixedCenter')
+        $('#home .homeLocale').removeClass('fixedLocale')
+        $('#home .homeButton').hide()
+    }
+})

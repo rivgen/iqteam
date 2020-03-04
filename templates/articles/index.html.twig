@@ -1,6 +1,46 @@
 {% extends 'base.html.twig' %}
 
 {% block title %}Articles index{% endblock %}
+{% import _self as macros %}
+{% macro printAticle(article, images, buttons) %}
+    <div class="projects-col filter {{ article.category }} wow fadeInUp">
+        <figure class="effect-zoe blockImg">
+            {% if images %}
+                {% for image in images %}
+                    {% if image.article == article.id %}
+                        <a href={{ path('articles_show', {'id': article.id}) }}>
+                            <img src={{ uploaded_asset(article.id, image.img) }} alt=""
+                                 class="embed-responsive"/>
+                        </a>
+                    {% endif %}
+                {% endfor %}
+            {% endif %}
+            <figcaption>
+                <p class="icon-links">
+                    {% for button in buttons %}
+                        {% if button.id == article.id %}
+                            <a href={{ button.url }} class="btn" role="button">
+                                <span>
+                                        <object type="image/svg+xml" data="/images/batton/{{ button.icon }}">
+                                            <div class="internalText"></div>
+                                        </object>
+                                           </span>
+                            </a>
+                        {% endif %}
+                    {% endfor %}
+                </p>
+            </figcaption>
+        </figure>
+        <div class="blockText align-self-center">
+            <a href={{ path('articles_show', {'id': article.id}) }}><h3>{{ article.title }}</h3>
+            </a>
+            <p>{{ article.textPreview }}</p>
+        </div>
+        {% if is_granted('ROLE_CONTENT_MANAGER') %}
+            <a href="{{ path('articles_edit', {'id': article.id}) }}">edit</a>
+        {% endif %}
+    </div>
+{% endmacro %}
 
 {% block body %}
     <div id="slash" class="slash intoPage">
@@ -10,33 +50,6 @@
             </div>
         </div>
     </div>
-    {#<div class="map">#}
-    {#<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2351.603712230171!2d27.581945215991954!3d53.88547284189211!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x46dbce2d107b6c7f%3A0x21fe21a76ca5068c!2z0J_QsNGA0YLQuNC30LDQvdGB0LrQuNC5INC_0YDQvtGB0L8uIDQsINCc0LjQvdGB0Lo!5e0!3m2!1sru!2sby!4v1577083867310!5m2!1sru!2sby"#}
-    {#width="100%" height="724" frameborder="0" style="border:0;" allowfullscreen=""></iframe>#}
-    {#<img src="/images/mapPortfolio.png" class="imgMap"/>#}
-    {#<div class="mapBlock">#}
-    {#<div class="slash-row justify-content-center">#}
-    {#<div class="slash-col">#}
-    {#<div class="mapInfo">#}
-    {#<p class="titleInfo"><span>35</span></p>#}
-    {#<p class="textInfo">Проектов</p>#}
-    {#</div>#}
-    {#</div>#}
-    {#<div class="slash-col">#}
-    {#<div class="mapInfo">#}
-    {#<p class="titleInfo"><span>1</span> млн</p>#}
-    {#<p class="textInfo">Пользователей</p>#}
-    {#</div>#}
-    {#</div>#}
-    {#<div class="slash-col">#}
-    {#<div class="mapInfo">#}
-    {#<p class="titleInfo"><span>2</span> млн</p>#}
-    {#<p class="textInfo">Загрузок</p>#}
-    {#</div>#}
-    {#</div>#}
-    {#</div>#}
-    {#</div>#}
-    {#</div>#}
     <div class="infoPortfolio">
         <div class="infoPortfolio-row justify-content-center">
             <div class="infoPortfolio-col">
@@ -97,72 +110,7 @@
     <div class="portfolio">
         <div class="projects">
             {% for article in articles %}
-                <div class="projects-col filter {{ article.category }}">
-                    {#<div class="blockImg">#}
-                        {#{% if images %}#}
-                            {#{% for image in images %}#}
-                                {#{% if image.article == article.id %}#}
-                                    {#<img src={{ uploaded_asset(article.id, image.img) }} alt=""#}
-                                         {#class="embed-responsive"/>#}
-                                {#{% endif %}#}
-                            {#{% endfor %}#}
-                        {#{% endif %}#}
-                    {#</div>#}
-                    <figure class="effect-zoe blockImg">
-                        {% if images %}
-                            {% for image in images %}
-                                {% if image.article == article.id %}
-                        <a href={{ path('articles_show', {'id': article.id}) }}>
-                            <img src={{ uploaded_asset(article.id, image.img) }} alt=""
-                                                                                     class="embed-responsive"/>
-                        </a>
-                                {% endif %}
-                            {% endfor %}
-                        {% endif %}
-                        <figcaption>
-                            {#<h2>Creative <span>Zoe</span></h2>#}
-                            <p class="icon-links">
-                                {% for button in buttons %}
-                                {% if button.id == article.id %}
-                            {#<div class="buttonE">#}
-                                <a href={{ button.url }} class="btn" role="button">
-                                <span>
-                                        <object type="image/svg+xml" data="/images/batton/{{ button.icon }}">
-                                            <div class="internalText"></div>
-                                        </object>
-                                           </span>
-                                </a>
-                            {#</div>#}
-                            {% endif %}
-                            {% endfor %}
-                                {#<a href="#"><span class="icon-heart"></span></a>#}
-                                {#<a href="#"><span class="icon-eye"></span></a>#}
-                                {#<a href="#"><span class="icon-paper-clip"></span></a>#}
-                            </p>
-                            {#<p class="description">Zoe never had the patience of her sisters. She deliberately punched the bear in his face.</p>#}
-                        </figcaption>
-                    </figure>
-                    <div class="blockText align-self-center">
-                        <a href={{ path('articles_show', {'id': article.id}) }}><h3>{{ article.title }}</h3>
-                        </a>
-                        <p>{{ article.textPreview }}</p>
-                        {#{% for button in buttons %}#}
-                            {#{% if button.id == article.id %}#}
-                                {#<div class="buttonE">#}
-                                    {#<a href={{ button.url }} class="btn buttonProject" role="button">#}
-                                    {#<span>#}
-                                        {#<object type="image/svg+xml" data="/images/batton/{{ button.icon }}">#}
-                                            {#<div class="internalText"></div>#}
-                                        {#</object>#}
-                                            {#<span>{{ button.title }}</span></span></a>#}
-                                {#</div>#}
-                            {#{% endif %}#}
-                        {#{% endfor %}#}
-                    </div>
-                    {% if is_granted('ROLE_CONTENT_MANAGER') %}
-                        <a href="{{ path('articles_edit', {'id': article.id}) }}">edit</a>
-                    {% endif %}
-                </div>
+                {{ macros.printAticle(article, images, buttons) }}
             {% endfor %}
         </div>
     </div>
