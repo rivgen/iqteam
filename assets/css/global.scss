@@ -1490,7 +1490,7 @@ textarea.form-control {
 .socialBlockHeight {
   z-index: 10;
   @extend %content-main-col-2;
-  height: 80vh;
+  //height: 80vh;
   display: none;
   @include media-breakpoint-up(xl) {
     display: block;
