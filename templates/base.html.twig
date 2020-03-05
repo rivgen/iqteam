@@ -165,6 +165,10 @@
                         </div>
                         {#<input type="submit" value="Submit">#}
                         <div class="modal-col-12">
+                            <div class="button">
+                                {{ form_label(formContact.file) }}
+                                <div>{{ form_errors(formContact.file) }}</div>
+                            </div>
                             <button class="btn buttonProject hoverEffects" role="button">
                                 Отправить_запрос
                             </button>

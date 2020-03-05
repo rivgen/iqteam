@@ -30,108 +30,124 @@
     {% if app.request.get('_route') == 'articles_edit' or app.request.get('_route') == 'articles_new' %}
         {{ form_start(form) }}
     {% endif %}
-    <div id="slash" class="slash intoPage">
-        <div class="slash-row">
-            <div class="text-center titlePortfolio">
-                {% if app.request.get('_route') == 'articles_edit' or app.request.get('_route') == 'articles_new' %}
-                    {{ form_label(form.title) }}
-                    <h1>{{ form_widget(form.title) }}</h1>
-                    {{ form_errors(form.title) }}
-                {% else %}
-                    <h1>{{ article.title }}</h1>
-                {% endif %}
+    <div class="slash intoPage">
+        <div class="slash-row justify-content-center">
+            <div class="article-col">
+                <div class="slash-row">
+                    <div class="text-center titlePortfolio">
+                        {% if app.request.get('_route') == 'articles_edit' or app.request.get('_route') == 'articles_new' %}
+                            {{ form_label(form.title) }}
+                            <h1>{{ form_widget(form.title) }}</h1>
+                            {{ form_errors(form.title) }}
+                        {% else %}
+                            <h1>{{ article.title }}</h1>
+                        {% endif %}
+                    </div>
+                </div>
             </div>
         </div>
     </div>
     <div class="article">
-        <div class="article-row justify-content-center headArticle">
-            <div class="col-md-1 icon">
-                {% if article.icon %}
-                    <img src="{{ uploaded_asset(article.id, article.icon) }}"/>
-                {% endif %}
-            </div>
-            <div class="col-md-3 fullTitle">
-                {% if app.request.get('_route') == 'articles_edit' or app.request.get('_route') == 'articles_new' %}
-                    {% if app.request.get('_route') == 'articles_new' %}
-                        {{ form_label(form.fullTitle) }}
-                    {% endif %}
-                    {{ form_widget(form.fullTitle) }}
-                    {{ form_errors(form.fullTitle) }}
-                {% else %}
-                    {{ article.fullTitle }}
-                {% endif %}
-            </div>
-            <div class="col-md-4 textPreview">
-                {% if app.request.get('_route') == 'articles_edit' or app.request.get('_route') == 'articles_new' %}
-                    {% if app.request.get('_route') == 'articles_new' %}
-                        {{ form_label(form.textPreview) }}
-                    {% endif %}
-                    {{ form_widget(form.textPreview) }}
-                    {{ form_errors(form.textPreview) }}
-                {% else %}
-                    {{ article.textPreview }}
-                {% endif %}
+        <div class="article-row justify-content-center">
+            <div class="article-col">
+                <div class="article-row headArticle">
+                    <div class="col-md-2 icon">
+                        {% if article.icon %}
+                            <img src="{{ uploaded_asset(article.id, article.icon) }}"/>
+                        {% endif %}
+                    </div>
+                    <div class="col-md-4 fullTitle">
+                        {% if app.request.get('_route') == 'articles_edit' or app.request.get('_route') == 'articles_new' %}
+                            {% if app.request.get('_route') == 'articles_new' %}
+                                {{ form_label(form.fullTitle) }}
+                            {% endif %}
+                            {{ form_widget(form.fullTitle) }}
+                            {{ form_errors(form.fullTitle) }}
+                        {% else %}
+                            {{ article.fullTitle }}
+                        {% endif %}
+                    </div>
+                    <div class="col-md-6 textPreview">
+                        {% if app.request.get('_route') == 'articles_edit' or app.request.get('_route') == 'articles_new' %}
+                            {% if app.request.get('_route') == 'articles_new' %}
+                                {{ form_label(form.textPreview) }}
+                            {% endif %}
+                            {{ form_widget(form.textPreview) }}
+                            {{ form_errors(form.textPreview) }}
+                        {% else %}
+                            {{ article.textPreview }}
+                        {% endif %}
+                    </div>
+                </div>
             </div>
         </div>
         {% if app.request.get('_route') == 'articles_edit' or app.request.get('_route') == 'articles_new' %}
-            <div class="row justify-content-md-center">
-                <div class="col-md-8 icon">
-                    {{ form_label(form.iconFile) }}<br/>
-                    {{ form_widget(form.iconFile) }}
-                    {{ form_errors(form.iconFile) }}
+            <div class="article-row justify-content-md-center">
+                <div class="article-col">
+                    <div class="article-row">
+                        <div class="col-md-8 icon">
+                            {{ form_label(form.iconFile) }}<br/>
+                            {{ form_widget(form.iconFile) }}
+                            {{ form_errors(form.iconFile) }}
+                        </div>
+                    </div>
                 </div>
             </div>
         {% endif %}
-        <div class="row justify-content-md-center">
-            <div class="col-md-8 img">
-                {% if app.request.get('_route') != 'articles_new' %}
-                    {% if images %}
-                        {% set secondValue = null %}
-                        {% for image in images %}
-                            {% set secondValue = loop.index0 %}
-                        {% endfor %}
-                        {% if secondValue > 0 %}
-                            <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
-                                <ol class="carousel-indicators">
-                                    {% for image in images %}
-                                        {% set i = loop.index0 %}
-                                        <li data-target="#carouselExampleIndicators"
-                                            data-slide-to={{ i }} {% if image.general %}class="active"{% endif %}></li>
-                                    {% endfor %}
-                                </ol>
-                                <div class="carousel-inner">
-                                    {% for image in images %}
-                                        <div class="carousel-item {% if image.general %}active{% endif %}">
-                                            <img src="{{ uploaded_asset(article.id, image.img) }}" class="d-block w-100"
-                                                 alt=""/>
+        <div class="article-row justify-content-center">
+            <div class="article-col">
+                <div class="article-row">
+                    <div class="col img">
+                        {% if app.request.get('_route') != 'articles_new' %}
+                            {% if images %}
+                                {% set secondValue = null %}
+                                {% for image in images %}
+                                    {% set secondValue = loop.index0 %}
+                                {% endfor %}
+                                {% if secondValue > 0 %}
+                                    <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+                                        <ol class="carousel-indicators">
+                                            {% for image in images %}
+                                                {% set i = loop.index0 %}
+                                                <li data-target="#carouselExampleIndicators"
+                                                    data-slide-to={{ i }} {% if image.general %}class="active"{% endif %}></li>
+                                            {% endfor %}
+                                        </ol>
+                                        <div class="carousel-inner">
+                                            {% for image in images %}
+                                                <div class="carousel-item {% if image.general %}active{% endif %}">
+                                                    <img src="{{ uploaded_asset(article.id, image.img) }}"
+                                                         class="d-block w-100"
+                                                         alt=""/>
+                                                </div>
+                                            {% endfor %}
                                         </div>
+                                        <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button"
+                                           data-slide="prev">
+                                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                            <span class="sr-only">Previous</span>
+                                        </a>
+                                        <a class="carousel-control-next" href="#carouselExampleIndicators" role="button"
+                                           data-slide="next">
+                                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                            <span class="sr-only">Next</span>
+                                        </a>
+                                    </div>
+                                {% else %}
+                                    {% for image in images %}
+                                        <img src="{{ uploaded_asset(article.id, image.img) }}" alt=""/>
                                     {% endfor %}
-                                </div>
-                                <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button"
-                                   data-slide="prev">
-                                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                                    <span class="sr-only">Previous</span>
-                                </a>
-                                <a class="carousel-control-next" href="#carouselExampleIndicators" role="button"
-                                   data-slide="next">
-                                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                                    <span class="sr-only">Next</span>
-                                </a>
-                            </div>
-                        {% else %}
-                            {% for image in images %}
-                                <img src="{{ uploaded_asset(article.id, image.img) }}" alt=""/>
-                            {% endfor %}
+                                {% endif %}
+                            {% endif %}
                         {% endif %}
-                    {% endif %}
-                {% endif %}
+                    </div>
+                </div>
             </div>
         </div>
         {% if (app.request.get('_route') == 'articles_edit' or app.request.get('_route') == 'articles_new') %}
-            <div class="row js-genus-scientist-wrapper" id="radioChecked">
-
-                <div class="col-md-8 offset-md-2  previewContainer">
-                    <div class="row">
+            <div class="article-row justify-content-center" id="radioChecked">
+                <div class="article-col">
+                    <div class="article-row previewContainer">
                         {% for radio in form.imgArticles %}
                             {% set i = loop.index0 %}
 
@@ -141,11 +157,13 @@
                                      class="embed-responsive"/>
                                 {% if radio.vars.value.general %}
                                 {% else %}
-                                    <button type="button" class="js-remove-scientist btn"><i class="fa fa-close"></i>
+                                    <button type="button" class="js-remove-scientist btn"><i
+                                                class="fa fa-close"></i>
                                     </button>
                                 {% endif %}
                                 <label class="containerCheck">
-                                    <input class="form-check-input" type="radio" name="radioName" id="radios{{ i }}"
+                                    <input class="form-check-input" type="radio" name="radioName"
+                                           id="radios{{ i }}"
                                            value="{{ i }}"{% if radio.vars.value.general == 1 %} checked{% endif %}>
                                     <span class="checkmark"></span>
                                 </label>
@@ -158,105 +176,120 @@
                     </div>
                 </div>
             </div>
-            <div class="row justify-content-md-center">
-                <div class="col-md-8">
-                    {{ form_label(form.imageFile) }}<br/>
-                    {{ form_widget(form.imageFile) }}
-                    {{ form_errors(form.imageFile) }}
+            <div class="article-row justify-content-center" id="radioChecked">
+                <div class="article-col">
+                    <div class="article-row">
+                        <div class="col">
+                            {{ form_label(form.imageFile) }}<br/>
+                            {{ form_widget(form.imageFile) }}
+                            {{ form_errors(form.imageFile) }}
+                        </div>
+                    </div>
                 </div>
-
             </div>
         {% endif %}
-        <div class="row justify-content-md-center descArticle">
-            <div class="col-md-2 technology">
-                <p class="param">технологии</p>
-                {% if app.request.get('_route') == 'articles_edit' or app.request.get('_route') == 'articles_new' %}
-                    <p class="paramText"> {{ form_widget(form.technology) }}</p>
-                    {{ form_errors(form.technology) }}
-                {% else %}
-                    <p class="paramText">{{ article.technology }}</p>
-                {% endif %}
-            </div>
-            <div class="col-md-2">
-                <p class="param">клиент</p>
-                {% if app.request.get('_route') == 'articles_edit' or app.request.get('_route') == 'articles_new' %}
-                    <p class="paramText"> {{ form_widget(form.client) }}</p>
-                    {{ form_errors(form.client) }}
-                {% else %}
-                    <p class="paramText">{{ article.client }}</p>
-                {% endif %}
-            </div>
-            <div class="col-md-2">
-                <p class="param">год</p>
-                {% if app.request.get('_route') == 'articles_edit' or app.request.get('_route') == 'articles_new' %}
-                    <p class="paramText"> {{ form_widget(form.year) }}</p>
-                    {{ form_errors(form.year) }}
-                {% else %}
-                    <p class="paramText">{{ article.year }}</p>
-                {% endif %}
-            </div>
-            <div class="col-md-2">
-                <p class="param">скачать</p>
-                <div class="row">
-                    {% if app.request.get('_route') != 'articles_new' %}
-                        {% for button in buttons %}
-                            {% if button.id == article.id %}
-                                <div class="col-md-6 title">
-                                    <a href={{ button.url }} class="btn buttonProject" role="button">
-                                    <span>
+        <div class="article-row justify-content-center descArticle">
+            <div class="article-col">
+                <div class="article-row">
+                    <div class="col-md-3 technology">
+                        <p class="param">технологии</p>
+                        {% if app.request.get('_route') == 'articles_edit' or app.request.get('_route') == 'articles_new' %}
+                            <p class="paramText"> {{ form_widget(form.technology) }}</p>
+                            {{ form_errors(form.technology) }}
+                        {% else %}
+                            <p class="paramText">{{ article.technology }}</p>
+                        {% endif %}
+                    </div>
+                    <div class="col-md-3">
+                        <p class="param">клиент</p>
+                        {% if app.request.get('_route') == 'articles_edit' or app.request.get('_route') == 'articles_new' %}
+                            <p class="paramText"> {{ form_widget(form.client) }}</p>
+                            {{ form_errors(form.client) }}
+                        {% else %}
+                            <p class="paramText">{{ article.client }}</p>
+                        {% endif %}
+                    </div>
+                    <div class="col-md-3">
+                        <p class="param">год</p>
+                        {% if app.request.get('_route') == 'articles_edit' or app.request.get('_route') == 'articles_new' %}
+                            <p class="paramText"> {{ form_widget(form.year) }}</p>
+                            {{ form_errors(form.year) }}
+                        {% else %}
+                            <p class="paramText">{{ article.year }}</p>
+                        {% endif %}
+                    </div>
+                    <div class="col-md-3">
+                        <p class="param">перейти</p>
+                        <div class="row">
+                            {% if app.request.get('_route') != 'articles_new' %}
+                                {% for button in buttons %}
+                                    {% if button.id == article.id %}
+                                        <div class="title">
+                                            <a href="{{ button.url }}" class="btn buttonWatch" role="button">
+                                            <span>
                                         <object type="image/svg+xml" data="/images/batton/{{ button.icon }}">
                                              <div class="internalText"></div>
                                         </object>
                                             </span></a>
-                                </div>
+                                        </div>
+                                    {% endif %}
+                                {% endfor %}
                             {% endif %}
-                        {% endfor %}
-                    {% endif %}
-                    {% if app.request.get('_route') == 'articles_edit' or app.request.get('_route') == 'articles_new' %}
-                        {{ form_label(form.buttonArticles) }}
-                        <ul id="email-fields-list"
-                            class="js-genus-scientist-wrapper"
-                            data-prototype="{{ formMacros.printButtonRow(form.buttonArticles.vars.prototype)|e('html_attr') }}"
-                            data-widget-tags="{{ '<div class="js-genus-scientist-item"></div>'|e }}"
-                            data-widget-counter="{{ form.buttonArticles|length }}">
-                            {% for button in form.buttonArticles %}
-                                <div class="js-genus-scientist-item">
-                                    {{ formMacros.printButtonRow(button) }}
-                                </div>
-                            {% endfor %}
-                        </ul>
-                        <button type="button"
-                                class="add-another-collection-widget"
-                                data-list-selector="#email-fields-list">
-                            Add Button
-                        </button>
-                    {% endif %}
+                            {% if app.request.get('_route') == 'articles_edit' or app.request.get('_route') == 'articles_new' %}
+                                {{ form_label(form.buttonArticles) }}
+                                <ul id="email-fields-list"
+                                    class="js-genus-scientist-wrapper"
+                                    data-prototype="{{ formMacros.printButtonRow(form.buttonArticles.vars.prototype)|e('html_attr') }}"
+                                    data-widget-tags="{{ '<div class="js-genus-scientist-item"></div>'|e }}"
+                                    data-widget-counter="{{ form.buttonArticles|length }}">
+                                    {% for button in form.buttonArticles %}
+                                        <div class="js-genus-scientist-item">
+                                            {{ formMacros.printButtonRow(button) }}
+                                        </div>
+                                    {% endfor %}
+                                </ul>
+                                <button type="button"
+                                        class="add-another-collection-widget"
+                                        data-list-selector="#email-fields-list">
+                                    Add Button
+                                </button>
+                            {% endif %}
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
-        <div class="row justify-content-md-center">
-            <div class="col-md-8 descArticle">
-                {% if app.request.get('_route') == 'articles_edit' or app.request.get('_route') == 'articles_new' %}
-                    {{ form_label(form.description) }}
-                    {{ form_widget(form.description) }}
-                    {{ form_errors(form.description) }}
-                {% else %}
-                    {{ article.description|raw }}
-                {% endif %}
+        <div class="article-row justify-content-center">
+            <div class="article-col">
+                <div class="article-row">
+                    <div class="col descArticle">
+                        {% if app.request.get('_route') == 'articles_edit' or app.request.get('_route') == 'articles_new' %}
+                            {{ form_label(form.description) }}
+                            {{ form_widget(form.description) }}
+                            {{ form_errors(form.description) }}
+                        {% else %}
+                            {{ article.description|raw }}
+                        {% endif %}
+                    </div>
+                </div>
             </div>
         </div>
         {% if app.request.get('_route') == 'articles_edit' or app.request.get('_route') == 'articles_new' %}
-            <div class="row justify-content-md-center">
-                <div class="col-md-8 descArticle">
-                    {{ form_label(form.alias) }}
-                    {{ form_widget(form.alias) }}
-                    {{ form_errors(form.alias) }}
-                    {{ form_label(form.author) }}
-                    {{ form_widget(form.author) }}
-                    {{ form_errors(form.author) }}
-                    {{ form_label(form.category) }}
-                    {{ form_widget(form.category) }}
-                    {{ form_errors(form.category) }}
+            <div class="article-row justify-content-center">
+                <div class="article-col">
+                    <div class="article-row">
+                        <div class="col descArticle">
+                            {{ form_label(form.alias) }}
+                            {{ form_widget(form.alias) }}
+                            {{ form_errors(form.alias) }}
+                            {{ form_label(form.author) }}
+                            {{ form_widget(form.author) }}
+                            {{ form_errors(form.author) }}
+                            {{ form_label(form.category) }}
+                            {{ form_widget(form.category) }}
+                            {{ form_errors(form.category) }}
+                        </div>
+                    </div>
                 </div>
             </div>
             <div style="display: none">

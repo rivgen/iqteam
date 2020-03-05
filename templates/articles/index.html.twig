@@ -5,16 +5,10 @@
 {% macro printAticle(article, images, buttons) %}
     <div class="projects-col filter {{ article.category }} wow fadeInUp">
         <figure class="effect-zoe blockImg">
-            {% if images %}
-                {% for image in images %}
-                    {% if image.article == article.id %}
-                        <a href={{ path('articles_show', {'id': article.id}) }}>
-                            <img src={{ uploaded_asset(article.id, image.img) }} alt=""
-                                 class="embed-responsive"/>
-                        </a>
-                    {% endif %}
-                {% endfor %}
-            {% endif %}
+            <a href={{ path('articles_show', {'id': article.id}) }}>
+                <img src={{ uploaded_asset(article.id, article.icon) }} alt=""
+                     class="embed-responsive"/>
+            </a>
             <figcaption>
                 <p class="icon-links">
                     {% for button in buttons %}
@@ -43,7 +37,7 @@
 {% endmacro %}
 
 {% block body %}
-    <div id="slash" class="slash intoPage">
+    <div class="slash intoPage">
         <div class="slash-row">
             <div class="text-center titlePortfolio">
                 <h1>Портфолио</h1>
@@ -73,11 +67,15 @@
         </div>
     </div>
     <div class="filterButton">
-        <div class="filterButton-row">
-            <button class="btn filter-button active" data-filter="all">Все</button>
-            {% for category in categories %}
-                <button class="btn filter-button" data-filter={{ category.id }}>{{ category.title }}</button>
-            {% endfor %}
+        <div class="letter-E-row justify-content-center">
+            <div class="letter-E-col">
+                <div class="filterButton-row">
+                    <button class="btn filter-button active" data-filter="all">Все</button>
+                    {% for category in categories %}
+                        <button class="btn filter-button" data-filter={{ category.id }}>{{ category.title }}</button>
+                    {% endfor %}
+                </div>
+            </div>
         </div>
     </div>
     <div class="filterButton360vw">
@@ -108,10 +106,14 @@
         {#end modal#}
     </div>
     <div class="portfolio">
-        <div class="projects">
-            {% for article in articles %}
-                {{ macros.printAticle(article, images, buttons) }}
-            {% endfor %}
+        <div class="letter-E-row justify-content-center">
+            <div class="letter-E-col">
+                <div class="projects">
+                    {% for article in articles %}
+                        {{ macros.printAticle(article, images, buttons) }}
+                    {% endfor %}
+                </div>
+            </div>
         </div>
     </div>
     {% if is_granted('ROLE_CONTENT_MANAGER') %}

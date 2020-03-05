@@ -63,6 +63,12 @@
   }
 }
 
+.article {
+  .buttonWatch {
+    @extend %transformButtonUp;
+  }
+}
+
 .btnBlue, .buttonProject {
   --shadow: 0px 10px 20px rgba(57, 100, 249, 0.3);
   --shadow-hover: 0px 12px 20px rgba(57, 100, 249, 0.4);

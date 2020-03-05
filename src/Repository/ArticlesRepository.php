@@ -40,7 +40,7 @@ class ArticlesRepository extends ServiceEntityRepository
     public function articlesInCategory()
     {
 
-        $qb = $this->createQueryBuilder('a')->select('a.id, a.title, a.textPreview, ac.id category');
+        $qb = $this->createQueryBuilder('a')->select('a.id, a.title, a.textPreview, ac.id category, a.icon');
         $qb->leftJoin(ArticlesCategory::class, 'ac', 'WITH', 'a.category = ac.id');
 
         return $qb->getQuery()->getResult();

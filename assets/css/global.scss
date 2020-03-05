@@ -92,7 +92,7 @@ a p:hover {
   @include make-row();
 }
 
-.letter-I-content-make, .letter-Q-col, .letter-D-col, .slash-col, .letter-E-col, .letter-V-col, .footer-col, .login-col, .register-col {
+.letter-I-content-make, .letter-Q-col, .letter-D-col, .slash-col, .letter-E-col, .letter-V-col, .footer-col, .login-col, .register-col, .article-col {
   @extend %content-main-col-xl-8-col-11;
 }
 
@@ -128,6 +128,20 @@ a p:hover {
       background-repeat: no-repeat;
       background-size: cover;
       transform: translateX(-49%);
+    }
+    %positionImg {
+      position: absolute;
+      top: 50%;
+      width: auto;
+      height: 72%;
+    }
+    .left {
+      @extend %positionImg;
+      transform: translate(0%, -55%);
+    }
+    .right {
+      @extend %positionImg;
+      transform: translate(53%, -68%);
     }
   }
   .title {
@@ -375,7 +389,7 @@ a p:hover {
   padding-top: 90px;
   padding-bottom: 15px;
   @include media-breakpoint-up(md) {
-    padding-top: calc(100vw / 10);
+    padding-top: 8vw;
     padding-bottom: 55px;
   }
 
@@ -530,8 +544,10 @@ a p:hover {
 }
 
 .portfolio {
-  max-width: 1200px;
   @include make-container();
+  @media (min-width: 1800px) {
+    width: 1200px;
+  }
   //@include media-breakpoint-up(xl){
   //  padding: 0;
   //}
@@ -586,14 +602,6 @@ a p:hover {
   }
 }
 
-.portfolio-E {
-  max-width: none;
-  @media (min-width: 1800px) {
-    width: 1200px;
-  }
-
-}
-
 .letter-E .blockImg, .letter-E .blockText {
   @include make-col-ready();
   @include media-breakpoint-up(md) {
@@ -633,6 +641,14 @@ a p:hover {
   border: none;
   font-size: 16px;
   cursor: pointer;
+}
+
+.buttonWatch {
+  object {
+    box-shadow: 0px 10px 20px rgba(57, 100, 249, 0.3);
+    border-radius: 50%;
+    pointer-events: none;
+  }
 }
 
 .buttonProject {
@@ -675,8 +691,6 @@ a p:hover {
   margin-right: 10px;
   pointer-events: none;
 }
-
-
 
 #letter-V-back {
   background-color: white;
@@ -746,7 +760,7 @@ a p:hover {
 //  background-color: white;
 //}
 
-.footerBackground{
+.footerBackground {
   background-color: white;
 }
 
@@ -785,13 +799,60 @@ a p:hover {
 
 .filterButton {
   display: none;
-  max-width: 1200px;
+
   @include make-container();
+  @media (min-width: 1800px) {
+    width: 1200px;
+  }
+  position: relative;
+  height: 80px;
   @include media-breakpoint-down(sm) {
     margin-top: 40px;
   }
   @include media-breakpoint-up(sm) {
     display: block;
+  }
+  %hoverActive {
+    content: '';
+    border-bottom: 2px solid #3964F9;
+    position: absolute;
+    bottom: -1px;
+    left: 0;
+    width: 100%;
+  }
+  button {
+    font-size: 12px;
+    line-height: 150%;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    @include make-col-ready();
+    @include make-col(4);
+    &:hover::after {
+      @extend %hoverActive;
+    }
+  }
+  .active::after {
+    @extend %hoverActive;
+  }
+  .btnContainer {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    height: 100%;
+    width: 100%;
+  }
+  p {
+    font-size: 12px;
+    line-height: 150%;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin: 0;
+  }
+  .text {
+    padding-top: 200px;
+  }
+  .letter-E-row {
+    height: 100%;
   }
 }
 
@@ -803,11 +864,6 @@ a p:hover {
   //@include media-breakpoint-up(xl) {
   margin: 0;
   //}
-}
-
-.filterButton {
-  position: relative;
-  height: 80px;
 }
 
 .filterButton360vw {
@@ -841,7 +897,7 @@ button:focus {
   }
 }
 
-.filterButton button, .menuClass button {
+.menuClass button {
   font-size: 12px;
   line-height: 150%;
   letter-spacing: 0.1em;
@@ -862,8 +918,6 @@ button:focus {
   box-shadow: none;
 }
 
-.filterButton button:hover::after,
-.filterButton .active::after,
 .menuClass button:hover::after,
 .menuClass .active::after {
   content: '';
@@ -874,7 +928,7 @@ button:focus {
   width: 100%;
 }
 
-.filterButton .btnContainer, .menuClass .btnContainer {
+.menuClass .btnContainer {
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
@@ -894,7 +948,7 @@ button:focus {
   text-transform: uppercase;
 }
 
-.filterButton p, .menuClass p, .homeClass p, .homeClass a {
+.menuClass p, .homeClass p, .homeClass a {
   font-size: 12px;
   line-height: 150%;
   letter-spacing: 0.1em;
@@ -902,7 +956,7 @@ button:focus {
   margin: 0;
 }
 
-.filterButton .text, .menuClass .text {
+.menuClass .text {
   padding-top: 200px;
 }
 
@@ -1025,6 +1079,9 @@ a.logoSvg:after {
 .titleService h1, .titlePortfolio h1 {
   font-weight: bold;
   font-size: calc(3rem + 40 * (100vw - 520px) / 880);
+  @include media-breakpoint-up(xl) {
+    font-size: 96px;
+  }
   line-height: 130%;
   color: #3964F9;
 }
@@ -1085,7 +1142,10 @@ a.logoSvg:after {
   font-weight: bold;
   font-size: 15px;
   @include media-breakpoint-up(md) {
-    font-size: calc(0.2rem + 9 * (100vw - 20px) / 880);
+    font-size: calc(0.5rem + 9 * (100vw - 20px) / 880);
+  }
+  @include media-breakpoint-up(xl) {
+    font-size: 21px;
   }
   color: #323232;
 }
@@ -1291,6 +1351,9 @@ textarea.form-control {
 
 .article {
   @include make-container();
+  @media (min-width: 1800px) {
+    width: 1200px;
+  }
 }
 
 .article .icon img {
@@ -1638,380 +1701,406 @@ textarea.form-control {
   }
 }
 
-  .homeLocale .locale {
-    @extend %content-main-col-2;
-  }
+.homeLocale .locale {
+  @extend %content-main-col-2;
+}
 
-  .homeLocale-row {
-    @include make-row();
-  }
+.homeLocale-row {
+  @include make-row();
+}
 
-  .hadMenu {
-    @include make-col-ready();
-    display: none;
-    @include media-breakpoint-up(xl) {
-      @include make-col(8);
-      display: block;
-    }
-    @media (min-width: 1800px) {
-      @include make-col(12);
-      width: 1200px;
-      //padding-top: 43px;
-    }
-  }
-
-  .logoHad {
-    left: 50%;
-    transform: translateX(-50%);
-    max-width: 178px;
-    max-height: 52px;
-    @media (min-width: 1200px) {
-      left: 0;
-      transform: translateX(0);
-    }
-  }
-
-  #dropdownMenuButton {
-    cursor: pointer;
-  }
-
-  .dropdown-menuBlock {
-    position: relative;
-    top: 881px;
-    left: -72px;
-
-  }
-
-  .baseMenu {
-    min-width: 17rem;
-    width: 260px;
-    border: none;
-    box-shadow: 0px 10px 20px rgba(57, 100, 249, 0.1);
-    border-radius: unset;
-    padding: 0;
-    overflow: hidden;
-    height: 100vh;
-    position: absolute;
-    top: 0;
-    left: 0;
-    z-index: 1000;
-    float: left;
-    background-color: #fff;
-    font-size: 12px;
-    text-transform: uppercase;
-    .dropdown-overflow {
-      overflow: scroll;
-      height: 100%;
-    }
-    .mainMenuLogo {
-
-    }
-    .mainMenu {
-      .mainMenuSocial {
-        margin: 30px;
-        display: flow-root;
-      }
-      &.endMenu {
-        margin-bottom: 55px;
-      }
-      &:after {
-        content: '';
-        display: block;
-        border: 1px solid #323232;
-        opacity: 0.05;
-        width: 77%;
-        margin: 0 30px;
-
-      }
-      p {
-        margin: 30px;
-      }
-      .logoSvg {
-        height: 100px;
-        position: relative;
-        left: 50%;
-        transform: translate(-50%, 25%);
-      }
-      .activeMenu {
-        color: #3964F9;
-        position: relative;
-      }
-    }
-  }
-
-  .dropButton {
-    width: 100%;
-    height: 60px;
-    background: #3964F9;
-    position: fixed;
-    bottom: 0;
-    button {
-      color: #FFFFFF;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      font-size: 12px;
-      line-height: 150%;
-      position: relative;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      width: 100%;
-      height: 100%;
-    }
-  }
-
-  .dropButton a {
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    font-size: 12px;
-    line-height: 150%;
-    color: #FFFFFF;
-    position: relative;
-    top: 25%;
-    left: 42%;
-  }
-
-  .homeButton {
-    @include make-col-ready();
+.hadMenu {
+  @include make-col-ready();
+  display: none;
+  @include media-breakpoint-up(xl) {
     @include make-col(8);
-    @include media-breakpoint-down(lg) {
-      display: none !important;
+    display: block;
+  }
+  @media (min-width: 1800px) {
+    @include make-col(12);
+    width: 1200px;
+    //padding-top: 43px;
+  }
+}
+
+.logoHad {
+  left: 50%;
+  transform: translateX(-50%);
+  max-width: 178px;
+  max-height: 52px;
+  @media (min-width: 1200px) {
+    left: 0;
+    transform: translateX(0);
+  }
+}
+
+#dropdownMenuButton {
+  cursor: pointer;
+}
+
+.dropdown-menuBlock {
+  position: relative;
+  top: 881px;
+  left: -72px;
+
+}
+
+.baseMenu {
+  min-width: 17rem;
+  width: 260px;
+  border: none;
+  box-shadow: 0px 10px 20px rgba(57, 100, 249, 0.1);
+  border-radius: unset;
+  padding: 0;
+  overflow: hidden;
+  height: 100vh;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 1000;
+  float: left;
+  background-color: #fff;
+  font-size: 12px;
+  text-transform: uppercase;
+  .dropdown-overflow {
+    overflow: scroll;
+    height: 100%;
+  }
+  .mainMenuLogo {
+
+  }
+  .mainMenu {
+    .mainMenuSocial {
+      margin: 30px;
+      display: flow-root;
     }
-    width: 100%;
-    height: 80px;
-    background: #3964F9;
-    //position: fixed;
-    //bottom: 0;
-    button {
-      color: #FFFFFF;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      font-size: 12px;
-      line-height: 150%;
+    &.endMenu {
+      margin-bottom: 55px;
+    }
+    &:after {
+      content: '';
+      display: block;
+      border: 1px solid #323232;
+      opacity: 0.05;
+      width: 77%;
+      margin: 0 30px;
+
+    }
+    p {
+      margin: 30px;
+    }
+    .logoSvg {
+      height: 100px;
       position: relative;
-      top: 50%;
       left: 50%;
-      transform: translate(-50%, -50%);
-      width: 100%;
-      height: 100%;
+      transform: translate(-50%, 25%);
+    }
+    .activeMenu {
+      color: #3964F9;
+      position: relative;
     }
   }
+}
 
-  .homeButton a {
+.dropButton {
+  width: 100%;
+  height: 60px;
+  background: #3964F9;
+  position: fixed;
+  bottom: 0;
+  button {
+    color: #FFFFFF;
     letter-spacing: 0.1em;
     text-transform: uppercase;
     font-size: 12px;
     line-height: 150%;
-    color: #FFFFFF;
     position: relative;
-    top: 25%;
-    left: 42%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100%;
+    height: 100%;
   }
+}
 
-  .rowCenter {
+.dropButton a {
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  font-size: 12px;
+  line-height: 150%;
+  color: #FFFFFF;
+  position: relative;
+  top: 25%;
+  left: 42%;
+}
+
+.homeButton {
+  @include make-col-ready();
+  @include make-col(8);
+  @include media-breakpoint-down(lg) {
+    display: none !important;
+  }
+  width: 100%;
+  height: 80px;
+  background: #3964F9;
+  //position: fixed;
+  //bottom: 0;
+  button {
+    color: #FFFFFF;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    font-size: 12px;
+    line-height: 150%;
     position: relative;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100%;
+    height: 100%;
+  }
+}
+
+.homeButton a {
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  font-size: 12px;
+  line-height: 150%;
+  color: #FFFFFF;
+  position: relative;
+  top: 25%;
+  left: 42%;
+}
+
+.rowCenter {
+  position: relative;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+#fixedBackground {
+  height: 100vh;
+  width: 100vw;
+  position: fixed;
+  top: 0;
+  left: 0;
+}
+
+#filterMenu {
+  width: 260px;
+}
+
+.filterMenu {
+  background: #fff;
+  .filter-button {
+    font-size: 12px;
+    text-transform: uppercase;
+    width: 100%;
+    background-color: #fff;
+    border: none;
+    text-align: left;
+    margin: 10px 0;
+  }
+}
+
+.login, .register {
+  @include make-container();
+  padding-top: 150px;
+}
+
+.login-row, .register-row {
+  @include make-row()
+}
+
+.lineInvisible {
+  opacity: 0;
+}
+
+.contactForm {
+  @include make-container();
+  @media (min-width: 1800px) {
+    width: 1200px;
+  }
+  .contactForm-row {
+    @include make-row();
+    .contactForm-col {
+      --font-size: 12px;
+      @extend %content-main-col-xl-8-col-11;
+      .text {
+        font-weight: bold;
+        font-size: calc(0.5rem + 10 * (100vw - 320px) / 880);
+        line-height: 150%;
+        color: #323232;
+        padding: 70px 0;
+        @include media-breakpoint-up(xl) {
+          font-size: 24px;
+        }
+      }
+      .name {
+        font-size: var(--font-size);
+        text-transform: uppercase;
+        color: #323232;
+        @include make-col-ready();
+        @include media-breakpoint-up(sm) {
+          @include make-col(3)
+        }
+      }
+      label {
+        padding-top: calc(25px - var(--font-size) / 2);
+      }
+      .form-group {
+        @include make-col-ready();
+        @include media-breakpoint-up(sm) {
+          @include make-col(9)
+        }
+      }
+      .button {
+        @include make-col-ready();
+        @include media-breakpoint-up(sm) {
+          @include make-col(6)
+        }
+      }
+    }
+  }
+}
+
+.rightPosition {
+  margin-left: auto;
+  margin-right: 0;
+}
+
+.modal-content {
+  width: 640px;
+  box-shadow: 0px 10px 20px rgba(57, 100, 249, 0.1);
+  border-radius: 20px;
+  .modal-body {
+    @include make-row();
+    margin: 15px;
+    .modal-col-6 {
+      @extend %content-main-col-6;
+    }
+    .modal-col-12 {
+      @include make-col-ready();
+      @include make-col(12);
+    }
+    .modal-title {
+      font-weight: bold;
+      font-size: 30px;
+      text-align: center;
+      letter-spacing: -0.03em;
+      color: #323232;
+      padding: 0 0 15px;
+    }
+    button.close {
+      position: absolute;
+      right: 0;
+      top: -10px;
+      opacity: .2;
+      font-size: 2rem;
+    }
+    label {
+      font-size: 12px;
+      text-transform: uppercase;
+      color: #323232;
+    }
+    .form-control {
+      background-color: #F5F5F5;
+      border-radius: 5px;
+    }
+    .buttonProject {
+      width: 100%;
+      margin-bottom: 15px;
+    }
+  }
+}
+
+#menuBase {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  z-index: 10;
+  left: 0;
+  top: 0;
+}
+
+.fixedClass {
+  @include media-breakpoint-up(xl) {
+    position: fixed;
+    width: 100%;
+    background-color: #fff;
+    height: 80px;
+    box-shadow: 0px 10px 20px rgba(57, 100, 249, 0.1);
+  }
+}
+
+.fixedCenter {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  padding: 0 30px;
+}
+
+.fixedLogo {
+  @include media-breakpoint-up(xl) {
+    position: absolute;
     top: 50%;
     transform: translateY(-50%);
   }
+}
 
-  #fixedBackground {
-    height: 100vh;
-    width: 100vw;
-    position: fixed;
-    top: 0;
-    left: 0;
-  }
-
-  #filterMenu {
-    width: 260px;
-  }
-
-  .filterMenu {
-    background: #fff;
-    .filter-button {
-      font-size: 12px;
-      text-transform: uppercase;
-      width: 100%;
-      background-color: #fff;
-      border: none;
-      text-align: left;
-      margin: 10px 0;
-    }
-  }
-
-  .login, .register {
-    @include make-container();
-    padding-top: 150px;
-  }
-
-  .login-row, .register-row {
-    @include make-row()
-  }
-
-  .lineInvisible {
-    opacity: 0;
-  }
-
-  .contactForm {
-    @include make-container();
-    .contactForm-row {
-      @include make-row();
-      .contactForm-col {
-        --font-size: 12px;
-        @extend %content-main-col-xl-8-col-11;
-        .text {
-          font-weight: bold;
-          font-size: calc(0.5rem + 10 * (100vw - 320px) / 880);
-          line-height: 150%;
-          color: #323232;
-          padding: 70px 0;
-          @include media-breakpoint-up(xl) {
-            font-size: 24px;
-          }
-        }
-        .name {
-          font-size: var(--font-size);
-          text-transform: uppercase;
-          color: #323232;
-          @include make-col-ready();
-          @include media-breakpoint-up(sm) {
-            @include make-col(3)
-          }
-        }
-        label {
-          padding-top: calc(25px - var(--font-size) / 2);
-        }
-        .form-group {
-          @include make-col-ready();
-          @include media-breakpoint-up(sm) {
-            @include make-col(9)
-          }
-        }
-        .button {
-          @include make-col-ready();
-          @include media-breakpoint-up(sm) {
-            @include make-col(6)
-          }
-        }
-      }
-    }
-  }
-
-  .rightPosition {
-    margin-left: auto;
-    margin-right: 0;
-  }
-
-  .modal-content {
-    width: 640px;
-    box-shadow: 0px 10px 20px rgba(57, 100, 249, 0.1);
-    border-radius: 20px;
-    .modal-body {
-      @include make-row();
-      margin: 15px;
-      .modal-col-6 {
-        @extend %content-main-col-6;
-      }
-      .modal-col-12 {
-        @include make-col-ready();
-        @include make-col(12);
-      }
-      .modal-title {
-        font-weight: bold;
-        font-size: 30px;
-        text-align: center;
-        letter-spacing: -0.03em;
-        color: #323232;
-        padding: 0 0 15px;
-      }
-      button.close {
-        position: absolute;
-        right: 0;
-        top: -10px;
-        opacity: .2;
-        font-size: 2rem;
-      }
-      label {
-        font-size: 12px;
-        text-transform: uppercase;
-        color: #323232;
-      }
-      .form-control {
-        background-color: #F5F5F5;
-        border-radius: 5px;
-      }
-      .buttonProject {
-        width: 100%;
-        margin-bottom: 15px;
-      }
-    }
-  }
-
-  #menuBase {
-    position: fixed;
-    width: 100%;
-    height: 100%;
-    z-index: 10;
-    left: 0;
-    top: 0;
-  }
-
-  .fixedClass {
-    @include media-breakpoint-up(xl) {
-      position: fixed;
-      width: 100%;
-      background-color: #fff;
-      height: 80px;
-      box-shadow: 0px 10px 20px rgba(57, 100, 249, 0.1);
-    }
-  }
-
-  .fixedCenter {
+.fixedLocale {
+  @include media-breakpoint-up(xl) {
     position: absolute;
-    left: 50%;
     top: 50%;
-    transform: translate(-50%, -50%);
-    padding: 0 30px;
+    right: 0;
+    transform: translateY(-50%);
   }
+}
 
-  .fixedLogo {
-    @include media-breakpoint-up(xl) {
-      position: absolute;
-      top: 50%;
-      transform: translateY(-50%);
-    }
+.br1 p {
+  @include media-breakpoint-up(md) {
+    padding-right: 40.5px;
   }
+}
 
-  .fixedLocale {
-    @include media-breakpoint-up(xl) {
-      position: absolute;
-      top: 50%;
-      right: 0;
-      transform: translateY(-50%);
-    }
+.br2 p {
+  @include media-breakpoint-up(md) {
+    padding-right: 90px;
   }
+}
 
-  .br1 p{
-    @include media-breakpoint-up(md){
-      padding-right: 40.5px;
-    }
+.br3 p {
+  @include media-breakpoint-up(md) {
+    padding-right: 2.5px;
   }
-
-.br2 p{
-    @include media-breakpoint-up(md){
-      padding-right: 90px;
-    }
-  }
-
-.br3 p{
-    @include media-breakpoint-up(md){
-      padding-right: 2.5px;
-    }
-  }
+}
 
 .blockToFix {
   display: none;
   height: 150px;
 }
 
-  @import "animationGlobal";
+.button label {
+  width: 260px;
+  height: 50px;
+  border: 1px dashed #323232;
+  box-sizing: border-box;
+  border-radius: 5px;
+  cursor: pointer;
+  text-align: center;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #323232;
+  line-height: 84%;
+  font-size: 12px;
+}
+
+#exampleModal {
+  .button label {
+    width: 100%;
+    padding-top: 18px;
+  }
+}
+
+@import "animationGlobal";
+

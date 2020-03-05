@@ -19,7 +19,6 @@ class UploaderHelper
     public function uploadIcon(UploadedFile $uploadedFile, $id): string
     {
         $destination = $this->uploadsPath .'/public'. self::ARTICLE_IMAGE . $id . '/';
-//        dd($destination);
         $originalFilename = pathinfo($uploadedFile->getClientOriginalName(), PATHINFO_FILENAME);
         $newFilename = Urlizer::urlize($originalFilename) . '.' . $uploadedFile->guessExtension();
         $uploadedFile->move(
@@ -28,6 +27,20 @@ class UploaderHelper
         );
 
         return $newFilename;
+    }
+
+    public function uploadMailImg(UploadedFile $uploadedFile)
+    {
+        $file['targetDir'] = $this->uploadsPath .'/public/images/sendMail/';
+        $originalFilename = pathinfo($uploadedFile->getClientOriginalName(), PATHINFO_FILENAME);
+        $file['newFilename'] = Urlizer::urlize($originalFilename) . '.' . $uploadedFile->guessExtension();
+
+        $uploadedFile->move(
+            $file['targetDir'],
+            $file['newFilename']
+        );
+
+        return $file;
     }
 
     public function getPublicPath($id, $imgName): string

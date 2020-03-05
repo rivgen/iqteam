@@ -49,16 +49,17 @@ class ContactType extends AbstractType
                 ]
             ])
             ->add('file', FileType::class, [
-                'label' => 'Загрузить фаил',
+                'label' => '+ Прикрепить',
                 'mapped' => false,
                 'required' => false,
+                'multiple' => true,
 //                'constraints' => [
 //                    new Image([
 //                        'maxSize' => '2M'
 //                    ])
 //                ],
 
-//                'attr' => ['class' => 'form-control']
+                'attr' => ['class' => 'inputfile', 'data-multiple-caption' => '{count} files selected']
             ]);
     }
 

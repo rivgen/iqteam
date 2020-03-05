@@ -66,9 +66,43 @@
                         {{ macros.printFeedback('btn btnBlue hoverEffects') }}
                     </div>
                     <div class="imgBlock">
-                        <img src="/images/home_phones.png" alt="" class="embed-responsive"/>
+                        {#<img src="/images/home_phones.png" alt="" class="embed-responsive"/>#}
+                        <img src="/images/m-left.png" alt="" class="embed-responsive left" id="leftId"/>
+                        <img src="/images/m-right.png" alt="" class="embed-responsive right" id="rightId"/>
                     </div>
                 </div>
+
+
+                <script>
+                    $(document).ready(function() {
+                        let maxMove = $('.letter-I').offsetWidth / 30,
+                            leftCenterX = document.getElementById('leftId').offsetLeft + (document.getElementById('leftId').offsetWidth),
+                            leftCenterY = document.getElementById('leftId').offsetTop + (document.getElementById('leftId').offsetHeight / 2);
+                        console.log(leftCenterX, leftCenterY)
+                        $('.letter-I').mousemove(function(e) {
+                            parallax(e, document.getElementById('leftId'), 0.2, leftCenterX, leftCenterY);
+//                            parallax(e, document.getElementById('rightId'), 5);
+                        });
+                    });
+
+                    function parallax(e, target, layer, leftX, leftY) {
+
+
+                        var strength = 20;
+                        var layer_coeff = strength / layer;
+//                        var x = (0 + ((e.pageX) / layer_coeff)/2) - ((e.pageX) / layer_coeff);
+                        var x = (0 - $(window).width()/layer_coeff / 2) + e.pageX/layer_coeff;
+                        var y = (55-$(window).height()/layer_coeff / 2)+e.pageY/layer_coeff;
+                        console.log(x, y, e.pageX/layer_coeff)
+                        $(target).css('transform', 'translate('+ x +'%, -' + y + '%)');
+//                        $(target).offset({
+//                            top: y,
+//                            left: x
+//                        });
+                    };
+                </script>
+
+
                 <div class="letter-I-block wow fadeInUp">
                     {% set arr = [
                     {'img':'/images/block_I/games.svg', 'text':'Более 30 собственных игр'},
@@ -96,12 +130,12 @@
                 </div>
                 {#сделать скрипт перехода по якорю#}
                 {#<div class="downButton">#}
-                    {#<a href='#' class="">#}
-                        {#<img src="/images/down.svg" alt=""/>#}
-                        {#<object type="image/svg+xml" data="/images/down.svg">#}
-                            {#<div class="internalText"></div>#}
-                        {#</object>#}
-                    {#</a>#}
+                {#<a href='#' class="">#}
+                {#<img src="/images/down.svg" alt=""/>#}
+                {#<object type="image/svg+xml" data="/images/down.svg">#}
+                {#<div class="internalText"></div>#}
+                {#</object>#}
+                {#</a>#}
                 {#</div>#}
             </div>
         </div>
@@ -246,16 +280,16 @@
             </div>
         </div>
     </div>
-    <div class="portfolio portfolio-E">
+    <div class="portfolio">
         <div class="letter-E-row justify-content-center">
-        <div class="letter-E-col">
-            <div class="projects">
+            <div class="letter-E-col">
+                <div class="projects">
 
-                {% for article in articles %}
-                    {{ articleMacros.printAticle(article, images, buttons) }}
-                {% endfor %}
+                    {% for article in articles %}
+                        {{ articleMacros.printAticle(article, images, buttons) }}
+                    {% endfor %}
+                </div>
             </div>
-        </div>
         </div>
     </div>
     <div id="letter-V-back">

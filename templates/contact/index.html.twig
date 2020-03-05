@@ -1,7 +1,7 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <div id="slash" class="slash intoPage">
+    <div class="slash intoPage">
         <div class="slash-row">
             <div class="text-center titlePortfolio">
                 <h1>Контакты</h1>
@@ -35,9 +35,9 @@
                         {{ form_widget(form.message) }}
                         {{ form_errors(form.message) }}
                     </div>
-                    {#<div style="display:none">#}
-                        {#{{ form_rest(form) }}#}
-                    {#</div>#}
+                    <div style="display:none">
+                        {{ form_rest(form) }}
+                    </div>
                     {#<input type="submit" value="Submit">#}
                 </div>
             </div>
@@ -50,14 +50,9 @@
                         <div class="contactForm-row">
                             <div class="button">
                                 {{ form_label(form.file) }}
-                                {{ form_widget(form.file) }}
-                                {{ form_errors(form.file) }}
+                                <div>{{ form_errors(form.file) }}</div>
                             </div>
                             <div class="button">
-                                {#<button type="button" class="btn btn-secondary" data-dismiss="modal">{% trans %}#}
-                                {#сloseWindow{% endtrans %}</button>#}
-                                {#<button type="submit" class="btn btn-primary" value="Submit">{% trans %}#}
-                                {#sendMessage{% endtrans %}</button>#}
                                 <button class="btn buttonProject hoverEffects rightPosition" role="button">
                                     Отправить_запрос
                                 </button>
@@ -78,7 +73,7 @@
                     <label class="col-form-label">приезжайте</label>
                     <p class="textInfo">РБ, Минск,  Партизанский<br/>пр-т, 4</p>
                     <label class="col-form-label">пишите</label>
-                    <p class="textInfo">info@iqclash.com</p>
+                    <p class="textInfo">info@iqdev.com</p>
                     <label class="col-form-label">звоните</label>
                     <p class="textInfo">+375 29 853-90-25</p>
                     <label class="col-form-label">ищите в соцсетях</label>
@@ -87,4 +82,10 @@
         </div>
     </div>
     </div>
+{% endblock %}
+{% block javascripts %}
+    {{ parent() }}
+<script>
+
+</script>
 {% endblock %}
