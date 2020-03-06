@@ -1,7 +1,7 @@
 $(document).ready(function () {
     let left = {x: 0, y: 55},
         right = {x: 53, y: 68}
-    $('.letter-I-content-make').mousemove(function (e) {
+    $('#parallax').mousemove(function (e) {
         parallax(e, document.getElementById('leftId'), 0.2, left);
         parallax2(e, document.getElementById('rightId'), 0.1, right);
         // console.log(e)

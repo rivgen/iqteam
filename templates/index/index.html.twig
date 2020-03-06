@@ -38,95 +38,99 @@
     {'img': '/images/block_V/twitter.svg', 'url': '#'},
     {'img': '/images/block_V/instagram.svg', 'url': 'https://www.instagram.com/iq_dev_by/'},
     ] %}
-    <div id="letter-I">
-        <div class="letter-I-row justify-content-center">
-            <div class="menuClass">
-                {% set menuAll = [
-                {'list': 'I', 'menu': 'главный экран', 'anchor': '#'},
-                {'list': 'Q', 'menu': 'о нас', 'anchor': '#letter-Q'},
-                {'list': '/', 'menu': 'экспертиза', 'anchor': '#slash'},
-                {'list': 'D', 'menu': 'технологии', 'anchor': '#letter-D'},
-                {'list': 'E', 'menu': 'проекты', 'anchor': '#letter-E'},
-                {'list': 'V', 'menu': 'контакты', 'anchor': '#letter-V'}
-                ] %}
-                {#{% set menuAll = [1->I, 2->Q] %}#}
-                <div class="menuLeft">
-                    {% for menu in menuAll %}
-                        <div class="menu-row">
-                            {#<div class="col-md-2"><p>{{ menu.list }}</p></div>#}
-                            <div class="menu-col"><a href={{ menu.anchor }}><p>{{ menu.menu }}</p></a></div>
-                        </div>
-                    {% endfor %}
+    <div class="menuClass">
+        {% set menuAll = [
+        {'list': 'I', 'menu': 'главный экран', 'anchor': '#'},
+        {'list': 'Q', 'menu': 'о нас', 'anchor': '#letter-Q'},
+        {'list': '/', 'menu': 'экспертиза', 'anchor': '#slash'},
+        {'list': 'D', 'menu': 'технологии', 'anchor': '#letter-D'},
+        {'list': 'E', 'menu': 'проекты', 'anchor': '#letter-E'},
+        {'list': 'V', 'menu': 'контакты', 'anchor': '#letter-V'}
+        ] %}
+        {#{% set menuAll = [1->I, 2->Q] %}#}
+        <div class="menuLeft">
+            {% for menu in menuAll %}
+                <div class="menu-row">
+                    {#<div class="col-md-2"><p>{{ menu.list }}</p></div>#}
+                    <div class="menu-col"><a href={{ menu.anchor }}><p>{{ menu.menu }}</p></a></div>
                 </div>
-                <div class="copyrightLeft">
-                    {{ macros.printFooterMenu() }}
-                </div>
-            </div>
-            <div class="letter-I-content-make">
-                <div class="letter-I">
-                    <div class="textBlock">
-                        <div class="textBlockCenter">
-                            <h2 class="title">IQ Dev</h2>
-                            <p class="text">Подходим к решению любой задачи с интеллектом! Только качественные продукты
-                                и
-                                уникальные решения!</p>
-                            {{ macros.printFeedback('btn btnBlue hoverEffects') }}
-                        </div>
-                    </div>
-                    <div class="imgBlock vw680dawn">
-                        <img src="/images/home_phones.png" alt="" class="embed-responsive"/>
-                    </div>
-                    <div class="imgBlock vw680up">
-                        <div class="imgBlockCenter">
-                            {#<img src="/images/home_phones.png" alt="" class="embed-responsive"/>#}
-                            <img src="/images/m-left.png" alt="" class="embed-responsive left" id="leftId"/>
-                            <img src="/images/m-right.png" alt="" class="embed-responsive right" id="rightId"/>
-                        </div>
-                    </div>
-                </div>
-
-
-                <script>
-
-                </script>
-
-
-                <div class="letter-I-block wow fadeInUp">
-                    {% set arr = [
-                    {'img':'/images/block_I/games.svg', 'text':'Более 30 собственных игр'},
-                    {'img':'/images/block_I/people.svg', 'text':'100% довольных клиентов'},
-                    {'img':'/images/block_I/specialists.svg', 'text':'Более 40 компетентных специалиста'},
-                    {'img':'/images/block_I/download.svg', 'text':'Более 1 млн. загрузок игр и приложений'}
-                    ] %}
-                    {% for block_I in arr %}
-                        <div class="block-col">
-                            <div class="block">
-                                <div class="icon">
-                                    <object type="image/svg+xml" data={{ block_I.img }}>
-                                        <div class="internalText"></div>
-                                    </object>
-                                </div>
-                                <p>{{ block_I.text }}</p>
+            {% endfor %}
+        </div>
+        <div class="copyrightLeft">
+            {{ macros.printFooterMenu() }}
+        </div>
+    </div>
+    <div id="parallax">
+        <div id="letter-I">
+            <div class="letter-I-row justify-content-center">
+                <div class="letter-I-content-make">
+                    <div class="letter-I">
+                        <div class="textBlock">
+                            <div class="textBlockCenter">
+                                <h2 class="title">IQ Dev</h2>
+                                <p class="text">Подходим к решению любой задачи с интеллектом! Только качественные
+                                    продукты
+                                    и
+                                    уникальные решения!</p>
+                                {{ macros.printFeedback('btn btnBlue hoverEffects') }}
                             </div>
                         </div>
-                    {% endfor %}
+                        <div class="imgBlock vw680dawn">
+                            <img src="/images/home_phones.png" alt="" class="embed-responsive"/>
+                        </div>
+                        <div class="imgBlock vw680up">
+                            <div class="imgBlockCenter">
+                                {#<img src="/images/home_phones.png" alt="" class="embed-responsive"/>#}
+                                <img src="/images/m-left.png" alt="" class="embed-responsive left" id="leftId"/>
+                                <img src="/images/m-right.png" alt="" class="embed-responsive right" id="rightId"/>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <script>
+
+                    </script>
+
+
+                    <div class="letter-I-block wow fadeInUp">
+                        {% set arr = [
+                        {'img':'/images/block_I/games.svg', 'text':'Более 30 собственных игр'},
+                        {'img':'/images/block_I/people.svg', 'text':'100% довольных клиентов'},
+                        {'img':'/images/block_I/specialists.svg', 'text':'Более 40 компетентных специалиста'},
+                        {'img':'/images/block_I/download.svg', 'text':'Более 1 млн. загрузок игр и приложений'}
+                        ] %}
+                        {% for block_I in arr %}
+                            <div class="block-col">
+                                <div class="block">
+                                    <div class="icon">
+                                        <object type="image/svg+xml" data={{ block_I.img }}>
+                                            <div class="internalText"></div>
+                                        </object>
+                                    </div>
+                                    <p>{{ block_I.text }}</p>
+                                </div>
+                            </div>
+                        {% endfor %}
+                    </div>
                 </div>
-            </div>
-            <div class="socialBlockHeight">
-                <div class="socialBlock">
-                    {{ macros.printSocialBlock() }}
-                </div>
-                {#сделать скрипт перехода по якорю#}
-                {#<div class="downButton">#}
-                {#<a href='#' class="">#}
-                {#<img src="/images/down.svg" alt=""/>#}
-                {#<object type="image/svg+xml" data="/images/down.svg">#}
-                {#<div class="internalText"></div>#}
-                {#</object>#}
-                {#</a>#}
-                {#</div>#}
+
             </div>
         </div>
+    </div>
+    <div class="socialBlockHeight">
+        <div class="socialBlock">
+            {{ macros.printSocialBlock() }}
+        </div>
+        {#сделать скрипт перехода по якорю#}
+        {#<div class="downButton">#}
+        {#<a href='#' class="">#}
+        {#<img src="/images/down.svg" alt=""/>#}
+        {#<object type="image/svg+xml" data="/images/down.svg">#}
+        {#<div class="internalText"></div>#}
+        {#</object>#}
+        {#</a>#}
+        {#</div>#}
     </div>
     {#<div class="container">#}
     {#<div class="row">#}
