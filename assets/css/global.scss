@@ -107,8 +107,26 @@ a p:hover {
   @include make-row();
   position: relative;
   overflow: hidden;
+  .vw680up {
+    display: none;
+    @include media-breakpoint-up(md) {
+      display: block;
+    }
+  }
+  .vw680dawn {
+    display: block;
+    @include media-breakpoint-up(md) {
+      display: none;
+    }
+  }
   .imgBlock {
     position: relative;
+    //@include media-breakpoint-up(md) {
+    //  height: 350px;
+    //}
+    @include media-breakpoint-up(md) {
+      height: 543px;
+    }
     @include media-breakpoint-down(xs) {
       margin: 60px 0;
     }
@@ -126,14 +144,33 @@ a p:hover {
       z-index: -1;
       background-image: url(/images/block_I/letter-I.svg);
       background-repeat: no-repeat;
-      background-size: cover;
+      //background-size: cover;
+      //@include media-breakpoint-up(xl) {
+      //  background-size: unset;
+      //}
       transform: translateX(-49%);
+      @include media-breakpoint-between(md, lg) {
+        transform: translateX(cacl(-1*100vw/2));
+      }
     }
     %positionImg {
       position: absolute;
       top: 50%;
       width: auto;
-      height: 72%;
+      height: 290px;
+      @include media-breakpoint-up(md) {
+        height: 400px;
+      }
+      @include media-breakpoint-up(xl) {
+        height: calc(100vw * 0.3);
+      }
+      @media (min-width: 1800px) {
+        height: 477px;
+      }
+      -webkit-animation-fill-mode: both;
+      animation-fill-mode: both;
+      -webkit-animation-duration: 2s;
+      animation-duration: 2s;
     }
     .left {
       @extend %positionImg;
@@ -204,7 +241,7 @@ a p:hover {
   }
 }
 
-.btnBlue div {
+.btnBlue div, .homeButton div {
   position: relative;
   left: 50%;
   transform: translateX(-50%);
@@ -296,8 +333,12 @@ a p:hover {
   //padding: 30px 50px;
 }
 
-.letter-Q, .slash, .letter-D, .letter-E {
+.letter-Q, .letter-D, .letter-E {
   padding-bottom: 25px;
+}
+
+.slash, .portfolio  {
+  padding-bottom: 100px;
 }
 
 .letter-Q {
@@ -384,7 +425,9 @@ a p:hover {
 }
 
 .slash.intoPage {
-  background-size: calc(100vw / 4);
+  @include media-breakpoint-down(lg) {
+    background-size: calc(100vw / 4);
+  }
   background-position: 50% 60%;
   padding-top: 90px;
   padding-bottom: 15px;
@@ -497,8 +540,17 @@ a p:hover {
   text-transform: uppercase;
 }
 
-.letter-E {
+.letter-E-back {
   background-image: url(/images/block_E/letter_E.svg);
+  background-repeat: no-repeat;
+  background-position: 50% calc(100vw / 21 + 20px);
+  background-size: contain;
+  @include media-breakpoint-up(xl) {
+    background-position: 50% 20px;
+  }
+  @include media-breakpoint-up(md) {
+    background-size: auto;
+  }
 }
 
 .letter-E .textBold {

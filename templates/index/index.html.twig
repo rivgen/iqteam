@@ -25,6 +25,11 @@
         </a>
     {% endfor %}
 {% endmacro %}
+
+{% block javascripts %}
+    {{ parent() }}
+    {{ encore_entry_script_tags('parallax') }}
+{% endblock %}
 {% block body %}
     {% set social = [
     {'img': '/images/block_V/telegram.svg', 'url': '#'},
@@ -65,7 +70,10 @@
                             уникальные решения!</p>
                         {{ macros.printFeedback('btn btnBlue hoverEffects') }}
                     </div>
-                    <div class="imgBlock">
+                    <div class="imgBlock vw680dawn">
+                        <img src="/images/home_phones.png" alt="" class="embed-responsive"/>
+                    </div>
+                    <div class="imgBlock vw680up">
                         {#<img src="/images/home_phones.png" alt="" class="embed-responsive"/>#}
                         <img src="/images/m-left.png" alt="" class="embed-responsive left" id="leftId"/>
                         <img src="/images/m-right.png" alt="" class="embed-responsive right" id="rightId"/>
@@ -74,32 +82,7 @@
 
 
                 <script>
-                    $(document).ready(function() {
-                        let maxMove = $('.letter-I').offsetWidth / 30,
-                            leftCenterX = document.getElementById('leftId').offsetLeft + (document.getElementById('leftId').offsetWidth),
-                            leftCenterY = document.getElementById('leftId').offsetTop + (document.getElementById('leftId').offsetHeight / 2);
-                        console.log(leftCenterX, leftCenterY)
-                        $('.letter-I').mousemove(function(e) {
-                            parallax(e, document.getElementById('leftId'), 0.2, leftCenterX, leftCenterY);
-//                            parallax(e, document.getElementById('rightId'), 5);
-                        });
-                    });
 
-                    function parallax(e, target, layer, leftX, leftY) {
-
-
-                        var strength = 20;
-                        var layer_coeff = strength / layer;
-//                        var x = (0 + ((e.pageX) / layer_coeff)/2) - ((e.pageX) / layer_coeff);
-                        var x = (0 - $(window).width()/layer_coeff / 2) + e.pageX/layer_coeff;
-                        var y = (55-$(window).height()/layer_coeff / 2)+e.pageY/layer_coeff;
-                        console.log(x, y, e.pageX/layer_coeff)
-                        $(target).css('transform', 'translate('+ x +'%, -' + y + '%)');
-//                        $(target).offset({
-//                            top: y,
-//                            left: x
-//                        });
-                    };
                 </script>
 
 
@@ -240,7 +223,7 @@
                                 ] %}
                                 {% for block_D in technologies %}
                                     <div class="icon-col">
-                                        <div class="icon">
+                                        <div class="icon animated">
                                             <object type="image/svg+xml" data={{ block_D.img }}>
                                                 <div class="internalText"></div>
                                             </object>
@@ -248,6 +231,9 @@
                                         <p class="title">{{ block_D.title }}</p>
                                     </div>
                                 {% endfor %}
+                                <script>
+
+                                </script>
                             </div>
                         </div>
                     </div>
@@ -256,38 +242,41 @@
         </div>
     </div>
     <div id="letter-E"></div>
-    <div class="letter-E">
-        <div class="letter-E-row justify-content-center">
-            <div class="letter-E-col">
-                <div class="letter-E-row">
-                    <div class="title wow fadeInUp">
-                        <h2>Проекты</h2>
-                    </div>
-                    <div class="textBold wow fadeInUp">
+    <div class="letter-E-back">
+        <div class="letter-E">
+            <div class="letter-E-row justify-content-center">
+                <div class="letter-E-col">
+                    <div class="letter-E-row">
+                        <div class="title wow fadeInUp">
+                            <h2>Проекты</h2>
+                        </div>
+                        <div class="textBold wow fadeInUp">
                         <span>Мы состоим в парке высоких технологий, одной из крупнейших заводей мирового IT-аутсорса, что
                             является показателем высокой технологичности нашей работы.</span>
-                    </div>
-                    <div class="text wow fadeInUp">
-                        <p>Мы оцениваем результаты нашей работы по конверсии и прибыли — красота нас интересует
-                            постольку, поскольку она не мешает монетизации.</p>
-                    </div>
-                    <div class="text wow fadeInUp">
-                        <p>Поэтому, заказывая у нас, клиенты уверены, что получат эффективное решение, которое позволит
-                            выйти их бизнесу на новый уровень.</p>
-                    </div>
+                        </div>
+                        <div class="text wow fadeInUp">
+                            <p>Мы оцениваем результаты нашей работы по конверсии и прибыли — красота нас интересует
+                                постольку, поскольку она не мешает монетизации.</p>
+                        </div>
+                        <div class="text wow fadeInUp">
+                            <p>Поэтому, заказывая у нас, клиенты уверены, что получат эффективное решение, которое
+                                позволит
+                                выйти их бизнесу на новый уровень.</p>
+                        </div>
 
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-    <div class="portfolio">
-        <div class="letter-E-row justify-content-center">
-            <div class="letter-E-col">
-                <div class="projects">
+        <div class="portfolio">
+            <div class="letter-E-row justify-content-center">
+                <div class="letter-E-col">
+                    <div class="projects">
 
-                    {% for article in articles %}
-                        {{ articleMacros.printAticle(article, images, buttons) }}
-                    {% endfor %}
+                        {% for article in articles %}
+                            {{ articleMacros.printAticle(article, images, buttons) }}
+                        {% endfor %}
+                    </div>
                 </div>
             </div>
         </div>
