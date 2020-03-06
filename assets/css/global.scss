@@ -1241,7 +1241,7 @@ a.logoSvg:after {
     font-size: calc(0.5rem + 9 * (100vw - 20px) / 880);
   }
   @include media-breakpoint-up(xl) {
-    font-size: 21px;
+    font-size: 18px;
   }
   color: #323232;
 }
@@ -1265,7 +1265,7 @@ a.logoSvg:after {
     .infoPortfolio-col {
       @include make-col-ready();
       @include media-breakpoint-up(md) {
-        @include make-col(2);
+        @include make-col(3);
       }
       height: 50px;
       margin: 0px 0 50px;
@@ -1274,7 +1274,7 @@ a.logoSvg:after {
         margin: 70px 0 100px;
       }
       @include media-breakpoint-up(lg) {
-        height: 41px;
+        height: 60px;
       }
       --position: absolute;
       --height: 100%;
@@ -1303,17 +1303,18 @@ a.logoSvg:after {
         @extend %positionCenter;
         @include media-breakpoint-up(md) {
           position: var(--position);
-          left: 0;
+          left: 50%;
           height: var(--height);
+          transform: translateX(-100%);
         }
       }
       .textInfo1 {
         @extend %positionCenter;
         @include media-breakpoint-up(md) {
           position: var(--position);
-          left: 0;
+          left: 50%;
           height: var(--height);
-          transform: translateX(-50%);
+          transform: translateX(-100%);
         }
         top: var(--top);
         @extend %fontInfoPortfolio;
@@ -1324,6 +1325,7 @@ a.logoSvg:after {
           position: var(--position);
           right: 0;
           height: var(--height);
+          transform: translateX(-45%);
         }
       }
       .textInfo3 {
@@ -1332,7 +1334,7 @@ a.logoSvg:after {
           position: var(--position);
           right: 0;
           height: var(--height);
-          transform: translateX(-45%);
+          transform: translateX(-15%);
         }
         top: var(--top);
         @extend %fontInfoPortfolio;
