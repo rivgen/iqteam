@@ -92,11 +92,11 @@ a p:hover {
   @include make-row();
 }
 
-.letter-I-content-make, .letter-Q-col, .letter-D-col, .slash-col, .letter-E-col, .letter-V-col, .footer-col, .login-col, .register-col, .article-col {
+.letter-I-content-make, .letter-Q-col, .letter-D-col, .slash-col, .letter-E-col, .letter-V-col, .footer-col, .login-col, .register-col, .article-col, .service-col {
   @extend %content-main-col-xl-8-col-11;
 }
 
-.letter-I .textBlock, .letter-I .imgBlock {
+%letter-I-Block {
   @include make-col-ready();
   @include media-breakpoint-up(sm) {
     @include make-col (6);
@@ -119,19 +119,31 @@ a p:hover {
       display: none;
     }
   }
+  %center {
+    @include media-breakpoint-up(md) {
+      top: 50%;
+      transform: translateY(-50%);
+    }
+  }
   .imgBlock {
-    position: relative;
+    @extend %letter-I-Block;
     //@include media-breakpoint-up(md) {
     //  height: 350px;
     //}
     @include media-breakpoint-up(md) {
       height: 543px;
+      position: relative;
     }
     @include media-breakpoint-down(xs) {
       margin: 60px 0;
     }
     @include media-breakpoint-between(sm, lg) {
       margin-top: 90px;
+    }
+    .imgBlockCenter {
+      position: relative;
+      height: 50%;
+      @extend %center;
     }
     &:after {
       content: '';
@@ -160,12 +172,15 @@ a p:hover {
       height: 290px;
       @include media-breakpoint-up(md) {
         height: 400px;
+        top: 64%;
       }
       @include media-breakpoint-up(xl) {
-        height: calc(100vw * 0.3);
+        height: 420px;
+        top: 42%;
       }
       @media (min-width: 1800px) {
         height: 477px;
+        top: 50%;
       }
       -webkit-animation-fill-mode: both;
       animation-fill-mode: both;
@@ -181,29 +196,43 @@ a p:hover {
       transform: translate(53%, -68%);
     }
   }
-  .title {
-    font-weight: bold;
-    font-size: calc(4rem + 30 * (100vw - 320px) / 880);
-    line-height: 130%;
-    color: #323232;
-    margin-top: 75px;
-    //@media (min-width: 1200px) {
-    @include media-breakpoint-up(xl) {
-      margin-top: 150px;
-      font-size: 96px;
+  .textBlock {
+    @extend %letter-I-Block;
+    @include media-breakpoint-up(md) {
+      position: relative;
     }
-  }
-  .text {
-    margin-top: 40px;
-    font-weight: 300;
-    font-size: 18px;
-    line-height: 150%;
-    color: #323232;
-    @include media-breakpoint-up(sm) {
-      font-size: calc(0.5rem + 10 * (100vw - 20px) / 880);
-    }
-    @include media-breakpoint-up(xl) {
-      font-size: 24px;
+    .textBlockCenter {
+      margin-top: 90px;
+      @include media-breakpoint-up(md) {
+        position: absolute;
+        margin-top: 0;
+      }
+      @extend %center;
+      .title {
+        font-weight: bold;
+        font-size: calc(4rem + 30 * (100vw - 320px) / 880);
+        line-height: 130%;
+        color: #323232;
+        //margin-top: 75px;
+        //@media (min-width: 1200px) {
+        @include media-breakpoint-up(xl) {
+          //margin-top: 150px;
+          font-size: 96px;
+        }
+      }
+      .text {
+        margin-top: 40px;
+        font-weight: 300;
+        font-size: 18px;
+        line-height: 150%;
+        color: #323232;
+        @include media-breakpoint-up(sm) {
+          font-size: calc(0.5rem + 10 * (100vw - 20px) / 880);
+        }
+        @include media-breakpoint-up(xl) {
+          font-size: 24px;
+        }
+      }
     }
   }
   img {
@@ -337,7 +366,7 @@ a p:hover {
   padding-bottom: 25px;
 }
 
-.slash, .portfolio  {
+.slash, .portfolio {
   padding-bottom: 100px;
 }
 
@@ -432,7 +461,7 @@ a p:hover {
   padding-top: 90px;
   padding-bottom: 15px;
   @include media-breakpoint-up(md) {
-    padding-top: 8vw;
+    //padding-top: 8vw;
     padding-bottom: 55px;
   }
 
@@ -803,6 +832,21 @@ a p:hover {
       @include make-col(12);
       @include media-breakpoint-up(sm) {
         @include make-col(6)
+      }
+      .social a {
+        &:hover {
+          -webkit-transform: translateY(-3px);
+          -moz-transform: translateY(-3px);
+          -ms-transform: translateY(-3px);
+          -o-transform: translateY(-3px);
+          transform: translateY(-3px);
+          //box-shadow: 0px 10px 20px rgba(57, 100, 249, 0.1);
+
+        }
+        img:hover {
+          -webkit-filter: drop-shadow(0px 10px 11px rgba(57, 100, 249, 0.6));
+          filter: drop-shadow(0px 10px 11px rgba(57, 100, 249, 0.6));
+        }
       }
     }
   }
@@ -1413,7 +1457,20 @@ textarea.form-control {
   box-sizing: border-box;
   box-shadow: 0px 10px 20px rgba(57, 100, 249, 0.1);
   border-radius: 20px;
-  width: 100%;
+  width: 50vw;
+  height: 50vw;
+  @include media-breakpoint-up(md) {
+    width: 12vw;
+    height: 12vw;
+  }
+  @include media-breakpoint-up(xl) {
+    width: 8vw;
+    height: 8vw;
+  }
+  @media (min-width: 1800px) {
+    width: 150px;
+    height: 150px;
+  }
 }
 
 .article .fullTitle {
@@ -2151,6 +2208,20 @@ textarea.form-control {
   .button label {
     width: 100%;
     padding-top: 18px;
+  }
+}
+
+figure {
+  margin-top: 50px;
+}
+
+.service {
+  @include make-container();
+  @media (min-width: 1800px) {
+    width: 1200px;
+  }
+  .service-row {
+    @include make-row()
   }
 }
 

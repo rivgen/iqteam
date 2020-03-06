@@ -3,7 +3,7 @@ $(document).ready(function () {
         right = {x: 53, y: 68}
     $('body').mousemove(function (e) {
         parallax(e, document.getElementById('leftId'), 0.2, left);
-        parallax2(e, document.getElementById('rightId'), 0.3, right);
+        parallax2(e, document.getElementById('rightId'), 0.1, right);
     });
 //                                        $('.icon-col').click(function () {
 //                                            $('.icon').addClass('flip');
