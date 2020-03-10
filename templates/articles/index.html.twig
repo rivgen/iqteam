@@ -13,7 +13,7 @@
                 <p class="icon-links">
                     {% for button in buttons %}
                         {% if button.id == article.id %}
-                            <a href={{ button.url }} class="btn" role="button">
+                            <a href={{ button.url }} class="btn" role="button" target="_blank" rel="nofollow noopener noreferrer">
                                 <span>
                                         <object type="image/svg+xml" data="/images/batton/{{ button.icon }}">
                                             <div class="internalText"></div>

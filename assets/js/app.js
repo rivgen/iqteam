@@ -11,6 +11,8 @@ import $ from 'jquery';
 
 $(document).ready(function() {
     $('[data-toggle="popover"]').popover();
+    // document.location.href='#';
+
 });
 
 new WOW().init();
@@ -18,6 +20,10 @@ new WOW().init();
 import './filtr'
 import './internalText'
 import './dropMenu'
+
+$(window).on('beforeunload', function () {
+    window.scrollTo(0, 0);
+});
 
 // class App extends React.Component {
 //     render() {
