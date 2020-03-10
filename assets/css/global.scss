@@ -1732,6 +1732,10 @@ textarea.form-control {
 
 .downButton a, .mainMenuSocial .socialButton {
   @extend %buttonSocial;
+  object {
+    transform: translate(-50%, -50%) rotate(0deg);
+    transition: 1s;
+  }
   line-height: 1.5px;
 }
 
@@ -2227,6 +2231,16 @@ figure {
   .service-row {
     @include make-row()
   }
+}
+
+.downImg {
+  transform: translate(-50%, -50%) rotate(180deg);
+  transition: 1s;
+}
+
+.upImg {
+  transform: translate(-50%, -50%) rotate(180deg) !important;
+  transition: 1s;
 }
 
 @import "animationGlobal";

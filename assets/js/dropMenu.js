@@ -50,7 +50,8 @@ $(window).scroll(function(){
         $('#home .hadMenu').addClass('fixedCenter')
         $('#home .homeLocale').addClass('fixedLocale')
         $('#home .homeButton').show()
-
+        $('.down object').removeClass('downImg')
+        $('.down object').addClass('upImg')
     }
 })
 $(window).scroll(function(){
@@ -61,9 +62,38 @@ $(window).scroll(function(){
         $('#home .hadMenu').removeClass('fixedCenter')
         $('#home .homeLocale').removeClass('fixedLocale')
         $('#home .homeButton').hide()
+        $('.down object').removeClass('upImg')
+        $('.down object').addClass('downImg')
+
 
     }
 })
+let timerY
+$('.down').mouseover(function () {
+    let yTr = 35
+    transformer(yTr)
+     timerY = setInterval(function () {
+         transformer(yTr)
+            let upDown =  yTr
+         yTr = upDown
+            if (yTr == -80) {
+                yTr = 35
+            } else {
+                yTr = -80
+            }
+
+    }, 1000);
+})
+
+$('.down').mouseout(function () {
+    clearInterval(timerY)
+    transformer(-50)
+});
+
+function transformer(yTr) {
+    $('.downImg').css('transform', 'translate(-50%, ' + yTr + '%)');
+}
+
 //failSend
 var inputs = document.querySelectorAll('.inputfile');
 Array.prototype.forEach.call(inputs, function(input){
