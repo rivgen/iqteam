@@ -55,6 +55,13 @@
                         {% if article.icon %}
                             <img src="{{ uploaded_asset(article.id, article.icon) }}"/>
                         {% endif %}
+                        {% if app.request.get('_route') == 'articles_edit' or app.request.get('_route') == 'articles_new' %}
+                        <div class="button adminIcon">
+                            {{ form_label(form.iconFile) }}
+                        </div>
+                        {#{{ form_widget(form.iconFile) }}#}
+                        {{ form_errors(form.iconFile) }}
+                        {% endif %}
                     </div>
                     <div class="col-md-4 fullTitle">
                         {% if app.request.get('_route') == 'articles_edit' or app.request.get('_route') == 'articles_new' %}
@@ -81,19 +88,19 @@
                 </div>
             </div>
         </div>
-        {% if app.request.get('_route') == 'articles_edit' or app.request.get('_route') == 'articles_new' %}
-            <div class="article-row justify-content-md-center">
-                <div class="article-col">
-                    <div class="article-row">
-                        <div class="col-md-8 icon">
-                            {{ form_label(form.iconFile) }}<br/>
-                            {{ form_widget(form.iconFile) }}
-                            {{ form_errors(form.iconFile) }}
-                        </div>
-                    </div>
-                </div>
-            </div>
-        {% endif %}
+        {#{% if app.request.get('_route') == 'articles_edit' or app.request.get('_route') == 'articles_new' %}#}
+            {#<div class="article-row justify-content-md-center">#}
+                {#<div class="article-col">#}
+                    {#<div class="article-row">#}
+                        {#<div class="col-md-8 icon">#}
+                            {#{{ form_label(form.iconFile) }}<br/>#}
+                            {#{{ form_widget(form.iconFile) }}#}
+                            {#{{ form_errors(form.iconFile) }}#}
+                        {#</div>#}
+                    {#</div>#}
+                {#</div>#}
+            {#</div>#}
+        {#{% endif %}#}
         <div class="article-row justify-content-center">
             <div class="article-col">
                 <div class="article-row">

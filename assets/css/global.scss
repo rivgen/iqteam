@@ -1463,6 +1463,8 @@ textarea.form-control {
   border-radius: 20px;
   width: 50vw;
   height: 50vw;
+  object-fit: cover;
+  object-position: 50% 50%;
   @include media-breakpoint-up(md) {
     width: 12vw;
     height: 12vw;
@@ -1503,6 +1505,9 @@ textarea.form-control {
 
 .article .img img {
   width: 100%;
+  height: 619px;
+  object-fit: cover;
+  object-position: 50% 50%;
 }
 
 .article .descArticle {
@@ -2241,6 +2246,13 @@ figure {
 .upImg {
   transform: translate(-50%, -50%) rotate(180deg) !important;
   transition: 1s;
+}
+
+.adminIcon label {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 @import "animationGlobal";

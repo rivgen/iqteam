@@ -29,7 +29,7 @@ class ArticlesType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
 //        dump($options['data']->getImgArticles());
-        $id = $options['data']->getId();
+//        $id = $options['data']->getId();
 
         $builder
             ->add('title', null, [
@@ -77,6 +77,7 @@ class ArticlesType extends AbstractType
                         'maxSize' => '2M'
                     ])
                 ],
+                'attr' => ['class' => 'inputfile', 'data-multiple-caption' => '{count} files selected']
 //                'attr' => ['class' => 'form-control']
             ])
             ->add('imageFile', FileType::class, [

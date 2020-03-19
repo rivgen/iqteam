@@ -46,22 +46,39 @@ class ArticlesController extends AbstractController
     public function new(Request $request, UploaderHelper $uploaderHelper): Response
     {
         $article = new Articles();
+        $imgArticle = new ImgArticles();
         $form = $this->createForm(ArticlesType::class, $article);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
             $article = $form->getData();
             $uploadedFile = $form['iconFile']->getData();
+            $em = $this->getDoctrine();
+            $entityManager = $em->getManager();
 
-            if ($uploadedFile) {
-                $newFilename = $uploaderHelper->uploadIcon($uploadedFile);
-                $article->setIcon($newFilename);
+//
 
-            }
 
-            $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($article);
             $entityManager->flush();
+            $id = $article->getId();
+            if (isset($uploadedFile)) {
+                $newFilename = $uploaderHelper->uploadIcon($uploadedFile, $id);
+                $article->setIcon($newFilename);
+                $entityManager->persist($article);
+            }
+            $uploadedImage = $form['imageFile']->getData();
+            if (isset($uploadedImage)) {
+                $newImageName = $uploaderHelper->uploadIcon($uploadedImage, $id);
+                $imgArticle->setImg($newImageName);
+                $imgArticle->setArticle($article);
+                $imgArticle->setGeneral(true);
+                $entityManager->persist($imgArticle);
+            }
+            if (isset($uploadedFile) or isset($uploadedImage)){
+                $entityManager->flush();
+            }
+
 //            dd($article);
             return $this->redirectToRoute('articles_index');
         }

@@ -1,0 +1,15 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Recover Password{% endblock %}
+
+{% block body %}
+    Recover
+
+    {% if app.user %}
+        <div class="mb-3">
+            You are logged in as {{ app.user.username }}, <a href="{{ path('app_logout') }}">Logout</a>
+        </div>
+    {% endif %}
+
+    {{ form(recoverForm) }}
+{% endblock %}
