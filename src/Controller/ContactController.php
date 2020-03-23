@@ -42,10 +42,13 @@ class ContactController extends AbstractController
         $message = 'Письмо не отправлено.';
         if ($request->isMethod('POST')) {
             $form->handleRequest($request);
-            $newFilename = '';
+            $newFilename = [];
             if ($form['file']->getData()) {
-                $uploadedFile = $form['file']->getData();
-                $newFilename = $uploaderHelper->uploadMailImg($uploadedFile);
+                $uploadedFiles = $form['file']->getData();
+                    foreach ( $uploadedFiles as $uploadedFile) {
+                        $newFilename[] = $uploaderHelper->uploadMailImg($uploadedFile);
+                    }
+//                dump($newFilename);
             }
             if($form->isValid()){
                 if($this->sendEmail($form->getData(), $newFilename)){
@@ -62,28 +65,44 @@ class ContactController extends AbstractController
         ]);
     }
 
-    private function sendEmail($data, $filename){
+    private function sendEmail($data, $filenames){
         $filesystem = new Filesystem();
         $data['img'] = '';
-        $fileUrl = $filename['targetDir'].'/'.$filename['newFilename'];
-        if ($filename){
-
-            $fp =    fopen($fileUrl,"r");
-            $data['img'] =  fread($fp,filesize($fileUrl));
-            fclose($fp);
-            $data['img'] = chunk_split(base64_encode($data['img']));
+        $fileUrls = [];
+        $EOL = "\r\n";
+        $boundary = "--".md5(uniqid(time()));
+        if ($filenames){
+            foreach ($filenames as $filename) {
+                $fileUrl = $filename['targetDir'] . '/' . $filename['newFilename'];
+                $fileUrls [] = $fileUrl;
+                $name = $filename['newFilename'];
+                $filetype = $filename['fileType'];
+                $fp = fopen($fileUrl, "r");
+                $dataImg = fread($fp, filesize($fileUrl));
+                fclose($fp);
+                $dataImg = chunk_split(base64_encode($dataImg));
+                $data['img'] .= "$EOL--$boundary$EOL";
+                $data['img'] .= "Content-Disposition: attachment; filename=\"$name\"$EOL";
+                $data['img'] .= "Content-Type: $filetype; name=\"$name\"$EOL";
+                $data['img'] .= "Content-Transfer-Encoding: base64$EOL";
+                $data['img'] .= $EOL;
+                $data['img'] .= $dataImg;
+            }
         }
-        $to = "rivgen@gmail.com";
+//        dump($data['img']);
+        $to = "info@iqdev.com, rivgen@gmail.com";
         $tema = "Форма обратной связи на PHP";
         $message = "Ваше имя: ".$data['name']."<br>";
         $message .= "E-mail: ".$data['email']."<br>";
         $message .= "Сообщение: ".$data['message']."<br>";
         $message .= $data['img']."<br>";
-        $headers  = 'MIME-Version: 1.0' . "\r\n";
-        $headers .= 'Content-type: text/html; charset=utf-8' . "\r\n";
+        $headers  = 'MIME-Version: 1.0' . $EOL;
+        $headers .= 'Content-type: text/html; charset=utf-8' . $EOL;
         $mail = mail($to, $tema, $message, $headers );
         if ($mail) {
-            $filesystem->remove($fileUrl);
+            foreach ($fileUrls as $fileUrl) {
+                $filesystem->remove($fileUrl);
+            }
             return true;
         } else {return false;}
     }

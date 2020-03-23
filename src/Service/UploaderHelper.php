@@ -34,10 +34,13 @@ class UploaderHelper
         $file['targetDir'] = $this->uploadsPath .'/public/images/sendMail/';
         $originalFilename = pathinfo($uploadedFile->getClientOriginalName(), PATHINFO_FILENAME);
         $file['newFilename'] = Urlizer::urlize($originalFilename) . '.' . $uploadedFile->guessExtension();
+        $file['fileType'] = $uploadedFile->getClientMimeType();
+//        dd($file['fileType']);
 
         $uploadedFile->move(
             $file['targetDir'],
-            $file['newFilename']
+            $file['newFilename'],
+            $file['fileType']
         );
 
         return $file;
