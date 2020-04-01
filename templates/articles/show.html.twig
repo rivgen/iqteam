@@ -56,11 +56,11 @@
                             <img src="{{ uploaded_asset(article.id, article.icon) }}"/>
                         {% endif %}
                         {% if app.request.get('_route') == 'articles_edit' or app.request.get('_route') == 'articles_new' %}
-                        <div class="button adminIcon">
-                            {{ form_label(form.iconFile) }}
-                        </div>
-                        {#{{ form_widget(form.iconFile) }}#}
-                        {{ form_errors(form.iconFile) }}
+                            <div class="button adminIcon">
+                                {{ form_label(form.iconFile) }}
+                            </div>
+                            {#{{ form_widget(form.iconFile) }}#}
+                            {{ form_errors(form.iconFile) }}
                         {% endif %}
                     </div>
                     <div class="col-md-4 fullTitle">
@@ -89,17 +89,17 @@
             </div>
         </div>
         {#{% if app.request.get('_route') == 'articles_edit' or app.request.get('_route') == 'articles_new' %}#}
-            {#<div class="article-row justify-content-md-center">#}
-                {#<div class="article-col">#}
-                    {#<div class="article-row">#}
-                        {#<div class="col-md-8 icon">#}
-                            {#{{ form_label(form.iconFile) }}<br/>#}
-                            {#{{ form_widget(form.iconFile) }}#}
-                            {#{{ form_errors(form.iconFile) }}#}
-                        {#</div>#}
-                    {#</div>#}
-                {#</div>#}
-            {#</div>#}
+        {#<div class="article-row justify-content-md-center">#}
+        {#<div class="article-col">#}
+        {#<div class="article-row">#}
+        {#<div class="col-md-8 icon">#}
+        {#{{ form_label(form.iconFile) }}<br/>#}
+        {#{{ form_widget(form.iconFile) }}#}
+        {#{{ form_errors(form.iconFile) }}#}
+        {#</div>#}
+        {#</div>#}
+        {#</div>#}
+        {#</div>#}
         {#{% endif %}#}
         <div class="article-row justify-content-center">
             <div class="article-col">
@@ -225,20 +225,22 @@
                             <p class="paramText">{{ article.year }}</p>
                         {% endif %}
                     </div>
-                    <div class="col-md-3">
+                    <div class="col-md-3 portfolio">
                         <p class="param">перейти</p>
-                        <div class="row">
+                        <div class="projects">
                             {% if app.request.get('_route') != 'articles_new' %}
                                 {% for button in buttons %}
                                     {% if button.id == article.id %}
-                                        <div class="title">
-                                            <a href="{{ button.url }}" class="btn buttonWatch" role="button" target="_blank" rel="nofollow noopener noreferrer">
-                                            <span>
-                                        <object type="image/svg+xml" data="/images/batton/{{ button.icon }}">
-                                             <div class="internalText"></div>
-                                        </object>
-                                            </span></a>
-                                        </div>
+                                        <a href="{{ button.url }}" class="btn hrefButton" role="button"
+                                           target="_blank"
+                                           rel="nofollow noopener noreferrer">
+                                            <div class="svgObj">
+                                                <object type="image/svg+xml"
+                                                        data="/images/batton/{{ button.icon }}">
+                                                    <div class="internalText"></div>
+                                                </object>
+                                            </div>
+                                        </a>
                                     {% endif %}
                                 {% endfor %}
                             {% endif %}

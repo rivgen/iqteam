@@ -2,39 +2,6 @@
 
 {% block title %}Articles index{% endblock %}
 {% import _self as macros %}
-{% macro printAticle(article, images, buttons) %}
-    <div class="projects-col filter {{ article.category }} wow fadeInUp">
-        <figure class="effect-zoe blockImg">
-            <a href={{ path('articles_show', {'id': article.id}) }}>
-                <img src={{ uploaded_asset(article.id, article.icon) }} alt=""
-                     class="embed-responsive"/>
-            </a>
-            <figcaption>
-                <p class="icon-links">
-                    {% for button in buttons %}
-                        {% if button.id == article.id %}
-                            <a href={{ button.url }} class="btn" role="button" target="_blank" rel="nofollow noopener noreferrer">
-                                <span>
-                                        <object type="image/svg+xml" data="/images/batton/{{ button.icon }}">
-                                            <div class="internalText"></div>
-                                        </object>
-                                           </span>
-                            </a>
-                        {% endif %}
-                    {% endfor %}
-                </p>
-            </figcaption>
-        </figure>
-        <div class="blockText align-self-center">
-            <a href={{ path('articles_show', {'id': article.id}) }}><h3>{{ article.title }}</h3>
-            </a>
-            <p>{{ article.textPreview }}</p>
-        </div>
-        {% if is_granted('ROLE_CONTENT_MANAGER') %}
-            <a href="{{ path('articles_edit', {'id': article.id}) }}">edit</a>
-        {% endif %}
-    </div>
-{% endmacro %}
 
 {% block body %}
     <div class="slash intoPage">
@@ -110,7 +77,51 @@
             <div class="letter-E-col">
                 <div class="projects">
                     {% for article in articles %}
-                        {{ macros.printAticle(article, images, buttons) }}
+                        <div class="projects-col filter {{ article.category }} wow fadeInUp">
+                            {#<figure class="effect-zoe blockImg">#}
+                            <div class="squareImg">
+                                <a href={{ path('articles_show', {'id': article.id}) }}>
+                                    <img src={{ uploaded_asset(article.id, article.icon) }} alt=""
+                                         class="embed-responsive"/>
+                                </a>
+                            </div>
+                            {#<figcaption>#}
+                            {#<p class="icon-links">#}
+                            {#{% for button in buttons %}#}
+                            {#{% if button.id == article.id %}#}
+                            {#<a href={{ button.url }} class="btn" role="button" target="_blank" rel="nofollow noopener noreferrer">#}
+                            {#<span>#}
+                            {#<object type="image/svg+xml" data="/images/batton/{{ button.icon }}">#}
+                            {#<div class="internalText"></div>#}
+                            {#</object>#}
+                            {#</span>#}
+                            {#</a>#}
+                            {#{% endif %}#}
+                            {#{% endfor %}#}
+                            {#</p>#}
+                            {#</figcaption>#}
+                            {#</figure>#}
+                            <div class="blockText align-self-center">
+                                <a href={{ path('articles_show', {'id': article.id}) }}><h3>{{ article.title }}</h3>
+                                </a>
+                                <p>{{ article.textPreview }}</p>
+                            </div>
+                            {% for button in buttons %}
+                                {% if button.id == article.id %}
+                                    <a href="{{ button.url }}" class="btn hrefButton" role="button" target="_blank"
+                                       rel="nofollow noopener noreferrer">
+                                        <div class="svgObj">
+                                            <object type="image/svg+xml" data="/images/batton/{{ button.icon }}">
+                                                <div class="internalText"></div>
+                                            </object>
+                                        </div>
+                                    </a>
+                                {% endif %}
+                            {% endfor %}
+                            {% if is_granted('ROLE_CONTENT_MANAGER') %}
+                                <a href="{{ path('articles_edit', {'id': article.id}) }}">edit</a>
+                            {% endif %}
+                        </div>
                     {% endfor %}
                 </div>
             </div>

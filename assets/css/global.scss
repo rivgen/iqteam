@@ -634,51 +634,106 @@ a p:hover {
   //}
   .projects {
     @include make-row();
-    .projects-col {
+    .projects-home-col {
       @include make-col-ready();
       @include media-breakpoint-up(sm) {
         @include make-col(6);
       }
     }
-    .blockImg {
-      --width: 100%;
-      height: auto;
+    .projects-col {
+      @include make-col-ready();
       @include media-breakpoint-up(sm) {
-        --width: 46.5vw;
-        height: calc(var(--width) * 0.75);
+        @include make-col(4);
       }
-      @include media-breakpoint-up(xl) {
-        --width: 570px;
-      }
-      img {
-        height: 100%;
-        width: 100%;
-        object-fit: cover;
-        object-position: 50% 50%;
+      @include media-breakpoint-down(sm) {
+        margin: 30px 0;
       }
     }
-    .blockText {
-      padding-top: 20px;
-      p {
-        font-size: 12px;
-        //line-height: 200%;
-        letter-spacing: 0.1em;
-        text-transform: uppercase;
-        overflow: hidden;
-        height: 75px;
+    .squareImg {
+      width: 100%;
+      padding-top: 100%;
+      position: relative;
+      img {
+        position: absolute;
+        top: 0;
+        left: 0;
         width: 100%;
-        line-height: 25px;
+        height: 100%;
+        object-fit: cover;
+        border-radius: 30px;
       }
-      h3 {
-        font-family: Archivo, sans-serif;
-        font-weight: bold;
-        font-size: 18px;
-        line-height: 150%;
-        display: flex;
-        align-items: center;
-        color: #323232;
-        padding-bottom: 5px;
+    }
+    .hrefButton {
+      --duration: .44s;
+      --move-hover: -6px;
+      padding: 0;
+      margin: 0 10px 0 0;
+      background: #3964F9;
+      border-radius: 50%;
+      line-height: 0;
+      width: 50px;
+      height: 50px;
+      transform: translateY(var(--y));
+      transition: transform var(--duration) ease, box-shadow var(--duration) ease;
+      &:hover {
+        --y: var(--move-hover);
+        background: #ffffff;
+        box-shadow: 0px 10px 20px rgba(57, 100, 249, 0.1);
       }
+      .svgObj {
+        filter: brightness(0) invert(1);
+        width: 100%;
+        height: 100%;
+        &:hover {
+          filter: none;
+        }
+        object {
+          position: relative;
+          top: 50%;
+          transform: translate(2%, -50%);
+          pointer-events: none;
+        }
+      }
+    }
+  }
+  .blockImg {
+    --width: 100%;
+    height: auto;
+    @include media-breakpoint-up(sm) {
+      --width: 46.5vw;
+      height: calc(var(--width) * 0.75);
+    }
+    @include media-breakpoint-up(xl) {
+      --width: 570px;
+    }
+    img {
+      height: 100%;
+      width: 100%;
+      object-fit: cover;
+      object-position: 50% 50%;
+    }
+  }
+  .blockText {
+    padding-top: 50px;
+    p {
+      font-size: 12px;
+      //line-height: 200%;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      overflow: hidden;
+      height: 75px;
+      width: 100%;
+      line-height: 25px;
+    }
+    h3 {
+      font-family: Archivo, sans-serif;
+      font-weight: bold;
+      font-size: 18px;
+      line-height: 150%;
+      display: flex;
+      align-items: center;
+      color: #323232;
+      padding-bottom: 5px;
     }
   }
 }
@@ -897,13 +952,16 @@ a p:hover {
 
 .filterButton {
   display: none;
-
+  .filter-button {
+    border-radius: 0;
+  }
   @include make-container();
   @media (min-width: 1800px) {
     width: 1200px;
   }
   position: relative;
-  height: 80px;
+  height: 50px;
+  margin-bottom: 30px;
   @include media-breakpoint-down(sm) {
     margin-top: 40px;
   }
@@ -912,7 +970,8 @@ a p:hover {
   }
   %hoverActive {
     content: '';
-    border-bottom: 2px solid #3964F9;
+    //border-bottom: 2px solid #3964F9;
+    //background-color: #3964F9;
     position: absolute;
     bottom: -1px;
     left: 0;
@@ -923,15 +982,16 @@ a p:hover {
     line-height: 150%;
     letter-spacing: 0.1em;
     text-transform: uppercase;
-    @include make-col-ready();
-    @include make-col(4);
-    &:hover::after {
-      @extend %hoverActive;
-    }
+    padding: 0 30px;
+    //@include make-col-ready();
+    //@include make-col(4);
+    //&:hover::after {
+    //  @extend %hoverActive;
+    //}
   }
-  .active::after {
-    @extend %hoverActive;
-  }
+  //.active::after {
+  //  @extend %hoverActive;
+  //}
   .btnContainer {
     position: absolute;
     top: 50%;
@@ -957,14 +1017,45 @@ a p:hover {
 .filterButton-row {
   height: 100%;
   @include make-row();
+  flex-wrap: inherit;
+  @include media-breakpoint-up(sm) {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+  }
   box-shadow: 0px 10px 20px rgba(57, 100, 249, 0.1);
   background: #fff;
-  //@include media-breakpoint-up(xl) {
   margin: 0;
-  //}
+  border-radius: 30px;
+  %activeHover {
+    color: #ffffff;
+    background-color: #3964F9;
+  }
+  > .active {
+    @extend %activeHover;
+    &:hover {
+      @extend %activeHover;
+    }
+    &:last-child:not(:first-child) {
+      border-radius: 0 30px 30px 0;
+    }
+    &:first-child:not(:last-child) {
+      border-radius: 30px 0 0 30px;
+    }
+  }
 }
 
 .filterButton360vw {
+  %activeHover360 {
+    color: #3964F9;
+    background-color: #ffffff;
+  }
+  .active {
+    @extend %activeHover360;
+    &:hover {
+      @extend %activeHover360;
+    }
+  }
   max-width: 1200px;
   @include make-container();
   position: relative;
@@ -974,7 +1065,7 @@ a p:hover {
   z-index: 5;
   @include media-breakpoint-down(xs) {
     display: block;
-    margin-top: 40px;
+    margin: 40px 0;
   }
 }
 
@@ -1237,15 +1328,16 @@ a.logoSvg:after {
 }
 
 %fontInfoPortfolio {
-  font-weight: bold;
-  font-size: 15px;
-  @include media-breakpoint-up(md) {
-    font-size: calc(0.5rem + 9 * (100vw - 20px) / 880);
-  }
-  @include media-breakpoint-up(xl) {
-    font-size: 18px;
-  }
+  //font-weight: bold;
+  font-size: 12px;
+  //@include media-breakpoint-up(md) {
+  //  font-size: calc(0.5rem + 9 * (100vw - 20px) / 880);
+  //}
+  //@include media-breakpoint-up(xl) {
+  //  font-size: 12px;
+  //}
   color: #323232;
+  text-transform: uppercase;
 }
 
 %positionCenter {
@@ -1408,10 +1500,6 @@ a.logoSvg:after {
   color: #323232;
   padding-top: 8px;
   line-height: 150%;
-}
-
-.active, .active:hover {
-  color: #3964F9;
 }
 
 .contact .textContact p {
