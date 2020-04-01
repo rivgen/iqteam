@@ -98,7 +98,7 @@ figcaption object {
     z-index: -1;
     position: relative;
     width: 100%;
-    min-width: 35px;
+    //min-width: 35px;
 }
 @include media-breakpoint-up(md) {
     figure.effect-zoe img {
