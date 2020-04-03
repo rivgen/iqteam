@@ -54,7 +54,7 @@ Encore
         useBuiltIns: 'usage',
         corejs: 3
     })
-
+    .enableReactPreset()
     // enables Sass/SCSS support
     .enableSassLoader()
 

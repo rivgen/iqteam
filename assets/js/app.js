@@ -20,6 +20,7 @@ new WOW().init();
 import './filtr'
 import './internalText'
 import './dropMenu'
+import './modalForAdmin'
 
 $(window).on('beforeunload', function () {
     window.scrollTo(0, 0);

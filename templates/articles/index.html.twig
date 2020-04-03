@@ -4,7 +4,7 @@
 {% import _self as macros %}
 
 {% block body %}
-    <div class="slash intoPage">
+    <div class="titlePorfolio">
         <div class="slash-row">
             <div class="text-center titlePortfolio">
                 <h1>Портфолио</h1>
@@ -78,29 +78,12 @@
                 <div class="projects">
                     {% for article in articles %}
                         <div class="projects-col filter {{ article.category }} wow fadeInUp">
-                            {#<figure class="effect-zoe blockImg">#}
                             <div class="squareImg">
                                 <a href={{ path('articles_show', {'id': article.id}) }}>
                                     <img src={{ uploaded_asset(article.id, article.icon) }} alt=""
                                          class="embed-responsive"/>
                                 </a>
                             </div>
-                            {#<figcaption>#}
-                            {#<p class="icon-links">#}
-                            {#{% for button in buttons %}#}
-                            {#{% if button.id == article.id %}#}
-                            {#<a href={{ button.url }} class="btn" role="button" target="_blank" rel="nofollow noopener noreferrer">#}
-                            {#<span>#}
-                            {#<object type="image/svg+xml" data="/images/batton/{{ button.icon }}">#}
-                            {#<div class="internalText"></div>#}
-                            {#</object>#}
-                            {#</span>#}
-                            {#</a>#}
-                            {#{% endif %}#}
-                            {#{% endfor %}#}
-                            {#</p>#}
-                            {#</figcaption>#}
-                            {#</figure>#}
                             <div class="blockText align-self-center">
                                 <a href={{ path('articles_show', {'id': article.id}) }}><h3>{{ article.title }}</h3>
                                 </a>

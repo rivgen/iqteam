@@ -8,6 +8,8 @@
         "erusev/parsedown": "^1.7",
         "gedmo/doctrine-extensions": "^2.4",
         "liip/imagine-bundle": "^2.0",
+        "limenius/liform": "^0.15.0",
+        "limenius/liform-bundle": "^0.15.0",
         "oneup/flysystem-bundle": "^3.4",
         "sensio/framework-extra-bundle": "^5.1",
         "symfony/apache-pack": "^1.0",

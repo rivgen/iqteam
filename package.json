@@ -1,7 +1,8 @@
 {
     "devDependencies": {
-        "@babel/preset-react": "^7.7.4",
+        "@babel/preset-react": "^7.9.4",
         "@symfony/webpack-encore": "^0.28.0",
+        "axios": "^0.19.2",
         "bootstrap": "^4.3.1",
         "core-js": "^3.0.0",
         "jquery": "^3.4.1",
@@ -20,10 +21,13 @@
         "build": "encore production --progress"
     },
     "dependencies": {
+        "@babel/plugin-proposal-class-properties": "^7.8.3",
+        "@babel/plugin-transform-runtime": "^7.9.0",
         "animate.css": "^3.7.2",
         "prop-types": "^15.7.2",
-        "react": "^16.12.0",
-        "react-dom": "^16.12.0",
+        "react": "^16.13.1",
+        "react-dom": "^16.13.1",
+        "react-router-dom": "^5.1.2",
         "wow.js": "^1.2.2",
         "ymaps": "^0.2.1"
     }

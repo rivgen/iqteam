@@ -453,7 +453,7 @@ a p:hover {
   padding-bottom: 100px;
 }
 
-.slash.intoPage {
+.slash.intoPage, .titlePorfolio {
   @include media-breakpoint-down(lg) {
     background-size: calc(100vw / 4);
   }
@@ -466,6 +466,10 @@ a p:hover {
   }
 
   //background-size: auto;
+}
+
+.titlePorfolio {
+  padding: 0;
 }
 
 .slash .block {
@@ -2337,6 +2341,7 @@ figure {
 
 .service {
   @include make-container();
+  margin-bottom: 100px;
   @media (min-width: 1800px) {
     width: 1200px;
   }

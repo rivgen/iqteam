@@ -31,6 +31,34 @@
     {{ encore_entry_script_tags('parallax') }}
 {% endblock %}
 {% block body %}
+
+    {#modal#}
+    <div class="modal fade" id="homeBlock" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+         aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div id="modalForAdmin">
+                    </div>
+                    <div class="modal-col-12 form-group">
+                        {{ form_widget(formHome) }}
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">Save changes</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    {#end modal#}
+
     {% set social = [
     {'img': '/images/block_V/telegram.svg', 'url': '#'},
     {'img': '/images/block_V/vk.svg', 'url': 'https://vk.com/iq_dev'},
@@ -72,6 +100,12 @@
                                     продукты
                                     и
                                     уникальные решения!</p>
+                                {% if is_granted('ROLE_CONTENT_MANAGER') %}
+                                    <p data-toggle="modal" data-target="#homeBlock" id="editClick">edit</p>
+                                {% endif %}
+
+
+
                                 {{ macros.printFeedback('btn btnBlue hoverEffects') }}
                             </div>
                         </div>
@@ -124,11 +158,11 @@
         </div>
         {#сделать скрипт перехода по якорю#}
         <div class="downButton down">
-        <a href='#'>
-        <object class="downImg" type="image/svg+xml" data="/images/down.svg">
-        <div class="internalText"></div>
-        </object>
-        </a>
+            <a href='#'>
+                <object class="downImg" type="image/svg+xml" data="/images/down.svg">
+                    <div class="internalText"></div>
+                </object>
+            </a>
         </div>
     </div>
     {#<div class="container">#}
@@ -289,7 +323,8 @@
                                         <p class="icon-links">
                                             {% for button in buttons %}
                                                 {% if button.id == article.id %}
-                                                    <a href="{{ button.url }}" class="btn buttonIconHome" role="button" target="_blank" rel="nofollow noopener noreferrer">
+                                                    <a href="{{ button.url }}" class="btn buttonIconHome" role="button"
+                                                       target="_blank" rel="nofollow noopener noreferrer">
                                 <span>
                                         <object type="image/svg+xml" data="/images/batton/{{ button.icon }}">
                                             <div class="internalText"></div>

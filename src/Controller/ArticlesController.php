@@ -49,7 +49,9 @@ class ArticlesController extends AbstractController
         $imgArticle = new ImgArticles();
         $form = $this->createForm(ArticlesType::class, $article);
         $form->handleRequest($request);
-
+        $array = json_decode(json_encode($form->createView()),TRUE);
+        dump($array);
+        dump($form->createView());
         if ($form->isSubmitted() && $form->isValid()) {
             $article = $form->getData();
             $uploadedFile = $form['iconFile']->getData();
@@ -136,12 +138,12 @@ class ArticlesController extends AbstractController
         $form->handleRequest($request);
         $images = $imgArticlesRepository->findAllImage($id);
         $general = false;
+        dump($request);
         foreach ($images as $image){
             if ($image['general']){
                 $general = $image['general'];
             }
         }
-//        dump($general);
         if (!empty($prevNext)) {
             if (empty($prevNext[1]) and $prevNext[0]['id'] > $id) {
                 $endId = $articlesRepository->endId();
