@@ -23,7 +23,7 @@ class ServiceController extends AbstractController
         $em = $this->getDoctrine()->getManager();
         $servisBlockRepository = $em->getRepository(ServisBlok::class);
         $servisBlocks = $servisBlockRepository->findAll();
-        dump($servisBlocks);
+//        dump($servisBlocks);
         return $this->render('service/index.html.twig', [
             'servisBlocks' => $servisBlocks,
         ]);
