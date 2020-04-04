@@ -5,6 +5,7 @@ namespace App\Form;
 use App\Entity\HomeBlock;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\CollectionType;
+use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -17,15 +18,20 @@ class HomeBlockType extends AbstractType
     {
 
         $builder
-            ->add('titleRu', TextType::class, [
+            ->add('titleRu', TextareaType::class, [
                 'attr' => ['class' => 'form-control'],
                 'label' => 'имя',
+                'required' => false,
 //                'constraints' => [
 //                    new NotBlank(["message" => "Пожалуйста, укажите имя"])
 //                ],
             ])
-            ->add('titleEn', TextType::class, [
-                'attr' => ['class' => 'form-control']
+            ->add('titleEn', TextareaType::class, [
+                'label' => 'name',
+                'required' => false,
+                'attr' => [
+                    'class' => 'form-control',
+                    ],
             ])
 //            ->add('homeBlockText', CollectionType::class, [
 //                'entry_type' => HomeBlockTextType::class,
@@ -33,7 +39,7 @@ class HomeBlockType extends AbstractType
 ////                'by_reference' => false,
 ////                'empty_data' => false,
 ////                'delete_empty' => true,
-////                'allow_add' => true,
+//                'allow_add' => true,
 ////                'required' => false,
 //            ])
             ;

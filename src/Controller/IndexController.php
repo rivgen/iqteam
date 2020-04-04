@@ -5,8 +5,10 @@ namespace App\Controller;
 use App\Entity\Articles;
 use App\Entity\ButtonArticles;
 use App\Entity\HomeBlock;
+use App\Entity\HomeBlockText;
 use App\Entity\ImgArticles;
 use App\Form\ContactType;
+use App\Form\HomeBlockTextType;
 use App\Form\HomeBlockType;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -24,7 +26,7 @@ class IndexController extends AbstractController
      */
     public function index(Request $request, Liform $liform)
     {
-        $homeBlock = new HomeBlock();
+        $homeBlock = new HomeBlockText();
 //        $resolver = new Resolver();
 //        dump(Articles::class);
 //        $resolver->setTransformer('text', Transformer\StringTransformer::class);
@@ -45,13 +47,15 @@ class IndexController extends AbstractController
             'action' => $url,
             'method' => 'POST'
         ]);
-        $formHome = $this->createForm(HomeBlockType::class, $homeBlock,  ['csrf_protection' => false]);
-//        $formHome->handleRequest($request);
-        $array = json_encode($liform->transform($formHome));
-//        $array = json_encode($this->get('liform')->transform($formHome));
-        dump($array);
-        dump($form->createView());
-//        dump($request);
+        $formHome = $this->createForm(HomeBlockTextType::class, $homeBlock);
+        $formHome->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid()) {
+//            $uploadedFile = $form['titleRu']->getData();
+            $entityManager =$this->getDoctrine()->getManager();
+            $entityManager->persist($homeBlock);
+            $entityManager->flush();
+//            return $this->redirectToRoute('articles_edit', ['id'=> $id]);
+        }
 
         return $this->render('index/index.html.twig', [
             'articles' => $articles,
@@ -60,13 +64,6 @@ class IndexController extends AbstractController
             'formContact' => $form->createView(),
             'formHome' => $formHome->createView(),
         ]);
-    }
-
-    /**
-     * @Route("/json/{id}", name="index_json", methods="GET/POST")
-     */
-    public function indexJson($id){
-
     }
 
 }

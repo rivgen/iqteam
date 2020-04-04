@@ -43,17 +43,22 @@
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <div class="modal-body">
-                    <div id="modalForAdmin">
-                    </div>
-                    <div class="modal-col-12 form-group">
+                {% if formHome is defined %}
+                {{ form_start(formHome) }}
+                    <div class="modal-body">
+
+                        <div id="modalForAdmin">
+                        </div>
+                        {#<div class="modal-col-12 form-group">#}
                         {{ form_widget(formHome) }}
+                        {#</div>#}
                     </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary">Save changes</button>
-                </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                    </div>
+                {{ form_end(formHome) }}
+                {% endif %}
             </div>
         </div>
     </div>
@@ -182,7 +187,11 @@
                     <div class="text wow fadeInUp">
                         <p>IQ Dev – команда профессионалов, занимающаяся как разработкой собственных решений, так и
                             сторонних заказов.</p>
+                        {% if is_granted('ROLE_CONTENT_MANAGER') %}
+                            <p data-toggle="modal" data-target="#homeBlock" id="editClickFirstQ">edit</p>
+                        {% endif %}
                     </div>
+
                     <div class="text1 wow fadeInUp">
                         <p>Нас отличает высокопрофессиональный подход к разработке и использование инновационных решений
                             для каждого клиента.</p>
@@ -311,36 +320,31 @@
             <div class="letter-E-row justify-content-center">
                 <div class="letter-E-col">
                     <div class="projects">
-
                         {% for article in articles %}
-                            <div class="projects-home-col filter {{ article.category }} wow fadeInUp">
-                                <figure class="effect-zoe blockImg">
+                            <div class="projects-col filter {{ article.category }} wow fadeInUp">
+                                <div class="squareImg">
                                     <a href={{ path('articles_show', {'id': article.id}) }}>
                                         <img src={{ uploaded_asset(article.id, article.icon) }} alt=""
                                              class="embed-responsive"/>
                                     </a>
-                                    <figcaption>
-                                        <p class="icon-links">
-                                            {% for button in buttons %}
-                                                {% if button.id == article.id %}
-                                                    <a href="{{ button.url }}" class="btn buttonIconHome" role="button"
-                                                       target="_blank" rel="nofollow noopener noreferrer">
-                                <span>
-                                        <object type="image/svg+xml" data="/images/batton/{{ button.icon }}">
-                                            <div class="internalText"></div>
-                                        </object>
-                                           </span>
-                                                    </a>
-                                                {% endif %}
-                                            {% endfor %}
-                                        </p>
-                                    </figcaption>
-                                </figure>
+                                </div>
                                 <div class="blockText align-self-center">
                                     <a href={{ path('articles_show', {'id': article.id}) }}><h3>{{ article.title }}</h3>
                                     </a>
                                     <p>{{ article.textPreview }}</p>
                                 </div>
+                                {% for button in buttons %}
+                                    {% if button.id == article.id %}
+                                        <a href="{{ button.url }}" class="btn hrefButton" role="button" target="_blank"
+                                           rel="nofollow noopener noreferrer">
+                                            <div class="svgObj">
+                                                <object type="image/svg+xml" data="/images/batton/{{ button.icon }}">
+                                                    <div class="internalText"></div>
+                                                </object>
+                                            </div>
+                                        </a>
+                                    {% endif %}
+                                {% endfor %}
                                 {% if is_granted('ROLE_CONTENT_MANAGER') %}
                                     <a href="{{ path('articles_edit', {'id': article.id}) }}">edit</a>
                                 {% endif %}

@@ -8,7 +8,7 @@ use Doctrine\ORM\Mapping as ORM;
  * HomeBlockText
  *
  * @ORM\Table(name="home_block_text")
- * @ORM\Entity(repositoryClass="App\Repository\ArticlesRepository")
+ * @ORM\Entity(repositoryClass="App\Repository\HomeBlockTextRepository")
  */
 class HomeBlockText
 {
@@ -60,7 +60,7 @@ class HomeBlockText
      *
      * @ORM\ManyToOne(targetEntity="App\Entity\HomeBlock", inversedBy="homeBlockText")
      */
-    private $blockId;
+    private $block;
 
     /**
      * @return int
@@ -161,17 +161,17 @@ class HomeBlockText
     /**
      * @return mixed
      */
-    public function getBlockId()
+    public function getBlock()
     {
-        return $this->blockId;
+        return $this->block;
     }
 
     /**
-     * @param mixed $blockId
+     * @param mixed $block
      */
-    public function setBlockId($blockId)
+    public function setBlock($block)
     {
-        $this->blockId = $blockId;
+        $this->block = $block;
     }
 
 }

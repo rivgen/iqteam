@@ -9,7 +9,7 @@ use Doctrine\ORM\Mapping as ORM;
  * HomeBlock
  *
  * @ORM\Table(name="home_block")
- * @ORM\Entity(repositoryClass="App\Repository\ArticlesRepository")
+ * @ORM\Entity()
  */
 class HomeBlock
 {
@@ -37,7 +37,7 @@ class HomeBlock
     private $titleEn;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\HomeBlockText", mappedBy="blockId")
+     * @ORM\OneToMany(targetEntity="App\Entity\HomeBlockText", mappedBy="block")
      */
     private $homeBlockText;
 

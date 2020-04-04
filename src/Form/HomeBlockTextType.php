@@ -15,13 +15,16 @@ class HomeBlockTextType extends AbstractType
 
         $builder
             ->add('text', null, [
-                'attr' => ['class' => 'form-control']
+                'attr' => ['class' => 'form-control'],
+                'required' => false,
             ])
             ->add('title', null, [
-                'attr' => ['class' => 'form-control']
+                'attr' => ['class' => 'form-control'],
+                'required' => false,
             ])
             ->add('icon', null, [
-                'attr' => ['class' => 'form-control']
+                'attr' => ['class' => 'form-control'],
+                'required' => false,
             ])
             ;
     }
