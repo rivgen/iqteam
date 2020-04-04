@@ -1,90 +1,6 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    {% set services = [
-    {'title': 'Web-разработка',
-    'text': '<p>Создание Web-решений на базе новейших технологий  с использованием современных методов проектирования  и управления включает в себя:</p>
-    <ul>
-    <li>
-     -веб-дизайн;</li>
-    <li>
--верстка страниц;</li>
-<li>
--программирование для веб на стороне клиента;</li>
-<li>
--конфигурирование веб-сервера.</li>
-    </ul>',
-    'img': 'web-img.svg',
-    'icon': 'web.svg' },
-    {'title': 'Mobile-разработка',
-    'text': '<p>Создание Web-решений на базе новейших технологий  с использованием современных методов проектирования  и управления включает в себя:</p>
-    <ul>
-    <li>
-     -веб-дизайн;</li>
-    <li>
--верстка страниц;</li>
-<li>
--программирование для веб на стороне клиента;</li>
-<li>
--конфигурирование веб-сервера.</li>
-    </ul>',
-    'img': 'mobile-img.svg',
-    'icon': 'mobile.svg' },
-    {'title': 'Digital Marketing',
-    'text': '<p>Создание Web-решений на базе новейших технологий  с использованием современных методов проектирования  и управления включает в себя:-веб-дизайн;</p>
-    <ul>
-    <li>
--верстка страниц;</li>
-<li>
--программирование для веб на стороне клиента;</li>
-<li>
--конфигурирование веб-сервера.</li>
-    </ul>',
-    'img': 'marketing-img.svg',
-    'icon': 'marketing.svg' },
-    {'title': 'UX/UI Дизайн',
-    'text': '<p>Создание Web-решений на базе новейших технологий  с использованием современных методов проектирования  и управления включает в себя:</p>
-    <ul>
-    <li>
-     -веб-дизайн;</li>
-    <li>
--верстка страниц;</li>
-<li>
--программирование для веб на стороне клиента;</li>
-<li>
--конфигурирование веб-сервера.</li>
-    </ul>',
-    'img': 'ux-ui-img.svg',
-    'icon': 'ux-ui.svg' },
-    {'title': 'Разработка Unity игр',
-    'text': '<p>Создание Web-решений на базе новейших технологий  с использованием современных методов проектирования  и управления включает в себя:</p>
-    <ul>
-    <li>
-     -веб-дизайн;</li>
-    <li>
--верстка страниц;</li>
-<li>
--программирование для веб на стороне клиента;</li>
-<li>
--конфигурирование веб-сервера.</li>
-    </ul>',
-    'img': 'unity-img.svg',
-    'icon': 'unity.svg' },
-    {'title': 'Разработка HTML-5 игр',
-    'text': '<p>Создание Web-решений на базе новейших технологий  с использованием современных методов проектирования  и управления включает в себя:</p>
-    <ul>
-    <li>
-     -веб-дизайн;</li>
-    <li>
--верстка страниц;</li>
-<li>
--программирование для веб на стороне клиента;</li>
-<li>
--конфигурирование веб-сервера.</li>
-    </ul>',
-    'img': 'html-5-img.svg',
-    'icon': 'html-5.svg' }
-    ] %}
     <div class="titlePorfolio">
         <div class="slash-row">
             <div class="text-center titleService">
@@ -93,7 +9,7 @@
         </div>
     </div>
     <div class="service">
-        {% for service in services %}
+        {% for service in servisBlocks %}
             <div class="service-row justify-content-center align-items-center blockService">
                 <div class="service-col">
                     <div class="service-row">
@@ -101,6 +17,10 @@
                             <img src="/images/service/{{ service.img }}" alt=""/>
                         </div>
                         <div class="col-md-6 {% if loop.index%2 == 0 %} order-md-first {% else %} {% endif %}">
+                            {% if is_granted('ROLE_CONTENT_MANAGER') %}
+                                <a href="{{ path('service_edit', {'id': service.id}) }}">Редактировать блок
+                                    ( {{ service.id }} )</a>
+                            {% endif %}
                             <div class="row content">
                                 <div class="row index">
                                     <div class="col-md-2 ">

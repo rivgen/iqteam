@@ -18,30 +18,31 @@ class HomeBlockType extends AbstractType
     {
 
         $builder
-            ->add('titleRu', TextareaType::class, [
+            ->add('titleRu', TextType::class, [
                 'attr' => ['class' => 'form-control'],
-                'label' => 'имя',
+                'label' => 'Title RU',
                 'required' => false,
 //                'constraints' => [
 //                    new NotBlank(["message" => "Пожалуйста, укажите имя"])
 //                ],
             ])
-            ->add('titleEn', TextareaType::class, [
-                'label' => 'name',
+            ->add('titleEn', TextType::class, [
+                'label' => 'Title EN',
                 'required' => false,
                 'attr' => [
                     'class' => 'form-control',
                     ],
             ])
-//            ->add('homeBlockText', CollectionType::class, [
-//                'entry_type' => HomeBlockTextType::class,
-////                'allow_delete' => true,
-////                'by_reference' => false,
-////                'empty_data' => false,
-////                'delete_empty' => true,
-//                'allow_add' => true,
-////                'required' => false,
-//            ])
+            ->add('homeBlockText', CollectionType::class, [
+                'entry_type' => HomeBlockTextType::class,
+                'label' => 'Текстовые блоки',
+//                'allow_delete' => true,
+//                'by_reference' => false,
+//                'empty_data' => false,
+//                'delete_empty' => true,
+                'allow_add' => true,
+//                'required' => false,
+            ])
             ;
     }
 

@@ -38,6 +38,20 @@ class HomeBlockText
     /**
      * @var string
      *
+     * @ORM\Column(name="text_en", type="string")
+     */
+    private $textEn;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="title_en", type="string", length=250)
+     */
+    private $titleEn;
+
+    /**
+     * @var string
+     *
      * @ORM\Column(name="icon", type="string", length=250)
      */
     private $icon;
@@ -172,6 +186,38 @@ class HomeBlockText
     public function setBlock($block)
     {
         $this->block = $block;
+    }
+
+    /**
+     * @return string
+     */
+    public function getTextEn()
+    {
+        return $this->textEn;
+    }
+
+    /**
+     * @param string $textEn
+     */
+    public function setTextEn($textEn)
+    {
+        $this->textEn = $textEn;
+    }
+
+    /**
+     * @return string
+     */
+    public function getTitleEn()
+    {
+        return $this->titleEn;
+    }
+
+    /**
+     * @param string $titleEn
+     */
+    public function setTitleEn($titleEn)
+    {
+        $this->titleEn = $titleEn;
     }
 
 }

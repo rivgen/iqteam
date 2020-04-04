@@ -9,7 +9,7 @@ use Doctrine\ORM\Mapping as ORM;
  * HomeBlock
  *
  * @ORM\Table(name="home_block")
- * @ORM\Entity()
+ * @ORM\Entity(repositoryClass="App\Repository\HomeBlockRepository")
  */
 class HomeBlock
 {

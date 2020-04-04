@@ -44,7 +44,7 @@
                     </button>
                 </div>
                 {% if formHome is defined %}
-                {{ form_start(formHome) }}
+                    {{ form_start(formHome) }}
                     <div class="modal-body">
 
                         <div id="modalForAdmin">
@@ -57,7 +57,7 @@
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                         <button type="submit" class="btn btn-primary">Submit</button>
                     </div>
-                {{ form_end(formHome) }}
+                    {{ form_end(formHome) }}
                 {% endif %}
             </div>
         </div>
@@ -97,61 +97,57 @@
         <div id="letter-I">
             <div class="letter-I-row justify-content-center">
                 <div class="letter-I-content-make">
-                    <div class="letter-I">
-                        <div class="textBlock">
-                            <div class="textBlockCenter">
-                                <h2 class="title">IQ Dev</h2>
-                                <p class="text">Подходим к решению любой задачи с интеллектом! Только качественные
-                                    продукты
-                                    и
-                                    уникальные решения!</p>
-                                {% if is_granted('ROLE_CONTENT_MANAGER') %}
-                                    <p data-toggle="modal" data-target="#homeBlock" id="editClick">edit</p>
-                                {% endif %}
+                    {% for h1 in blockHome %}
+                        {% if h1.id == 1 %}
+                            <div class="letter-I">
+                                <div class="textBlock">
+                                    <div class="textBlockCenter">
+                                        <h2 class="title">{{ h1.titleRu }}</h2>
+                                        {% if is_granted('ROLE_CONTENT_MANAGER') %}
+                                            <a href="{{ path('index_edit', {'id': h1.id}) }}">Редактировать блок
+                                                ( {{ h1.id }} )</a>
+                                        {% endif %}
+                                        {% for main in h1.blocks %}
+                                            {% if main.checkmark == 'main' %}
+                                                <p class="text">{{ main.text }}</p>
+                                            {% endif %}
+                                        {% endfor %}
 
 
-
-                                {{ macros.printFeedback('btn btnBlue hoverEffects') }}
-                            </div>
-                        </div>
-                        <div class="imgBlock vw680dawn">
-                            <img src="/images/home_phones.png" alt="" class="embed-responsive"/>
-                        </div>
-                        <div class="imgBlock vw680up">
-                            <div class="imgBlockCenter">
-                                {#<img src="/images/home_phones.png" alt="" class="embed-responsive"/>#}
-                                <img src="/images/m-left.png" alt="" class="embed-responsive left" id="leftId"/>
-                                <img src="/images/m-right.png" alt="" class="embed-responsive right" id="rightId"/>
-                            </div>
-                        </div>
-                    </div>
-
-
-                    <script>
-
-                    </script>
-
-
-                    <div class="letter-I-block wow fadeInUp">
-                        {% set arr = [
-                        {'img':'/images/block_I/games.svg', 'text':'Более 30 собственных игр'},
-                        {'img':'/images/block_I/people.svg', 'text':'100% довольных клиентов'},
-                        {'img':'/images/block_I/specialists.svg', 'text':'Более 40 компетентных специалиста'},
-                        {'img':'/images/block_I/download.svg', 'text':'Более 1 млн. загрузок игр и приложений'}
-                        ] %}
-                        {% for block_I in arr %}
-                            <div class="block-col">
-                                <div class="block">
-                                    <div class="icon">
-                                        <object type="image/svg+xml" data={{ block_I.img }}>
-                                            <div class="internalText"></div>
-                                        </object>
+                                        {{ macros.printFeedback('btn btnBlue hoverEffects') }}
                                     </div>
-                                    <p>{{ block_I.text }}</p>
+                                </div>
+                                <div class="imgBlock vw680dawn">
+                                    <img src="/images/home_phones.png" alt="" class="embed-responsive"/>
+                                </div>
+                                <div class="imgBlock vw680up">
+                                    <div class="imgBlockCenter">
+                                        {#<img src="/images/home_phones.png" alt="" class="embed-responsive"/>#}
+                                        <img src="/images/m-left.png" alt="" class="embed-responsive left"
+                                             id="leftId"/>
+                                        <img src="/images/m-right.png" alt="" class="embed-responsive right"
+                                             id="rightId"/>
+                                    </div>
                                 </div>
                             </div>
-                        {% endfor %}
-                    </div>
+                            <div class="letter-I-block wow fadeInUp">
+                                {% for main in h1.blocks %}
+                                    {% if main.checkmark == 'block' %}
+                                        <div class="block-col">
+                                            <div class="block">
+                                                <div class="icon">
+                                                    <object type="image/svg+xml" data={{ main.icon }}>
+                                                        <div class="internalText"></div>
+                                                    </object>
+                                                </div>
+                                                <p>{{ main.text }}</p>
+                                            </div>
+                                        </div>
+                                    {% endif %}
+                                {% endfor %}
+                            </div>
+                        {% endif %}
+                    {% endfor %}
                 </div>
 
             </div>
@@ -161,7 +157,6 @@
         <div class="socialBlock">
             {{ macros.printSocialBlock() }}
         </div>
-        {#сделать скрипт перехода по якорю#}
         <div class="downButton down">
             <a href='#'>
                 <object class="downImg" type="image/svg+xml" data="/images/down.svg">
@@ -170,36 +165,43 @@
             </a>
         </div>
     </div>
-    {#<div class="container">#}
-    {#<div class="row">#}
-    {#<div class="col-md-12">#}
-    {#<div id="root"></div>#}
-    {#</div>#}
-    {#</div>#}
-    {#</div>#}
     <div id="letter-Q" class="letter-Q">
         <div class="letter-Q-row justify-content-center">
             <div class="letter-Q-col">
                 <div class="letter-Q-row">
-                    <div class="title wow fadeInUp">
-                        <h2>О нас</h2>
-                    </div>
-                    <div class="text wow fadeInUp">
-                        <p>IQ Dev – команда профессионалов, занимающаяся как разработкой собственных решений, так и
-                            сторонних заказов.</p>
-                        {% if is_granted('ROLE_CONTENT_MANAGER') %}
-                            <p data-toggle="modal" data-target="#homeBlock" id="editClickFirstQ">edit</p>
-                        {% endif %}
-                    </div>
+                    {% for h1 in blockHome %}
+                        {% if h1.id == 2 %}
+                            <div class="title wow fadeInUp">
+                                <h2>{{ h1.titleRu }}</h2>
+                                {% if is_granted('ROLE_CONTENT_MANAGER') %}
+                                    <a href="{{ path('index_edit', {'id': h1.id}) }}">Редактировать блок ( {{ h1.id }}
+                                        )</a>
+                                {% endif %}
+                            </div>
+                            <div class="text wow fadeInUp">
+                                {% for main in h1.blocks %}
+                                    {% if main.checkmark == 'main' %}
+                                        <p>{{ main.text }}</p>
+                                    {% endif %}
+                                {% endfor %}
+                            </div>
 
-                    <div class="text1 wow fadeInUp">
-                        <p>Нас отличает высокопрофессиональный подход к разработке и использование инновационных решений
-                            для каждого клиента.</p>
-                    </div>
-                    <div class="text2 wow fadeInUp">
-                        <p>Нас отличает высокопрофессиональный подход к разработке и использование инновационных решений
-                            для каждого клиента.</p>
-                    </div>
+                            <div class="text1 wow fadeInUp">
+                                {% for main in h1.blocks %}
+                                    {% if main.checkmark == 'text1' %}
+                                        <p>{{ main.text }}</p>
+                                    {% endif %}
+                                {% endfor %}
+                            </div>
+                            <div class="text2 wow fadeInUp">
+                                {% for main in h1.blocks %}
+                                    {% if main.checkmark == 'text2' %}
+                                        <p>{{ main.text }}</p>
+                                    {% endif %}
+                                {% endfor %}
+                            </div>
+                        {% endif %}
+                    {% endfor %}
                 </div>
             </div>
         </div>
@@ -209,37 +211,42 @@
         <div class="slash-row justify-content-center">
             <div class="slash-col">
                 <div class="slash-row">
-                    <div class="title wow fadeInUp">
-                        <h2>Экспертиза</h2>
-                    </div>
-                    <div class="textBold wow fadeInUp">
-                        <p>Мы ценим огромный опыт, который мы получили в ходе работы с каждым клиентом – ведь именно
-                            наши клиенты дают нам экспертизу, которая позволяет создавать качественный продукт.</p>
-                    </div>
-                    {% set expertise = [
-                    {'img': '/images/slash/web.svg', 'title': 'WEB-разработка', 'text': 'Создания веб-сайта или веб-приложения. Вёрстка, программирование на стороне клиента и сервера'},
-                    {'img': '/images/slash/mobile.svg', 'title': 'Mobile-разработка', 'text': 'Разработка приложений для таких небольших портативных устройств, как КПК, смартфоны и прочее'},
-                    {'img': '/images/slash/rocket.svg', 'title': 'Продвижение', 'text': 'Обеспечение посещаемости сайта целевыми посетителями, которые заинтересованы в продукте'},
-                    {'img': '/images/slash/design.svg', 'title': 'UX/UI -дизайн', 'text': 'Восприятие и ответные действия пользователя на использование продукции, системы или услуги'},
-                    {'img': '/images/slash/html5.svg', 'title': 'Создание HTML5 игр', 'text': 'Поддержка и создание игр, которые можно запускать из браузера на любом ПК или мобильном устройстве'},
-                    {'img': '/images/slash/unity.svg', 'title': 'Создание Unity игр', 'text': 'Межплатформенная среда разработки, которая позволяет создавать кроссплатформенные  игры'},
-                    ] %}
-                    {% for slash in expertise %}
-                        <div class="block-col wow fadeInUp">
-                            <div class="block">
-                                <div class="icon">
-                                    <object type="image/svg+xml" data={{ slash.img }}>
-                                        <div class="internalText"></div>
-                                    </object>
-                                </div>
-                                <div class="title">
-                                    {{ slash.title }}
-                                </div>
-                                <div class="text">
-                                    {{ slash.text }}
-                                </div>
+                    {% for h1 in blockHome %}
+                        {% if h1.id == 3 %}
+                            <div class="title wow fadeInUp">
+                                <h2>{{ h1.titleRu }}</h2>
+                                {% if is_granted('ROLE_CONTENT_MANAGER') %}
+                                    <a href="{{ path('index_edit', {'id': h1.id}) }}">Редактировать блок ( {{ h1.id }}
+                                        )</a>
+                                {% endif %}
                             </div>
-                        </div>
+                            <div class="textBold wow fadeInUp">
+                                {% for main in h1.blocks %}
+                                    {% if main.checkmark == 'main' %}
+                                        <p>{{ main.text }}</p>
+                                    {% endif %}
+                                {% endfor %}
+                            </div>
+                            {% for main in h1.blocks %}
+                                {% if main.checkmark == 'block' %}
+                                    <div class="block-col wow fadeInUp">
+                                        <div class="block">
+                                            <div class="icon">
+                                                <object type="image/svg+xml" data={{ main.icon }}>
+                                                    <div class="internalText"></div>
+                                                </object>
+                                            </div>
+                                            <div class="title">
+                                                {{ main.title }}
+                                            </div>
+                                            <div class="text">
+                                                {{ main.text }}
+                                            </div>
+                                        </div>
+                                    </div>
+                                {% endif %}
+                            {% endfor %}
+                        {% endif %}
                     {% endfor %}
                 </div>
             </div>
@@ -251,39 +258,49 @@
             <div class="letter-D-row justify-content-center">
                 <div class="letter-D-col">
                     <div class="letter-D-row">
-                        <div class="text-col wow fadeInUp">
-                            <h2>Технологии</h2>
-                            <p class="textBold">В повседневной работе мы используем трендовые технологии, те, которые
-                                приносят ощутимый
-                                результат (мы называем это словом value — «ценность»)
-                                как для клиента, так и для собственной разработки.</p>
-                        </div>
-                        <div class="block-col wow fadeInUp">
-                            <div class="block">
-                                {% set technologies = [
-                                {'img': '/images/block_D/java.svg', 'title': 'Oracle Java Grails'},
-                                {'img': '/images/block_D/c++.svg', 'title': 'C#'},
-                                {'img': '/images/block_D/net.svg', 'title': '.Net'},
-                                {'img': '/images/block_D/aspNet.svg', 'title': 'ASP.Net'},
-                                {'img': '/images/block_D/node.svg', 'title': 'Grails Nоde.JS'},
-                                {'img': '/images/block_D/php.svg', 'title': 'PHP'},
-                                {'img': '/images/block_D/ruby.svg', 'title': 'Ruby on rails'},
-                                {'img': '/images/block_D/swift.svg', 'title': 'SWIFT'},
-                                {'img': '/images/block_D/angular.svg', 'title': 'Angular.JS'},
-                                {'img': '/images/block_D/react.svg', 'title': 'React.JS'},
-                                ] %}
-                                {% for block_D in technologies %}
-                                    <div class="icon-col">
-                                        <div class="icon">
-                                            <object type="image/svg+xml" data={{ block_D.img }}>
-                                                <div class="internalText"></div>
-                                            </object>
-                                        </div>
-                                        <p class="title">{{ block_D.title }}</p>
+                        {% for h1 in blockHome %}
+                            {% if h1.id == 4 %}
+                                <div class="text-col wow fadeInUp">
+                                    <h2>{{ h1.titleRu }}</h2>
+                                    {% if is_granted('ROLE_CONTENT_MANAGER') %}
+                                        <a href="{{ path('index_edit', {'id': h1.id}) }}">Редактировать блок
+                                            ( {{ h1.id }}
+                                            )</a>
+                                    {% endif %}
+                                    {% for main in h1.blocks %}
+                                        {% if main.checkmark == 'main' %}
+                                            <p class="textBold">{{ main.text }}</p>
+                                        {% endif %}
+                                    {% endfor %}
+                                </div>
+                                <div class="block-col wow fadeInUp">
+                                    <div class="block">
+                                        {% set technologies = [
+                                        {'img': '/images/block_D/java.svg', 'title': 'Oracle Java Grails'},
+                                        {'img': '/images/block_D/c++.svg', 'title': 'C#'},
+                                        {'img': '/images/block_D/net.svg', 'title': '.Net'},
+                                        {'img': '/images/block_D/aspNet.svg', 'title': 'ASP.Net'},
+                                        {'img': '/images/block_D/node.svg', 'title': 'Grails Nоde.JS'},
+                                        {'img': '/images/block_D/php.svg', 'title': 'PHP'},
+                                        {'img': '/images/block_D/ruby.svg', 'title': 'Ruby on rails'},
+                                        {'img': '/images/block_D/swift.svg', 'title': 'SWIFT'},
+                                        {'img': '/images/block_D/angular.svg', 'title': 'Angular.JS'},
+                                        {'img': '/images/block_D/react.svg', 'title': 'React.JS'},
+                                        ] %}
+                                        {% for block_D in technologies %}
+                                            <div class="icon-col">
+                                                <div class="icon">
+                                                    <object type="image/svg+xml" data={{ block_D.img }}>
+                                                        <div class="internalText"></div>
+                                                    </object>
+                                                </div>
+                                                <p class="title">{{ block_D.title }}</p>
+                                            </div>
+                                        {% endfor %}
                                     </div>
-                                {% endfor %}
-                            </div>
-                        </div>
+                                </div>
+                            {% endif %}
+                        {% endfor %}
                     </div>
                 </div>
             </div>
@@ -294,25 +311,35 @@
         <div class="letter-E">
             <div class="letter-E-row justify-content-center">
                 <div class="letter-E-col">
-                    <div class="letter-E-row">
-                        <div class="title wow fadeInUp">
-                            <h2>Проекты</h2>
-                        </div>
-                        <div class="textBold wow fadeInUp">
-                        <span>Мы состоим в парке высоких технологий, одной из крупнейших заводей мирового IT-аутсорса, что
-                            является показателем высокой технологичности нашей работы.</span>
-                        </div>
-                        <div class="text wow fadeInUp">
-                            <p>Мы оцениваем результаты нашей работы по конверсии и прибыли — красота нас интересует
-                                постольку, поскольку она не мешает монетизации.</p>
-                        </div>
-                        <div class="text wow fadeInUp">
-                            <p>Поэтому, заказывая у нас, клиенты уверены, что получат эффективное решение, которое
-                                позволит
-                                выйти их бизнесу на новый уровень.</p>
-                        </div>
+                    {% for h1 in blockHome %}
+                        {% if h1.id == 5 %}
+                            <div class="letter-E-row">
+                                <div class="title wow fadeInUp">
+                                    <h2>{{ h1.titleRu }}</h2>
+                                    {% if is_granted('ROLE_CONTENT_MANAGER') %}
+                                        <a href="{{ path('index_edit', {'id': h1.id}) }}">Редактировать блок
+                                            ( {{ h1.id }}
+                                            )</a>
+                                    {% endif %}
+                                </div>
+                                <div class="textBold wow fadeInUp">
+                                    {% for main in h1.blocks %}
+                                        {% if main.checkmark == 'main' %}
+                                            <span>{{ main.text }}</span>
+                                        {% endif %}
+                                    {% endfor %}
+                                </div>
+                                {% for main in h1.blocks %}
+                                    {% if main.checkmark == 'text' %}
+                                        <div class="text wow fadeInUp">
+                                            <p>{{ main.text }}</p>
+                                        </div>
+                                    {% endif %}
+                                {% endfor %}
 
-                    </div>
+                            </div>
+                        {% endif %}
+                    {% endfor %}
                 </div>
             </div>
         </div>
