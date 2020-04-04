@@ -2367,5 +2367,35 @@ figure {
   justify-content: center;
 }
 
+//.items {
+//  text-align: center;
+//  margin-top: 100px;
+//}
+
+.items .item  {
+  //display: inline-block;
+  //margin-right: 50px;
+  //text-align: left;
+  //width: 363px;
+  //vertical-align: top;
+  perspective: 30px;
+}
+
+//.items .item .img {
+//  height: 363px;
+//  width: 363px;
+//  background-position: center;
+//  background-repeat: no-repeat;
+//  border-radius: 20px;
+//  box-shadow: 0px 10px 20px rgba(57, 100, 249, 0.1);
+//  overflow: hidden;
+//  margin-bottom: 30px;
+//}
+
+.target {
+  transition: transform 0.5s;
+  -webkit-transition: transform 0.5s;
+}
+
 @import "animationGlobal";
 

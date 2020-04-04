@@ -343,16 +343,18 @@
                 </div>
             </div>
         </div>
-        <div class="portfolio">
+        <div class="portfolio items">
             <div class="letter-E-row justify-content-center">
                 <div class="letter-E-col">
-                    <div class="projects">
+                    <div class="projects items">
                         {% for article in articles %}
                             <div class="projects-col filter {{ article.category }} wow fadeInUp">
-                                <div class="squareImg">
-                                    <a href={{ path('articles_show', {'id': article.id}) }}>
+                                <div class="squareImg item">
+                                {#<div class="item">#}
+                                    {#<div class="img target" style="background-image: url('{{ uploaded_asset(article.id, article.icon) }}');"></div>#}
+                                    <a href={{ path('articles_show', {'id': article.id}) }} class="">
                                         <img src={{ uploaded_asset(article.id, article.icon) }} alt=""
-                                             class="embed-responsive"/>
+                                             class="embed-responsive target"/>
                                     </a>
                                 </div>
                                 <div class="blockText align-self-center">
