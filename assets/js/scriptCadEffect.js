@@ -1,6 +1,6 @@
 var NeedEffect = (function genNeedEffect() {
   function genEffectForElement(innerEl) {
-    console.log('ewdwed');
+
     if (!innerEl instanceof HTMLElement) {
       return;
     }
@@ -24,8 +24,8 @@ var NeedEffect = (function genNeedEffect() {
       },
 
       setOrigin: function setOriginFunc(pureEvent) {
-        this._x = pureEvent.offsetLeft + Math.floor(pureEvent.offsetWidth / 2);
-        this._y = pureEvent.offsetTop + Math.floor(pureEvent.offsetHeight / 2);
+        this._x = pureEvent.offsetLeft + Math.floor(pureEvent.offsetWidth * 1.5 );
+        this._y = pureEvent.offsetTop + Math.floor(pureEvent.offsetHeight / 2 );
       },
 
       show: function showFunc() {
@@ -79,6 +79,7 @@ var NeedEffect = (function genNeedEffect() {
   };
 
   return function (els) {
+
     var items = els;
 
     if (!items instanceof HTMLCollection) {
@@ -90,6 +91,7 @@ var NeedEffect = (function genNeedEffect() {
 
     for (; i < itemsLength; i += 1) {
       var item = items[i];
+      // console.log(item)
       genEffectForElement(item);
     }
   };
