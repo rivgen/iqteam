@@ -742,7 +742,7 @@ a p:hover {
     }
   }
   .blockText {
-    padding-top: 50px;
+    //padding-top: 50px;
     p {
       font-size: 12px;
       //line-height: 200%;
@@ -2383,16 +2383,20 @@ figure {
   margin-right: 30px;
   text-align: left;
   width: 363px;
-  height: 528px;
+  height: 610px;
   vertical-align: top;
 
   @media (max-width: 1700px) {
     width: 20vw;
-    height: 475px;
+    height: 520px;
   }
   @include media-breakpoint-down(lg){
     width: 29vw;
-    height: 580px;
+    height: 630px;
+  }
+
+  @include media-breakpoint-down(md){
+    height: 540px;
   }
   @include media-breakpoint-down(sm){
     width: 100%;
