@@ -101,6 +101,13 @@ class Articles
     private $client;
 
     /**
+     * @var int|null
+     *
+     * @ORM\Column(type="integer", nullable=true)
+     */
+    private $ordering;
+
+    /**
      * @var string|null
      *
      * @ORM\Column(type="string", length=255, nullable=true)
@@ -414,6 +421,22 @@ class Articles
         $ButtonArticles->setArticles(null);
 
 //        return $this;
+    }
+
+    /**
+     * @return int|null
+     */
+    public function getOrdering()
+    {
+        return $this->ordering;
+    }
+
+    /**
+     * @param int|null $ordering
+     */
+    public function setOrdering($ordering)
+    {
+        $this->ordering = $ordering;
     }
 
 }

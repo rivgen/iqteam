@@ -346,47 +346,38 @@
         <div class="portfolio">
             <div class="letter-E-row justify-content-center">
                 <div class="letter-E-col">
-                    {% for article in articles %}
-                        {% if (loop.index + 2) % 3 == 0 %}
-                            <div class="projects items">
-                        {% endif %}
-                        <div class="filter {{ article.category }} wow fadeInUp item">
-                            {#<div class="squareImg ">#}
-                            {#<div class="item">#}
-                            {#<div class="img target" style="background-image: url('{{ uploaded_asset(article.id, article.icon) }}');"></div>#}
-                            <a href={{ path('articles_show', {'id': article.id}) }} class="">
-                                <img src={{ uploaded_asset(article.id, article.icon) }} alt=""
-                                     class="embed-responsive target"/>
-                            </a>
-                            {#</div>#}
-                            <div class="blockText align-self-center">
-                                <a href={{ path('articles_show', {'id': article.id}) }}>
-                                    <h3>{{ article.title }}</h3>
-                                </a>
-                                <p>{{ article.textPreview }}</p>
-                            </div>
-                            {% for button in buttons %}
-                                {% if button.id == article.id %}
-                                    <a href="{{ button.url }}" class="btn hrefButton" role="button"
-                                       target="_blank"
-                                       rel="nofollow noopener noreferrer">
-                                        <div class="svgObj">
-                                            <object type="image/svg+xml"
-                                                    data="/images/batton/{{ button.icon }}">
-                                                <div class="internalText"></div>
-                                            </object>
-                                        </div>
+                    <div class="projects">
+                        {% for article in articles %}
+                            <div class="projects-col filter {{ article.category }} wow fadeInUp">
+                                <div class="squareImg">
+                                    <a href={{ path('articles_show', {'id': article.id}) }}>
+                                        <img src={{ uploaded_asset(article.id, article.icon) }} alt=""
+                                             class="embed-responsive"/>
                                     </a>
+                                </div>
+                                <div class="blockText align-self-center">
+                                    <a href={{ path('articles_show', {'id': article.id}) }}><h3>{{ article.title }}</h3>
+                                    </a>
+                                    <p>{{ article.textPreview }}</p>
+                                </div>
+                                {% for button in buttons %}
+                                    {% if button.id == article.id %}
+                                        <a href="{{ button.url }}" class="btn hrefButton" role="button" target="_blank"
+                                           rel="nofollow noopener noreferrer">
+                                            <div class="svgObj">
+                                                <object type="image/svg+xml" data="/images/batton/{{ button.icon }}">
+                                                    <div class="internalText"></div>
+                                                </object>
+                                            </div>
+                                        </a>
+                                    {% endif %}
+                                {% endfor %}
+                                {% if is_granted('ROLE_CONTENT_MANAGER') %}
+                                    <a href="{{ path('articles_edit', {'id': article.id}) }}">edit</a>
                                 {% endif %}
-                            {% endfor %}
-                            {% if is_granted('ROLE_CONTENT_MANAGER') %}
-                                <a href="{{ path('articles_edit', {'id': article.id}) }}">edit</a>
-                            {% endif %}
-                        </div>
-                        {% if (loop.index ) % 3 == 0 %}
                             </div>
-                        {% endif %}
-                    {% endfor %}
+                        {% endfor %}
+                    </div>
                 </div>
             </div>
         </div>

@@ -42,6 +42,7 @@ class ArticlesRepository extends ServiceEntityRepository
 
         $qb = $this->createQueryBuilder('a')->select('a.id, a.title, a.textPreview, ac.id category, a.icon');
         $qb->leftJoin(ArticlesCategory::class, 'ac', 'WITH', 'a.category = ac.id');
+        $qb->orderBy('a.ordering', 'ASC');
 
         return $qb->getQuery()->getResult();
     }
