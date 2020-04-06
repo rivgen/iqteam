@@ -1,105 +1,101 @@
-var NeedEffect = (function genNeedEffect() {
-  function genEffectForElement(innerEl) {
+var Effect3D = (function makeEffect3D() {
+    function make3DEffect(el) {
+        if (!el instanceof HTMLElement) {
+            return;
+        }
 
-    if (!innerEl instanceof HTMLElement) {
-      return;
-    }
+        var counter = 0;
+        var refreshRate = 5;
+        var isTimeToUpdate = function() {
+            return counter++ % refreshRate === 0;
+        };
 
-    var outerNode = innerEl.parentNode;
+        var update = function updateFunc(event) {
+            pureEvent = event || window.event;
+            var boundingRect = el.getBoundingClientRect();
 
-    if (!innerEl instanceof HTMLElement) {
-      return;
-    }
+            var halfWidth = boundingRect.width / 2;
+            var halfHeight = boundingRect.height / 2;
 
-    var initMouse = {
-      _x: 0,
-      _y: 0,
-      x: 0,
-      y: 0,
+            var startPosX = event.clientX - boundingRect.left;
+            var startPosY = event.clientY - boundingRect.top;
 
-      updatePosition: function updatePositionFunc(event) {
-        var pureEvent = event || window.event;
-        this.x = pureEvent.clientX - this._x;
-        this.y = (pureEvent.clientY - this._y) * -1;
-      },
+            var rotateX = startPosX - halfWidth;
+            rotateX /= halfWidth;
 
-      setOrigin: function setOriginFunc(pureEvent) {
-        this._x = pureEvent.offsetLeft + Math.floor(pureEvent.offsetWidth * 1.5 );
-        this._y = pureEvent.offsetTop + Math.floor(pureEvent.offsetHeight / 2 );
-      },
+            var rotateY = startPosY - halfHeight;
+            rotateY /= -halfHeight;
 
-      show: function showFunc() {
-        return "(" + this.x + ", " + this.y + ")";
-      },
+            var style = 'rotateX(' + rotateY.toFixed(2) + 'deg) rotateY(' + rotateX.toFixed(2) + 'deg)';
+            el.style.transform = style;
+            el.style.webkitTransform = style;
+            el.style.mozTranform = style;
+            el.style.msTransform = style;
+            el.style.oTransform = style;
+        };
+
+        var onMouseEnterHandler = function onMouseEnterHandlerFunc(event) {
+            update(event);
+        };
+
+        var onMouseMoveHandler = function onMouseMoveHandlerFunc(event) {
+            if (isTimeToUpdate()) {
+                update(event);
+            }
+        };
+
+        var onMouseLeaveHandler= function onMouseLeaveHandlerFunc() {
+            el.style.transform = '';
+        };
+
+        el.addEventListener('mouseenter', onMouseEnterHandler);
+        el.addEventListener('mousemove', onMouseMoveHandler);
+        el.addEventListener('mouseleave', onMouseLeaveHandler);
+
+        return function destroyFunc() {
+            onMouseLeaveHandler();
+            el.removeEventListener('mouseenter', onMouseEnterHandler);
+            el.removeEventListener('mousemove', onMouseMoveHandler);
+            el.removeEventListener('mouseleave', onMouseLeaveHandler);
+        };
     };
 
-    initMouse.setOrigin(outerNode);
+    return function (els) {
+        var destroyFuncs = [];
+        var destroyFuncsLength = 0;
+        var items = els;
 
-    var counter = 0;
-    var refreshRate = 10;
-    var isTimeToUpdate = function() {
-      return counter++ % refreshRate === 0;
+        if (!items instanceof HTMLCollection) {
+            items = [items];
+        }
+
+        var itemsLength = items.length;
+        var i = 0;
+
+        for (; i < itemsLength; i += 1) {
+            var item = items[i];
+            var destroyFunc = make3DEffect(item);
+
+            if (typeof destroyFunc === 'function') {
+                destroyFuncs[destroyFuncsLength] = destroyFunc;
+                destroyFuncsLength += 1;
+            }
+        }
+
+        return {
+            destroy() {
+                var i = 0;
+
+                for (; i < destroyFuncsLength; i += 1) {
+                    var destroyFunc = destroyFuncs[i];
+                    destroyFunc();
+                }
+            }
+        };
     };
-
-    var updateTransformStyle = function updateTransformStyleFunc(x, y) {
-      var style = 'rotateX(' + x + 'deg) rotateY(' + y + 'deg)';
-      innerEl.style.transform = style;
-      innerEl.style.webkitTransform = style;
-      innerEl.style.mozTranform = style;
-      innerEl.style.msTransform = style;
-      innerEl.style.oTransform = style;
-    };
-
-    var update = function updateFunc(event) {
-      initMouse.updatePosition(event);
-
-      updateTransformStyle(
-        (initMouse.y / innerEl.offsetHeight / 2).toFixed(2),
-        (initMouse.x / innerEl.offsetWidth / 2).toFixed(2)
-      );
-    };
-
-    var onMouseEnterHandler = function onMouseEnterHandlerFunc(event) {
-      update(event);
-    };
-
-    var onMouseLeaveHandler = function onMouseLeaveHandlerFunc() {
-      innerEl.style.transform = '';
-    };
-
-    var onMouseMoveHandler = function onMouseMoveHandlerFunc(event) {
-      if (isTimeToUpdate()) {
-        update(event);
-      }
-    };
-
-    outerNode.onmousemove = onMouseMoveHandler;
-    outerNode.onmouseleave = onMouseLeaveHandler;
-    outerNode.onmouseenter = onMouseEnterHandler;
-  };
-
-  return function (els) {
-
-    var items = els;
-
-    if (!items instanceof HTMLCollection) {
-      items = [items];
-    }
-
-    var itemsLength = items.length;
-    var i = 0;
-
-    for (; i < itemsLength; i += 1) {
-      var item = items[i];
-      // console.log(item)
-      genEffectForElement(item);
-    }
-  };
 }());
 
-
 document.addEventListener('DOMContentLoaded', function loadedContent() {
-  var items = document.getElementsByClassName('target');
-
-  NeedEffect(items);
-});
+    var items = document.getElementsByClassName('target');
+    var effect3D = Effect3D(items);
+})

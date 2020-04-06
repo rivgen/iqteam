@@ -639,6 +639,9 @@ a p:hover {
   //}
   .projects {
     @include make-row();
+    @include media-breakpoint-down(lg){
+      margin: 0;
+    }
     .projects-home-col {
       @include make-col-ready();
       @include media-breakpoint-up(sm) {
@@ -2372,6 +2375,7 @@ figure {
 .items {
   text-align: center;
   margin-top: 100px;
+
 }
 
 .items .item {
@@ -2381,12 +2385,27 @@ figure {
   width: 363px;
   height: 528px;
   vertical-align: top;
+
+  @media (max-width: 1700px) {
+    width: 20vw;
+    height: 475px;
+  }
+  @include media-breakpoint-down(lg){
+    width: 29vw;
+    height: 580px;
+  }
+  @include media-breakpoint-down(sm){
+    width: 100%;
+    padding: 0 15px;
+    margin: 0;
+    height: calc(100vw + 200px);
+  }
 }
 
 .items .item a {
   position: relative;
   display: block;
-  perspective: 30px;
+  perspective: 100px;
   margin-bottom: 30px;
 }
 
