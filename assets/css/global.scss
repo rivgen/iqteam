@@ -861,7 +861,7 @@ a p:hover {
 
 #letter-V-back {
   background-color: white;
-
+  margin-top: 50px;
   .letter-V {
     background-image: url(/images/block_V/letter_V.svg);
 
@@ -2412,7 +2412,10 @@ figure {
 .items .item a {
   position: relative;
   display: block;
-  perspective: 100px;
+  perspective: 80px;
+  @media (min-width: 1200px){
+    perspective: 130px;
+  }
   margin-bottom: 30px;
 }
 
