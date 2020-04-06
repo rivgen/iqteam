@@ -154,7 +154,7 @@
         {% if (app.request.get('_route') == 'articles_edit' or app.request.get('_route') == 'articles_new') %}
             <div class="article-row justify-content-center" id="radioChecked">
                 <div class="article-col">
-                    <div class="article-row previewContainer">
+                    <div class="article-row previewContainer js-genus-scientist-wrapper">
                         {% for radio in form.imgArticles %}
                             {% set i = loop.index0 %}
 
