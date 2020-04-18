@@ -6,6 +6,7 @@ use App\Entity\Articles;
 use App\Entity\ButtonArticles;
 use App\Entity\HomeBlock;
 use App\Entity\ImgArticles;
+use App\Entity\MetaTags;
 use App\Form\ContactType;
 use App\Form\HomeBlockType;
 use Symfony\Component\HttpFoundation\Request;
@@ -21,10 +22,12 @@ class IndexController extends AbstractController
     {
         $em = $this->getDoctrine()->getManager();
         $articlesRepository = $em->getRepository(Articles::class);
+        $metaTagsRepository = $em->getRepository(MetaTags::class);
         $homeBlockRepository = $em->getRepository(HomeBlock::class);
         $imgArticlesRepository = $em->getRepository(ImgArticles::class);
         $buttonArticlesRepository = $em->getRepository(ButtonArticles::class);
         $articles = $articlesRepository->articlesInCategory();
+        $metaTags = $metaTagsRepository->metaTag('home');
         $button = $buttonArticlesRepository -> buttonInArticle();
         $images = $imgArticlesRepository->imageInArticle();
         $mainHomeBlocks = $homeBlockRepository->all();
@@ -40,7 +43,7 @@ class IndexController extends AbstractController
                 }
             }
         }
-//        dump($blockHome);
+//        dump($metaTags);
 
         $url = $this->generateUrl('mail_index');
         $form = $this->createForm(ContactType::class,null,[
@@ -56,6 +59,7 @@ class IndexController extends AbstractController
             'images' => $images,
             'blockHome' => $blockHome,
             'formContact' => $form->createView(),
+            'metaTags' => $metaTags,
 //            'formHome' => $formHome->createView(),
         ]);
     }

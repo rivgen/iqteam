@@ -1,0 +1,12 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit MetaTags{% endblock %}
+
+{% block body %}
+    <div class="slash intoPage">
+        <h1>Edit MetaTags</h1>
+
+        {{ include('meta_tags/_form.html.twig', {'button_label': 'Update'}) }}
+
+    </div>
+{% endblock %}

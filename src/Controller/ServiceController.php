@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\MetaTags;
 use App\Entity\ServisBlok;
 use App\Form\ServisBlockType;
 use Symfony\Component\HttpFoundation\Request;
@@ -22,10 +23,13 @@ class ServiceController extends AbstractController
     {
         $em = $this->getDoctrine()->getManager();
         $servisBlockRepository = $em->getRepository(ServisBlok::class);
+        $metaTagsRepository = $em->getRepository(MetaTags::class);
         $servisBlocks = $servisBlockRepository->findAll();
+        $metaTags = $metaTagsRepository->metaTag('service');
 //        dump($servisBlocks);
         return $this->render('service/index.html.twig', [
             'servisBlocks' => $servisBlocks,
+            'metaTags' => $metaTags,
         ]);
     }
 

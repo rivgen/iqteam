@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\MetaTags;
 use App\Form\ContactType;
 use App\Service\UploaderHelper;
 use Symfony\Component\Filesystem\Filesystem;
@@ -22,6 +23,9 @@ class ContactController extends AbstractController
      */
     public function index()
     {
+        $em = $this->getDoctrine()->getManager();
+        $metaTagsRepository = $em->getRepository(MetaTags::class);
+        $metaTags = $metaTagsRepository->metaTag('contact');
         $url = $this->generateUrl('mail_index');
         $form = $this->createForm(ContactType::class,null,[
             // To set the action use $this->generateUrl('route_identifier')
@@ -29,7 +33,8 @@ class ContactController extends AbstractController
             'method' => 'POST'
         ]);
         return $this->render('contact/index.html.twig', [
-            'form' => $form->createView()
+            'form' => $form->createView(),
+            'metaTags' => $metaTags,
         ]);
     }
 

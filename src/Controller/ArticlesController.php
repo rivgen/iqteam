@@ -6,6 +6,7 @@ use App\Entity\Articles;
 use App\Entity\ArticlesCategory;
 use App\Entity\ButtonArticles;
 use App\Entity\ImgArticles;
+use App\Entity\MetaTags;
 use App\Form\ArticlesType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -27,16 +28,19 @@ class ArticlesController extends AbstractController
         $buttonArticlesRepository = $em->getRepository(ButtonArticles::class);
         $articlesCategoryRepository = $em->getRepository(ArticlesCategory::class);
         $imgArticlesRepository = $em->getRepository(ImgArticles::class);
+        $metaTagsRepository = $em->getRepository(MetaTags::class);
         $articles = $articlesRepository->articlesInCategory();
         $button = $buttonArticlesRepository->buttonInArticle();
         $categories = $articlesCategoryRepository->allCategory();
         $images = $imgArticlesRepository->imageInArticle();
+        $metaTags = $metaTagsRepository->metaTag('articles');
 
         return $this->render('articles/index.html.twig', [
             'articles' => $articles,
             'buttons' => $button,
             'categories' => $categories,
-            'images' => $images
+            'images' => $images,
+            'metaTags' => $metaTags,
         ]);
     }
 

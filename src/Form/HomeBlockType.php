@@ -36,6 +36,7 @@ class HomeBlockType extends AbstractType
             ->add('homeBlockText', CollectionType::class, [
                 'entry_type' => HomeBlockTextType::class,
                 'label' => 'Текстовые блоки',
+                'label_attr' => ['class' => 'textBlockLabel'],
 //                'allow_delete' => true,
 //                'by_reference' => false,
 //                'empty_data' => false,

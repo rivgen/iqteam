@@ -1,12 +1,15 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Articles index{% endblock %}
 {% import _self as macros %}
-
+{% block title %}{{ metaTags.title }}{% endblock %}
+{% block description %}{{ metaTags.description }}{% endblock %}
 {% block body %}
     <div class="titlePorfolio">
         <div class="slash-row">
             <div class="text-center titlePortfolio">
+                {% if is_granted('ROLE_CONTENT_MANAGER') %}
+                    <a href="{{ path('meta_tags_edit', {'url': 'articles'}) }}">Редактировать мета тэги</a>
+                {% endif %}
                 <h1>Портфолио</h1>
             </div>
         </div>

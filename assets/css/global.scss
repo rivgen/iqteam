@@ -2437,5 +2437,21 @@ figure {
   -webkit-transition: transform 0.5s;
 }
 
+.help-text{
+  position: relative;
+  top: -150px;
+  left: -75px;
+}
+
+.textBlockLabel{
+  margin-top: 70px;
+  font-size: 25px;
+  font-weight: 600;
+}
+
+#home_block_homeBlockText label.required {
+  margin-top: 50px;
+}
+
 @import "animationGlobal";
 

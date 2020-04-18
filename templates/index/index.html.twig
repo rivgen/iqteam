@@ -25,7 +25,8 @@
         </a>
     {% endfor %}
 {% endmacro %}
-
+{% block title %}{{ metaTags.title }}{% endblock %}
+{% block description %}{{ metaTags.description }}{% endblock %}
 {% block javascripts %}
     {{ parent() }}
     {{ encore_entry_script_tags('parallax') }}
@@ -102,6 +103,9 @@
                             <div class="letter-I">
                                 <div class="textBlock">
                                     <div class="textBlockCenter">
+                                        {% if is_granted('ROLE_CONTENT_MANAGER') %}
+                                            <a href="{{ path('meta_tags_edit', {'url': 'home'}) }}">Редактировать мета тэги</a>
+                                        {% endif %}
                                         <h2 class="title">{{ h1.titleRu }}</h2>
                                         {% if is_granted('ROLE_CONTENT_MANAGER') %}
                                             <a href="{{ path('index_edit', {'id': h1.id}) }}">Редактировать блок
