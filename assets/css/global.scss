@@ -99,7 +99,7 @@ a p:hover {
 %letter-I-Block {
   @include make-col-ready();
   @include media-breakpoint-up(sm) {
-    @include make-col (6);
+    @include make-col(6);
   }
 }
 
@@ -107,24 +107,28 @@ a p:hover {
   @include make-row();
   position: relative;
   overflow: hidden;
+
   .vw680up {
     display: none;
     @include media-breakpoint-up(md) {
       display: block;
     }
   }
+
   .vw680dawn {
     display: block;
     @include media-breakpoint-up(md) {
       display: none;
     }
   }
+
   %center {
     @include media-breakpoint-up(md) {
       top: 50%;
       transform: translateY(-50%);
     }
   }
+
   .imgBlock {
     @extend %letter-I-Block;
     //@include media-breakpoint-up(md) {
@@ -140,11 +144,13 @@ a p:hover {
     @include media-breakpoint-between(sm, lg) {
       margin-top: 90px;
     }
+
     .imgBlockCenter {
       position: relative;
       height: 50%;
       @extend %center;
     }
+
     &:after {
       content: '';
       position: absolute;
@@ -165,6 +171,7 @@ a p:hover {
         transform: translateX(cacl(-1*100vw/2));
       }
     }
+
     %positionImg {
       position: absolute;
       top: 50%;
@@ -187,20 +194,28 @@ a p:hover {
       -webkit-animation-duration: 2s;
       animation-duration: 2s;
     }
+
     .left {
       @extend %positionImg;
       transform: translate(0%, -55%);
+      padding-top: 0;
+      padding-bottom: 0;
     }
+
     .right {
       @extend %positionImg;
       transform: translate(53%, -68%);
+      padding-top: 0;
+      padding-bottom: 0;
     }
   }
+
   .textBlock {
     @extend %letter-I-Block;
     @include media-breakpoint-up(md) {
       position: relative;
     }
+
     .textBlockCenter {
       margin-top: 90px;
       @include media-breakpoint-up(md) {
@@ -208,6 +223,7 @@ a p:hover {
         margin-top: 0;
       }
       @extend %center;
+
       .title {
         font-weight: bold;
         font-size: calc(4rem + 30 * (100vw - 320px) / 880);
@@ -220,6 +236,7 @@ a p:hover {
           font-size: 96px;
         }
       }
+
       .text {
         margin-top: 40px;
         font-weight: 300;
@@ -235,6 +252,7 @@ a p:hover {
       }
     }
   }
+
   img {
     padding: 1vw 3vw 3vw;
     @include media-breakpoint-down(md) {
@@ -366,7 +384,7 @@ a p:hover {
   padding-bottom: 25px;
 }
 
-.slash{
+.slash {
   padding-bottom: 100px;
 }
 
@@ -428,6 +446,31 @@ a p:hover {
 
 .slash {
   background-image: url(/images/slash/slash.svg);
+
+  .expertise-item {
+    padding: 50px;
+
+    .row {
+      margin-bottom: 30px;
+
+      .object {
+        height: 40px;
+      }
+      .title {
+        padding-left: 30px;
+        margin: 0;
+      }
+    }
+    @include media-breakpoint-up(xxl) {
+      padding: 40px;
+    }
+    @include media-breakpoint-up(xl) {
+      padding: 30px;
+    }
+    @include media-breakpoint-up(lg) {
+      padding: 30px;
+    }
+  }
 }
 
 .slash .title, .slash .textBold {
@@ -542,10 +585,12 @@ a p:hover {
 
     .block {
       @include make-row();
+
       .icon-col {
         .icon {
           position: relative;
           height: 130px;
+
           object {
             position: absolute;
             left: 50%;
@@ -553,6 +598,7 @@ a p:hover {
           }
         ;
         }
+
         @include make-col-ready();
         @include make-col(6);
         @include media-breakpoint-up(sm) {
@@ -639,14 +685,16 @@ a p:hover {
   //}
   .projects {
     @include make-row();
-    @include media-breakpoint-down(lg){
+    @include media-breakpoint-down(lg) {
       margin: 0;
     }
+
     .projects-home-col {
       @include make-col-ready();
       @include media-breakpoint-up(sm) {
         @include make-col(6);
       }
+
       .buttonIconHome {
         border-radius: 50%;
         background: #ffffff;
@@ -654,10 +702,12 @@ a p:hover {
         width: 50px;
         height: 50px;
         margin: 10px;
+
         span {
           //filter: brightness(0) invert(1);
           width: 100%;
           height: 100%;
+
           object {
             position: relative;
             top: 50%;
@@ -667,6 +717,7 @@ a p:hover {
         }
       }
     }
+
     .projects-col {
       @include make-col-ready();
       @include media-breakpoint-up(sm) {
@@ -676,10 +727,12 @@ a p:hover {
         margin: 30px 0;
       }
     }
+
     .squareImg {
       width: 100%;
       padding-top: 100%;
       position: relative;
+
       img {
         position: absolute;
         top: 0;
@@ -690,6 +743,7 @@ a p:hover {
         border-radius: 30px;
       }
     }
+
     .hrefButton {
       --duration: .44s;
       --move-hover: -6px;
@@ -703,18 +757,22 @@ a p:hover {
       float: left;
       transform: translateY(var(--y));
       transition: transform var(--duration) ease, box-shadow var(--duration) ease;
+
       &:hover {
         --y: var(--move-hover);
         background: #ffffff;
         box-shadow: 0px 10px 20px rgba(57, 100, 249, 0.1);
       }
+
       .svgObj {
         filter: brightness(0) invert(1);
         width: 100%;
         height: 100%;
+
         &:hover {
           filter: none;
         }
+
         object {
           position: relative;
           top: 50%;
@@ -724,6 +782,7 @@ a p:hover {
       }
     }
   }
+
   .blockImg {
     --width: 100%;
     height: auto;
@@ -734,6 +793,7 @@ a p:hover {
     @include media-breakpoint-up(xl) {
       --width: 570px;
     }
+
     img {
       height: 100%;
       width: 100%;
@@ -741,6 +801,7 @@ a p:hover {
       object-position: 50% 50%;
     }
   }
+
   .blockText {
     //padding-top: 50px;
     p {
@@ -753,6 +814,7 @@ a p:hover {
       width: 100%;
       line-height: 25px;
     }
+
     h3 {
       font-family: Archivo, sans-serif;
       font-weight: bold;
@@ -764,6 +826,7 @@ a p:hover {
       padding-bottom: 5px;
     }
   }
+
   .footerClass {
     margin-top: 50px;
   }
@@ -831,9 +894,11 @@ a p:hover {
   align-items: center;
   letter-spacing: 0.1em;
   text-transform: uppercase;
+
   &:hover {
     color: #fff;
   }
+
   div {
     position: relative;
     left: 50%;
@@ -862,8 +927,13 @@ a p:hover {
 #letter-V-back {
   background-color: white;
   margin-top: 50px;
+
   .letter-V {
     background-image: url(/images/block_V/letter_V.svg);
+
+    .letter-fullwidth-container {
+      overflow-x: hidden;
+    }
 
     h4 {
       font-size: 12px;
@@ -919,6 +989,7 @@ a p:hover {
       @include media-breakpoint-up(sm) {
         @include make-col(6)
       }
+
       .social a {
         &:hover {
           -webkit-transform: translateY(-3px);
@@ -931,6 +1002,7 @@ a p:hover {
           transition: transform 0.35s
 
         }
+
         //img:hover {
         //  -webkit-filter: drop-shadow(0px 10px 11px rgba(57, 100, 249, 0.6));
         //  filter: drop-shadow(0px 10px 11px rgba(57, 100, 249, 0.6));
@@ -983,9 +1055,11 @@ a p:hover {
 
 .filterButton {
   display: none;
+
   .filter-button {
     border-radius: 0;
   }
+
   @include make-container();
   @media (min-width: 1800px) {
     width: 1200px;
@@ -999,6 +1073,7 @@ a p:hover {
   @include media-breakpoint-up(sm) {
     display: block;
   }
+
   %hoverActive {
     content: '';
     //border-bottom: 2px solid #3964F9;
@@ -1008,6 +1083,7 @@ a p:hover {
     left: 0;
     width: 100%;
   }
+
   button {
     font-size: 12px;
     line-height: 150%;
@@ -1020,6 +1096,7 @@ a p:hover {
     //  @extend %hoverActive;
     //}
   }
+
   //.active::after {
   //  @extend %hoverActive;
   //}
@@ -1030,6 +1107,7 @@ a p:hover {
     height: 100%;
     width: 100%;
   }
+
   p {
     font-size: 12px;
     line-height: 150%;
@@ -1037,9 +1115,11 @@ a p:hover {
     text-transform: uppercase;
     margin: 0;
   }
+
   .text {
     padding-top: 200px;
   }
+
   .letter-E-row {
     height: 100%;
   }
@@ -1058,18 +1138,23 @@ a p:hover {
   background: #fff;
   margin: 0;
   border-radius: 30px;
+
   %activeHover {
     color: #ffffff;
     background-color: #3964F9;
   }
+
   > .active {
     @extend %activeHover;
+
     &:hover {
       @extend %activeHover;
     }
+
     &:last-child:not(:first-child) {
       border-radius: 0 30px 30px 0;
     }
+
     &:first-child:not(:last-child) {
       border-radius: 30px 0 0 30px;
     }
@@ -1081,12 +1166,15 @@ a p:hover {
     color: #3964F9;
     background-color: #ffffff;
   }
+
   .active {
     @extend %activeHover360;
+
     &:hover {
       @extend %activeHover360;
     }
   }
+
   max-width: 1200px;
   @include make-container();
   position: relative;
@@ -1110,6 +1198,7 @@ button:focus {
   text-transform: uppercase;
   font-size: 12px;
   padding: 0 30px;
+
   #downButton {
     position: absolute;
     right: 30px;
@@ -1181,15 +1270,17 @@ button:focus {
 }
 
 .homeClass {
-  @include make-container ();
+  @include make-container();
   @media (min-width: 1800px) {
     width: 1200px;
   }
+
   .homeClass-row {
     min-height: 63px;
     @include make-row();
     margin: 0;
   }
+
   box-shadow: 0px 10px 20px rgba(57, 100, 249, 0.1);
   margin-bottom: 47px;
   @include media-breakpoint-down(lg) {
@@ -1249,12 +1340,15 @@ button:focus {
 .menuFlex {
   display: flex;
   align-items: center;
+
   p {
     padding-right: 50px;
   }
+
   .activeMenu {
     color: #3964F9;
     position: relative;
+
     &:after {
       content: '';
       width: 30%;
@@ -1263,6 +1357,24 @@ button:focus {
       position: absolute;
       bottom: -15px;
       left: 0;
+    }
+  }
+
+  &.contact-info-block {
+    padding-right: 0;
+
+    p {
+      &:last-child {
+        padding-right: 0;
+      }
+
+      a {
+        color: #323232;
+
+        &:hover {
+          color: #3964F9;
+        }
+      }
     }
   }
 }
@@ -1319,13 +1431,19 @@ a.logoSvg:after {
   margin-top: 140px;
 }
 
-.blockService .content .serviceText p {
-  font-style: normal;
-  font-weight: 500;
-  font-size: 18px;
-  line-height: 150%;
-  color: #323232;
-  padding: 0;
+.blockService .content .serviceText {
+  margin-top: 30px;
+
+  p {
+    font-style: normal;
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 150%;
+    color: #323232;
+    padding: 0;
+    margin-bottom: 30px;
+    //font-family: 'Roboto', sans-serif;
+  }
 }
 
 .blockService .content .serviceText li {
@@ -1381,12 +1499,14 @@ a.logoSvg:after {
 .infoPortfolio {
   max-width: 1200px;
   @include make-container();
+
   .infoPortfolio-row {
     @include make-row();
     margin-top: 15px;
     @include media-breakpoint-up(md) {
       margin-top: 0;
     }
+
     .infoPortfolio-col {
       @include make-col-ready();
       @include media-breakpoint-up(md) {
@@ -1404,6 +1524,7 @@ a.logoSvg:after {
       --position: absolute;
       --height: 100%;
       --top: 145%;
+
       .img2 {
         @extend %positionCenter;
         @include media-breakpoint-up(md) {
@@ -1413,6 +1534,7 @@ a.logoSvg:after {
           transform: translateX(-70%);
         }
       }
+
       .textInfo2 {
         @extend %positionCenter;
         @include media-breakpoint-up(md) {
@@ -1424,6 +1546,7 @@ a.logoSvg:after {
         top: var(--top);
         @extend %fontInfoPortfolio;
       }
+
       .img1 {
         @extend %positionCenter;
         @include media-breakpoint-up(md) {
@@ -1433,6 +1556,7 @@ a.logoSvg:after {
           transform: translateX(-100%);
         }
       }
+
       .textInfo1 {
         @extend %positionCenter;
         @include media-breakpoint-up(md) {
@@ -1444,6 +1568,7 @@ a.logoSvg:after {
         top: var(--top);
         @extend %fontInfoPortfolio;
       }
+
       .img3 {
         @extend %positionCenter;
         @include media-breakpoint-up(md) {
@@ -1453,6 +1578,7 @@ a.logoSvg:after {
           transform: translateX(-45%);
         }
       }
+
       .textInfo3 {
         @extend %positionCenter;
         @include media-breakpoint-up(md) {
@@ -1561,6 +1687,7 @@ textarea.form-control {
   border: 1px solid #ced4da00;
   border-radius: 0;
   height: 50px;
+
   &:focus {
     box-shadow: inherit;
     border-color: white;
@@ -1823,10 +1950,12 @@ textarea.form-control {
   height: 50px;
   margin: 10px;
   box-shadow: 0px 10px 20px rgba(57, 100, 249, 0.1);
+
   .svgObj {
     width: 100%;
     height: 100%;
   }
+
   object {
     position: relative;
     top: 50%;
@@ -1843,11 +1972,14 @@ textarea.form-control {
   top: 50%;
   right: 0;
   transform: translate(-50%, -50%);
+
   .socialButton {
     @extend %buttonSocial;
+
     &:hover {
       background: #3964F9;
     }
+
     .svgObj:hover {
       filter: brightness(0) invert(1);
     }
@@ -1856,10 +1988,12 @@ textarea.form-control {
 
 .downButton a, .mainMenuSocial .socialButton {
   @extend %buttonSocial;
+
   object {
     transform: translate(-50%, -50%) rotate(0deg);
     transition: 1s;
   }
+
   line-height: 1.5px;
 }
 
@@ -1962,6 +2096,24 @@ textarea.form-control {
     width: 1200px;
     //padding-top: 43px;
   }
+
+  .menuFlex {
+    p {
+      padding-right: 50px;
+
+      &:last-child {
+        padding-right: 0;
+      }
+
+      a {
+        color: #323232;
+
+        &:hover {
+          color: #3964f9;
+        }
+      }
+    }
+  }
 }
 
 .logoHad {
@@ -2003,21 +2155,26 @@ textarea.form-control {
   background-color: #fff;
   font-size: 12px;
   text-transform: uppercase;
+
   .dropdown-overflow {
     overflow: scroll;
     height: 100%;
   }
+
   .mainMenuLogo {
 
   }
+
   .mainMenu {
     .mainMenuSocial {
       margin: 30px;
       display: flow-root;
     }
+
     &.endMenu {
       margin-bottom: 55px;
     }
+
     &:after {
       content: '';
       display: block;
@@ -2027,15 +2184,18 @@ textarea.form-control {
       margin: 0 30px;
 
     }
+
     p {
       margin: 30px;
     }
+
     .logoSvg {
       height: 100px;
       position: relative;
       left: 50%;
       transform: translate(-50%, 25%);
     }
+
     .activeMenu {
       color: #3964F9;
       position: relative;
@@ -2049,6 +2209,7 @@ textarea.form-control {
   background: #3964F9;
   position: fixed;
   bottom: 0;
+
   button {
     color: #FFFFFF;
     letter-spacing: 0.1em;
@@ -2132,6 +2293,7 @@ textarea.form-control {
 
 .filterMenu {
   background: #fff;
+
   .filter-button {
     font-size: 12px;
     text-transform: uppercase;
@@ -2161,11 +2323,14 @@ textarea.form-control {
   @media (min-width: 1800px) {
     width: 1200px;
   }
+
   .contactForm-row {
     @include make-row();
+
     .contactForm-col {
       --font-size: 12px;
       @extend %content-main-col-xl-8-col-11;
+
       .text {
         font-weight: bold;
         font-size: calc(0.5rem + 10 * (100vw - 320px) / 880);
@@ -2176,6 +2341,7 @@ textarea.form-control {
           font-size: 24px;
         }
       }
+
       .name {
         font-size: var(--font-size);
         text-transform: uppercase;
@@ -2185,15 +2351,18 @@ textarea.form-control {
           @include make-col(3)
         }
       }
+
       label {
         padding-top: calc(25px - var(--font-size) / 2);
       }
+
       .form-group {
         @include make-col-ready();
         @include media-breakpoint-up(sm) {
           @include make-col(9)
         }
       }
+
       .button {
         @include make-col-ready();
         @include media-breakpoint-up(sm) {
@@ -2213,16 +2382,20 @@ textarea.form-control {
   width: 640px;
   box-shadow: 0px 10px 20px rgba(57, 100, 249, 0.1);
   border-radius: 20px;
+
   .modal-body {
     @include make-row();
     margin: 15px;
+
     .modal-col-6 {
       @extend %content-main-col-6;
     }
+
     .modal-col-12 {
       @include make-col-ready();
       @include make-col(12);
     }
+
     .modal-title {
       font-weight: bold;
       font-size: 30px;
@@ -2231,6 +2404,7 @@ textarea.form-control {
       color: #323232;
       padding: 0 0 15px;
     }
+
     button.close {
       position: absolute;
       right: 0;
@@ -2238,15 +2412,18 @@ textarea.form-control {
       opacity: .2;
       font-size: 2rem;
     }
+
     label {
       font-size: 12px;
       text-transform: uppercase;
       color: #323232;
     }
+
     .form-control {
       background-color: #F5F5F5;
       border-radius: 5px;
     }
+
     .buttonProject {
       width: 100%;
       margin-bottom: 15px;
@@ -2353,6 +2530,7 @@ figure {
   @media (min-width: 1800px) {
     width: 1200px;
   }
+
   .service-row {
     @include make-row()
   }
@@ -2393,15 +2571,15 @@ figure {
     width: 20vw;
     height: 520px;
   }
-  @include media-breakpoint-down(lg){
+  @include media-breakpoint-down(lg) {
     width: 29vw;
     height: 630px;
   }
 
-  @include media-breakpoint-down(md){
+  @include media-breakpoint-down(md) {
     height: 540px;
   }
-  @include media-breakpoint-down(sm){
+  @include media-breakpoint-down(sm) {
     width: 100%;
     padding: 0 15px;
     margin: 0;
@@ -2413,7 +2591,7 @@ figure {
   position: relative;
   display: block;
   perspective: 80px;
-  @media (min-width: 1200px){
+  @media (min-width: 1200px) {
     perspective: 130px;
   }
   margin-bottom: 30px;
@@ -2437,14 +2615,14 @@ figure {
   -webkit-transition: transform 0.5s;
 }
 
-.help-text{
+.help-text {
   position: relative;
   top: -150px;
   left: -75px;
   z-index: -10;
 }
 
-.textBlockLabel{
+.textBlockLabel {
   margin-top: 70px;
   font-size: 25px;
   font-weight: 600;
