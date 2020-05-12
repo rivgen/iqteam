@@ -1362,6 +1362,7 @@ button:focus {
 
   &.contact-info-block {
     padding-right: 0;
+    white-space: nowrap;
 
     p {
       &:last-child {
