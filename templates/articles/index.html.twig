@@ -10,32 +10,32 @@
                 {% if is_granted('ROLE_CONTENT_MANAGER') %}
                     <a href="{{ path('meta_tags_edit', {'url': 'articles'}) }}">Редактировать мета тэги</a>
                 {% endif %}
-                <h1>Портфолио</h1>
+{#                <h1>Портфолио</h1>#}
             </div>
         </div>
     </div>
-    <div class="infoPortfolio">
-        <div class="infoPortfolio-row justify-content-center">
-            <div class="infoPortfolio-col">
-                <object class="img1" type="image/svg+xml" data="/images/35.svg">
-                    <div class="internalText"></div>
-                </object>
-                <p class="textInfo1">Проектов</p>
-            </div>
-            <div class="infoPortfolio-col">
-                <object class="img2" type="image/svg+xml" data="/images/1mln.svg">
-                    <div class="internalText"></div>
-                </object>
-                <p class="textInfo2">Пользователей</p>
-            </div>
-            <div class="infoPortfolio-col">
-                <object class="img3" type="image/svg+xml" data="/images/2mln.svg">
-                    <div class="internalText"></div>
-                </object>
-                <p class="textInfo3">Загрузок</p>
-            </div>
-        </div>
-    </div>
+{#    <div class="infoPortfolio">#}
+{#        <div class="infoPortfolio-row justify-content-center">#}
+{#            <div class="infoPortfolio-col">#}
+{#                <object class="img1" type="image/svg+xml" data="/images/35.svg">#}
+{#                    <div class="internalText"></div>#}
+{#                </object>#}
+{#                <p class="textInfo1">Проектов</p>#}
+{#            </div>#}
+{#            <div class="infoPortfolio-col">#}
+{#                <object class="img2" type="image/svg+xml" data="/images/1mln.svg">#}
+{#                    <div class="internalText"></div>#}
+{#                </object>#}
+{#                <p class="textInfo2">Пользователей</p>#}
+{#            </div>#}
+{#            <div class="infoPortfolio-col">#}
+{#                <object class="img3" type="image/svg+xml" data="/images/2mln.svg">#}
+{#                    <div class="internalText"></div>#}
+{#                </object>#}
+{#                <p class="textInfo3">Загрузок</p>#}
+{#            </div>#}
+{#        </div>#}
+{#    </div>#}
     <div class="filterButton">
         <div class="letter-E-row justify-content-center">
             <div class="letter-E-col">
@@ -129,20 +129,20 @@
                             </a>
                             <p>{{ article.textPreview }}</p>
                         </div>
-                        {% for button in buttons %}
-                            {% if button.id == article.id %}
-                                <a href="{{ button.url }}" class="btn hrefButton" role="button"
-                                   target="_blank"
-                                   rel="nofollow noopener noreferrer">
-                                    <div class="svgObj">
-                                        <object type="image/svg+xml"
-                                                data="/images/batton/{{ button.icon }}">
-                                            <div class="internalText"></div>
-                                        </object>
-                                    </div>
-                                </a>
-                            {% endif %}
-                        {% endfor %}
+{#                        {% for button in buttons %}#}
+{#                            {% if button.id == article.id %}#}
+{#                                <a href="{{ button.url }}" class="btn hrefButton" role="button"#}
+{#                                   target="_blank"#}
+{#                                   rel="nofollow noopener noreferrer">#}
+{#                                    <div class="svgObj">#}
+{#                                        <object type="image/svg+xml"#}
+{#                                                data="/images/batton/{{ button.icon }}">#}
+{#                                            <div class="internalText"></div>#}
+{#                                        </object>#}
+{#                                    </div>#}
+{#                                </a>#}
+{#                            {% endif %}#}
+{#                        {% endfor %}#}
                         {% if is_granted('ROLE_CONTENT_MANAGER') %}
                             <a href="{{ path('articles_edit', {'id': article.id}) }}">edit</a>
                         {% endif %}

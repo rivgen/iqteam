@@ -91,7 +91,7 @@
             {% endfor %}
         </div>
         <div class="copyrightLeft">
-            {{ macros.printFooterMenu() }}
+{#            {{ macros.printFooterMenu() }}#}
         </div>
     </div>
     <div id="parallax">
@@ -234,19 +234,37 @@
                             {% for main in h1.blocks %}
                                 {% if main.checkmark == 'block' %}
                                     <div class="block-col wow fadeInUp">
-                                        <div class="block">
-                                            <div class="icon">
-                                                <object type="image/svg+xml" data={{ main.icon }}>
-                                                    <div class="internalText"></div>
-                                                </object>
+                                        <div class="block expertise-item">
+                                            <div class="row align-items-center w-100 m-0">
+                                                <div class="col-12 d-flex p-0">
+                                                    <object type="image/svg+xml" data="{{ main.icon }}">
+                                                        <div class="internalText"></div>
+                                                    </object>
+
+                                                    <div class="title pl-0 pr-0">
+                                                        {{ main.title }}
+                                                    </div>
+                                                </div>
                                             </div>
-                                            <div class="title">
-                                                {{ main.title }}
-                                            </div>
+
                                             <div class="text">
                                                 {{ main.text }}
                                             </div>
                                         </div>
+
+{#                                        <div class="block">#}
+{#                                            <div class="icon">#}
+{#                                                <object type="image/svg+xml" data={{ main.icon }}>#}
+{#                                                    <div class="internalText"></div>#}
+{#                                                </object>#}
+{#                                            </div>#}
+{#                                            <div class="title">#}
+{#                                                {{ main.title }}#}
+{#                                            </div>#}
+{#                                            <div class="text">#}
+{#                                                {{ main.text }}#}
+{#                                            </div>#}
+{#                                        </div>#}
                                     </div>
                                 {% endif %}
                             {% endfor %}
@@ -369,20 +387,20 @@
                                 </a>
                                 <p>{{ article.textPreview }}</p>
                             </div>
-                            {% for button in buttons %}
-                                {% if button.id == article.id %}
-                                    <a href="{{ button.url }}" class="btn hrefButton" role="button"
-                                       target="_blank"
-                                       rel="nofollow noopener noreferrer">
-                                        <div class="svgObj">
-                                            <object type="image/svg+xml"
-                                                    data="/images/batton/{{ button.icon }}">
-                                                <div class="internalText"></div>
-                                            </object>
-                                        </div>
-                                    </a>
-                                {% endif %}
-                            {% endfor %}
+{#                            {% for button in buttons %}#}
+{#                                {% if button.id == article.id %}#}
+{#                                    <a href="{{ button.url }}" class="btn hrefButton" role="button"#}
+{#                                       target="_blank"#}
+{#                                       rel="nofollow noopener noreferrer">#}
+{#                                        <div class="svgObj">#}
+{#                                            <object type="image/svg+xml"#}
+{#                                                    data="/images/batton/{{ button.icon }}">#}
+{#                                                <div class="internalText"></div>#}
+{#                                            </object>#}
+{#                                        </div>#}
+{#                                    </a>#}
+{#                                {% endif %}#}
+{#                            {% endfor %}#}
                             {% if is_granted('ROLE_CONTENT_MANAGER') %}
                                 <a href="{{ path('articles_edit', {'id': article.id}) }}">edit</a>
                             {% endif %}
@@ -398,7 +416,7 @@
     <div id="letter-V-back">
         <div id="letter-V"></div>
         <div class="letter-V">
-            <div class="letter-V-row justify-content-center">
+            <div class="letter-V-row justify-content-center letter-fullwidth-container">
                 <div class="letter-V-col">
                     <div class="letter-V-row">
                         <div class="blockContact wow fadeInUp">

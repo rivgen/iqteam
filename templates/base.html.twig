@@ -10,7 +10,7 @@
         {% if ( app.request.get('_route') == mainMenu.url ) %}
             <p class="activeMenu">{{ mainMenu.title }}</p>
         {% else %}
-            <a href="{{ path(mainMenu.url) }}"><p>{{ mainMenu.title }}</p></a>
+            <p><a href="{{ path(mainMenu.url) }}">{{ mainMenu.title }}</a></p>
         {% endif %}
     {% endfor %}
     {% if is_granted('ROLE_CONTENT_MANAGER') %}
@@ -80,19 +80,20 @@
         </div>
         <div class="hadMenu">
             <div class="row justify-content-between align-items-center">
-                <div class="menuFlex inLeft">
+                <div class="menuFlex inLeft pl-0">
                     {{ mainManuMacros.printMainMenu() }}
                 </div>
-                <div class="menuFlex inRight">
+                <div class="menuFlex inRight contact-info-block">
                     {#<object type="image/svg+xml" data="/images/imgEmail.svg">#}
                     {#Your browser does not support SVG#}
                     {#</object>#}
-                    <p>info@iqdev.com</p>
+                    <p><a href="mailto:info@iqdev.com">info@iqdev.com</a></p>
+                    <p><a href="tel:+375298539025">+375 29 853-90-25</a></p>
                     {#</div>#}
                     {#<div class="col-md-1">#}
-                    <object type="image/svg+xml" data="/images/imgTel.svg">
-                        <div class="internalText"></div>
-                    </object>
+{#                    <object type="image/svg+xml" data="/images/imgTel.svg">#}
+{#                        <div class="internalText"></div>#}
+{#                    </object>#}
                 </div>
             </div>
         </div>
@@ -223,7 +224,7 @@
                     </div>
                 </div>
                 <div class="mainMenu endMenu">
-                    {{ indexMacros.printFooterMenu() }}
+{#                    {{ indexMacros.printFooterMenu() }}#}
                 </div>
                 <div class="dropButton">
                     {{ indexMacros.printFeedback('btn btnBlue') }}
