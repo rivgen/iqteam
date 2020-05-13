@@ -447,13 +447,13 @@ a p:hover {
 .slash {
   background-image: url(/images/slash/slash.svg);
 
-  .expertise-item {
+  .expertise-item.block {
     padding: 50px;
 
     .row {
       margin-bottom: 30px;
 
-      .object {
+      object {
         height: 40px;
       }
       .title {
@@ -461,14 +461,14 @@ a p:hover {
         margin: 0;
       }
     }
-    @include media-breakpoint-up(xxl) {
-      padding: 40px;
+    @include media-breakpoint-up(lg) {
+      padding: 30px;
     }
     @include media-breakpoint-up(xl) {
       padding: 30px;
     }
-    @include media-breakpoint-up(lg) {
-      padding: 30px;
+    @include media-breakpoint-up(xxl) {
+      padding: 40px;
     }
   }
 }
@@ -517,8 +517,10 @@ a p:hover {
 
 .slash .block {
   @include make-row();
-  margin: 0 0 30px 0;
-  padding: 30px;
+  //margin: 0 0 30px 0;
+  //padding: 30px;
+  margin: 0;
+  //padding: 50px;
 }
 
 //.slash .block .icon {
@@ -1471,6 +1473,18 @@ a.logoSvg:after {
   font-size: 72px;
   line-height: 130%;
   color: #E6ECF9;
+
+  &:before{
+    content: '';
+    width: 50px;
+    height: 2px;
+    background: #E6ECF9;
+    position: absolute;
+    vertical-align: 100%;
+    display: flex;
+    align-self: center;
+    left: -50px;
+  }
 }
 
 .blockService img {
