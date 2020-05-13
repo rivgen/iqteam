@@ -455,6 +455,9 @@ a p:hover {
 
       object {
         height: 40px;
+        @include media-breakpoint-up(md) {
+          height: 50px;
+        }
       }
       .title {
         padding-left: 30px;
