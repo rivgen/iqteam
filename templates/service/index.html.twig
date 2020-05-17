@@ -17,7 +17,7 @@
             <div class="service-row justify-content-center align-items-center blockService">
                 <div class="service-col">
                     <div class="service-row">
-                        <div class="col-md-6">
+                        <div class="col-md-6  {% if loop.index%2 == 0 %} img-right {% else %} img-left {% endif %}">
                             <img src="/images/service/{{ service.img }}" alt=""/>
                         </div>
                         <div class="col-md-6 {% if loop.index%2 == 0 %} order-md-first {% else %} {% endif %}">
@@ -26,8 +26,13 @@
                                     ( {{ service.id }} )</a>
                             {% endif %}
                             <div class="row content">
-                                <div class="row index">
-                                    <div class="col-md-2 ">
+                                <div class="col-12 d-flex align-items-center section_title">
+
+                                    <object type="image/svg+xml" data="/images/service/{{ service.icon }}">
+                                        <div id="internalText"></div>
+                                    </object>
+                                    <h2>{{ service.title }}</h2>
+                                    <div class=" index">
                                         {% if loop.index < 10 %}
                                             0{{ loop.index }}
                                         {% else %}
@@ -35,12 +40,7 @@
                                         {% endif %}
                                     </div>
                                 </div>
-                                <div class="col-md-1">
-                                    <object type="image/svg+xml" data="/images/service/{{ service.icon }}">
-                                        <div id="internalText"></div>
-                                    </object>
-                                </div>
-                                <div class="col-md-11"><h2>{{ service.title }}</h2></div>
+
                                 <div class="col-md-12 serviceText">{{ service.text|raw }}</div>
                             </div>
                         </div>
