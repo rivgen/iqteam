@@ -198,15 +198,15 @@ a p:hover {
     .left {
       @extend %positionImg;
       transform: translate(0%, -55%);
-      padding-top: 0;
-      padding-bottom: 0;
+      //padding-top: 0;
+      //padding-bottom: 0;
     }
 
     .right {
       @extend %positionImg;
       transform: translate(53%, -68%);
-      padding-top: 0;
-      padding-bottom: 0;
+      //padding-top: 0;
+      //padding-bottom: 0;
     }
   }
 
@@ -459,11 +459,13 @@ a p:hover {
           height: 50px;
         }
       }
+
       .title {
         padding-left: 30px;
         margin: 0;
       }
     }
+
     //@include media-breakpoint-up(lg) {
     //  padding: 30px;
     //}
@@ -1438,6 +1440,14 @@ a.logoSvg:after {
 
 .blockService {
   margin-top: 140px;
+
+  @media screen and (max-width: 767px) {
+    margin-top: 50px;
+    &:first-child {
+      margin-top: 113px;
+    }
+  }
+
 }
 
 .blockService .content .serviceText {
@@ -1479,17 +1489,24 @@ a.logoSvg:after {
   font-size: 72px;
   line-height: 130%;
   color: #E6ECF9;
+  display: flex;
+  align-items: center;
 
-  &:before{
+  &:before {
     content: '';
     width: 50px;
     height: 2px;
     background: #E6ECF9;
     position: absolute;
-    vertical-align: 100%;
-    display: flex;
-    align-self: center;
-    left: -50px;
+    left: -78px;
+
+    @media screen and (max-width: 1599px) {
+      display: none;
+    }
+  }
+
+  @media screen and (max-width: 767px) {
+    display: none;
   }
 }
 
@@ -2553,7 +2570,22 @@ figure {
   }
 
   .service-row {
-    @include make-row()
+    align-items: center;
+    @include make-row();
+
+    .img-right {
+      padding-left: 35px;
+    }
+
+    .img-left {
+      padding-right: 35px;
+    }
+
+    @media screen and (max-width: 767px) {
+      .section_title {
+        margin-top: 30px;
+      }
+    }
   }
 }
 
@@ -2605,6 +2637,8 @@ figure {
     padding: 0 15px;
     margin: 0;
     height: calc(100vw + 200px);
+    height: auto;
+    padding: 0;
   }
 }
 
@@ -2655,3 +2689,84 @@ figure {
 
 @import "animationGlobal";
 
+.my_container{
+  position: relative;
+  width: 100%;
+  padding-right: 15px;
+  padding-left: 15px;
+  flex: 0 0 100%;
+  max-width: 100%;
+}
+.my_card {
+  display: flex;
+  background-color: #fff;
+  box-shadow: 0px 10px 20px rgba(57, 100, 249, 0.1);
+  padding: 50px;
+  height: 100%;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  justify-content: flex-end;
+  border-radius: 20px;
+
+  .card_title {
+    font-weight: bold;
+    font-size: 18px;
+    line-height: 150%;
+    color: #323232;
+
+    object {
+      height: 50px;
+      margin-right: 30px;
+
+      @media screen and (max-width: 960px) {
+        height: 40px;
+      }
+    }
+  }
+
+  .card_text {
+    margin-top: 30px;
+    -webkit-flex: 1 1 auto;
+    -ms-flex: 1 1 auto;
+    flex: 1 1 auto;
+
+    font-size: 12px;
+    line-height: 200%;
+    /* or 24px */
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+}
+
+.card_wrap {
+  padding: 0 25px 50px 0;
+
+  &:nth-child(even) {
+    padding: 0 0 50px 25px;
+  }
+
+  @media screen and (max-width: 1919px) {
+    padding: 0 15px 30px 0;
+
+    &:nth-child(even) {
+      padding: 0 0 30px 15px;
+    }
+  }
+
+  @media screen and (max-width: 767px) {
+    padding:  0 0 30px 0;
+
+    &:nth-child(even) {
+      padding:  0 0 30px 0;
+    }
+  }
+
+}
+.slash {
+  .textBold{
+    @media screen and (max-width: 767px) {
+      padding-bottom: 0;
+    }
+  }
+}

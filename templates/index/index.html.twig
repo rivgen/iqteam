@@ -231,42 +231,61 @@
                                     {% endif %}
                                 {% endfor %}
                             </div>
-                            {% for main in h1.blocks %}
-                                {% if main.checkmark == 'block' %}
-                                    <div class="block-col wow fadeInUp">
-                                        <div class="block expertise-item">
-                                            <div class="row align-items-center ml-0 mr-0 w-100">
-                                                <div class="col-12 align-items-center d-flex pl-0">
-                                                    <object type="image/svg+xml" data="{{ main.icon }}">
-                                                        <div class="internalText"></div>
-                                                    </object>
+                            <div class="row my_container ml-0">
 
-                                                    <div class="title pr-0">
+                            {% for main in h1.blocks %}
+
+                                    {% if main.checkmark == 'block' %}
+                                        <div class="col-md-6 card_wrap">
+                                            <div class="my_card">
+{#                                                <div class="row">#}
+                                                    <div class="card_title d-flex align-items-center">
+                                                        <object type="image/svg+xml" data="{{ main.icon }}">
+                                                            <div class="internalText"></div>
+                                                        </object>
                                                         {{ main.title }}
                                                     </div>
-                                                </div>
-                                            </div>
-
-                                            <div class="text">
-                                                {{ main.text }}
+                                                    <div class="card_text">
+                                                        {{ main.text }}
+                                                    </div>
+{#                                                </div>#}
                                             </div>
                                         </div>
-{#                                        <div class="block">#}
-{#                                            <div class="icon">#}
-{#                                                <object type="image/svg+xml" data={{ main.icon }}>#}
-{#                                                    <div class="internalText"></div>#}
-{#                                                </object>#}
-{#                                            </div>#}
-{#                                            <div class="title">#}
-{#                                                {{ main.title }}#}
-{#                                            </div>#}
-{#                                            <div class="text">#}
-{#                                                {{ main.text }}#}
-{#                                            </div>#}
-{#                                        </div>#}
-                                    </div>
-                                {% endif %}
+                                        {#                                    <div class="block-col wow fadeInUp">#}
+                                        {#                                        <div class="block expertise-item">#}
+                                        {#                                            <div class="row align-items-center ml-0 mr-0 w-100">#}
+                                        {#                                                <div class="col-12 align-items-center d-flex pl-0">#}
+
+
+                                        {#                                                    <div class="title pr-0">#}
+
+                                        {#                                                    </div>#}
+                                        {#                                                </div>#}
+                                        {#                                            </div>#}
+
+                                        {#                                            <div class="text">#}
+
+                                        {#                                            </div>#}
+                                        {#                                        </div>#}
+
+                                        {#                                        <div class="block">#}
+                                        {#                                            <div class="icon">#}
+                                        {#                                                <object type="image/svg+xml" data={{ main.icon }}>#}
+                                        {#                                                    <div class="internalText"></div>#}
+                                        {#                                                </object>#}
+                                        {#                                            </div>#}
+                                        {#                                            <div class="title">#}
+                                        {#                                                {{ main.title }}#}
+                                        {#                                            </div>#}
+                                        {#                                            <div class="text">#}
+                                        {#                                                {{ main.text }}#}
+                                        {#                                            </div>#}
+                                        {#                                        </div>#}
+                                        {#                                    </div>#}
+                                    {% endif %}
                             {% endfor %}
+                            </div>
+
                         {% endif %}
                     {% endfor %}
                 </div>
