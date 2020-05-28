@@ -1,6 +1,7 @@
 {% extends 'base.html.twig' %}
 {% import _self as macros %}
 {% import 'articles/index.html.twig' as articleMacros %}
+{% import 'base.html.twig' as base %}
 {% macro printFooterMenu() %}
     <p>издатель и разработчик мобильных и браузерных игр</p>
 {% endmacro %}
@@ -8,14 +9,7 @@
     <button class="{{ class }}" role="button" data-toggle="modal" data-target="#exampleModal">Связаться</button>
 {% endmacro %}
 {% macro printSocialBlock() %}
-    {% set social = [
-    {'img': '/images/block_V/telegram.svg', 'url': '#'},
-    {'img': '/images/block_V/vk.svg', 'url': 'https://vk.com/iq_dev'},
-    {'img': '/images/block_V/facebook.svg', 'url': '#'},
-    {'img': '/images/block_V/twitter.svg', 'url': '#'},
-    {'img': '/images/block_V/instagram.svg', 'url': 'https://www.instagram.com/iq_dev_by/'},
-    ] %}
-    {% for block_soc in social %}
+    {% for block_soc in  socialGlobal %}
         <a href={{ block_soc.url }} target="_blank" rel="noreferrer" class="socialButton">
             <div class="svgObj">
                 <object type="image/svg+xml" data={{ block_soc.img }}>
@@ -65,13 +59,6 @@
     </div>
     {#end modal#}
 
-    {% set social = [
-    {'img': '/images/block_V/telegram.svg', 'url': '#'},
-    {'img': '/images/block_V/vk.svg', 'url': 'https://vk.com/iq_dev'},
-    {'img': '/images/block_V/facebook.svg', 'url': '#'},
-    {'img': '/images/block_V/twitter.svg', 'url': '#'},
-    {'img': '/images/block_V/instagram.svg', 'url': 'https://www.instagram.com/iq_dev_by/'},
-    ] %}
     <div class="menuClass">
         {% set menuAll = [
         {'list': 'I', 'menu': 'главный экран', 'anchor': '#'},
@@ -106,20 +93,28 @@
                                         {% if is_granted('ROLE_CONTENT_MANAGER') %}
                                             <a href="{{ path('meta_tags_edit', {'url': 'home'}) }}">Редактировать мета тэги</a>
                                         {% endif %}
+                                        {% if app.request.locale == 'ru' %}
                                         <h2 class="title">{{ h1.titleRu }}</h2>
+                                        {% else %}
+                                        <h2 class="title">{{ h1.titleEn }}</h2>
+                                        {% endif %}
                                         {% if is_granted('ROLE_CONTENT_MANAGER') %}
                                             <a href="{{ path('index_edit', {'id': h1.id}) }}">Редактировать блок
                                                 ( {{ h1.id }} )</a>
                                         {% endif %}
                                         {% for main in h1.blocks %}
                                             {% if main.checkmark == 'main' %}
+                                        {% if app.request.locale == 'ru' %}
                                                 <p class="text">{{ main.text }}</p>
+                                        {% else %}
+                                                <p class="text">{{ main.textEn }}</p>
+                                        {% endif %}
                                             {% endif %}
                                         {% endfor %}
 
 
                                         {{ macros.printFeedback('btn btnBlue hoverEffects') }}
-                                    </div>
+                                </div>
                                 </div>
                                 <div class="imgBlock vw680dawn">
                                     <img src="/images/home_phones.png" alt="" class="embed-responsive"/>
@@ -144,7 +139,11 @@
                                                         <div class="internalText"></div>
                                                     </object>
                                                 </div>
+                                                {% if app.request.locale == 'ru' %}
                                                 <p>{{ main.text }}</p>
+                                                {% else %}
+                                                <p>{{ main.textEn }}</p>
+                                                {% endif %}
                                             </div>
                                         </div>
                                     {% endif %}
@@ -169,14 +168,19 @@
             </a>
         </div>
     </div>
-    <div id="letter-Q" class="letter-Q">
+    <div id="letter-Q"></div>
+    <div class="letter-Q">
         <div class="letter-Q-row justify-content-center">
             <div class="letter-Q-col">
                 <div class="letter-Q-row">
                     {% for h1 in blockHome %}
                         {% if h1.id == 2 %}
                             <div class="title wow fadeInUp">
-                                <h2>{{ h1.titleRu }}</h2>
+                                {% if app.request.locale == 'ru' %}
+                                    <h2>{{ h1.titleRu }}</h2>
+                                {% else %}
+                                    <h2>{{ h1.titleEn }}</h2>
+                                {% endif %}
                                 {% if is_granted('ROLE_CONTENT_MANAGER') %}
                                     <a href="{{ path('index_edit', {'id': h1.id}) }}">Редактировать блок ( {{ h1.id }}
                                         )</a>
@@ -185,7 +189,11 @@
                             <div class="text wow fadeInUp">
                                 {% for main in h1.blocks %}
                                     {% if main.checkmark == 'main' %}
-                                        <p>{{ main.text }}</p>
+                                        {% if app.request.locale == 'ru' %}
+                                            <p>{{ main.text }}</p>
+                                        {% else %}
+                                            <p>{{ main.textEn }}</p>
+                                        {% endif %}
                                     {% endif %}
                                 {% endfor %}
                             </div>
@@ -193,19 +201,30 @@
                             <div class="text1 wow fadeInUp">
                                 {% for main in h1.blocks %}
                                     {% if main.checkmark == 'text1' %}
-                                        <p>{{ main.text }}</p>
+                                        {% if app.request.locale == 'ru' %}
+                                            <p>{{ main.text }}</p>
+                                        {% else %}
+                                            <p>{{ main.textEn }}</p>
+                                        {% endif %}
                                     {% endif %}
                                 {% endfor %}
                             </div>
                             <div class="text2 wow fadeInUp">
                                 {% for main in h1.blocks %}
                                     {% if main.checkmark == 'text2' %}
-                                        <p>{{ main.text }}</p>
+                                        {% if app.request.locale == 'ru' %}
+                                            <p>{{ main.text }}</p>
+                                        {% else %}
+                                            <p>{{ main.textEn }}</p>
+                                        {% endif %}
                                     {% endif %}
                                 {% endfor %}
                             </div>
                         {% endif %}
                     {% endfor %}
+                </div>
+                <div class="letter-Q-row imgQ wow fadeInUp">
+                    <img src="/images/block_Q/about.svg">
                 </div>
             </div>
         </div>
@@ -218,7 +237,11 @@
                     {% for h1 in blockHome %}
                         {% if h1.id == 3 %}
                             <div class="title wow fadeInUp">
-                                <h2>{{ h1.titleRu }}</h2>
+                                {% if app.request.locale == 'ru' %}
+                                    <h2>{{ h1.titleRu }}</h2>
+                                {% else %}
+                                    <h2>{{ h1.titleEn }}</h2>
+                                {% endif %}
                                 {% if is_granted('ROLE_CONTENT_MANAGER') %}
                                     <a href="{{ path('index_edit', {'id': h1.id}) }}">Редактировать блок ( {{ h1.id }}
                                         )</a>
@@ -227,7 +250,11 @@
                             <div class="textBold wow fadeInUp">
                                 {% for main in h1.blocks %}
                                     {% if main.checkmark == 'main' %}
-                                        <p>{{ main.text }}</p>
+                                        {% if app.request.locale == 'ru' %}
+                                            <p>{{ main.text }}</p>
+                                        {% else %}
+                                            <p>{{ main.textEn }}</p>
+                                        {% endif %}
                                     {% endif %}
                                 {% endfor %}
                             </div>
@@ -243,45 +270,22 @@
                                                         <object type="image/svg+xml" data="{{ main.icon }}">
                                                             <div class="internalText"></div>
                                                         </object>
-                                                        {{ main.title }}
+                                                        {% if app.request.locale == 'ru' %}
+                                                            {{ main.title }}
+                                                        {% else %}
+                                                            {{ main.enTitle }}
+                                                        {% endif %}
                                                     </div>
                                                     <div class="card_text">
-                                                        {{ main.text }}
+                                                        {% if app.request.locale == 'ru' %}
+                                                            {{ main.text }}
+                                                        {% else %}
+                                                            {{ main.textEn }}
+                                                        {% endif %}
                                                     </div>
 {#                                                </div>#}
                                             </div>
                                         </div>
-                                        {#                                    <div class="block-col wow fadeInUp">#}
-                                        {#                                        <div class="block expertise-item">#}
-                                        {#                                            <div class="row align-items-center ml-0 mr-0 w-100">#}
-                                        {#                                                <div class="col-12 align-items-center d-flex pl-0">#}
-
-
-                                        {#                                                    <div class="title pr-0">#}
-
-                                        {#                                                    </div>#}
-                                        {#                                                </div>#}
-                                        {#                                            </div>#}
-
-                                        {#                                            <div class="text">#}
-
-                                        {#                                            </div>#}
-                                        {#                                        </div>#}
-
-                                        {#                                        <div class="block">#}
-                                        {#                                            <div class="icon">#}
-                                        {#                                                <object type="image/svg+xml" data={{ main.icon }}>#}
-                                        {#                                                    <div class="internalText"></div>#}
-                                        {#                                                </object>#}
-                                        {#                                            </div>#}
-                                        {#                                            <div class="title">#}
-                                        {#                                                {{ main.title }}#}
-                                        {#                                            </div>#}
-                                        {#                                            <div class="text">#}
-                                        {#                                                {{ main.text }}#}
-                                        {#                                            </div>#}
-                                        {#                                        </div>#}
-                                        {#                                    </div>#}
                                     {% endif %}
                             {% endfor %}
                             </div>
@@ -301,7 +305,11 @@
                         {% for h1 in blockHome %}
                             {% if h1.id == 4 %}
                                 <div class="text-col wow fadeInUp">
-                                    <h2>{{ h1.titleRu }}</h2>
+                                    {% if app.request.locale == 'ru' %}
+                                        <h2>{{ h1.titleRu }}</h2>
+                                    {% else %}
+                                        <h2>{{ h1.titleEn }}</h2>
+                                    {% endif %}
                                     {% if is_granted('ROLE_CONTENT_MANAGER') %}
                                         <a href="{{ path('index_edit', {'id': h1.id}) }}">Редактировать блок
                                             ( {{ h1.id }}
@@ -309,23 +317,29 @@
                                     {% endif %}
                                     {% for main in h1.blocks %}
                                         {% if main.checkmark == 'main' %}
-                                            <p class="textBold">{{ main.text }}</p>
+                                            {% if app.request.locale == 'ru' %}
+                                                <p class="textBold">{{ main.text }}</p>
+                                            {% else %}
+                                                <p class="textBold">{{ main.textEn }}</p>
+                                            {% endif %}
                                         {% endif %}
                                     {% endfor %}
                                 </div>
                                 <div class="block-col wow fadeInUp">
                                     <div class="block">
+                                        {#{'img': '/images/block_D/net.svg', 'title': '.Net'},#}
+                                        {#{'img': '/images/block_D/aspNet.svg', 'title': 'ASP.Net'},#}
+                                        {#{'img': '/images/block_D/ruby.svg', 'title': 'Ruby on rails'},#}
                                         {% set technologies = [
                                         {'img': '/images/block_D/java.svg', 'title': 'Oracle Java Grails'},
                                         {'img': '/images/block_D/c++.svg', 'title': 'C#'},
-                                        {'img': '/images/block_D/net.svg', 'title': '.Net'},
-                                        {'img': '/images/block_D/aspNet.svg', 'title': 'ASP.Net'},
-                                        {'img': '/images/block_D/node.svg', 'title': 'Grails Nоde.JS'},
-                                        {'img': '/images/block_D/php.svg', 'title': 'PHP'},
-                                        {'img': '/images/block_D/ruby.svg', 'title': 'Ruby on rails'},
-                                        {'img': '/images/block_D/swift.svg', 'title': 'SWIFT'},
                                         {'img': '/images/block_D/angular.svg', 'title': 'Angular.JS'},
                                         {'img': '/images/block_D/react.svg', 'title': 'React.JS'},
+                                        {'img': '/images/block_D/node.svg', 'title': 'Grails Nоde.JS'},
+                                        {'img': '/images/block_D/php.svg', 'title': 'PHP'},
+                                        {'img': '/images/block_D/Vue.svg', 'title': 'VUE.JS'},
+                                        {'img': '/images/block_D/swift.svg', 'title': 'SWIFT'},
+
                                         ] %}
                                         {% for block_D in technologies %}
                                             <div class="icon-col">
@@ -355,7 +369,11 @@
                         {% if h1.id == 5 %}
                             <div class="letter-E-row">
                                 <div class="title wow fadeInUp">
-                                    <h2>{{ h1.titleRu }}</h2>
+                                    {% if app.request.locale == 'ru' %}
+                                        <h2>{{ h1.titleRu }}</h2>
+                                    {% else %}
+                                        <h2>{{ h1.titleEn }}</h2>
+                                    {% endif %}
                                     {% if is_granted('ROLE_CONTENT_MANAGER') %}
                                         <a href="{{ path('index_edit', {'id': h1.id}) }}">Редактировать блок
                                             ( {{ h1.id }}
@@ -365,14 +383,22 @@
                                 <div class="textBold wow fadeInUp">
                                     {% for main in h1.blocks %}
                                         {% if main.checkmark == 'main' %}
-                                            <span>{{ main.text }}</span>
+                                            {% if app.request.locale == 'ru' %}
+                                                <span>{{ main.text }}</span>
+                                            {% else %}
+                                                <span>{{ main.textEn }}</span>
+                                            {% endif %}
                                         {% endif %}
                                     {% endfor %}
                                 </div>
                                 {% for main in h1.blocks %}
                                     {% if main.checkmark == 'text' %}
                                         <div class="text wow fadeInUp">
-                                            <p>{{ main.text }}</p>
+                                            {% if app.request.locale == 'ru' %}
+                                                <p>{{ main.text }}</p>
+                                            {% else %}
+                                                <p>{{ main.textEn }}</p>
+                                            {% endif %}
                                         </div>
                                     {% endif %}
                                 {% endfor %}
@@ -390,17 +416,18 @@
                         {% if (loop.index + 2) % 3 == 0 %}
                             <div class="projects items">
                         {% endif %}
-                        <div class="filter {{ article.category }} wow fadeInUp item">
+                        {% set id = article.alias?article.alias:article.id %}
+                        <div class="filter {{ article.category }} wow fadeInUp item" {% if loop.index > 9 %} style="display: none;" {% endif %}>
                             {#<div class="squareImg ">#}
                             {#<div class="item">#}
                             {#<div class="img target" style="background-image: url('{{ uploaded_asset(article.id, article.icon) }}');"></div>#}
-                            <a href={{ path('articles_show', {'id': article.id}) }} class="">
+                            <a href={{ path('articles_show', {'id': id}) }} class="">
                                 <img src={{ uploaded_asset(article.id, article.icon) }} alt=""
                                      class="embed-responsive target"/>
                             </a>
                             {#</div>#}
                             <div class="blockText align-self-center">
-                                <a href={{ path('articles_show', {'id': article.id}) }}>
+                                <a href={{ path('articles_show', {'id': id}) }}>
                                     <h3>{{ article.title }}</h3>
                                 </a>
                                 <p>{{ article.textPreview }}</p>
@@ -423,69 +450,64 @@
                                 <a href="{{ path('articles_edit', {'id': article.id}) }}">edit</a>
                             {% endif %}
                         </div>
-                        {% if (loop.index ) % 3 == 0 %}
+                        {% if (loop.index) % 3 == 0 or loop.last %}
                             </div>
                         {% endif %}
                     {% endfor %}
+                    <div class="projects allProjects justify-content-center">
+                        <button id="viewAll" class="btn btnBlue" role="button">смотреть все проекты</button>
+                    </div>
                 </div>
+
             </div>
         </div>
     </div>
-    <div id="letter-V-back">
+    {#<div id="letter-V-back">#}
         <div id="letter-V"></div>
-        <div class="letter-V">
-            <div class="letter-V-row justify-content-center letter-fullwidth-container">
-                <div class="letter-V-col">
-                    <div class="letter-V-row">
-                        <div class="blockContact wow fadeInUp">
-                            <h2>Контакты</h2>
-                            <p class="textBold">Готовы начать свой следующий проект? Для обсуждения или сотрудничества
-                                просто свяжитесь с
-                                нами.</p>
-                            <div class="letter-V-row">
-                                <div class="textContact">
-                                    <h4>приезжайте</h4>
-                                    <p>Минск, Республика Беларусь, пр. Партизанский 4</p>
-                                </div>
-                                <div class="textContact">
-                                    <h4>пишите</h4>
+        {#<div class="letter-V">#}
+            {#<div class="letter-V-row justify-content-center letter-fullwidth-container">#}
+                {#<div class="letter-V-col">#}
+                    {#<div class="letter-V-row">#}
+                        {#<div class="blockContact wow fadeInUp">#}
+                            {#<h2>Контакты</h2>#}
+                            {#<p class="textBold">Готовы начать свой следующий проект? Для обсуждения или сотрудничества#}
+                                {#просто свяжитесь с#}
+                                {#нами.</p>#}
+                            {#<div class="letter-V-row">#}
+                                {#<div class="textContact">#}
+                                    {#<h4>приезжайте</h4>#}
+                                    {#<p>Минск, Республика Беларусь, пр. Партизанский 4</p>#}
+                                {#</div>#}
+                                {#<div class="textContact">#}
+                                    {#<h4>пишите</h4>#}
                                     {#<object type="image/svg+xml" data="/images/imgEmailContact.svg">#}
                                     {#<div id="internalText"></div>#}
                                     {#</object>#}
-                                    <p>info@iqdev.com</p>
-                                </div>
-                                <div class="textContact">
-                                    <h4>звоните</h4>
-                                    <object type="image/svg+xml" data="/images/imgTelContact.svg">
-                                        <div id="internalText"></div>
-                                    </object>
-                                </div>
-                                <div class="textContact">
-                                    <h4>ищите в соцсетях</h4>
-                                    <div class="social">
-                                        {% for block_V in social %}
-                                            <a href={{ block_V.url }} target="_blank" rel="noreferrer">
-                                                <img src={{ block_V.img }} alt=""/>
-                                                {#<object type="image/svg+xml" data={{ block_V.img }}>#}
-                                                {#Your browser does not support SVG#}
-                                                {#</object>#}
-                                            </a>
-                                        {% endfor %}
-                                    </div>
-                                </div>
-                                <div class="textContact">
-                                    {{ macros.printFeedback("btn btnBlue hoverEffects") }}
-                                </div>
-                            </div>
-                        </div>
-                        <div class="mapContact embed-responsive wow fadeInUp">
-                            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2351.603712230171!2d27.581945215991954!3d53.88547284189211!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x46dbce2d107b6c7f%3A0x21fe21a76ca5068c!2z0J_QsNGA0YLQuNC30LDQvdGB0LrQuNC5INC_0YDQvtGB0L8uIDQsINCc0LjQvdGB0Lo!5e0!3m2!1sru!2sby!4v1577083867310!5m2!1sru!2sby"
-                                    width="100%" height="724" frameborder="0" style="border:0;"
-                                    allowfullscreen=""></iframe>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+                                    {#<p><a href="mailto:{{ mailGlobal }}">{{ mailGlobal }}</a></p>#}
+                                {#</div>#}
+                                {#<div class="textContact">#}
+                                    {#<h4>звоните</h4>#}
+                                    {#<p><a href="tel:{{ phoneGlobal|replace({'-': '', ' ':''}) }}">{{ phoneGlobal }}</a></p>#}
+                                {#</div>#}
+                                {#<div class="textContact">#}
+                                    {#<h4>ищите в соцсетях</h4>#}
+                                    {#<div class="social">#}
+                                        {#{{ base.social }}#}
+                                    {#</div>#}
+                                {#</div>#}
+                                {#<div class="textContact">#}
+                                    {#{{ macros.printFeedback("btn btnBlue hoverEffects") }}#}
+                                {#</div>#}
+                            {#</div>#}
+                        {#</div>#}
+                        {#<div class="mapContact embed-responsive wow fadeInUp">#}
+                            {#<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2351.603712230171!2d27.581945215991954!3d53.88547284189211!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x46dbce2d107b6c7f%3A0x21fe21a76ca5068c!2z0J_QsNGA0YLQuNC30LDQvdGB0LrQuNC5INC_0YDQvtGB0L8uIDQsINCc0LjQvdGB0Lo!5e0!3m2!1sru!2sby!4v1577083867310!5m2!1sru!2sby"#}
+                                    {#width="100%" height="724" frameborder="0" style="border:0;"#}
+                                    {#allowfullscreen=""></iframe>#}
+                        {#</div>#}
+                    {#</div>#}
+                {#</div>#}
+            {#</div>#}
+        {#</div>#}
+    {#</div>#}
 {% endblock %}

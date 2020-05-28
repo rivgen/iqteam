@@ -13,7 +13,8 @@
         {{ form_widget(button.articles) }}
     </div>
 {% endmacro %}
-{% block title %}Articles{% endblock %}
+{% block title %}{% if article.metaTitle %}{{ article.metaTitle }}{% else %}{{ article.title }}{% endif %}{% endblock %}
+{% block description %}{{ article.metaDescription }}{% endblock %}
 {% block stylesheets %}
     {{ parent() }}
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -297,6 +298,12 @@
                             {{ form_label(form.category) }}
                             {{ form_widget(form.category) }}
                             {{ form_errors(form.category) }}
+                            {{ form_label(form.metaTitle) }}
+                            {{ form_widget(form.metaTitle) }}
+                            {{ form_errors(form.metaTitle) }}
+                            {{ form_label(form.metaDescription) }}
+                            {{ form_widget(form.metaDescription) }}
+                            {{ form_errors(form.metaDescription) }}
                         </div>
                     </div>
                 </div>

@@ -36,7 +36,10 @@ class ArticlesType extends AbstractType
                 'attr' => ['class' => 'form-control']
             ])
             ->add('fullTitle', TextareaType::class, [
-                'attr' => ['class' => 'form-control'],
+                'attr' => [
+                    'class' => 'form-control',
+                    'placeholder' => 'не более 255 символов'
+                    ],
                 'required' => false,
             ])
             ->add('textPreview', TextareaType::class, [
@@ -60,6 +63,20 @@ class ArticlesType extends AbstractType
             ])
             ->add('alias', null, [
                 'attr' => ['class' => 'form-control'],
+                'required' => false,
+            ])
+            ->add('metaTitle', null, [
+                'attr' => [
+                    'class' => 'form-control',
+                    'placeholder' => 'не более 80 символов'
+                ],
+                'required' => false,
+            ])
+            ->add('metaDescription', null, [
+                'attr' => [
+                    'class' => 'form-control',
+                    'placeholder' => 'не более 180 символов'
+                ],
                 'required' => false,
             ])
 //            ->add('created')

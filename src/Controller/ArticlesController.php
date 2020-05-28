@@ -14,7 +14,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use App\Service\UploaderHelper;
 /**
- * @Route("/articles")
+ * @Route("/{_locale}/articles")
  */
 class ArticlesController extends AbstractController
 {
@@ -103,6 +103,9 @@ class ArticlesController extends AbstractController
         $em = $this->getDoctrine()->getManager();
         $articlesRepository = $em->getRepository(Articles::class);
         $imgArticlesRepository = $em->getRepository(ImgArticles::class);
+        if (!is_int($id)){
+            $id = $articlesRepository->findArticleId($id);
+        }
         $article = $articlesRepository->findArticle($id);
         $buttonArticlesRepository = $em->getRepository(ButtonArticles::class);
         $button = $buttonArticlesRepository->findButton($id);

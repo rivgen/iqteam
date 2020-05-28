@@ -5,6 +5,7 @@ namespace App\Entity;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Articles
@@ -40,9 +41,9 @@ class Articles
     /**
      * @var string
      *
-     * @ORM\Column(name="alias", type="string", length=250, nullable=false, options={"default"="''"})
+     * @ORM\Column(name="alias", type="string", length=250, nullable=false)
      */
-    private $alias = '\'\'';
+    private $alias;
 
     /**
      * @var \DateTime
@@ -78,6 +79,9 @@ class Articles
      * @var string|null
      *
      * @ORM\Column(type="string", length=255, nullable=true)
+     * @Assert\Length(
+     *      max = 255,
+     *      maxMessage = "Поле заполнено более чем на {{ limit }} символов")
      */
     private $fullTitle;
 
@@ -90,6 +94,9 @@ class Articles
      * @var string|null
      *
      * @ORM\Column(type="string", length=20, nullable=true)
+     * @Assert\Length(
+     *      max = 20,
+     *      maxMessage = "Поле заполнено более чем на {{ limit }} символов")
      */
     private $year;
 
@@ -97,6 +104,9 @@ class Articles
      * @var string|null
      *
      * @ORM\Column(type="string", length=255, nullable=true)
+     * @Assert\Length(
+     *      max = 255,
+     *      maxMessage = "Поле заполнено более чем на {{ limit }} символов")
      */
     private $client;
 
@@ -111,6 +121,9 @@ class Articles
      * @var string|null
      *
      * @ORM\Column(type="string", length=255, nullable=true)
+     * @Assert\Length(
+     *      max = 255,
+     *      maxMessage = "Поле заполнено более чем на {{ limit }} символов")
      */
     private $technology;
 
@@ -118,6 +131,22 @@ class Articles
      * @ORM\Column(type="text", nullable=true)
      */
     private $description;
+
+    /**
+     * @ORM\Column(type="string", length=80, nullable=true)
+     * @Assert\Length(
+     *      max = 80,
+     *      maxMessage = "Поле заполнено более чем на {{ limit }} символов")
+     */
+    private $metaTitle;
+
+    /**
+     * @ORM\Column(type="string", length=180, nullable=true)
+     * @Assert\Length(
+     *      max = 180,
+     *      maxMessage = "Поле заполнено более чем на {{ limit }} символов")
+     */
+    private $metaDescription;
 
     /**
      * @ORM\OneToMany(targetEntity="App\Entity\ImgArticles", mappedBy="article", orphanRemoval=true)
@@ -437,6 +466,38 @@ class Articles
     public function setOrdering($ordering)
     {
         $this->ordering = $ordering;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getMetaTitle()
+    {
+        return $this->metaTitle;
+    }
+
+    /**
+     * @param mixed $metaTitle
+     */
+    public function setMetaTitle($metaTitle)
+    {
+        $this->metaTitle = $metaTitle;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getMetaDescription()
+    {
+        return $this->metaDescription;
+    }
+
+    /**
+     * @param mixed $metaDescription
+     */
+    public function setMetaDescription($metaDescription)
+    {
+        $this->metaDescription = $metaDescription;
     }
 
 }

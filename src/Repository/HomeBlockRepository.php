@@ -23,7 +23,7 @@ class HomeBlockRepository extends ServiceEntityRepository
 
     public function all()
     {
-        $qb = $this->createQueryBuilder('hb')->select('hb.id, hb.titleRu, hbt.title, hbt.text, hbt.icon, hbt.checkmark, hbt.language');
+        $qb = $this->createQueryBuilder('hb')->select('hb.id, hb.titleRu, hb.titleEn, hbt.title, hbt.titleEn enTitle, hbt.text, hbt.textEn, hbt.icon, hbt.checkmark, hbt.language');
         $qb->leftJoin(HomeBlockText::class, 'hbt', 'WITH', 'hbt.block = hb.id');
 //        $qb->andWhere('hb.id = :id');
 //        $qb->setParameter('id', $id);

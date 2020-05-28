@@ -269,7 +269,7 @@ a p:hover {
   }
 }
 
-.letter-I .btnBlue, .letter-V .btnBlue {
+.letter-I .btnBlue, .letter-V .btnBlue, .allProjects .btnBlue {
   width: 100%;
   height: 50px;
   background: #3964F9;
@@ -286,6 +286,10 @@ a p:hover {
     width: 224px;
     margin-top: 40px;
   }
+}
+
+.allProjects .btnBlue {
+  width: 363px;
 }
 
 .btnBlue div, .homeButton div {
@@ -316,7 +320,7 @@ a p:hover {
 }
 
 .block-col {
-  margin: 15px 0;
+  margin-top: 15px;
   @include make-col-ready();
   @include make-col(12);
   @include media-breakpoint-up(md) {
@@ -380,57 +384,46 @@ a p:hover {
   //padding: 30px 50px;
 }
 
-.letter-Q, .letter-D, .letter-E {
-  padding-bottom: 25px;
-}
-
-.slash {
-  padding-bottom: 100px;
-}
-
 .letter-Q {
-  background-image: url(/images/block_Q/letter_Q.svg);
+  //background-image: url(/images/block_Q/letter_Q.svg);
   height: auto;
   //background-size: contain;
   display: flex;
   align-items: center;
-  @include media-breakpoint-up(sm) {
-    height: 800px;
+  .title {
+    @include make-col-ready();
+    @include make-col(12)
   }
-}
-
-.letter-Q .title {
-  @include make-col-ready();
-  @include make-col(12)
-}
-
-.letter-Q .text {
-  font-weight: bold;
-  font-size: 20px;
-  line-height: 150%;
-  color: #323232;
-  @include make-col-ready();
-  @include make-col(12);
-  @include media-breakpoint-up(lg) {
-    @include make-col(6);
+  .text {
+    font-weight: bold;
+    font-size: 20px;
+    line-height: 150%;
+    color: #323232;
+    @include make-col-ready();
+    @include make-col(12);
+    @include media-breakpoint-up(lg) {
+      @include make-col(6);
+    }
   }
-}
+  .text1, .text2 {
+    font-size: 12px;
+    line-height: 200%;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: #323232;
+    @include make-col-ready();
+    @include make-col(12);
+    @include media-breakpoint-up(sm) {
+      @include make-col(6);
+    }
+    @include media-breakpoint-up(lg) {
+      @include make-col(3);
+    }
 
-.letter-Q .text1, .letter-Q .text2 {
-  font-size: 12px;
-  line-height: 200%;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: #323232;
-  @include make-col-ready();
-  @include make-col(12);
-  @include media-breakpoint-up(sm) {
-    @include make-col(6);
   }
-  @include media-breakpoint-up(lg) {
-    @include make-col(3);
+  .imgQ {
+    margin-top: 60px;
   }
-
 }
 
 .textBold {
@@ -440,12 +433,12 @@ a p:hover {
 
 }
 
-#slash, #letter-D, #letter-E, #letter-V {
-  height: 150px;
+#slash, #letter-D, #letter-E, #letter-V, #letter-Q {
+  height: 120px;
 }
 
 .slash {
-  background-image: url(/images/slash/slash.svg);
+  //background-image: url(/images/slash/slash.svg);
 
   .expertise-item.block {
     padding: 30px;
@@ -494,10 +487,13 @@ a p:hover {
   }
 }
 
-.letter-Q h2, .slash h2, .letter-D h2, .letter-D .block, .letter-E h2, .letter-V h2, .letter-V .mapContact, .portfolio h2 {
+.letter-Q h2, .slash h2, .letter-D h2, .letter-E h2, .letter-V h2, .letter-V .mapContact, .portfolio h2 {
   //margin-top: 60px;
   padding-bottom: 20px;
-  font-size: calc(3rem + 15 * (100vw - 620px) / 880)
+  font-size: calc(3rem + 15 * (100vw - 620px) / 880);
+  @include media-breakpoint-up(lg) {
+    font-size: 64px;
+  }
 }
 
 .slash .textBold {
@@ -569,10 +565,10 @@ a p:hover {
 }
 
 .letter-D-back {
-  background-color: white;
+  //background-color: white;
 
   .letter-D {
-    background-image: url(/images/block_D/letter_D.svg);
+    //background-image: url(/images/block_D/letter_D.svg);
 
     .text-col, .block-col {
       @include make-col-ready();
@@ -617,6 +613,15 @@ a p:hover {
         @include media-breakpoint-up(md) {
           @include make-col(4);
         }
+        @include media-breakpoint-up(lg) {
+          @include make-col(3);
+        }
+        @include media-breakpoint-up(xl) {
+          @include make-col(4);
+        }
+        @media (min-width: 1500px) {
+          @include make-col(3);
+        }
       }
     }
   }
@@ -630,7 +635,7 @@ a p:hover {
 }
 
 .letter-E-back {
-  background-image: url(/images/block_E/letter_E.svg);
+  //background-image: url(/images/block_E/letter_E.svg);
   background-repeat: no-repeat;
   background-position: 50% calc(100vw / 21 + 20px);
   background-size: contain;
@@ -813,7 +818,10 @@ a p:hover {
   }
 
   .blockText {
-    //padding-top: 50px;
+    padding-top: 25px;
+    @include media-breakpoint-up(sm){
+      padding: 0;
+    }
     p {
       font-size: 12px;
       //line-height: 200%;
@@ -935,11 +943,9 @@ a p:hover {
 }
 
 #letter-V-back {
-  background-color: white;
-  margin-top: 50px;
 
   .letter-V {
-    background-image: url(/images/block_V/letter_V.svg);
+    //background-image: url(/images/block_V/letter_V.svg);
 
     .letter-fullwidth-container {
       overflow-x: hidden;
@@ -999,25 +1005,36 @@ a p:hover {
       @include media-breakpoint-up(sm) {
         @include make-col(6)
       }
+    }
+  }
+}
 
-      .social a {
-        &:hover {
-          -webkit-transform: translateY(-3px);
-          -moz-transform: translateY(-3px);
-          -ms-transform: translateY(-3px);
-          -o-transform: translateY(-3px);
-          transform: translateY(-3px);
-          //box-shadow: 0px 10px 20px rgba(57, 100, 249, 0.1);
-          -webkit-transition: -webkit-transform 0.35s;
-          transition: transform 0.35s
-
-        }
-
-        //img:hover {
-        //  -webkit-filter: drop-shadow(0px 10px 11px rgba(57, 100, 249, 0.6));
-        //  filter: drop-shadow(0px 10px 11px rgba(57, 100, 249, 0.6));
-        //}
-      }
+.social {
+  display: flex;
+  padding-top: 10px;
+  a {
+    margin-right: 20px;
+    //position: relative;
+    //top: 10px;
+    display: block;
+    //width: 50px;
+    //height: 50px;
+    &:hover {
+      text-decoration: none;
+      //-webkit-transform: translateY(-3px);
+      //-moz-transform: translateY(-3px);
+      //-ms-transform: translateY(-3px);
+      //-o-transform: translateY(-3px);
+      //transform: translateY(-3px);
+      ////box-shadow: 0px 10px 20px rgba(57, 100, 249, 0.1);
+      //-webkit-transition: -webkit-transform 0.35s;
+      //transition: transform 0.35s
+    }
+  }
+  img{
+    filter: grayscale(100%);
+    &:hover {
+      filter: grayscale(0%);
     }
   }
 }
@@ -1028,27 +1045,6 @@ a p:hover {
 
 .footerBackground {
   background-color: white;
-}
-
-.footerClass .text {
-  @include make-col-ready();
-  @include make-col(12);
-  @include media-breakpoint-up(sm) {
-    @include make-col(6);
-  }
-  @include media-breakpoint-up(md) {
-    @include make-col(3);
-  }
-}
-
-.footerClass .confiden {
-  @include media-breakpoint-down(xs) {
-    display: none;
-  }
-}
-
-.footerHeight {
-  min-height: 100px;
 }
 
 .menuClass {
@@ -1260,11 +1256,64 @@ button:focus {
   padding-right: 30px;
 }
 
-.footerClass p {
-  font-size: 12px;
-  line-height: 200%;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
+.footerClass {
+  %col {
+    @include make-col-ready();
+    @include make-col(12);
+    @include media-breakpoint-up(sm) {
+      @include make-col(6);
+    }
+    @include media-breakpoint-up(md) {
+      @include make-col(3);
+    }
+  }
+  .footerHeader {
+    padding-top: 100px;
+    .head-col {
+      @extend %col;
+    }
+    p {
+      margin: 0;
+    }
+  }
+  .footerMenu {
+    padding-top: 50px;
+    .head-col {
+      @extend %col;
+    }
+    .footerForm {
+      border: none;
+      background: #F8FAFF;
+    }
+    .input-group{
+      margin-bottom: 20px;
+    }
+  }
+  .footerHeight {
+    min-height: 100px;
+    .text {
+      @extend %col;
+    }
+    .confiden {
+      @include media-breakpoint-down(xs) {
+        display: none;
+      }
+    }
+  }
+  p {
+    font-size: 12px;
+    line-height: 200%;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-bottom: 8px;
+    a{
+      color: #323232;
+      &:hover{
+        color: #007bff;
+      }
+    }
+  }
+
 }
 
 .menuClass p, .homeClass p, .homeClass a {
@@ -1329,22 +1378,8 @@ button:focus {
   text-align: right;
 }
 
-.letter-V .social {
-  display: flex;
-  padding-top: 10px;
-}
+.letter-V {
 
-.letter-V .social a {
-  margin-right: 20px;
-  //position: relative;
-  //top: 10px;
-  display: block;
-  width: 50px;
-  height: 50px;
-}
-
-.letter-V .social a:hover {
-  text-decoration: none;
 }
 
 .menuFlex {
@@ -2111,6 +2146,7 @@ textarea.form-control {
   @media (min-width: 1800px) {
     position: absolute;
     right: 35px;
+    padding: 0;
   }
 }
 
@@ -2120,6 +2156,7 @@ textarea.form-control {
 
 .homeLocale-row {
   @include make-row();
+  margin-right: 15px;
 }
 
 .hadMenu {
@@ -2606,63 +2643,62 @@ figure {
   justify-content: center;
 }
 
-.items {
-  text-align: center;
-  margin-top: 50px;
-
-}
-
 .items .item {
   display: inline-block;
-  margin-right: 30px;
+
   text-align: left;
-  width: 363px;
-  height: 610px;
   vertical-align: top;
+  width: 100%;
+  //padding: 0 15px;
+  margin: 0;
+  //height: calc(100vw + 200px);
+  height: auto;
+  padding: 0;
 
-  @media (max-width: 1700px) {
-    width: 20vw;
-    height: 520px;
-  }
-  @include media-breakpoint-down(lg) {
+  //@media (max-width: 1700px) {
+  //  width: 20vw;
+  //  height: 520px;
+  //}
+  @include media-breakpoint-up(sm) {
     width: 29vw;
-    height: 630px;
+    height: calc(29vw + 180px);
+    margin-right: 20px;
+  }
+  @include media-breakpoint-up(md) {
+    margin-right: 30px;
   }
 
-  @include media-breakpoint-down(md) {
-    height: 540px;
-  }
-  @include media-breakpoint-down(sm) {
-    width: 100%;
-    padding: 0 15px;
-    margin: 0;
-    height: calc(100vw + 200px);
-    height: auto;
-    padding: 0;
-  }
-}
-
-.items .item a {
-  position: relative;
-  display: block;
-  perspective: 80px;
   @media (min-width: 1200px) {
-    perspective: 130px;
+    width: 21vw;
+    height: calc(29vw + 80px);
+    margin-right: 20px;
   }
-  margin-bottom: 30px;
-}
+  @media (min-width: 1733px) {
+    width: 365px;
+    margin-right: 30px;
+    height: 545px;
+  }
 
-.items .item:last-child {
-  margin-right: 0;
-}
-
-.items .item img {
-  //height: 363px;
-  //width: 363px;
-  border-radius: 20px;
-  box-shadow: 0px 10px 20px rgba(57, 100, 249, 0.1);
-  overflow: hidden;
-  object-fit: cover;
+  a {
+    position: relative;
+    display: block;
+    perspective: 80px;
+    @media (min-width: 1200px) {
+      perspective: 130px;
+    }
+    margin-bottom: 5px;
+  }
+  &:last-child {
+    margin-right: 0;
+  }
+  img {
+    //height: 363px;
+    //width: 363px;
+    border-radius: 20px;
+    box-shadow: 0px 10px 20px rgba(57, 100, 249, 0.1);
+    overflow: hidden;
+    object-fit: cover;
+  }
 }
 
 .target {
@@ -2689,7 +2725,7 @@ figure {
 
 @import "animationGlobal";
 
-.my_container{
+.my_container {
   position: relative;
   width: 100%;
   padding-right: 15px;
@@ -2697,6 +2733,7 @@ figure {
   flex: 0 0 100%;
   max-width: 100%;
 }
+
 .my_card {
   display: flex;
   background-color: #fff;
@@ -2740,10 +2777,10 @@ figure {
 }
 
 .card_wrap {
-  padding: 0 25px 50px 0;
+  padding: 25px 25px 25px 0;
 
   &:nth-child(even) {
-    padding: 0 0 50px 25px;
+    padding: 25px 0 25px 25px;
   }
 
   @media screen and (max-width: 1919px) {
@@ -2755,16 +2792,17 @@ figure {
   }
 
   @media screen and (max-width: 767px) {
-    padding:  0 0 30px 0;
+    padding: 0 0 30px 0;
 
     &:nth-child(even) {
-      padding:  0 0 30px 0;
+      padding: 0 0 30px 0;
     }
   }
 
 }
+
 .slash {
-  .textBold{
+  .textBold {
     @media screen and (max-width: 767px) {
       padding-bottom: 0;
     }

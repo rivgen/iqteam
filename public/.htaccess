@@ -1,7 +1,7 @@
-AuthUserFile /var/www/a.zhilko/data/www/iqdev.com/public/.htpasswd
-AuthType Basic
-AuthName "Password-protected Area"
-Require valid-user
+#AuthUserFile /var/www/a.zhilko/data/www/iqdev.com/public/.htpasswd
+#AuthType Basic
+#AuthName "Password-protected Area"
+#Require valid-user
 
 # Use the front controller as index file. It serves as a fallback solution when
 # every other rewrite/redirect fails (e.g. in an aliased environment without

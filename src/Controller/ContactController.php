@@ -14,7 +14,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
 
 /**
- * @Route("/contact")
+ * @Route("/{_locale}/contact")
  */
 class ContactController extends AbstractController
 {

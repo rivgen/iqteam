@@ -31,7 +31,12 @@
                                     <object type="image/svg+xml" data="/images/service/{{ service.icon }}">
                                         <div id="internalText"></div>
                                     </object>
-                                    <h2>{{ service.title }}</h2>
+                                    {% if app.request.locale == 'ru' %}
+                                        <h2>{{ service.title }}</h2>
+                                    {% else %}
+                                        <h2>{{ service.titleEn }}</h2>
+                                    {% endif %}
+
                                     <div class=" index">
                                         {% if loop.index < 10 %}
                                             0{{ loop.index }}
@@ -41,7 +46,13 @@
                                     </div>
                                 </div>
 
-                                <div class="col-md-12 serviceText">{{ service.text|raw }}</div>
+                                <div class="col-md-12 serviceText">
+                                    {% if app.request.locale == 'ru' %}
+                                        {{ service.text|raw }}
+                                    {% else %}
+                                        {{ service.textEn|raw }}
+                                    {% endif %}
+                                </div>
                             </div>
                         </div>
                     </div>

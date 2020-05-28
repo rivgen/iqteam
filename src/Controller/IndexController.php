@@ -17,6 +17,7 @@ class IndexController extends AbstractController
 {
     /**
      * @Route("/", name="index_index", methods="GET")
+     * @Route("/{_locale}", name="locale_index", methods="GET")
      */
     public function index(Request $request)
     {
@@ -32,12 +33,15 @@ class IndexController extends AbstractController
         $images = $imgArticlesRepository->imageInArticle();
         $mainHomeBlocks = $homeBlockRepository->all();
         $blocks = $homeBlockRepository->allBlock();
+        $locale = $request->getLocale();;
+//        dump($locale);
 
         $blockHome = [];
         foreach ($blocks as $block) {
             foreach ($mainHomeBlocks as $key => $mainHome) {
                 $blockHome[$block['id']]['id'] = $block['id'];
                 $blockHome[$block['id']]['titleRu'] = $block['titleRu'];
+                $blockHome[$block['id']]['titleEn'] = $block['titleEn'];
                 if ($block['id'] == $mainHome['id']){
                     $blockHome[$block['id']]['blocks'][] = $mainHome;
                 }
