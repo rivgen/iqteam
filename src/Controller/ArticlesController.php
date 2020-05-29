@@ -103,7 +103,7 @@ class ArticlesController extends AbstractController
         $em = $this->getDoctrine()->getManager();
         $articlesRepository = $em->getRepository(Articles::class);
         $imgArticlesRepository = $em->getRepository(ImgArticles::class);
-        if (!is_int(+$id)){
+        if (!preg_match('/^\+?\d+$/', $id)){
             $id = $articlesRepository->findArticleId($id);
         }
 

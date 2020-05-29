@@ -1357,6 +1357,9 @@ button:focus {
     //position: absolute;
     z-index: 10;
   }
+  p{
+    font-weight: bold;
+  }
 
 }
 
@@ -1394,6 +1397,7 @@ button:focus {
   .activeMenu {
     color: #3964F9;
     position: relative;
+    font-weight: bold;
 
     &:after {
       content: '';
@@ -2148,6 +2152,7 @@ textarea.form-control {
   }
   .active {
     position: relative;
+    font-weight: bold;
     p {
       color: #3964F9;
       &::before {
@@ -2197,6 +2202,7 @@ textarea.form-control {
 
       a {
         color: #323232;
+        font-weight: bold;
 
         &:hover {
           color: #3964f9;
