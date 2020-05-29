@@ -33,7 +33,12 @@ class ArticlesType extends AbstractType
 
         $builder
             ->add('title', null, [
-                'attr' => ['class' => 'form-control']
+                'attr' => ['class' => 'form-control'],
+                'required' => false,
+            ])
+            ->add('titleEn', null, [
+                'attr' => ['class' => 'form-control'],
+                'required' => false,
             ])
             ->add('fullTitle', TextareaType::class, [
                 'attr' => [
@@ -42,10 +47,26 @@ class ArticlesType extends AbstractType
                     ],
                 'required' => false,
             ])
+            ->add('fullTitleEn', TextareaType::class, [
+                'attr' => [
+                    'class' => 'form-control',
+                    'placeholder' => 'не более 255 символов'
+                    ],
+                'required' => false,
+            ])
             ->add('textPreview', TextareaType::class, [
-                'attr' => ['class' => 'form-control']
+                'attr' => ['class' => 'form-control'],
+                'required' => false,
+            ])
+            ->add('textPreviewEn', TextareaType::class, [
+                'attr' => ['class' => 'form-control'],
+                'required' => false,
             ])
             ->add('technology', TextareaType::class, [
+                'attr' => ['class' => 'form-control'],
+                'required' => false,
+            ])
+            ->add('technologyEn', TextareaType::class, [
                 'attr' => ['class' => 'form-control'],
                 'required' => false,
             ])
@@ -53,7 +74,15 @@ class ArticlesType extends AbstractType
                 'attr' => ['class' => 'form-control'],
                 'required' => false,
             ])
+            ->add('descriptionEn', TextareaType::class, [
+                'attr' => ['class' => 'form-control'],
+                'required' => false,
+            ])
             ->add('client', null, [
+                'attr' => ['class' => 'form-control'],
+                'required' => false,
+            ])
+            ->add('clientEn', null, [
                 'attr' => ['class' => 'form-control'],
                 'required' => false,
             ])
@@ -72,7 +101,21 @@ class ArticlesType extends AbstractType
                 ],
                 'required' => false,
             ])
+            ->add('metaTitleEn', null, [
+                'attr' => [
+                    'class' => 'form-control',
+                    'placeholder' => 'не более 80 символов'
+                ],
+                'required' => false,
+            ])
             ->add('metaDescription', null, [
+                'attr' => [
+                    'class' => 'form-control',
+                    'placeholder' => 'не более 180 символов'
+                ],
+                'required' => false,
+            ])
+            ->add('metaDescriptionEn', null, [
                 'attr' => [
                     'class' => 'form-control',
                     'placeholder' => 'не более 180 символов'

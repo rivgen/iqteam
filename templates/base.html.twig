@@ -117,30 +117,38 @@
                 </div>
             </div>
             <div class="homeLocale">
+                {% if app.request.get('_route') != 'articles_edit' %}
                 <div class="homeLocale-row align-items-center justify-content-end">
                     {#<div class="homeLocale-row align-items-center">#}
                     {% for locale in locales() %}
-                        {#{% if locale.code[0:2] == 'ru' %}#}
-                            <div class="locale" {% if app.request.locale == locale.code %}aria-checked="true"
-                                 class="active"
-                                 {% else %}aria-checked="false"{% endif %} role="menuitem">
-                                {#<a href="{{ path(app.request.get('_route', 'index_index'), app.request.get('_route_params', [])|merge({_locale: locale.code})) }}">#}
-                                {% if (app.request.get('_route') == 'index_index') %}
-                                <a href="/{{ locale.code }}">
-                                    {% else %}
-                                <a href="{{ path(app.request.get('_route'), {'_locale': locale.code}) }}">
-                                    {% endif %}
+                    {% set id = article is defined?", 'id':article.alias":'' %}
+                    {#{% if locale.code[0:2] == 'ru' %}#}
+                    <div class="locale{% if app.request.locale == locale.code %} active" aria-checked="true"
+                    {% else %}" aria-checked="false"{% endif %} role="menuitem">
+                    {#<a href="{{ path(app.request.get('_route', 'index_index'), app.request.get('_route_params', [])|merge({_locale: locale.code})) }}">#}
+                    {% if app.request.locale == locale.code %}
+                    <p>{{ locale.code[0:2] }}</p>
+                    {% else %}
+                    {% if (app.request.get('_route') == 'index_index') %}
+                    <a href="/{{ locale.code }}">
+                        {% elseif article is defined %}
+                        <a href="{{ path(app.request.get('_route'), {'_locale': locale.code, 'id': article.alias}) }}">
+                            {% else %}
+                            <a href="{{ path(app.request.get('_route'), {'_locale': locale.code}) }}">
+                                {% endif %}
                                 <p>{{ locale.code[0:2] }}</p>
-                                </a>
-                            </div>
-                        {#{% endif %}#}
-                    {% endfor %}
-                    <div class="homeButton" style="display: none">
-                        {{ indexMacros.printFeedback('btn hoverEffects') }}
-                    </div>
+                            </a>
+                            {% endif %}
+                </div>
+                {#{% endif %}#}
+                {% endfor %}
+                <div class="homeButton" style="display: none">
+                    {{ indexMacros.printFeedback('btn hoverEffects') }}
                 </div>
             </div>
+            {% endif %}
         </div>
+    </div>
     </div>
     <div class="blockToFix"></div>
 {% endblock %}
@@ -177,7 +185,8 @@
                         <div class="head-col align-self-center">
                             <form>
                                 <div class="input-group">
-                                    <input type="text" class="form-control footerForm" aria-label="Dollar amount (with dot and two decimal places)">
+                                    <input type="text" class="form-control footerForm"
+                                           aria-label="Dollar amount (with dot and two decimal places)">
                                     <div class="input-group-append" type="submit">
                                         <img src="/images/footerFormSubmit.svg">
                                     </div>
@@ -191,10 +200,10 @@
                             <p>IQDEV.com © {{ "now"|date("Y") }}</p>
                         </div>
                         <div class="text align-self-center confiden br3">
-                            <a href="#"><p>политика конфиденциальности</p></a>
+                            <p><a href="#">политика конфиденциальности</a></p>
                         </div>
                         <div class="text align-self-center confiden br2">
-                            <a href="#"><p>условия соглашения</p></a>
+                            <p><a href="#">условия соглашения</a></p>
                         </div>
                     </div>
                 </div>

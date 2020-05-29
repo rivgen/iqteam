@@ -27,9 +27,16 @@ class Articles
     /**
      * @var string
      *
-     * @ORM\Column(name="title", type="string", length=250, nullable=false, options={"default"="' '"})
+     * @ORM\Column(name="title", type="string", length=250, nullable=true)
      */
-    private $title = '\' \'';
+    private $title;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="title_en", type="string", length=250, nullable=true)
+     */
+    private $titleEn;
 
     /**
      * @var string|null
@@ -39,9 +46,16 @@ class Articles
     private $textPreview;
 
     /**
+     * @var string|null
+     *
+     * @ORM\Column(name="text_preview_en", type="text", length=16777215, nullable=true)
+     */
+    private $textPreviewEn;
+
+    /**
      * @var string
      *
-     * @ORM\Column(name="alias", type="string", length=250, nullable=false)
+     * @ORM\Column(name="alias", type="string", length=250, nullable=true)
      */
     private $alias;
 
@@ -86,6 +100,16 @@ class Articles
     private $fullTitle;
 
     /**
+     * @var string|null
+     *
+     * @ORM\Column(type="string", length=255, nullable=true)
+     * @Assert\Length(
+     *      max = 255,
+     *      maxMessage = "Поле заполнено более чем на {{ limit }} символов")
+     */
+    private $fullTitleEn;
+
+    /**
      * @ORM\Column(type="string", length=50)
      */
     private $icon;
@@ -111,6 +135,16 @@ class Articles
     private $client;
 
     /**
+     * @var string|null
+     *
+     * @ORM\Column(type="string", length=255, nullable=true)
+     * @Assert\Length(
+     *      max = 255,
+     *      maxMessage = "Поле заполнено более чем на {{ limit }} символов")
+     */
+    private $clientEn;
+
+    /**
      * @var int|null
      *
      * @ORM\Column(type="integer", nullable=true)
@@ -128,9 +162,24 @@ class Articles
     private $technology;
 
     /**
+     * @var string|null
+     *
+     * @ORM\Column(type="string", length=255, nullable=true)
+     * @Assert\Length(
+     *      max = 255,
+     *      maxMessage = "Поле заполнено более чем на {{ limit }} символов")
+     */
+    private $technologyEn;
+
+    /**
      * @ORM\Column(type="text", nullable=true)
      */
     private $description;
+
+    /**
+     * @ORM\Column(type="text", nullable=true)
+     */
+    private $descriptionEn;
 
     /**
      * @ORM\Column(type="string", length=80, nullable=true)
@@ -141,12 +190,28 @@ class Articles
     private $metaTitle;
 
     /**
+     * @ORM\Column(type="string", length=80, nullable=true)
+     * @Assert\Length(
+     *      max = 80,
+     *      maxMessage = "Поле заполнено более чем на {{ limit }} символов")
+     */
+    private $metaTitleEn;
+
+    /**
      * @ORM\Column(type="string", length=180, nullable=true)
      * @Assert\Length(
      *      max = 180,
      *      maxMessage = "Поле заполнено более чем на {{ limit }} символов")
      */
     private $metaDescription;
+
+    /**
+     * @ORM\Column(type="string", length=180, nullable=true)
+     * @Assert\Length(
+     *      max = 180,
+     *      maxMessage = "Поле заполнено более чем на {{ limit }} символов")
+     */
+    private $metaDescriptionEn;
 
     /**
      * @ORM\OneToMany(targetEntity="App\Entity\ImgArticles", mappedBy="article", orphanRemoval=true)
@@ -183,7 +248,7 @@ class Articles
     /**
      * @return string
      */
-    public function getTitle(): string
+    public function getTitle()
     {
         return $this->title;
     }
@@ -191,7 +256,7 @@ class Articles
     /**
      * @param string $title
      */
-    public function setTitle(string $title)
+    public function setTitle($title)
     {
         $this->title = $title;
     }
@@ -215,7 +280,7 @@ class Articles
     /**
      * @return string
      */
-    public function getAlias(): string
+    public function getAlias()
     {
         return $this->alias;
     }
@@ -223,7 +288,7 @@ class Articles
     /**
      * @param string $alias
      */
-    public function setAlias(string $alias)
+    public function setAlias($alias)
     {
         $this->alias = $alias;
     }
@@ -368,12 +433,12 @@ class Articles
         $this->technology = $technology;
     }
 
-    public function getDescription(): ?string
+    public function getDescription()
     {
         return $this->description;
     }
 
-    public function setDescription(?string $description): self
+    public function setDescription($description): self
     {
         $this->description = $description;
 
@@ -498,6 +563,134 @@ class Articles
     public function setMetaDescription($metaDescription)
     {
         $this->metaDescription = $metaDescription;
+    }
+
+    /**
+     * @return string
+     */
+    public function getTitleEn()
+    {
+        return $this->titleEn;
+    }
+
+    /**
+     * @param string $titleEn
+     */
+    public function setTitleEn($titleEn)
+    {
+        $this->titleEn = $titleEn;
+    }
+
+    /**
+     * @return null|string
+     */
+    public function getTextPreviewEn()
+    {
+        return $this->textPreviewEn;
+    }
+
+    /**
+     * @param null|string $textPreviewEn
+     */
+    public function setTextPreviewEn($textPreviewEn)
+    {
+        $this->textPreviewEn = $textPreviewEn;
+    }
+
+    /**
+     * @return null|string
+     */
+    public function getFullTitleEn()
+    {
+        return $this->fullTitleEn;
+    }
+
+    /**
+     * @param null|string $fullTitleEn
+     */
+    public function setFullTitleEn($fullTitleEn)
+    {
+        $this->fullTitleEn = $fullTitleEn;
+    }
+
+    /**
+     * @return null|string
+     */
+    public function getClientEn()
+    {
+        return $this->clientEn;
+    }
+
+    /**
+     * @param null|string $clientEn
+     */
+    public function setClientEn($clientEn)
+    {
+        $this->clientEn = $clientEn;
+    }
+
+    /**
+     * @return null|string
+     */
+    public function getTechnologyEn()
+    {
+        return $this->technologyEn;
+    }
+
+    /**
+     * @param null|string $technologyEn
+     */
+    public function setTechnologyEn($technologyEn)
+    {
+        $this->technologyEn = $technologyEn;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getDescriptionEn()
+    {
+        return $this->descriptionEn;
+    }
+
+    /**
+     * @param mixed $descriptionEn
+     */
+    public function setDescriptionEn($descriptionEn)
+    {
+        $this->descriptionEn = $descriptionEn;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getMetaTitleEn()
+    {
+        return $this->metaTitleEn;
+    }
+
+    /**
+     * @param mixed $metaTitleEn
+     */
+    public function setMetaTitleEn($metaTitleEn)
+    {
+        $this->metaTitleEn = $metaTitleEn;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getMetaDescriptionEn()
+    {
+        return $this->metaDescriptionEn;
+    }
+
+    /**
+     * @param mixed $metaDescriptionEn
+     */
+    public function setMetaDescriptionEn($metaDescriptionEn)
+    {
+        $this->metaDescriptionEn = $metaDescriptionEn;
     }
 
 }

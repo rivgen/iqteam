@@ -819,7 +819,7 @@ a p:hover {
 
   .blockText {
     padding-top: 25px;
-    @include media-breakpoint-up(sm){
+    @include media-breakpoint-up(sm) {
       padding: 0;
     }
     p {
@@ -1031,7 +1031,7 @@ a p:hover {
       //transition: transform 0.35s
     }
   }
-  img{
+  img {
     filter: grayscale(100%);
     &:hover {
       filter: grayscale(0%);
@@ -1285,7 +1285,7 @@ button:focus {
       border: none;
       background: #F8FAFF;
     }
-    .input-group{
+    .input-group {
       margin-bottom: 20px;
     }
   }
@@ -1306,9 +1306,10 @@ button:focus {
     letter-spacing: 0.1em;
     text-transform: uppercase;
     margin-bottom: 8px;
-    a{
+    a {
       color: #323232;
-      &:hover{
+      font-weight: bold;
+      &:hover {
         color: #007bff;
       }
     }
@@ -2099,7 +2100,7 @@ textarea.form-control {
   width: 11%;
   top: 48%;
   left: -2%;
-  transform: translate(46%, -50%)
+  transform: translate(46%, -50%) scale(1.05);
 }
 
 .menuLeft .menu-row {
@@ -2142,21 +2143,35 @@ textarea.form-control {
 }
 
 .homeLocale {
-  @extend %content-main-col-2;
-  @media (min-width: 1800px) {
-    position: absolute;
-    right: 35px;
-    padding: 0;
+  .locale {
+    //@extend %content-main-col-2;
   }
-}
-
-.homeLocale .locale {
-  @extend %content-main-col-2;
+  .active {
+    position: relative;
+    p {
+      color: #3964F9;
+      &::before {
+        content: '';
+        border-bottom: 3px solid #3964F9;
+        width: 100%;
+        position: absolute;
+        bottom: -15px;
+      }
+    }
+  }
+  //@media (min-width: 1800px) {
+  position: absolute;
+  right: 45px;
+  padding: 0;
+  //}
 }
 
 .homeLocale-row {
+  .locale:first-child {
+    margin-right: 20px;
+  }
   @include make-row();
-  margin-right: 15px;
+  margin-right: 0px;
 }
 
 .hadMenu {
@@ -2669,7 +2684,7 @@ figure {
   }
 
   @media (min-width: 1200px) {
-    width: 21vw;
+    width: 20vw;
     height: calc(29vw + 80px);
     margin-right: 20px;
   }
@@ -2807,4 +2822,8 @@ figure {
       padding-bottom: 0;
     }
   }
+}
+
+.create {
+  margin-top: 50px;
 }

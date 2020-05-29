@@ -428,9 +428,17 @@
                             {#</div>#}
                             <div class="blockText align-self-center">
                                 <a href={{ path('articles_show', {'id': id}) }}>
-                                    <h3>{{ article.title }}</h3>
+                                    {% if app.request.locale == 'ru' %}
+                                        <h3>{{ article.title }}</h3>
+                                    {% else %}
+                                        <h3>{{ article.titleEn }}</h3>
+                                    {% endif %}
                                 </a>
-                                <p>{{ article.textPreview }}</p>
+                                {% if app.request.locale == 'ru' %}
+                                    <p>{{ article.textPreview }}</p>
+                                {% else %}
+                                    <p>{{ article.textPreviewEn }}</p>
+                                {% endif %}
                             </div>
 {#                            {% for button in buttons %}#}
 {#                                {% if button.id == article.id %}#}

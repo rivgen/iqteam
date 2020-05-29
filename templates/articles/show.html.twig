@@ -13,8 +13,28 @@
         {{ form_widget(button.articles) }}
     </div>
 {% endmacro %}
-{% block title %}{% if article.metaTitle %}{{ article.metaTitle }}{% else %}{{ article.title }}{% endif %}{% endblock %}
-{% block description %}{{ article.metaDescription }}{% endblock %}
+{% block title %}
+    {% if article.metaTitle %}
+        {% if app.request.locale == 'ru' %}
+            {{ article.metaTitle }}
+        {% else %}
+            {{ article.metaTitleEn }}
+        {% endif %}
+    {% else %}
+        {% if app.request.locale == 'ru' %}
+            {{ article.title }}
+        {% else %}
+            {{ article.titleEn }}
+        {% endif %}
+    {% endif %}
+{% endblock %}
+{% block description %}
+    {% if app.request.locale == 'ru' %}
+        {{ article.metaDescription }}
+    {% else %}
+        {{ article.metaDescriptionEn }}
+    {% endif %}
+{% endblock %}
 {% block stylesheets %}
     {{ parent() }}
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -38,10 +58,17 @@
                     <div class="text-center titlePortfolio">
                         {% if app.request.get('_route') == 'articles_edit' or app.request.get('_route') == 'articles_new' %}
                             {{ form_label(form.title) }}
-                            <h1>{{ form_widget(form.title) }}</h1>
+                            {{ form_widget(form.title) }}
                             {{ form_errors(form.title) }}
+                            {{ form_label(form.titleEn) }}
+                            {{ form_widget(form.titleEn) }}
+                            {{ form_errors(form.titleEn) }}
                         {% else %}
-                            <h1>{{ article.title }}</h1>
+                            {% if app.request.locale == 'ru' %}
+                                <h1>{{ article.title }}</h1>
+                            {% else %}
+                                <h1>{{ article.titleEn }}</h1>
+                            {% endif %}
                         {% endif %}
                     </div>
                 </div>
@@ -66,24 +93,34 @@
                     </div>
                     <div class="col-md-4 fullTitle">
                         {% if app.request.get('_route') == 'articles_edit' or app.request.get('_route') == 'articles_new' %}
-                            {% if app.request.get('_route') == 'articles_new' %}
-                                {{ form_label(form.fullTitle) }}
-                            {% endif %}
+                            {{ form_label(form.fullTitle) }}
                             {{ form_widget(form.fullTitle) }}
                             {{ form_errors(form.fullTitle) }}
+                            {{ form_label(form.fullTitleEn) }}
+                            {{ form_widget(form.fullTitleEn) }}
+                            {{ form_errors(form.fullTitleEn) }}
                         {% else %}
-                            {{ article.fullTitle }}
+                            {% if app.request.locale == 'ru' %}
+                                {{ article.fullTitle }}
+                            {% else %}
+                                {{ article.fullTitleEn }}
+                            {% endif %}
                         {% endif %}
                     </div>
                     <div class="col-md-6 textPreview">
                         {% if app.request.get('_route') == 'articles_edit' or app.request.get('_route') == 'articles_new' %}
-                            {% if app.request.get('_route') == 'articles_new' %}
-                                {{ form_label(form.textPreview) }}
-                            {% endif %}
+                            {{ form_label(form.textPreview) }}
                             {{ form_widget(form.textPreview) }}
                             {{ form_errors(form.textPreview) }}
+                            {{ form_label(form.textPreviewEn) }}
+                            {{ form_widget(form.textPreviewEn) }}
+                            {{ form_errors(form.textPreviewEn) }}
                         {% else %}
-                            {{ article.textPreview }}
+                            {% if app.request.locale == 'ru' %}
+                                {{ article.textPreview }}
+                            {% else %}
+                                {{ article.textPreviewEn }}
+                            {% endif %}
                         {% endif %}
                     </div>
                 </div>
@@ -202,19 +239,37 @@
                     <div class="col-md-3 technology">
                         <p class="param">технологии</p>
                         {% if app.request.get('_route') == 'articles_edit' or app.request.get('_route') == 'articles_new' %}
-                            <p class="paramText"> {{ form_widget(form.technology) }}</p>
+                            {{ form_widget(form.technology) }}
                             {{ form_errors(form.technology) }}
+                            {{ form_label(form.technologyEn) }}
+                            {{ form_widget(form.technologyEn) }}
+                            {{ form_errors(form.technologyEn) }}
                         {% else %}
-                            <p class="paramText">{{ article.technology }}</p>
+                            <p class="paramText">
+                                {% if app.request.locale == 'ru' %}
+                                    {{ article.technology }}
+                                {% else %}
+                                    {{ article.technologyEn }}
+                                {% endif %}
+                                </p>
                         {% endif %}
                     </div>
                     <div class="col-md-3">
                         <p class="param">клиент</p>
                         {% if app.request.get('_route') == 'articles_edit' or app.request.get('_route') == 'articles_new' %}
-                            <p class="paramText"> {{ form_widget(form.client) }}</p>
+                            {{ form_widget(form.client) }}
                             {{ form_errors(form.client) }}
+                            {{ form_label(form.clientEn) }}
+                            {{ form_widget(form.clientEn) }}
+                            {{ form_errors(form.clientEn) }}
                         {% else %}
-                            <p class="paramText">{{ article.client }}</p>
+                            <p class="paramText">
+                                {% if app.request.locale == 'ru' %}
+                                    {{ article.client }}
+                                {% else %}
+                                    {{ article.clientEn }}
+                                {% endif %}
+                            </p>
                         {% endif %}
                     </div>
                     <div class="col-md-3">
@@ -277,8 +332,15 @@
                             {{ form_label(form.description) }}
                             {{ form_widget(form.description) }}
                             {{ form_errors(form.description) }}
+                            {{ form_label(form.descriptionEn) }}
+                            {{ form_widget(form.descriptionEn) }}
+                            {{ form_errors(form.descriptionEn) }}
                         {% else %}
-                            {{ article.description|raw }}
+                            {% if app.request.locale == 'ru' %}
+                                {{ article.description|raw }}
+                            {% else %}
+                                {{ article.descriptionEn|raw }}
+                            {% endif %}
                         {% endif %}
                     </div>
                 </div>
@@ -304,6 +366,12 @@
                             {{ form_label(form.metaDescription) }}
                             {{ form_widget(form.metaDescription) }}
                             {{ form_errors(form.metaDescription) }}
+                            {{ form_label(form.metaTitleEn) }}
+                            {{ form_widget(form.metaTitleEn) }}
+                            {{ form_errors(form.metaTitleEn) }}
+                            {{ form_label(form.metaDescriptionEn) }}
+                            {{ form_widget(form.metaDescriptionEn) }}
+                            {{ form_errors(form.metaDescriptionEn) }}
                         </div>
                     </div>
                 </div>
@@ -333,7 +401,8 @@
                 <div class="col-1"><a href="{{ path('articles_index') }}">back to list</a></div>
                 <div class="col-1">
                     {% if app.request.get('_route') != 'articles_new' %}
-                        <a href="{{ path('articles_show', {'id': article.id}) }}">show</a>
+                        {% set id = article.alias?article.alias:article.id %}
+                        <a href="{{ path('articles_show', {'id': id}) }}">show</a>
                     {% endif %}
                 </div>
                 <div class="col-1">

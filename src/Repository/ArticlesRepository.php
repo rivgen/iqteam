@@ -40,7 +40,7 @@ class ArticlesRepository extends ServiceEntityRepository
     public function articlesInCategory()
     {
 
-        $qb = $this->createQueryBuilder('a')->select('a.id, a.alias, a.title, a.textPreview, ac.id category, a.icon');
+        $qb = $this->createQueryBuilder('a')->select('a.id, a.alias, a.title, a.titleEn, a.textPreview, a.textPreviewEn, ac.id category, a.icon');
         $qb->leftJoin(ArticlesCategory::class, 'ac', 'WITH', 'a.category = ac.id');
         $qb->orderBy('a.ordering', 'ASC');
 
@@ -49,7 +49,7 @@ class ArticlesRepository extends ServiceEntityRepository
 
     public function findArticle($id)
     {
-        $qb = $this->createQueryBuilder('a')->select('a.id, a.title, a.textPreview, ac.id category, a.icon, a.fullTitle, a.technology, a.client, a.year, a.description, a.metaTitle, a.metaDescription');
+        $qb = $this->createQueryBuilder('a')->select('a.id, a.title, a.titleEn, a.alias, a.textPreview, a.textPreviewEn, ac.id category, a.icon, a.fullTitle, a.fullTitleEn, a.technology, a.technologyEn, a.client, a.clientEn, a.year, a.description, a.descriptionEn, a.metaTitle, a.metaTitleEn, a.metaDescription, a.metaDescriptionEn');
         $qb->leftJoin(ArticlesCategory::class, 'ac', 'WITH', 'a.category = ac.id');
         $qb->andWhere('a.id = :id');
         $qb->setParameter('id', $id);
