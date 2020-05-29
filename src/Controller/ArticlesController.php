@@ -103,7 +103,6 @@ class ArticlesController extends AbstractController
         $em = $this->getDoctrine()->getManager();
         $articlesRepository = $em->getRepository(Articles::class);
         $imgArticlesRepository = $em->getRepository(ImgArticles::class);
-        dump(is_int(+$id));
         if (!is_int(+$id)){
             $id = $articlesRepository->findArticleId($id);
         }
