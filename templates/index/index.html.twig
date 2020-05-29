@@ -78,7 +78,7 @@
             {% endfor %}
         </div>
         <div class="copyrightLeft">
-{#            {{ macros.printFooterMenu() }}#}
+            {#            {{ macros.printFooterMenu() }}#}
         </div>
     </div>
     <div id="parallax">
@@ -91,12 +91,13 @@
                                 <div class="textBlock">
                                     <div class="textBlockCenter">
                                         {% if is_granted('ROLE_CONTENT_MANAGER') %}
-                                            <a href="{{ path('meta_tags_edit', {'url': 'home'}) }}">Редактировать мета тэги</a>
+                                            <a href="{{ path('meta_tags_edit', {'url': 'home'}) }}">Редактировать мета
+                                                тэги</a>
                                         {% endif %}
                                         {% if app.request.locale == 'ru' %}
-                                        <h2 class="title">{{ h1.titleRu }}</h2>
+                                            <h2 class="title">{{ h1.titleRu }}</h2>
                                         {% else %}
-                                        <h2 class="title">{{ h1.titleEn }}</h2>
+                                            <h2 class="title">{{ h1.titleEn }}</h2>
                                         {% endif %}
                                         {% if is_granted('ROLE_CONTENT_MANAGER') %}
                                             <a href="{{ path('index_edit', {'id': h1.id}) }}">Редактировать блок
@@ -104,17 +105,17 @@
                                         {% endif %}
                                         {% for main in h1.blocks %}
                                             {% if main.checkmark == 'main' %}
-                                        {% if app.request.locale == 'ru' %}
-                                                <p class="text">{{ main.text }}</p>
-                                        {% else %}
-                                                <p class="text">{{ main.textEn }}</p>
-                                        {% endif %}
+                                                {% if app.request.locale == 'ru' %}
+                                                    <p class="text">{{ main.text }}</p>
+                                                {% else %}
+                                                    <p class="text">{{ main.textEn }}</p>
+                                                {% endif %}
                                             {% endif %}
                                         {% endfor %}
 
 
                                         {{ macros.printFeedback('btn btnBlue hoverEffects') }}
-                                </div>
+                                    </div>
                                 </div>
                                 <div class="imgBlock vw680dawn">
                                     <img src="/images/home_phones.png" alt="" class="embed-responsive"/>
@@ -140,9 +141,9 @@
                                                     </object>
                                                 </div>
                                                 {% if app.request.locale == 'ru' %}
-                                                <p>{{ main.text }}</p>
+                                                    <p>{{ main.text }}</p>
                                                 {% else %}
-                                                <p>{{ main.textEn }}</p>
+                                                    <p>{{ main.textEn }}</p>
                                                 {% endif %}
                                             </div>
                                         </div>
@@ -260,34 +261,34 @@
                             </div>
                             <div class="row my_container ml-0">
 
-                            {% for main in h1.blocks %}
+                                {% for main in h1.blocks %}
 
                                     {% if main.checkmark == 'block' %}
                                         <div class="col-md-6 card_wrap">
                                             <div class="my_card">
-{#                                                <div class="row">#}
-                                                    <div class="card_title d-flex align-items-center">
-                                                        <object type="image/svg+xml" data="{{ main.icon }}">
-                                                            <div class="internalText"></div>
-                                                        </object>
-                                                        {% if app.request.locale == 'ru' %}
-                                                            {{ main.title }}
-                                                        {% else %}
-                                                            {{ main.enTitle }}
-                                                        {% endif %}
-                                                    </div>
-                                                    <div class="card_text">
-                                                        {% if app.request.locale == 'ru' %}
-                                                            {{ main.text }}
-                                                        {% else %}
-                                                            {{ main.textEn }}
-                                                        {% endif %}
-                                                    </div>
-{#                                                </div>#}
+                                                {#                                                <div class="row">#}
+                                                <div class="card_title d-flex align-items-center">
+                                                    <object type="image/svg+xml" data="{{ main.icon }}">
+                                                        <div class="internalText"></div>
+                                                    </object>
+                                                    {% if app.request.locale == 'ru' %}
+                                                        {{ main.title }}
+                                                    {% else %}
+                                                        {{ main.enTitle }}
+                                                    {% endif %}
+                                                </div>
+                                                <div class="card_text">
+                                                    {% if app.request.locale == 'ru' %}
+                                                        {{ main.text }}
+                                                    {% else %}
+                                                        {{ main.textEn }}
+                                                    {% endif %}
+                                                </div>
+                                                {#                                                </div>#}
                                             </div>
                                         </div>
                                     {% endif %}
-                            {% endfor %}
+                                {% endfor %}
                             </div>
 
                         {% endif %}
@@ -412,56 +413,52 @@
         <div class="portfolio">
             <div class="letter-E-row justify-content-center">
                 <div class="letter-E-col">
-                    {% for article in articles %}
-                        {% if (loop.index + 2) % 3 == 0 %}
-                            <div class="projects items">
-                        {% endif %}
-                        {% set id = article.alias?article.alias:article.id %}
-                        <div class="filter {{ article.category }} wow fadeInUp item" {% if loop.index > 9 %} style="display: none;" {% endif %}>
-                            {#<div class="squareImg ">#}
-                            {#<div class="item">#}
-                            {#<div class="img target" style="background-image: url('{{ uploaded_asset(article.id, article.icon) }}');"></div>#}
-                            <a href={{ path('articles_show', {'id': id}) }} class="">
-                                <img src={{ uploaded_asset(article.id, article.icon) }} alt=""
-                                     class="embed-responsive target"/>
-                            </a>
-                            {#</div>#}
-                            <div class="blockText align-self-center">
-                                <a href={{ path('articles_show', {'id': id}) }}>
-                                    {% if app.request.locale == 'ru' %}
-                                        <h3>{{ article.title }}</h3>
-                                    {% else %}
-                                        <h3>{{ article.titleEn }}</h3>
-                                    {% endif %}
+                    <div class="projects items">
+                        {% for article in articles %}
+                            {% set id = article.alias?article.alias:article.id %}
+                            <div class="filter {{ article.category }} wow fadeInUp item" {% if loop.index > 9 %} style="display: none;" {% endif %}>
+                                {#<div class="squareImg ">#}
+                                {#<div class="item">#}
+                                {#<div class="img target" style="background-image: url('{{ uploaded_asset(article.id, article.icon) }}');"></div>#}
+                                <a href={{ path('articles_show', {'id': id}) }} class="">
+                                    <img src={{ uploaded_asset(article.id, article.icon) }} alt=""
+                                         class="embed-responsive target"/>
                                 </a>
-                                {% if app.request.locale == 'ru' %}
-                                    <p>{{ article.textPreview }}</p>
-                                {% else %}
-                                    <p>{{ article.textPreviewEn }}</p>
+                                {#</div>#}
+                                <div class="blockText align-self-center">
+                                    <a href={{ path('articles_show', {'id': id}) }}>
+                                        {% if app.request.locale == 'ru' %}
+                                            <h3>{{ article.title }}</h3>
+                                        {% else %}
+                                            <h3>{{ article.titleEn }}</h3>
+                                        {% endif %}
+                                    </a>
+                                    {% if app.request.locale == 'ru' %}
+                                        <p>{{ article.textPreview }}</p>
+                                    {% else %}
+                                        <p>{{ article.textPreviewEn }}</p>
+                                    {% endif %}
+                                </div>
+                                {#                            {% for button in buttons %}#}
+                                {#                                {% if button.id == article.id %}#}
+                                {#                                    <a href="{{ button.url }}" class="btn hrefButton" role="button"#}
+                                {#                                       target="_blank"#}
+                                {#                                       rel="nofollow noopener noreferrer">#}
+                                {#                                        <div class="svgObj">#}
+                                {#                                            <object type="image/svg+xml"#}
+                                {#                                                    data="/images/batton/{{ button.icon }}">#}
+                                {#                                                <div class="internalText"></div>#}
+                                {#                                            </object>#}
+                                {#                                        </div>#}
+                                {#                                    </a>#}
+                                {#                                {% endif %}#}
+                                {#                            {% endfor %}#}
+                                {% if is_granted('ROLE_CONTENT_MANAGER') %}
+                                    <a href="{{ path('articles_edit', {'id': article.id}) }}">edit</a>
                                 {% endif %}
                             </div>
-{#                            {% for button in buttons %}#}
-{#                                {% if button.id == article.id %}#}
-{#                                    <a href="{{ button.url }}" class="btn hrefButton" role="button"#}
-{#                                       target="_blank"#}
-{#                                       rel="nofollow noopener noreferrer">#}
-{#                                        <div class="svgObj">#}
-{#                                            <object type="image/svg+xml"#}
-{#                                                    data="/images/batton/{{ button.icon }}">#}
-{#                                                <div class="internalText"></div>#}
-{#                                            </object>#}
-{#                                        </div>#}
-{#                                    </a>#}
-{#                                {% endif %}#}
-{#                            {% endfor %}#}
-                            {% if is_granted('ROLE_CONTENT_MANAGER') %}
-                                <a href="{{ path('articles_edit', {'id': article.id}) }}">edit</a>
-                            {% endif %}
-                        </div>
-                        {% if (loop.index) % 3 == 0 or loop.last %}
-                            </div>
-                        {% endif %}
-                    {% endfor %}
+                        {% endfor %}
+                    </div>
                     <div class="projects allProjects justify-content-center">
                         <button id="viewAll" class="btn btnBlue" role="button">смотреть все проекты</button>
                     </div>
@@ -471,51 +468,51 @@
         </div>
     </div>
     {#<div id="letter-V-back">#}
-        <div id="letter-V"></div>
-        {#<div class="letter-V">#}
-            {#<div class="letter-V-row justify-content-center letter-fullwidth-container">#}
-                {#<div class="letter-V-col">#}
-                    {#<div class="letter-V-row">#}
-                        {#<div class="blockContact wow fadeInUp">#}
-                            {#<h2>Контакты</h2>#}
-                            {#<p class="textBold">Готовы начать свой следующий проект? Для обсуждения или сотрудничества#}
-                                {#просто свяжитесь с#}
-                                {#нами.</p>#}
-                            {#<div class="letter-V-row">#}
-                                {#<div class="textContact">#}
-                                    {#<h4>приезжайте</h4>#}
-                                    {#<p>Минск, Республика Беларусь, пр. Партизанский 4</p>#}
-                                {#</div>#}
-                                {#<div class="textContact">#}
-                                    {#<h4>пишите</h4>#}
-                                    {#<object type="image/svg+xml" data="/images/imgEmailContact.svg">#}
-                                    {#<div id="internalText"></div>#}
-                                    {#</object>#}
-                                    {#<p><a href="mailto:{{ mailGlobal }}">{{ mailGlobal }}</a></p>#}
-                                {#</div>#}
-                                {#<div class="textContact">#}
-                                    {#<h4>звоните</h4>#}
-                                    {#<p><a href="tel:{{ phoneGlobal|replace({'-': '', ' ':''}) }}">{{ phoneGlobal }}</a></p>#}
-                                {#</div>#}
-                                {#<div class="textContact">#}
-                                    {#<h4>ищите в соцсетях</h4>#}
-                                    {#<div class="social">#}
-                                        {#{{ base.social }}#}
-                                    {#</div>#}
-                                {#</div>#}
-                                {#<div class="textContact">#}
-                                    {#{{ macros.printFeedback("btn btnBlue hoverEffects") }}#}
-                                {#</div>#}
-                            {#</div>#}
-                        {#</div>#}
-                        {#<div class="mapContact embed-responsive wow fadeInUp">#}
-                            {#<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2351.603712230171!2d27.581945215991954!3d53.88547284189211!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x46dbce2d107b6c7f%3A0x21fe21a76ca5068c!2z0J_QsNGA0YLQuNC30LDQvdGB0LrQuNC5INC_0YDQvtGB0L8uIDQsINCc0LjQvdGB0Lo!5e0!3m2!1sru!2sby!4v1577083867310!5m2!1sru!2sby"#}
-                                    {#width="100%" height="724" frameborder="0" style="border:0;"#}
-                                    {#allowfullscreen=""></iframe>#}
-                        {#</div>#}
-                    {#</div>#}
-                {#</div>#}
-            {#</div>#}
-        {#</div>#}
+    <div id="letter-V"></div>
+    {#<div class="letter-V">#}
+    {#<div class="letter-V-row justify-content-center letter-fullwidth-container">#}
+    {#<div class="letter-V-col">#}
+    {#<div class="letter-V-row">#}
+    {#<div class="blockContact wow fadeInUp">#}
+    {#<h2>Контакты</h2>#}
+    {#<p class="textBold">Готовы начать свой следующий проект? Для обсуждения или сотрудничества#}
+    {#просто свяжитесь с#}
+    {#нами.</p>#}
+    {#<div class="letter-V-row">#}
+    {#<div class="textContact">#}
+    {#<h4>приезжайте</h4>#}
+    {#<p>Минск, Республика Беларусь, пр. Партизанский 4</p>#}
+    {#</div>#}
+    {#<div class="textContact">#}
+    {#<h4>пишите</h4>#}
+    {#<object type="image/svg+xml" data="/images/imgEmailContact.svg">#}
+    {#<div id="internalText"></div>#}
+    {#</object>#}
+    {#<p><a href="mailto:{{ mailGlobal }}">{{ mailGlobal }}</a></p>#}
+    {#</div>#}
+    {#<div class="textContact">#}
+    {#<h4>звоните</h4>#}
+    {#<p><a href="tel:{{ phoneGlobal|replace({'-': '', ' ':''}) }}">{{ phoneGlobal }}</a></p>#}
+    {#</div>#}
+    {#<div class="textContact">#}
+    {#<h4>ищите в соцсетях</h4>#}
+    {#<div class="social">#}
+    {#{{ base.social }}#}
+    {#</div>#}
+    {#</div>#}
+    {#<div class="textContact">#}
+    {#{{ macros.printFeedback("btn btnBlue hoverEffects") }}#}
+    {#</div>#}
+    {#</div>#}
+    {#</div>#}
+    {#<div class="mapContact embed-responsive wow fadeInUp">#}
+    {#<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2351.603712230171!2d27.581945215991954!3d53.88547284189211!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x46dbce2d107b6c7f%3A0x21fe21a76ca5068c!2z0J_QsNGA0YLQuNC30LDQvdGB0LrQuNC5INC_0YDQvtGB0L8uIDQsINCc0LjQvdGB0Lo!5e0!3m2!1sru!2sby!4v1577083867310!5m2!1sru!2sby"#}
+    {#width="100%" height="724" frameborder="0" style="border:0;"#}
+    {#allowfullscreen=""></iframe>#}
+    {#</div>#}
+    {#</div>#}
+    {#</div>#}
+    {#</div>#}
+    {#</div>#}
     {#</div>#}
 {% endblock %}
