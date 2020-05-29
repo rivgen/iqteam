@@ -78,10 +78,11 @@
     <div class="portfolio">
         <div class="letter-E-row justify-content-center">
             <div class="letter-E-col">
+                <div class="projects items">
                 {% for article in articles %}
-                    {% if (loop.index + 2) % 3 == 0 %}
-                        <div class="projects items">
-                    {% endif %}
+                    {#{% if (loop.index + 2) % 3 == 0 %}#}
+                        {#<div class="projects items">#}
+                    {#{% endif %}#}
                     {% set id = article.alias?article.alias:article.id %}
                     <div class="filter {{ article.category }} wow fadeInUp item">
                         {#<div class="squareImg ">#}
@@ -125,10 +126,11 @@
                             <a href="{{ path('articles_edit', {'id': article.id}) }}">edit</a>
                         {% endif %}
                     </div>
-                    {% if (loop.index ) % 3 == 0 or loop.last %}
-                        </div>
-                    {% endif %}
+                    {#{% if (loop.index ) % 3 == 0 or loop.last %}#}
+                        {#</div>#}
+                    {#{% endif %}#}
                 {% endfor %}
+                </div>
                 {% if is_granted('ROLE_CONTENT_MANAGER') %}
                     <div class="create">
                         <a href="{{ path('articles_new') }}">Create new</a>

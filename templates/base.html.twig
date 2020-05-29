@@ -117,7 +117,7 @@
                 </div>
             </div>
             <div class="homeLocale">
-                {% if app.request.get('_route') != 'articles_edit' %}
+                {% if app.request.get('_route') not in ['articles_edit', 'service_edit'] %}
                 <div class="homeLocale-row align-items-center justify-content-end">
                     {#<div class="homeLocale-row align-items-center">#}
                     {% for locale in locales() %}
@@ -132,7 +132,8 @@
                     {% if (app.request.get('_route') == 'index_index') %}
                     <a href="/{{ locale.code }}">
                         {% elseif article is defined %}
-                        <a href="{{ path(app.request.get('_route'), {'_locale': locale.code, 'id': article.alias}) }}">
+                        {% set id = article.alias?article.alias:article.id %}
+                        <a href="{{ path(app.request.get('_route'), {'_locale': locale.code, 'id': id}) }}">
                             {% else %}
                             <a href="{{ path(app.request.get('_route'), {'_locale': locale.code}) }}">
                                 {% endif %}

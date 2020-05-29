@@ -50,7 +50,7 @@ class ServiceController extends AbstractController
         }
         return $this->render('service/edit.html.twig',[
             'formService' => $formService->createView(),
-            'id' => $id
+            'serviceId' => $id
         ]);
     }
 
