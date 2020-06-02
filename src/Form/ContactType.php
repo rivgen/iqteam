@@ -21,7 +21,7 @@ class ContactType extends AbstractType
         $builder
             ->add('name', TextType::class, [
                     'attr' => [
-//                        'placeholder' => 'Ваше имя',
+                        'placeholder' => 'Имя',
                         'class' => 'form-control'],
                     'label' => 'Ваше имя',
                     'constraints' => [
@@ -31,7 +31,7 @@ class ContactType extends AbstractType
             )
             ->add('email', EmailType::class, [
                 'attr' => [
-//                    'placeholder' => 'Ваш email',
+                    'placeholder' => 'e-mail',
                     'class' => 'form-control'],
                 'label' => 'e-mail',
                 'constraints' => [
@@ -41,7 +41,7 @@ class ContactType extends AbstractType
             ])
             ->add('message', TextareaType::class, [
                 'attr' => [
-//                    'placeholder' => 'Ваше сообщение',
+                    'placeholder' => 'Сообщение',
                     'class' => 'form-control'],
                 'label' => 'сообщение',
                 'constraints' => [
@@ -49,7 +49,7 @@ class ContactType extends AbstractType
                 ]
             ])
             ->add('file', FileType::class, [
-                'label' => '+ Прикрепить',
+                'label' => '+ Прикрепить фаил',
                 'mapped' => false,
                 'required' => false,
                 'multiple' => true,

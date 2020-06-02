@@ -41,14 +41,14 @@
 {% endblock %}
     {% block javascripts %}
         {{ parent() }}
-        {% if app.request.get('_route') == 'articles_edit' or app.request.get('_route') == 'articles_new' %}
+        {% if app.request.get('_route') in ['articles_edit', 'articles_new'] %}
             {{ encore_entry_script_tags('forAdmin') }}
         {% endif %}
     {% endblock %}
 
 {% block body %}
 
-    {% if app.request.get('_route') == 'articles_edit' or app.request.get('_route') == 'articles_new' %}
+    {% if app.request.get('_route') in ['articles_edit', 'articles_new'] %}
         {{ form_start(form) }}
     {% endif %}
     <div class="slash intoPage">
@@ -56,7 +56,20 @@
             <div class="article-col">
                 <div class="slash-row">
                     <div class="text-center titlePortfolio">
-                        {% if app.request.get('_route') == 'articles_edit' or app.request.get('_route') == 'articles_new' %}
+                        <div class="navigationPortfolio">
+                            {% if app.request.locale == 'ru' %}
+                                Главная <span>/</span> Портфолио <span>/</span> <span
+                                    class="articleTitle"> {{ article.title }}</span>
+                            {% else %}
+                                Home <span>/</span> Portfolio <span>/</span> <span
+                                    class="articleTitle">{{ article.titleEn }}</span>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+                <div class="slash-row">
+                    <div class="text-center titlePortfolio">
+                        {% if app.request.get('_route') in ['articles_edit', 'articles_new'] %}
                             {{ form_label(form.title) }}
                             {{ form_widget(form.title) }}
                             {{ form_errors(form.title) }}
@@ -83,7 +96,7 @@
                         {% if article.icon %}
                             <img src="{{ uploaded_asset(article.id, article.icon) }}"/>
                         {% endif %}
-                        {% if app.request.get('_route') == 'articles_edit' or app.request.get('_route') == 'articles_new' %}
+                        {% if app.request.get('_route') in ['articles_edit', 'articles_new'] %}
                             <div class="button adminIcon">
                                 {{ form_label(form.iconFile) }}
                             </div>
@@ -92,7 +105,7 @@
                         {% endif %}
                     </div>
                     <div class="col-md-4 fullTitle">
-                        {% if app.request.get('_route') == 'articles_edit' or app.request.get('_route') == 'articles_new' %}
+                        {% if app.request.get('_route') in ['articles_edit', 'articles_new'] %}
                             {{ form_label(form.fullTitle) }}
                             {{ form_widget(form.fullTitle) }}
                             {{ form_errors(form.fullTitle) }}
@@ -107,8 +120,8 @@
                             {% endif %}
                         {% endif %}
                     </div>
-                    <div class="col-md-6 textPreview">
-                        {% if app.request.get('_route') == 'articles_edit' or app.request.get('_route') == 'articles_new' %}
+                    <div class="col-md-3 textPreview">
+                        {% if app.request.get('_route') in ['articles_edit', 'articles_new'] %}
                             {{ form_label(form.textPreview) }}
                             {{ form_widget(form.textPreview) }}
                             {{ form_errors(form.textPreview) }}
@@ -121,6 +134,27 @@
                             {% else %}
                                 {{ article.textPreviewEn }}
                             {% endif %}
+                        {% endif %}
+                    </div>
+                    <div class="col-md-3">
+                        {% if app.request.get('_route') != 'articles_new' %}
+                            {% for button in buttons %}
+                                {% if button.id == article.id %}
+                                    <button class="btnIcon">
+                                        <a href="{{ button.url }}" class="hrefButton" role="button"
+                                           target="_blank"
+                                           rel="nofollow noopener noreferrer">
+                                            <div class="svgObj">
+                                                <object type="image/svg+xml"
+                                                        data="/images/batton/{{ button.icon }}">
+                                                    <div class="internalText"></div>
+                                                </object>
+                                                <span class="title">{{ button.title }}</span>
+                                            </div>
+                                        </a>
+                                    </button>
+                                {% endif %}
+                            {% endfor %}
                         {% endif %}
                     </div>
                 </div>
@@ -151,13 +185,6 @@
                                 {% endfor %}
                                 {% if secondValue > 0 %}
                                     <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
-                                        <ol class="carousel-indicators">
-                                            {% for image in images %}
-                                                {% set i = loop.index0 %}
-                                                <li data-target="#carouselExampleIndicators"
-                                                    data-slide-to={{ i }} {% if image.general %}class="active"{% endif %}></li>
-                                            {% endfor %}
-                                        </ol>
                                         <div class="carousel-inner">
                                             {% for image in images %}
                                                 <div class="carousel-item {% if image.general %}active{% endif %}">
@@ -167,16 +194,32 @@
                                                 </div>
                                             {% endfor %}
                                         </div>
-                                        <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button"
-                                           data-slide="prev">
-                                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                                            <span class="sr-only">Previous</span>
-                                        </a>
-                                        <a class="carousel-control-next" href="#carouselExampleIndicators" role="button"
-                                           data-slide="next">
-                                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                                            <span class="sr-only">Next</span>
-                                        </a>
+                                        <div class="carousel-control">
+                                            <span class="count">
+                                                <span id="countImg">1</span><span class="slash">/</span><span id="lengthImg"></span>
+                                                </span>
+                                            <ol class="carousel-indicators">
+                                                {% for image in images %}
+                                                    {% set i = loop.index0 %}
+                                                    <li data-target="#carouselExampleIndicators"
+                                                        data-slide-to={{ i }} {% if image.general %}class="active"{% endif %}></li>
+                                                {% endfor %}
+                                            </ol>
+                                            <a class="carousel-control-prev" href="#carouselExampleIndicators"
+                                               role="button"
+                                               data-slide="prev">
+                                                <img src="/images/next.svg" class="nextLeft">
+                                                {#<span class="carousel-control-prev-icon" aria-hidden="true"></span>#}
+                                                {#<span class="sr-only">Previous</span>#}
+                                            </a>
+                                            <a class="carousel-control-next" href="#carouselExampleIndicators"
+                                               role="button"
+                                               data-slide="next">
+                                                <img src="/images/next.svg" class="nextRight">
+                                                {#<span class="carousel-control-next-icon" aria-hidden="true"></span>#}
+                                                {#<span class="sr-only">Next</span>#}
+                                            </a>
+                                        </div>
                                     </div>
                                 {% else %}
                                     {% for image in images %}
@@ -189,7 +232,7 @@
                 </div>
             </div>
         </div>
-        {% if (app.request.get('_route') == 'articles_edit' or app.request.get('_route') == 'articles_new') %}
+        {% if (app.request.get('_route') in ['articles_edit', 'articles_new']) %}
             <div class="article-row justify-content-center" id="radioChecked">
                 <div class="article-col">
                     <div class="article-row previewContainer js-genus-scientist-wrapper">
@@ -238,7 +281,7 @@
                 <div class="article-row">
                     <div class="col-md-3 technology">
                         <p class="param">технологии</p>
-                        {% if app.request.get('_route') == 'articles_edit' or app.request.get('_route') == 'articles_new' %}
+                        {% if app.request.get('_route') in ['articles_edit', 'articles_new'] %}
                             {{ form_widget(form.technology) }}
                             {{ form_errors(form.technology) }}
                             {{ form_label(form.technologyEn) }}
@@ -251,12 +294,12 @@
                                 {% else %}
                                     {{ article.technologyEn }}
                                 {% endif %}
-                                </p>
+                            </p>
                         {% endif %}
                     </div>
                     <div class="col-md-3">
                         <p class="param">клиент</p>
-                        {% if app.request.get('_route') == 'articles_edit' or app.request.get('_route') == 'articles_new' %}
+                        {% if app.request.get('_route') in ['articles_edit', 'articles_new'] %}
                             {{ form_widget(form.client) }}
                             {{ form_errors(form.client) }}
                             {{ form_label(form.clientEn) }}
@@ -274,7 +317,7 @@
                     </div>
                     <div class="col-md-3">
                         <p class="param">год</p>
-                        {% if app.request.get('_route') == 'articles_edit' or app.request.get('_route') == 'articles_new' %}
+                        {% if app.request.get('_route') in ['articles_edit', 'articles_new'] %}
                             <p class="paramText"> {{ form_widget(form.year) }}</p>
                             {{ form_errors(form.year) }}
                         {% else %}
@@ -282,25 +325,8 @@
                         {% endif %}
                     </div>
                     <div class="col-md-3 portfolio">
-                        <p class="param">перейти</p>
                         <div class="projects">
-                            {% if app.request.get('_route') != 'articles_new' %}
-                                {% for button in buttons %}
-                                    {% if button.id == article.id %}
-                                        <a href="{{ button.url }}" class="btn hrefButton" role="button"
-                                           target="_blank"
-                                           rel="nofollow noopener noreferrer">
-                                            <div class="svgObj">
-                                                <object type="image/svg+xml"
-                                                        data="/images/batton/{{ button.icon }}">
-                                                    <div class="internalText"></div>
-                                                </object>
-                                            </div>
-                                        </a>
-                                    {% endif %}
-                                {% endfor %}
-                            {% endif %}
-                            {% if app.request.get('_route') == 'articles_edit' or app.request.get('_route') == 'articles_new' %}
+                            {% if app.request.get('_route') in ['articles_edit', 'articles_new'] %}
                                 {{ form_label(form.buttonArticles) }}
                                 <ul id="email-fields-list"
                                     class="js-genus-scientist-wrapper"
@@ -328,7 +354,7 @@
             <div class="article-col">
                 <div class="article-row">
                     <div class="col descArticle">
-                        {% if app.request.get('_route') == 'articles_edit' or app.request.get('_route') == 'articles_new' %}
+                        {% if app.request.get('_route') in ['articles_edit', 'articles_new'] %}
                             {{ form_label(form.description) }}
                             {{ form_widget(form.description) }}
                             {{ form_errors(form.description) }}
@@ -346,7 +372,7 @@
                 </div>
             </div>
         </div>
-        {% if app.request.get('_route') == 'articles_edit' or app.request.get('_route') == 'articles_new' %}
+        {% if app.request.get('_route') in ['articles_edit', 'articles_new'] %}
             <div class="article-row justify-content-center">
                 <div class="article-col">
                     <div class="article-row">
@@ -381,21 +407,31 @@
             </div>
         {% endif %}
     </div>
-    <div class="container-fluid prevNext">
-        <div class="row">
-            {% if app.request.get('_route') != 'articles_new' and app.request.get('_route') != 'articles_edit' %}
-                {% if prevNext %}
-                    <div class="col-md-6 paddingNone">
-                        <a href={{ path('articles_show', {'id': prevNext.0.id}) }}><span>Предыдущий</span></a>
-                    </div>
-                    <div class="col-md-6 paddingNone">
-                        <a href={{ path('articles_show', {'id': prevNext.1.id}) }}><span>Следующий</span></a>
-                    </div>
-                {% endif %}
-            {% endif %}
+    <div class="article prevNext">
+        <div class="slash-row justify-content-center">
+            <div class="article-col">
+                <div class="row">
+                    {% if app.request.get('_route') not in ['articles_new', 'articles_edit'] %}
+                        {% if prevNext %}
+                            <div class="col-md-6 paddingNone">
+                                <a href={{ path('articles_show', {'id': prevNext.0.id}) }}>
+                                    <img src="/images/next.svg" class="nextLeft">
+                                    <span>Предыдущий</span>
+                                </a>
+                            </div>
+                            <div class="col-md-6 paddingNone">
+                                <a href={{ path('articles_show', {'id': prevNext.1.id}) }}>
+                                    <span>Следующий</span>
+                                    <img src="/images/next.svg" class="nextRight">
+                                </a>
+                            </div>
+                        {% endif %}
+                    {% endif %}
+                </div>
+            </div>
         </div>
     </div>
-    {% if app.request.get('_route') == 'articles_edit' or app.request.get('_route') == 'articles_new' %}
+    {% if app.request.get('_route') in ['articles_edit', 'articles_new'] %}
         <div class="container-fluid">
             <div class="row">
                 <div class="col-1"><a href="{{ path('articles_index') }}">back to list</a></div>
@@ -417,7 +453,7 @@
         </div>
 
     {% endif %}
-    {% if app.request.get('_route') == 'articles_edit' or app.request.get('_route') == 'articles_new' %}
+    {% if app.request.get('_route') in ['articles_edit', 'articles_new'] %}
         {{ form_end(form) }}
     {% endif %}
     {% if is_granted('ROLE_CONTENT_MANAGER') and app.request.get('_route') != 'articles_new' and app.request.get('_route') != 'articles_edit' %}

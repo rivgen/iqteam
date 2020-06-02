@@ -1,4 +1,6 @@
 {% extends 'base.html.twig' %}
+{% import 'base.html.twig' as baseMacros %}
+{% import 'index/index.html.twig' as indexMacros %}
 {% block title %}{{ metaTags.title }}{% endblock %}
 {% block description %}{{ metaTags.description }}{% endblock %}
 {% block body %}
@@ -8,88 +10,90 @@
                 {% if is_granted('ROLE_CONTENT_MANAGER') %}
                     <a href="{{ path('meta_tags_edit', {'url': 'contact'}) }}">Редактировать мета тэги</a>
                 {% endif %}
-{#                <h1>Контакты</h1>#}
+                {#                <h1>Контакты</h1>#}
             </div>
         </div>
     </div>
     <div class="contactForm">
         <div class="contactForm-row justify-content-center">
-            <div class="contactForm-col">
-                <p class="text">Готовы начать свой следующий проект?<br/> Для обсуждения или сотрудничества просто
-                    свяжитесь с нами.
-                </p>
-            </div>
-        </div>
-        {{ form_start(form) }}
-        <div class="contactForm-row justify-content-center">
-            <div class="contactForm-col">
+            <div class="contactFormCol12">
                 <div class="contactForm-row">
-                    <div class="name">{{ form_label(form.name) }}</div>
-                    <div class="form-group">
-                        {{ form_widget(form.name) }}
-                        {{ form_errors(form.name) }}
+                    <div class="contactForm-col">
+                        <p class="text">Готовы начать свой следующий проект?<br/> Для обсуждения или сотрудничества
+                            просто
+                            свяжитесь с нами.
+                        </p>
                     </div>
-                    <div class="name">{{ form_label(form.email) }}</div>
-                    <div class="form-group">
-                        {{ form_widget(form.email) }}
-                        {{ form_errors(form.email) }}
+                    <div class="contactForm-col">
+                        {{ form_start(form) }}
+                        <div class="contactForm-row">
+                            {#<div class="name">{{ form_label(form.name) }}</div>#}
+                            <div class="form-group">
+                                {{ form_widget(form.name) }}
+                                {{ form_errors(form.name) }}
+                            </div>
+                            {#<div class="name">{{ form_label(form.email) }}</div>#}
+                            <div class="form-group">
+                                {{ form_widget(form.email) }}
+                                {{ form_errors(form.email) }}
+                            </div>
+                            {#<div class="name">{{ form_label(form.message) }}</div>#}
+                            <div class="form-group">
+                                {{ form_widget(form.message) }}
+                                {{ form_errors(form.message) }}
+                            </div>
+                            <div style="display:none">
+                                {{ form_rest(form) }}
+                            </div>
+                            {#<input type="submit" value="Submit">#}
+                        </div>
+                        {#<div class="form-group">#}
+                        {#<div class="contactForm-row">#}
+                        <div class="button">
+                            {{ form_label(form.file) }}
+                            <div>{{ form_errors(form.file) }}</div>
+                        </div>
+                        <div class="button">
+                            <button class="btn buttonProject hoverEffects rightPosition" role="button">
+                                Отправить_запрос
+                            </button>
+                        </div>
+                        {#</div>#}
+                        {#</div>#}
+                        {{ form_end(form) }}
                     </div>
-                    <div class="name">{{ form_label(form.message) }}</div>
-                    <div class="form-group">
-                        {{ form_widget(form.message) }}
-                        {{ form_errors(form.message) }}
-                    </div>
-                    <div style="display:none">
-                        {{ form_rest(form) }}
-                    </div>
-                    {#<input type="submit" value="Submit">#}
                 </div>
             </div>
         </div>
+
         <div class="contactForm-row justify-content-center">
-            <div class="contactForm-col">
-                <div class="contactForm-row">
-                    <div class="name">Файл</div>
-                    <div class="form-group">
-                        <div class="contactForm-row">
-                            <div class="button">
-                                {{ form_label(form.file) }}
-                                <div>{{ form_errors(form.file) }}</div>
-                            </div>
-                            <div class="button">
-                                <button class="btn buttonProject hoverEffects rightPosition" role="button">
-                                    Отправить_запрос
-                                </button>
-                            </div>
+            <div class="map">
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2351.603712230171!2d27.581945215991954!3d53.88547284189211!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x46dbce2d107b6c7f%3A0x21fe21a76ca5068c!2z0J_QsNGA0YLQuNC30LDQvdGB0LrQuNC5INC_0YDQvtGB0L8uIDQsINCc0LjQvdGB0Lo!5e0!3m2!1sru!2sby!4v1577083867310!5m2!1sru!2sby"
+                        width="100%" height="724" frameborder="0" style="border:0;" allowfullscreen=""></iframe>
+                <div class=" container mapBlock">
+                    <div class="mapInfo">
+                        <label class="col-form-label">приезжайте</label>
+                        <p class="textInfo">РБ, Минск,  Партизанский<br/>пр-т, 4</p>
+                        <label class="col-form-label">пишите</label>
+                        <p class="textInfo">info@iqdev.com</p>
+                        <label class="col-form-label">звоните</label>
+                        <p class="textInfo">+375 29 853-90-25</p>
+                        <label class="col-form-label">ищите в соцсетях</label>
+                        <div class="social">
+                            {{ baseMacros.social() }}
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    {{ form_end(form) }}
-    <div class="map">
-        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2351.603712230171!2d27.581945215991954!3d53.88547284189211!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x46dbce2d107b6c7f%3A0x21fe21a76ca5068c!2z0J_QsNGA0YLQuNC30LDQvdGB0LrQuNC5INC_0YDQvtGB0L8uIDQsINCc0LjQvdGB0Lo!5e0!3m2!1sru!2sby!4v1577083867310!5m2!1sru!2sby"
-                width="100%" height="724" frameborder="0" style="border:0;" allowfullscreen=""></iframe>
-        <div class=" container mapBlock">
-            <div class="row">
-                <div class="col-md-2 offset-md-2 mapInfo">
-                    <label class="col-form-label">приезжайте</label>
-                    <p class="textInfo">РБ, Минск,  Партизанский<br/>пр-т, 4</p>
-                    <label class="col-form-label">пишите</label>
-                    <p class="textInfo">info@iqdev.com</p>
-                    <label class="col-form-label">звоните</label>
-                    <p class="textInfo">+375 29 853-90-25</p>
-                    <label class="col-form-label">ищите в соцсетях</label>
-                </div>
-            </div>
-        </div>
-    </div>
+    <div class="socialBlockHeight">
+        {{ indexMacros.downButton() }}
     </div>
 {% endblock %}
 {% block javascripts %}
     {{ parent() }}
-<script>
+    <script>
 
-</script>
+    </script>
 {% endblock %}

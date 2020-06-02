@@ -19,6 +19,15 @@
         </a>
     {% endfor %}
 {% endmacro %}
+{% macro downButton() %}
+    <div class="downButton down">
+        <a href='#'>
+            <object class="downImg" type="image/svg+xml" data="/images/down.svg">
+                <div class="internalText"></div>
+            </object>
+        </a>
+    </div>
+{% endmacro %}
 {% block title %}{{ metaTags.title }}{% endblock %}
 {% block description %}{{ metaTags.description }}{% endblock %}
 {% block javascripts %}
@@ -161,13 +170,7 @@
         <div class="socialBlock">
             {{ macros.printSocialBlock() }}
         </div>
-        <div class="downButton down">
-            <a href='#'>
-                <object class="downImg" type="image/svg+xml" data="/images/down.svg">
-                    <div class="internalText"></div>
-                </object>
-            </a>
-        </div>
+        {{ macros.downButton() }}
     </div>
     <div id="letter-Q"></div>
     <div class="letter-Q">
@@ -364,7 +367,7 @@
     <div id="letter-E"></div>
     <div class="letter-E-back">
         <div class="letter-E">
-            <div class="letter-E-row justify-content-center">
+            <div class="letter-E-row justify-content-center marginBottom25">
                 <div class="letter-E-col">
                     {% for h1 in blockHome %}
                         {% if h1.id == 5 %}
@@ -420,7 +423,7 @@
                                 {#<div class="squareImg ">#}
                                 {#<div class="item">#}
                                 {#<div class="img target" style="background-image: url('{{ uploaded_asset(article.id, article.icon) }}');"></div>#}
-                                <a href={{ path('articles_show', {'id': id}) }} class="">
+                                <a href={{ path('articles_show', {'id': id}) }} class="aImg">
                                     <img src={{ uploaded_asset(article.id, article.icon) }} alt=""
                                          class="embed-responsive target"/>
                                 </a>
@@ -460,10 +463,9 @@
                         {% endfor %}
                     </div>
                     <div class="projects allProjects justify-content-center">
-                        <button id="viewAll" class="btn btnBlue" role="button">смотреть все проекты</button>
+                        <button id="viewAll" class="btn btnBlue hoverEffects" role="button">смотреть_все_проекты</button>
                     </div>
                 </div>
-
             </div>
         </div>
     </div>

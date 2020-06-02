@@ -31,7 +31,7 @@
       transition: transform var(--duration) ease;
       transform: translateY(var(--m));
       $i: 1;
-      @while $i < 20 {
+      @while $i < 21 {
         &:nth-child(#{$i}) {
           transition-delay: $i / 80 + s;
         }

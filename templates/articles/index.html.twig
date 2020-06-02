@@ -88,7 +88,7 @@
                         {#<div class="squareImg ">#}
                         {#<div class="item">#}
                         {#<div class="img target" style="background-image: url('{{ uploaded_asset(article.id, article.icon) }}');"></div>#}
-                        <a href={{ path('articles_show', {'id': id}) }} class="">
+                        <a href={{ path('articles_show', {'id': id}) }} class="aImg">
                             <img src={{ uploaded_asset(article.id, article.icon) }} alt=""
                                  class="embed-responsive target"/>
                         </a>

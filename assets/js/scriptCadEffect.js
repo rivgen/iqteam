@@ -26,7 +26,7 @@ var Effect3D = (function makeEffect3D() {
             var rotateY = startPosY - halfHeight;
             rotateY /= -halfHeight;
 
-            var style = 'rotateX(' + rotateY.toFixed(2) + 'deg) rotateY(' + rotateX.toFixed(2) + 'deg)';
+            var style = 'rotateX(' + rotateY.toFixed(2) + 'deg) rotateY(' + rotateX.toFixed(2) + 'deg)' + ' scale(1.05)';
             el.style.transform = style;
             el.style.webkitTransform = style;
             el.style.mozTranform = style;
