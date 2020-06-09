@@ -4,13 +4,19 @@ namespace App\Controller;
 
 use App\Entity\Articles;
 use App\Entity\ButtonArticles;
+use App\Entity\Docks;
 use App\Entity\HomeBlock;
 use App\Entity\ImgArticles;
 use App\Entity\MetaTags;
 use App\Form\ContactType;
+use App\Form\DocksType;
 use App\Form\HomeBlockType;
+use App\Repository\DocksRepository;
+use App\Service\UploaderHelper;
+use PhpParser\Comment\Doc;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 class IndexController extends AbstractController
@@ -89,4 +95,47 @@ class IndexController extends AbstractController
         ]);
     }
 
+    /**
+     * @Route("/docks/{id}/edit", name="docks_edit", methods={"GET","POST"})
+     */
+    public function docksEdit(Request $request, Docks $docks, UploaderHelper $uploaderHelper, $id)
+    {
+        $formDocks = $this->createForm(DocksType::class, $docks, [
+            'action' => $this->generateUrl('docks_edit', ['id' => $id]),
+        ]);
+        $formDocks->handleRequest($request);
+        if ($formDocks->isSubmitted() && $formDocks->isValid()) {
+            $uploadedFileEn = $formDocks['enFile']->getData();
+            $uploadedFileRu = $formDocks['ruFile']->getData();
+            if ($uploadedFileEn) {
+                $newFilename = $uploaderHelper->uploadDocks($uploadedFileEn);
+                $docks->setEn($newFilename);
+
+            }
+            if ($uploadedFileRu) {
+                $newFilename = $uploaderHelper->uploadDocks($uploadedFileRu);
+                $docks->setRu($newFilename);
+
+            }
+            $entityManager =$this->getDoctrine()->getManager();
+            $entityManager->persist($docks);
+            if(isset($uploadedFileEn) or isset($uploadedFileRu) ) {
+                $entityManager->persist($docks);
+            }
+            $entityManager->flush();
+            return $this->redirectToRoute('index_index');
+        }
+        return $this->render('_docksForm.html.twig',[
+            'formDocks' => $formDocks->createView(),
+//            'qwer' => 'qwert12331313'
+        ]);
+    }
+
+    public function docksUrl($id, $local)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $docksRepository = $em->getRepository(Docks::class);
+        $url = $docksRepository->searchDocks($id, $local);
+        return new Response($url);
+    }
 }

@@ -29,6 +29,19 @@ class UploaderHelper
         return $newFilename;
     }
 
+    public function uploadDocks(UploadedFile $uploadedFile): string
+    {
+        $destination = $this->uploadsPath .'/public/documents/';
+        $originalFilename = pathinfo($uploadedFile->getClientOriginalName(), PATHINFO_FILENAME);
+        $newFilename = Urlizer::urlize($originalFilename) . '.' . $uploadedFile->guessExtension();
+        $uploadedFile->move(
+            $destination,
+            $newFilename
+        );
+
+        return $newFilename;
+    }
+
     public function uploadMailImg(UploadedFile $uploadedFile)
     {
         $file['targetDir'] = $this->uploadsPath .'/public/images/sendMail/';

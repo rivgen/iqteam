@@ -161,33 +161,40 @@
         <div class="footerClass">
             <div class="footer-row justify-content-center">
                 <div class="footer-col">
-                    <div class="footer-row footerHeader">
-                        <div class="head-col">
-                            {{ mainManuMacros.printLogo() }}
-                        </div>
-                        <div class="head-col align-self-center"><p>Меню</p></div>
-                        <div class="head-col align-self-center"><p>связь</p></div>
-                        <div class="head-col align-self-center"><p>Подписка на новости</p></div>
-                    </div>
+                    {#<div class="footer-row footerHeader">#}
+                        {#<div class="head-col">#}
+                            {#{{ mainManuMacros.printLogo() }}#}
+                        {#</div>#}
+                        {#<div class="head-col align-self-center"><p>Меню</p></div>#}
+                        {#<div class="head-col align-self-center"><p>связь</p></div>#}
+                        {#<div class="head-col align-self-center"><p>Подписка на новости</p></div>#}
+                    {#</div>#}
                     <div class="footer-row footerMenu">
                         <div class="head-col">
+                            <div class="footerHeader">
+                                {{ mainManuMacros.printLogo() }}
+                            </div>
                             <p>ООО "Ай кью Клаш" <br>УНП&nbsp;192740628</p>
                             <div class="social">
                                 {{ mainManuMacros.social() }}
                             </div>
                         </div>
                         <div class="head-col">
+                            <div class="footerHeader align-self-center"><p>Меню</p></div>
                             {{ mainManuMacros.printMainMenu() }}
                         </div>
                         <div class="head-col">
+                            <div class="footerHeader align-self-center"><p>связь</p></div>
                             <p><a href="mailto:{{ mailGlobal }}">{{ mailGlobal }}</a></p>
                             <p><a href="tel:{{ phoneGlobal|replace({'-': '', ' ':''}) }}">{{ phoneGlobal }}</a></p>
                         </div>
                         <div class="head-col align-self-center">
+                            <div class="footerHeader align-self-center"><p>Подписка на новости</p></div>
                             <form>
                                 <div class="input-group">
                                     <input type="text" class="form-control footerForm"
-                                           aria-label="Dollar amount (with dot and two decimal places)" placeholder="ваш e-mail">
+                                           aria-label="Dollar amount (with dot and two decimal places)"
+                                           placeholder="ваш e-mail">
                                     <div class="input-group-append" type="submit">
                                         <img src="/images/footerFormSubmit.svg">
                                     </div>
@@ -197,21 +204,48 @@
                         </div>
                     </div>
                     <div class="footer-row footerHeight">
-                        <div class="text align-self-center">
+
+                        <div class="text align-self-center br3">
+                            {% if app.request.locale == 'ru' %}
+                                {% set privacy = render(
+                                controller('App\\Controller\\IndexController::docksUrl',
+                                {'id': 1, 'local': 'ru'})) %}
+                                {% set terms = render(
+                                controller('App\\Controller\\IndexController::docksUrl',
+                                {'id': 2, 'local': 'ru'})) %}
+                            {% else %}
+                                {% set privacy = render(
+                                controller('App\\Controller\\IndexController::docksUrl',
+                                {'id': 1, 'local': 'en'})) %}
+                                {% set terms = render(
+                                controller('App\\Controller\\IndexController::docksUrl',
+                                {'id': 2, 'local': 'en'})) %}
+                            {% endif %}
+                            <p><a href="/documents/{{ privacy }}" target="_blank" rel="noreferrer">{% trans %}
+                                    privacyPolicy{% endtrans %}</a></p>
+                            {% if is_granted('ROLE_CONTENT_MANAGER') %}
+                                <div class="">
+                                    {{ render(controller('App\\Controller\\IndexController::docksEdit', {'id': 1})) }}
+                                </div>
+                            {% endif %}
+                        </div>
+                        <div class="text align-self-center br2">
+                            <p><a href="/documents/{{ terms }}" target="_blank"
+                                  rel="noreferrer">условия соглашения</a></p>
+                            {% if is_granted('ROLE_CONTENT_MANAGER') %}
+                                <div class="">
+                                    {{ render(controller('App\\Controller\\IndexController::docksEdit', {'id': 2})) }}
+                                </div>
+                            {% endif %}
+                        </div>
+                        <div class="text order-md-first align-self-center">
                             <p>IQDEV.com © {{ "now"|date("Y") }}</p>
-                        </div>
-                        <div class="text align-self-center confiden br3">
-                            <p><a href="#">политика конфиденциальности</a></p>
-                        </div>
-                        <div class="text align-self-center confiden br2">
-                            <p><a href="#">условия соглашения</a></p>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    {% block articleButton %}{% endblock %}
     {#modal#}
     <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
          aria-hidden="true">
@@ -272,8 +306,10 @@
                     {{ mainManuMacros.printMainMenu() }}
                 </div>
                 <div class="mainMenu">
-                    <a href="#"><p>условия соглашения</p></a>
-                    <a href="#"><p class="rightClass">политика конфиденциальности</p></a>
+                    <a href="/documents/Terms-of-Service-Agreement-IQDev-rus.pdf" target="_blank" rel="noreferrer"><p>
+                            условия соглашения</p></a>
+                    <a href="/documents/Privacy-Policy-IQDev-rus.pdf" target="_blank" rel="noreferrer"><p
+                                class="rightClass">политика конфиденциальности</p></a>
                 </div>
                 <div class="mainMenu">
                     <p>Минск, Республика Беларусь, пр. Партизанский 4</p>

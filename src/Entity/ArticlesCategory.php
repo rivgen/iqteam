@@ -29,6 +29,13 @@ class ArticlesCategory
     private $title = '\'\'';
 
     /**
+     * @var string
+     *
+     * @ORM\Column(name="anchor", type="string", length=10)
+     */
+    private $anchor;
+
+    /**
      * @var \DateTime
      *
      * @ORM\Column(name="updated", type="datetime", nullable=false)
@@ -127,6 +134,22 @@ class ArticlesCategory
     public function setAuthor(string $author)
     {
         $this->author = $author;
+    }
+
+    /**
+     * @return string
+     */
+    public function getAnchor()
+    {
+        return $this->anchor;
+    }
+
+    /**
+     * @param string $anchor
+     */
+    public function setAnchor($anchor)
+    {
+        $this->anchor = $anchor;
     }
 
 }

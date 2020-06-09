@@ -1,6 +1,7 @@
 {% extends 'base.html.twig' %}
 
 {% import _self as macros %}
+{% import 'index/index.html.twig' as indexMacros %}
 {% block title %}{{ metaTags.title }}{% endblock %}
 {% block description %}{{ metaTags.description }}{% endblock %}
 {% block body %}
@@ -36,101 +37,107 @@
     {#            </div>#}
     {#        </div>#}
     {#    </div>#}
-    <div class="filterButton">
-        <div class="letter-E-row justify-content-center">
-            <div class="letter-E-col">
-                <div class="filterButton-row">
-                    <button class="btn filter-button active" data-filter="all">Все</button>
-                    {% for category in categories %}
-                        <button class="btn filter-button" data-filter={{ category.id }}>{{ category.title }}</button>
-                    {% endfor %}
+    {#<div class="filterButton">#}
+    {#<div class="letter-E-row justify-content-center">#}
+    {#<div class="letter-E-col">#}
+    {#<div class="filterButton-row">#}
+    {#<button class="btn filter-button active" data-filter="all">Все</button>#}
+    {#{% for category in categories %}#}
+    {#<button class="btn filter-button" data-filter={{ category.id }}>{{ category.title }}</button>#}
+    {#{% endfor %}#}
+    {#</div>#}
+    {#</div>#}
+    {#</div>#}
+    {#</div>#}
+    {#<div class="filterButton360vw">#}
+    {#<div class="btn-group filterButton-row">#}
+    {#<button id="button360vw" class="btn active" type="button">Все#}
+    {#<object id="downButton" type="image/svg+xml" data="/images/downBlack.svg">#}
+    {#<div class="internalText"></div>#}
+    {#</object>#}
+    {#</button>#}
+    {#</div>#}
+    {#modal#}
+    {#<div id="fixedBackground" style="display: none"></div>#}
+    {#<div id="filterMenu" style="display: none">#}
+    {#<div class="filterMenu animated">#}
+    {#<button class="filter-button active" type="button" data-filter="all" value="Все<object id='downButton' type='image/svg+xml' data='/images/downBlack.svg'>#}
+    {#<div class='internalText'></div>#}
+    {#</object>">Все#}
+    {#</button>#}
+    {#{% for category in categories %}#}
+    {#<button class="filter-button" type="button"#}
+    {#data-filter={{ category.id }} value="{{ category.title }}<object id='downButton'#}
+    {#type='image/svg+xml' data='/images/downBlack.svg'>#}
+    {#<div class='internalText'></div>#}
+    {#</object>{{ category.title }}</button>#}
+    {#{% endfor %}#}
+    {#</div>#}
+    {#</div>#}
+    {#end modal#}
+    {#</div>#}
+    <div class="menuClass">
+        <div class="menuLeft">
+            {% for menu in categories %}
+                <div class="menu-row">
+                    {#<div class="col-md-2"><p>{{ menu.list }}</p></div>#}
+                    <div class="menu-col"><a href=#{{ menu.anchor }}><p>{{ menu.title }}</p></a></div>
                 </div>
-            </div>
+            {% endfor %}
         </div>
-    </div>
-    <div class="filterButton360vw">
-        <div class="btn-group filterButton-row">
-            <button id="button360vw" class="btn active" type="button">Все
-                <object id="downButton" type="image/svg+xml" data="/images/downBlack.svg">
-                    <div class="internalText"></div>
-                </object>
-            </button>
-        </div>
-        {#modal#}
-        <div id="fixedBackground" style="display: none"></div>
-        <div id="filterMenu" style="display: none">
-            <div class="filterMenu animated">
-                <button class="filter-button active" type="button" data-filter="all" value="Все<object id='downButton' type='image/svg+xml' data='/images/downBlack.svg'>
-                <div class='internalText'></div>
-                </object>">Все
-                </button>
-                {% for category in categories %}
-                    <button class="filter-button" type="button"
-                            data-filter={{ category.id }} value="{{ category.title }}<object id='downButton'
-                            type='image/svg+xml' data='/images/downBlack.svg'>
-                        <div class='internalText'></div>
-                        </object>">{{ category.title }}</button>
-                {% endfor %}
-            </div>
-        </div>
-        {#end modal#}
     </div>
     <div class="portfolio">
         <div class="letter-E-row justify-content-center">
             <div class="letter-E-col">
-                <div class="projects items">
-                {% for article in articles %}
-                    {#{% if (loop.index + 2) % 3 == 0 %}#}
-                        {#<div class="projects items">#}
-                    {#{% endif %}#}
-                    {% set id = article.alias?article.alias:article.id %}
-                    <div class="filter {{ article.category }} wow fadeInUp item">
-                        {#<div class="squareImg ">#}
-                        {#<div class="item">#}
-                        {#<div class="img target" style="background-image: url('{{ uploaded_asset(article.id, article.icon) }}');"></div>#}
-                        <a href={{ path('articles_show', {'id': id}) }} class="aImg">
-                            <img src={{ uploaded_asset(article.id, article.icon) }} alt=""
-                                 class="embed-responsive target"/>
-                        </a>
-                        {#</div>#}
-                        <div class="blockText align-self-center">
-
-                            <a href={{ path('articles_show', {'id': id}) }}>
-                                {% if app.request.locale == 'ru' %}
-                                    <h3>{{ article.title }}</h3>
-                                {% else %}
-                                    <h3>{{ article.titleEn }}</h3>
+                {% for category in categories %}
+                    <h2 id={{ category.anchor }}>{{ category.title }}</h2>
+                    <div class="projects items">
+                        {% for article in articles if article.category == category.id %}
+                            {% set id = article.alias?article.alias:article.id %}
+                            <div class="filter {{ article.category }} wow fadeInUp item">
+                                {#<div class="squareImg ">#}
+                                {#<div class="item">#}
+                                {#<div class="img target" style="background-image: url('{{ uploaded_asset(article.id, article.icon) }}');"></div>#}
+                                <a href={{ path('articles_show', {'id': id}) }} class="aImg">
+                                    <img src={{ uploaded_asset(article.id, article.icon) }} alt=""
+                                         class="embed-responsive target"/>
+                                </a>
+                                {#</div>#}
+                                <div class="blockText align-self-center">
+                                    <a href={{ path('articles_show', {'id': id}) }}>
+                                        {% if app.request.locale == 'ru' %}
+                                            <h3>{{ article.title }}</h3>
+                                        {% else %}
+                                            <h3>{{ article.titleEn }}</h3>
+                                        {% endif %}
+                                    </a>
+                                    {% if app.request.locale == 'ru' %}
+                                        <p>{{ article.textPreview }}</p>
+                                    {% else %}
+                                        <p>{{ article.textPreviewEn }}</p>
+                                    {% endif %}
+                                </div>
+                                {#                            {% for button in buttons %}#}
+                                {#                                {% if button.id == article.id %}#}
+                                {#                                    <a href="{{ button.url }}" class="btn hrefButton" role="button"#}
+                                {#                                       target="_blank"#}
+                                {#                                       rel="nofollow noopener noreferrer">#}
+                                {#                                        <div class="svgObj">#}
+                                {#                                            <object type="image/svg+xml"#}
+                                {#                                                    data="/images/batton/{{ button.icon }}">#}
+                                {#                                                <div class="internalText"></div>#}
+                                {#                                            </object>#}
+                                {#                                        </div>#}
+                                {#                                    </a>#}
+                                {#                                {% endif %}#}
+                                {#                            {% endfor %}#}
+                                {% if is_granted('ROLE_CONTENT_MANAGER') %}
+                                    <a href="{{ path('articles_edit', {'id': article.id}) }}">edit</a>
                                 {% endif %}
-                            </a>
-                            {% if app.request.locale == 'ru' %}
-                                <p>{{ article.textPreview }}</p>
-                            {% else %}
-                                <p>{{ article.textPreviewEn }}</p>
-                            {% endif %}
-                        </div>
-                        {#                        {% for button in buttons %}#}
-                        {#                            {% if button.id == article.id %}#}
-                        {#                                <a href="{{ button.url }}" class="btn hrefButton" role="button"#}
-                        {#                                   target="_blank"#}
-                        {#                                   rel="nofollow noopener noreferrer">#}
-                        {#                                    <div class="svgObj">#}
-                        {#                                        <object type="image/svg+xml"#}
-                        {#                                                data="/images/batton/{{ button.icon }}">#}
-                        {#                                            <div class="internalText"></div>#}
-                        {#                                        </object>#}
-                        {#                                    </div>#}
-                        {#                                </a>#}
-                        {#                            {% endif %}#}
-                        {#                        {% endfor %}#}
-                        {% if is_granted('ROLE_CONTENT_MANAGER') %}
-                            <a href="{{ path('articles_edit', {'id': article.id}) }}">edit</a>
-                        {% endif %}
+                            </div>
+                        {% endfor %}
                     </div>
-                    {#{% if (loop.index ) % 3 == 0 or loop.last %}#}
-                        {#</div>#}
-                    {#{% endif %}#}
                 {% endfor %}
-                </div>
                 {% if is_granted('ROLE_CONTENT_MANAGER') %}
                     <div class="create">
                         <a href="{{ path('articles_new') }}">Create new</a>
@@ -138,7 +145,8 @@
                 {% endif %}
             </div>
         </div>
-
     </div>
+    <div class="socialBlockHeight">
+        {{ indexMacros.downButton() }}
     </div>
 {% endblock %}

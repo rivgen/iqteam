@@ -506,6 +506,10 @@ a p:hover {
   }
 }
 
+.portfolio h2 {
+  margin-bottom: 30px;
+}
+
 .slash.intoPage {
   @include media-breakpoint-down(lg) {
     background-size: calc(100vw / 4);
@@ -710,7 +714,7 @@ a p:hover {
     }
     @include media-breakpoint-up(xl) {
       margin-right: -5.5vw;
-      margin-bottom: 50px;
+      //margin-bottom: 50px;
     }
 
     .projects-home-col {
@@ -1281,20 +1285,37 @@ button:focus {
     }
     @include media-breakpoint-up(md) {
       @include make-col(3);
+      margin-bottom: 0;
     }
   }
   .footerHeader {
-    padding-top: 100px;
+    position: relative;
+    padding-top: 20px;
+    height: 70px;
+    margin-bottom: 35px;
+    @include media-breakpoint-up(md){
+      margin-bottom: 50px;
+    }
+    @include media-breakpoint-up(lg){
+      padding-top: 70px;
+    }
     .head-col {
       @extend %col;
     }
     p {
       margin: 0;
+      position: absolute;
+      top: 50%;
+      transform: translateY(-10%);
     }
   }
   .footerMenu {
     padding-top: 50px;
     .head-col {
+      margin-bottom: 35px;
+      @include media-breakpoint-up(md) {
+        margin-bottom: 0;
+      }
       @extend %col;
     }
     .footerForm {
@@ -1491,23 +1512,7 @@ a.logoSvg:after {
   @include make-col(12);
 }
 
-.titlePortfolio h1 {
-  display: none;
-  @include media-breakpoint-up(xl) {
-    display: block;
-  }
-}
-
-.titlePortfolio2 h1 {
-  display: block;
-  text-align: center;
-  margin: 50px 0;
-  @include media-breakpoint-up(xl) {
-    display: none;
-  }
-}
-
-.titleService h1, .titlePortfolio h1, .titlePortfolio2 h1 {
+.titleService h1, .titlePortfolio h1 {
   font-weight: bold;
   font-size: calc(3rem + 40 * (100vw - 520px) / 880);
   @include media-breakpoint-up(xl) {
@@ -1515,6 +1520,10 @@ a.logoSvg:after {
   }
   line-height: 130%;
   color: #3964F9;
+}
+
+.titlePortfolio h1{
+  margin-top: 30px;
 }
 
 .blockService h2 {
@@ -1837,6 +1846,10 @@ textarea.form-control {
     display: block;
     margin-left: auto;
     margin-right: auto;
+    @media (min-width: 576px) and ( max-width: 890px) {
+      width: 100%;
+      height: 100%;
+    }
     @include media-breakpoint-up(xl) {
       width: 8vw;
       height: 8vw;
@@ -1852,9 +1865,17 @@ textarea.form-control {
     font-size: 24px;
     line-height: 150%;
     color: #323232;
-    margin-bottom: 30px;
+    margin-top: 30px;
+    //margin-bottom: 30px;
     @include media-breakpoint-up(sm){
       margin: 0;
+    }
+    p{
+      margin-top: 100px;
+
+      @include media-breakpoint-up(sm){
+        margin-top: 0;
+      }
     }
   }
   .textPreview {
@@ -1863,6 +1884,13 @@ textarea.form-control {
     letter-spacing: 0.1em;
     text-transform: uppercase;
     color: #323232;
+    margin-top: 30px;
+    @include media-breakpoint-up(sm){
+      margin-top: 60px;
+    }
+    @include media-breakpoint-up(md){
+      margin-top: 0;
+    }
   }
   .headArticle {
     padding-bottom: 50px;
@@ -1918,6 +1946,7 @@ textarea.form-control {
       color: #323232;
       .slash{
         opacity: 0.3;
+        padding: 0 10px;
       }
       #countImg {
         color: #3964F9;
@@ -1925,6 +1954,17 @@ textarea.form-control {
       }
       #lengthImg{
         margin-left: 15px;
+      }
+    }
+    .line-control{
+      border-bottom: 3px solid #000000;
+      position: absolute;
+      width: 50px;
+      top: 50%;
+      left: 140px;
+      display: none;
+      @media (min-width: 360px) {
+        display: block;
       }
     }
   }
@@ -2359,10 +2399,12 @@ textarea.form-control {
 }
 
 .logoHad {
-  left: 50%;
-  transform: translateX(-50%);
   max-width: 178px;
   max-height: 52px;
+  @include media-breakpoint-up(md){
+    left: 50%;
+    transform: translateX(-50%);
+  }
   @media (min-width: 1200px) {
     left: 0;
     transform: translateX(0);
@@ -2577,7 +2619,11 @@ textarea.form-control {
 
     .contactForm-col {
       --font-size: 12px;
-      @extend %content-main-col-6;
+      @include make-col-ready();
+      @include make-col(12);
+      @include media-breakpoint-up(md){
+        @include make-col(6);
+      }
 
       .text {
         font-weight: bold;
@@ -2843,11 +2889,11 @@ figure {
   @include media-breakpoint-up(sm) {
     width: 29vw;
     height: calc(29vw + 180px);
-    margin-right: 20px;
+    margin-right: 12px;
   }
   @include media-breakpoint-up(md) {
     width: 30vw;
-    margin-right: 2.9vw;
+    margin-right: 1.9vw;
   }
 
   @media (min-width: 1200px) {
@@ -3027,7 +3073,7 @@ figure {
 }
 
 .btnIcon {
-  --shadow: 0px 10px 20px rgba(57, 100, 249, 0.3);
+  --shadow: 0px 10px 20px rgba(57, 100, 249, 0.1);
   --shadow-hover: 0px 12px 20px rgba(57, 100, 249, 0.4);
   --move-hover: -4px;
   --duration: .44s;
@@ -3035,26 +3081,15 @@ figure {
     --y: var(--move-hover);
     --shadow: var(--shadow-hover);
   }
-  width: 100%;
-  height: 50px;
-  background: #3964F9;
+  width: 44px;
+  height: 44px;
+  background: #FFFFFF;
   border-radius: 5px;
-  color: #FFFFFF;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  font-size: 12px;
-  line-height: 150%;
-  padding: 0.8rem;
-  margin-bottom: 20px;
   border: none;
   transform: translateY(var(--y));
   transition: transform var(--duration) ease, box-shadow var(--duration) ease;
   box-shadow: var(--shadow);
   .svgObj {
-    filter: brightness(0) invert(1);
-    display: flex;
-    justify-content: center;
-    align-items: center;
     .title {
       margin-left: 20px;
       color: #FFFFFF;
@@ -3079,5 +3114,18 @@ figure {
   margin: 0;
   @include media-breakpoint-up(xl){
     display: none;
+  }
+}
+
+.btnBlock{
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  @include media-breakpoint-up(sm){
+    top: inherit;
+    bottom: 0;
+    left: inherit;
+    transform: translateY(-1px);
   }
 }

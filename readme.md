@@ -38,3 +38,7 @@ php bin/console liip:imagine:cache:remove
 
 //создание кеша картинок 
 php bin/console liip:imagine:cache:resolve <PATH-OF-IMAGES>
+
+---- все доступные пути шаблонов
+php bin/console debug:twig
+php bin/console debug:router
