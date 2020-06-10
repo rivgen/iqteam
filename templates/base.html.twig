@@ -117,7 +117,7 @@
                 </div>
             </div>
             <div class="homeLocale">
-                {% if app.request.get('_route') not in ['articles_edit', 'service_edit', 'index_edit'] %}
+                {% if app.request.get('_route') not in ['articles_edit', 'service_edit', 'index_edit', 'meta_tags_edit'] %}
                 <div class="homeLocale-row align-items-center justify-content-end">
                     {#<div class="homeLocale-row align-items-center">#}
                     {% for locale in locales() %}
@@ -131,17 +131,17 @@
                     {% else %}
                     {% if (app.request.get('_route') == 'index_index') %}
                     <a href="/{{ locale.code }}">
-                        {% if article is defined %}
+                        {% elseif article is defined %}
                         {% set id = article.alias?article.alias:article.id %}
                         <a href="{{ path(app.request.get('_route'), {'_locale': locale.code, 'id': id}) }}">
                             {% else %}
-                            <a href="{{ path(app.request.get('_route'), {'_locale': locale.code, 'id': id}) }}">
+                            <a href="{{ path(app.request.get('_route'), {'_locale': locale.code}) }}">
                                 {% endif %}
                                 <p>{{ locale.code[0:2] }}</p>
                             </a>
                             {% endif %}
                 </div>
-                {% endif %}
+                {#{% endif %}#}
                 {% endfor %}
                 <div class="homeButton" style="display: none">
                     {{ indexMacros.printFeedback('btn hoverEffects') }}
