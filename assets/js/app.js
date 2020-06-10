@@ -22,7 +22,7 @@ import './internalText'
 import './dropMenu'
 // import './modalForAdmin'
 import './scriptCadEffect.js'
-import './viewAll'
+// import './viewAll'
 
 $(window).on('beforeunload', function () {
     window.scrollTo(0, 0);

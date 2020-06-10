@@ -131,17 +131,17 @@
                     {% else %}
                     {% if (app.request.get('_route') == 'index_index') %}
                     <a href="/{{ locale.code }}">
-                        {% elseif article is defined %}
+                        {% if article is defined %}
                         {% set id = article.alias?article.alias:article.id %}
                         <a href="{{ path(app.request.get('_route'), {'_locale': locale.code, 'id': id}) }}">
                             {% else %}
-                            <a href="{{ path(app.request.get('_route'), {'_locale': locale.code}) }}">
+                            <a href="{{ path(app.request.get('_route'), {'_locale': locale.code, 'id': id}) }}">
                                 {% endif %}
                                 <p>{{ locale.code[0:2] }}</p>
                             </a>
                             {% endif %}
                 </div>
-                {#{% endif %}#}
+                {% endif %}
                 {% endfor %}
                 <div class="homeButton" style="display: none">
                     {{ indexMacros.printFeedback('btn hoverEffects') }}
@@ -162,12 +162,12 @@
             <div class="footer-row justify-content-center">
                 <div class="footer-col">
                     {#<div class="footer-row footerHeader">#}
-                        {#<div class="head-col">#}
-                            {#{{ mainManuMacros.printLogo() }}#}
-                        {#</div>#}
-                        {#<div class="head-col align-self-center"><p>Меню</p></div>#}
-                        {#<div class="head-col align-self-center"><p>связь</p></div>#}
-                        {#<div class="head-col align-self-center"><p>Подписка на новости</p></div>#}
+                    {#<div class="head-col">#}
+                    {#{{ mainManuMacros.printLogo() }}#}
+                    {#</div>#}
+                    {#<div class="head-col align-self-center"><p>Меню</p></div>#}
+                    {#<div class="head-col align-self-center"><p>связь</p></div>#}
+                    {#<div class="head-col align-self-center"><p>Подписка на новости</p></div>#}
                     {#</div>#}
                     <div class="footer-row footerMenu">
                         <div class="head-col">
@@ -298,20 +298,24 @@
         {#dropdown-menu#}
         <div class="baseMenu animated">
             <div class="dropdown-overflow">
-                <div class="mainMenu">
+                <div class="mainMenu logo">
                     {{ mainManuMacros.printLogo() }}
                 </div>
-                <div class="mainMenu">
-                    <a href="/"><p>Главная</p></a>
+                <div class="mainMenu menu">
+                    {% if ( app.request.get('_route') == 'index_index' ) %}
+                        <p class="activeMenu">Главная</p>
+                    {% else %}
+                        <p><a href="/">Главная</a></p>
+                    {% endif %}
                     {{ mainManuMacros.printMainMenu() }}
                 </div>
                 <div class="mainMenu">
-                    <a href="/documents/Terms-of-Service-Agreement-IQDev-rus.pdf" target="_blank" rel="noreferrer"><p>
-                            условия соглашения</p></a>
-                    <a href="/documents/Privacy-Policy-IQDev-rus.pdf" target="_blank" rel="noreferrer"><p
-                                class="rightClass">политика конфиденциальности</p></a>
+                    <a href="/documents/{{ privacy }}" target="_blank" rel="noreferrer"><p>{% trans %}
+                            privacyPolicy{% endtrans %}</p></a>
+                    <a href="/documents/{{ terms }}" target="_blank" rel="noreferrer"><p
+                                class="rightClass">условия соглашения</p></a>
                 </div>
-                <div class="mainMenu">
+                <div class="mainMenu contact">
                     <p>Минск, Республика Беларусь, пр. Партизанский 4</p>
                     <p>220036</p>
                     <p><a href="mailto:{{ mailGlobal }}">{{ mailGlobal }}</a></p>
@@ -322,7 +326,7 @@
                         {{ indexMacros.printSocialBlock() }}
                     </div>
                 </div>
-                <div class="mainMenu endMenu">
+                <div class="endMenu">
                     {#                    {{ indexMacros.printFooterMenu() }}#}
                 </div>
                 <div class="dropButton">

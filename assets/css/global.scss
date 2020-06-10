@@ -271,7 +271,7 @@ a p:hover {
   }
 }
 
-.letter-I .btnBlue, .letter-V .btnBlue, .allProjects .btnBlue {
+.letter-I .btnBlue, .letter-V .btnBlue {
   width: 100%;
   height: 50px;
   background: #3964F9;
@@ -429,7 +429,7 @@ a p:hover {
   }
   .imgQ {
     margin-top: 60px;
-    img{
+    img {
       width: 100%;
       padding: 0 15px;
     }
@@ -500,9 +500,9 @@ a p:hover {
 .letter-Q h2, .slash h2, .letter-D h2, .letter-E h2, .letter-V h2, .letter-V .mapContact, .portfolio h2 {
   //margin-top: 60px;
   padding-bottom: 20px;
-  font-size: calc(3rem + 15 * (100vw - 620px) / 880);
-  @include media-breakpoint-up(lg) {
-    font-size: 64px;
+  font-size: 32px;
+  @include media-breakpoint-up(md) {
+    font-size: 48px;
   }
 }
 
@@ -517,7 +517,7 @@ a p:hover {
   background-position: 50% 60%;
   padding-top: 115px;
   padding-bottom: 35px;
-  @include media-breakpoint-up(xl){
+  @include media-breakpoint-up(xl) {
     padding-top: 40px;
   }
 
@@ -695,6 +695,10 @@ a p:hover {
 }
 
 .portfolio {
+  padding-top: 115px;
+  @media (min-width: 1200px) {
+    padding-top: 0;
+  }
   @include make-container();
   padding-right: 30px;
   padding-left: 30px;
@@ -707,15 +711,6 @@ a p:hover {
   //}
   .projects {
     @include make-row();
-    margin: 0;
-    @include media-breakpoint-up(sm) {
-      margin-left: 0;
-      margin-right: -4vw;
-    }
-    @include media-breakpoint-up(xl) {
-      margin-right: -5.5vw;
-      //margin-bottom: 50px;
-    }
 
     .projects-home-col {
       @include make-col-ready();
@@ -811,11 +806,32 @@ a p:hover {
     }
   }
   .allProjects {
-    //@media (min-width: 1200px) {
     margin-bottom: 0;
     //}
     .btnBlue {
-      width: 363px;
+      height: 50px;
+      background: #3964F9;
+      border-radius: 5px;
+      color: #FFFFFF;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      font-size: 12px;
+      line-height: 150%;
+      padding: 0.8rem;
+      margin-top: 20px;
+      width: 91vw;
+      @include media-breakpoint-up(sm) {
+        width: 95vw;
+      }
+      @include media-breakpoint-up(md) {
+        width: 30vw;
+      }
+      @media (min-width: 1200px) {
+        width: 20vw;
+      }
+      @media (min-width: 1800px) {
+        width: 365px;
+      }
     }
   }
   .blockImg {
@@ -844,7 +860,6 @@ a p:hover {
     }
     p {
       font-size: 12px;
-      //line-height: 200%;
       letter-spacing: 0.1em;
       text-transform: uppercase;
       overflow: hidden;
@@ -861,12 +876,26 @@ a p:hover {
       display: flex;
       align-items: center;
       color: #323232;
-      padding-bottom: 5px;
     }
   }
 
   .footerClass {
     margin-top: 50px;
+  }
+  .navigationPortfolio {
+    margin-bottom: 25px;
+  }
+
+  .category {
+    position: relative;
+    .menuHeight {
+      display: none;
+      @media (min-width: 1200px) {
+        display: block;
+        position: absolute;
+        top: -120px;
+      }
+    }
   }
 }
 
@@ -882,15 +911,6 @@ a p:hover {
 
   @include media-breakpoint-down(xs) {
     padding: 50px 0 30px;
-  }
-}
-
-.portfolio .projects img {
-  //@include media-breakpoint-down(xs) {
-  //  position: relative;
-  //}
-  @include media-breakpoint-up(sm) {
-    //margin: 25px 0;
   }
 }
 
@@ -1293,11 +1313,11 @@ button:focus {
     padding-top: 20px;
     height: 70px;
     margin-bottom: 35px;
-    @include media-breakpoint-up(md){
+    @include media-breakpoint-up(md) {
       margin-bottom: 50px;
     }
-    @include media-breakpoint-up(lg){
-      padding-top: 70px;
+    @include media-breakpoint-up(lg) {
+      margin-top: 70px;
     }
     .head-col {
       @extend %col;
@@ -1426,7 +1446,7 @@ button:focus {
   }
   @media (min-width: 1800px) {
     position: absolute;
-    left: 50px;
+    left: 2%;
     top: 50px;
   }
 }
@@ -1516,13 +1536,13 @@ a.logoSvg:after {
   font-weight: bold;
   font-size: calc(3rem + 40 * (100vw - 520px) / 880);
   @include media-breakpoint-up(xl) {
-    font-size: 96px;
+    font-size: 64px;
   }
   line-height: 130%;
   color: #3964F9;
 }
 
-.titlePortfolio h1{
+.titlePortfolio h1 {
   margin-top: 30px;
 }
 
@@ -1846,7 +1866,7 @@ textarea.form-control {
     display: block;
     margin-left: auto;
     margin-right: auto;
-    @media (min-width: 576px) and ( max-width: 890px) {
+    @media (min-width: 576px) and (max-width: 890px) {
       width: 100%;
       height: 100%;
     }
@@ -1867,13 +1887,13 @@ textarea.form-control {
     color: #323232;
     margin-top: 30px;
     //margin-bottom: 30px;
-    @include media-breakpoint-up(sm){
+    @include media-breakpoint-up(sm) {
       margin: 0;
     }
-    p{
+    p {
       margin-top: 100px;
 
-      @include media-breakpoint-up(sm){
+      @include media-breakpoint-up(sm) {
         margin-top: 0;
       }
     }
@@ -1885,10 +1905,10 @@ textarea.form-control {
     text-transform: uppercase;
     color: #323232;
     margin-top: 30px;
-    @include media-breakpoint-up(sm){
+    @include media-breakpoint-up(sm) {
       margin-top: 60px;
     }
-    @include media-breakpoint-up(md){
+    @include media-breakpoint-up(md) {
       margin-top: 0;
     }
   }
@@ -1944,7 +1964,7 @@ textarea.form-control {
       font-size: 18px;
       line-height: 150%;
       color: #323232;
-      .slash{
+      .slash {
         opacity: 0.3;
         padding: 0 10px;
       }
@@ -1952,11 +1972,11 @@ textarea.form-control {
         color: #3964F9;
         margin-right: 15px;
       }
-      #lengthImg{
+      #lengthImg {
         margin-left: 15px;
       }
     }
-    .line-control{
+    .line-control {
       border-bottom: 3px solid #000000;
       position: absolute;
       width: 50px;
@@ -1969,7 +1989,7 @@ textarea.form-control {
     }
   }
   .descArticle {
-      padding-top: 110px;
+    padding-top: 110px;
     .param {
       font-size: 12px;
       line-height: 200%;
@@ -2013,9 +2033,9 @@ textarea.form-control {
       }
     }
   }
-  .marginNone{
+  .marginNone {
     padding-top: 0;
-    @include media-breakpoint-up(xl){
+    @include media-breakpoint-up(xl) {
       padding-top: 110px;
     }
   }
@@ -2035,7 +2055,7 @@ textarea.form-control {
       opacity: .2;
     }
   }
-  .technology{
+  .technology {
     margin-bottom: 15px;
   }
 }
@@ -2074,7 +2094,7 @@ textarea.form-control {
       top: 50%;
       left: 50px;
       display: none;
-      @include media-breakpoint-up(sm){
+      @include media-breakpoint-up(sm) {
         display: block;
       }
     }
@@ -2084,7 +2104,7 @@ textarea.form-control {
       top: 50%;
       right: 50px;
       display: none;
-      @include media-breakpoint-up(sm){
+      @include media-breakpoint-up(sm) {
         display: block;
       }
     }
@@ -2321,7 +2341,7 @@ textarea.form-control {
   .locale {
     //@extend %content-main-col-2;
 
-    @media (max-width: 575px){
+    @media (max-width: 575px) {
       position: absolute;
       right: 0;
       top: 50%;
@@ -2343,7 +2363,7 @@ textarea.form-control {
         bottom: -15px;
       }
     }
-    @include media-breakpoint-up(sm){
+    @include media-breakpoint-up(sm) {
       display: block;
     }
   }
@@ -2351,7 +2371,7 @@ textarea.form-control {
   position: absolute;
   right: 30px;
   padding: 0;
-  @include media-breakpoint-up(xl){
+  @include media-breakpoint-up(xl) {
     right: 45px;
   }
   //}
@@ -2401,10 +2421,8 @@ textarea.form-control {
 .logoHad {
   max-width: 178px;
   max-height: 52px;
-  @include media-breakpoint-up(md){
-    left: 50%;
-    transform: translateX(-50%);
-  }
+  left: 50%;
+  transform: translateX(-50%);
   @media (min-width: 1200px) {
     left: 0;
     transform: translateX(0);
@@ -2445,32 +2463,42 @@ textarea.form-control {
     height: 100%;
   }
 
-  .mainMenuLogo {
-
-  }
-
   .mainMenu {
+    position: relative;
+    padding-bottom: 1px;
     .mainMenuSocial {
       margin: 30px;
       display: flow-root;
     }
 
-    &.endMenu {
-      margin-bottom: 55px;
-    }
-
-    &:after {
+    &:not(:last-child):after {
       content: '';
       display: block;
       border: 1px solid #323232;
       opacity: 0.05;
       width: 77%;
       margin: 0 30px;
+      position: absolute;
+      bottom: 0;
 
     }
 
     p {
       margin: 30px;
+      font-weight: bold;
+      font-size: 12px;
+      line-height: 150%;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      color: #323232;
+      a {
+        font-weight: bold;
+        font-size: 12px;
+        line-height: 150%;
+        letter-spacing: 0.05em;
+        text-transform: uppercase;
+        color: #323232;
+      }
     }
 
     .logoSvg {
@@ -2481,8 +2509,47 @@ textarea.form-control {
     }
 
     .activeMenu {
+      font-weight: bold;
+      font-size: 12px;
+      line-height: 150%;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
       color: #3964F9;
       position: relative;
+      &:before {
+        content: '';
+        height: 100%;
+        border-left: 2px solid #3964F9;
+        position: absolute;
+        left: -30px;
+      }
+    }
+  }
+  .endMenu {
+    height: 40px;
+  }
+  .logo {
+    height: 100px;
+    position: relative;
+    .logoHad {
+      position: absolute;
+      top: 50%;
+      left: 0;
+      transform: translate(30px, -50%);
+    }
+  }
+  .contact {
+    p {
+      font-weight: normal;
+      font-size: 12px;
+      line-height: 150%;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: #323232;
+      opacity: 0.5;
+      a {
+        font-weight: normal;
+      }
     }
   }
 }
@@ -2621,7 +2688,7 @@ textarea.form-control {
       --font-size: 12px;
       @include make-col-ready();
       @include make-col(12);
-      @include media-breakpoint-up(md){
+      @include media-breakpoint-up(md) {
         @include make-col(6);
       }
 
@@ -2735,6 +2802,7 @@ textarea.form-control {
   z-index: 10;
   left: 0;
   top: 0;
+  background-color: rgba(0, 0, 0, 0.5);
 }
 
 .fixedClass {
@@ -2879,7 +2947,7 @@ figure {
   padding: 0;
   filter: grayscale(100%);
 
-  &:hover{
+  &:hover {
     filter: grayscale(0);
     transition: 0.4s;
     //img {
@@ -2887,26 +2955,59 @@ figure {
     //}
   }
   @include media-breakpoint-up(sm) {
-    width: 29vw;
-    height: calc(29vw + 180px);
-    margin-right: 12px;
+    width: 45vw;
+    height: calc(29vw + 285px);
+    &:nth-child(odd) {
+      margin-right: 4.75vw;
+    }
+    margin-bottom: 20px;
   }
   @include media-breakpoint-up(md) {
     width: 30vw;
-    margin-right: 1.9vw;
+    height: calc(29vw + 180px);
+    &:nth-child(odd) {
+      margin-right: 3vw;
+    }
+    &:nth-child(3n) {
+      margin-right: 0;
+    }
+    margin-right: 3vw;
+  }
+  @include media-breakpoint-up(lg) {
+    &:nth-child(odd) {
+      margin-right: 3.5vw;
+    }
+    &:nth-child(3n) {
+      margin-right: 0;
+    }
+    margin-right: 3.5vw;
   }
 
   @media (min-width: 1200px) {
     width: 20vw;
-    height: calc(29vw + 80px);
-
+    margin-right: 2.5vw;
+    height: calc(29vw + 50px);
+    margin-bottom: 30px;
+    &:nth-child(odd) {
+      margin-right: 2.5vw;
+    }
+    &:nth-child(3n) {
+      margin-right: 0;
+    }
   }
   @media (min-width: 1800px) {
     width: 365px;
-    margin-right: 43px;
+    margin-right: 37px;
+    margin-bottom: 20px;
     height: 545px;
+    &:nth-child(odd) {
+      margin-right: 37px;
+    }
+    &:nth-child(3n) {
+      margin-right: 0;
+    }
   }
-  .aImg{
+  .aImg {
     border-radius: 20px;
     margin-bottom: 20px;
   }
@@ -3099,30 +3200,32 @@ figure {
   }
 }
 
-.marginBottom25{
+.marginBottom25 {
   margin-bottom: 25px;
 }
-.articleBut{
+
+.articleBut {
   display: none;
-  @include media-breakpoint-up(xl){
+  @include media-breakpoint-up(xl) {
     display: block;
   }
 }
+
 .articleButFooter {
   display: block;
   border-radius: 0;
   margin: 0;
-  @include media-breakpoint-up(xl){
+  @include media-breakpoint-up(xl) {
     display: none;
   }
 }
 
-.btnBlock{
+.btnBlock {
   position: absolute;
   top: 0;
   left: 50%;
   transform: translateX(-50%);
-  @include media-breakpoint-up(sm){
+  @include media-breakpoint-up(sm) {
     top: inherit;
     bottom: 0;
     left: inherit;

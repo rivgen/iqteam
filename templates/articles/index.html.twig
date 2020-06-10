@@ -89,53 +89,68 @@
     <div class="portfolio">
         <div class="letter-E-row justify-content-center">
             <div class="letter-E-col">
+                <div class="slash-row">
+                    <div class="text-center titlePortfolio">
+                        <div class="navigationPortfolio">
+                            <a href="{{ path('index_index') }}">{% trans %}article.home{% endtrans %}</a>
+                            <span>/</span>
+                            <span class="articleTitle">
+                            {% trans %}article.portfolio{% endtrans %}
+                            </span>
+                        </div>
+                    </div>
+                </div>
                 {% for category in categories %}
-                    <h2 id={{ category.anchor }}>{{ category.title }}</h2>
-                    <div class="projects items">
-                        {% for article in articles if article.category == category.id %}
-                            {% set id = article.alias?article.alias:article.id %}
-                            <div class="filter {{ article.category }} wow fadeInUp item">
-                                {#<div class="squareImg ">#}
-                                {#<div class="item">#}
-                                {#<div class="img target" style="background-image: url('{{ uploaded_asset(article.id, article.icon) }}');"></div>#}
-                                <a href={{ path('articles_show', {'id': id}) }} class="aImg">
-                                    <img src={{ uploaded_asset(article.id, article.icon) }} alt=""
-                                         class="embed-responsive target"/>
-                                </a>
-                                {#</div>#}
-                                <div class="blockText align-self-center">
-                                    <a href={{ path('articles_show', {'id': id}) }}>
-                                        {% if app.request.locale == 'ru' %}
-                                            <h3>{{ article.title }}</h3>
-                                        {% else %}
-                                            <h3>{{ article.titleEn }}</h3>
-                                        {% endif %}
+                    <div class="category">
+                        {% if not loop.first %}
+                        <div class="menuHeight" id={{ category.anchor }}></div>{% endif %}
+                        <h2 {% if loop.first %}id={{ category.anchor }}{% endif %}>{{ category.title }}</h2>
+                        <div class="projects items">
+                            {% for article in articles if article.category == category.id %}
+                                {% set id = article.alias?article.alias:article.id %}
+                                <div class="filter {{ article.category }} wow fadeInUp item">
+                                    {#<div class="squareImg ">#}
+                                    {#<div class="item">#}
+                                    {#<div class="img target" style="background-image: url('{{ uploaded_asset(article.id, article.icon) }}');"></div>#}
+                                    <a href={{ path('articles_show', {'id': id}) }} class="aImg">
+                                        <img src={{ uploaded_asset(article.id, article.icon) }} alt=""
+                                             class="embed-responsive target"/>
                                     </a>
-                                    {% if app.request.locale == 'ru' %}
-                                        <p>{{ article.textPreview }}</p>
-                                    {% else %}
-                                        <p>{{ article.textPreviewEn }}</p>
+                                    {#</div>#}
+                                    <div class="blockText align-self-center">
+                                        <a href={{ path('articles_show', {'id': id}) }}>
+                                            {% if app.request.locale == 'ru' %}
+                                                <h3>{{ article.title }}</h3>
+                                            {% else %}
+                                                <h3>{{ article.titleEn }}</h3>
+                                            {% endif %}
+                                        </a>
+                                        {% if app.request.locale == 'ru' %}
+                                            <p>{{ article.textPreview }}</p>
+                                        {% else %}
+                                            <p>{{ article.textPreviewEn }}</p>
+                                        {% endif %}
+                                    </div>
+                                    {#                            {% for button in buttons %}#}
+                                    {#                                {% if button.id == article.id %}#}
+                                    {#                                    <a href="{{ button.url }}" class="btn hrefButton" role="button"#}
+                                    {#                                       target="_blank"#}
+                                    {#                                       rel="nofollow noopener noreferrer">#}
+                                    {#                                        <div class="svgObj">#}
+                                    {#                                            <object type="image/svg+xml"#}
+                                    {#                                                    data="/images/batton/{{ button.icon }}">#}
+                                    {#                                                <div class="internalText"></div>#}
+                                    {#                                            </object>#}
+                                    {#                                        </div>#}
+                                    {#                                    </a>#}
+                                    {#                                {% endif %}#}
+                                    {#                            {% endfor %}#}
+                                    {% if is_granted('ROLE_CONTENT_MANAGER') %}
+                                        <a href="{{ path('articles_edit', {'id': article.id}) }}">edit</a>
                                     {% endif %}
                                 </div>
-                                {#                            {% for button in buttons %}#}
-                                {#                                {% if button.id == article.id %}#}
-                                {#                                    <a href="{{ button.url }}" class="btn hrefButton" role="button"#}
-                                {#                                       target="_blank"#}
-                                {#                                       rel="nofollow noopener noreferrer">#}
-                                {#                                        <div class="svgObj">#}
-                                {#                                            <object type="image/svg+xml"#}
-                                {#                                                    data="/images/batton/{{ button.icon }}">#}
-                                {#                                                <div class="internalText"></div>#}
-                                {#                                            </object>#}
-                                {#                                        </div>#}
-                                {#                                    </a>#}
-                                {#                                {% endif %}#}
-                                {#                            {% endfor %}#}
-                                {% if is_granted('ROLE_CONTENT_MANAGER') %}
-                                    <a href="{{ path('articles_edit', {'id': article.id}) }}">edit</a>
-                                {% endif %}
-                            </div>
-                        {% endfor %}
+                            {% endfor %}
+                        </div>
                     </div>
                 {% endfor %}
                 {% if is_granted('ROLE_CONTENT_MANAGER') %}
