@@ -1,5 +1,46 @@
 article:
     home: 'Home'
     portfolio: 'Portfolio'
+    services: 'Services'
 
 privacyPolicy: 'Privacy Policy'
+terms: 'Terms of agreement'
+
+adress: 'Minsk, Republic of Belarus, Partizansky Ave. 4'
+
+headMenu:
+    services: 'Services'
+    portfolio: 'Portfolio'
+    contacts: 'Contacts'
+
+leftMenu:
+    mainScreen: 'Main screen'
+    aboutUs: 'About us'
+    expertise: 'Expertise'
+    technologies: 'Technologies'
+    projects: 'Projects'
+    home: 'Home'
+
+footerMenu:
+    menu: 'Menu'
+    communication: 'communication'
+    newsletter: 'Newsletter subscription'
+    news: 'Only the latest news<br> and no spam'
+    iqclash: 'IQclash'
+
+btn:
+    contact: 'Contact'
+    all: 'view_all_projects'
+
+contactForm:
+    write: 'Write to us'
+    name: 'Name'
+    message: 'Message'
+    attach: '+ Attach file'
+    send: 'Send_request'
+    constraints:
+        message:
+            validEmail: 'Please provide a valid email address'
+            validEmail2: 'Your email address is not valid'
+            enterName: 'Please enter your name'
+            leaveMessage: 'Please leave a message here'

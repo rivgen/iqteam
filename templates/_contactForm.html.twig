@@ -1,0 +1,38 @@
+{% if formContact is defined %}
+    {{ form_start(formContact) }}
+    <div class="modal-body">
+        <h5 class="modal-col-12 modal-title" id="exampleModalLabel">{% trans %}contactForm.write{% endtrans %}</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+        <div class="modal-col-6 form-group">
+            {#{{ form_label(formContact.name) }}#}
+            {{ form_widget(formContact.name) }}
+            {{ form_errors(formContact.name) }}
+        </div>
+        <div class="modal-col-6 form-group">
+            {#{{ form_label(formContact.email) }}#}
+            {{ form_widget(formContact.email) }}
+            {{ form_errors(formContact.email) }}
+        </div>
+        <div class="modal-col-12 form-group">
+            {#{{ form_label(formContact.message) }}#}
+            {{ form_widget(formContact.message) }}
+            {{ form_errors(formContact.message) }}
+        </div>
+        <div style="display:none">
+            {{ form_rest(formContact) }}
+        </div>
+        {#<input type="submit" value="Submit">#}
+        <div class="modal-col-12">
+            <div class="button">
+                {{ form_label(formContact.file) }}
+                <div>{{ form_errors(formContact.file) }}</div>
+            </div>
+            <button class="btn buttonProject hoverEffects" role="button">
+                {% trans %}contactForm.send{% endtrans %}
+            </button>
+        </div>
+    </div>
+    {{ form_end(formContact) }}
+{% endif %}

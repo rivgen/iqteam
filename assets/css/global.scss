@@ -1406,7 +1406,7 @@ button:focus {
   }
 
   .homeClass-row {
-    min-height: 73px;
+    min-height: 60px;
     //@media (max-width: 575px) {
     //  min-height: 73px;
     //}
@@ -1415,7 +1415,7 @@ button:focus {
   }
 
   box-shadow: 0px 10px 20px rgba(57, 100, 249, 0.1);
-  margin-bottom: 47px;
+  //margin-bottom: 47px;
   @include media-breakpoint-down(lg) {
     position: fixed;
     z-index: 10;
@@ -1606,7 +1606,7 @@ a.logoSvg:after {
   font-size: 72px;
   line-height: 130%;
   color: #E6ECF9;
-  display: flex;
+  display: none;
   align-items: center;
 
   &:before {
@@ -1622,8 +1622,8 @@ a.logoSvg:after {
     }
   }
 
-  @media screen and (max-width: 767px) {
-    display: none;
+  @include media-breakpoint-up(lg){
+    display: flex;
   }
 }
 
@@ -1882,13 +1882,16 @@ textarea.form-control {
   }
   .fullTitle {
     font-weight: bold;
-    font-size: 24px;
+    font-size: 17px;
     line-height: 150%;
     color: #323232;
     margin-top: 30px;
     //margin-bottom: 30px;
     @include media-breakpoint-up(sm) {
       margin: 0;
+    }
+    @media (min-width: 1800px) {
+      font-size: 24px;
     }
     p {
       margin-top: 100px;
@@ -1991,30 +1994,29 @@ textarea.form-control {
   .descArticle {
     padding-top: 110px;
     .param {
-      font-size: 12px;
-      line-height: 200%;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      color: #323232;
-      padding-top: 0;
-    }
-    .paramText {
       font-weight: bold;
       font-size: 18px;
       line-height: 150%;
       color: #323232;
-      padding-right: 50px;
+    }
+    .paramText {
+      font-size: 12px;
+      line-height: 200%;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: #323232
     }
     ol {
       counter-reset: myCounter;
       list-style-position: outside;
     }
     li {
+      font-size: 12px;
+      line-height: 200%;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
       list-style: none;
       padding-bottom: 30px;
-      font-weight: bold;
-      font-size: 18px;
-      line-height: 150%;
       color: #323232;
       &:before {
         counter-increment: myCounter;
@@ -2409,7 +2411,8 @@ textarea.form-control {
       a {
         color: #323232;
         font-weight: bold;
-
+        padding-bottom: 30px;
+        padding-top: 30px;
         &:hover {
           color: #3964f9;
         }
@@ -2420,12 +2423,16 @@ textarea.form-control {
 
 .logoHad {
   max-width: 178px;
-  max-height: 52px;
+  max-height: 40px;
   left: 50%;
   transform: translateX(-50%);
   @media (min-width: 1200px) {
     left: 0;
     transform: translateX(0);
+    max-height: 52px;
+  }
+  object{
+    width: 100%;
   }
 }
 
@@ -2866,7 +2873,7 @@ textarea.form-control {
 
 .button label {
   width: 100%;
-  height: 50px;
+  height: 49px;
   border: 1px dashed #323232;
   box-sizing: border-box;
   border-radius: 5px;
@@ -2877,6 +2884,10 @@ textarea.form-control {
   color: #323232;
   line-height: 84%;
   font-size: 12px;
+  &:hover {
+    border-color: #3964F9;
+    color: #3964F9;
+  }
 }
 
 #exampleModal {
@@ -2958,7 +2969,7 @@ figure {
     width: 45vw;
     height: calc(29vw + 285px);
     &:nth-child(odd) {
-      margin-right: 4.75vw;
+      margin-right: 4.3vw;
     }
     margin-bottom: 20px;
   }
@@ -2966,12 +2977,12 @@ figure {
     width: 30vw;
     height: calc(29vw + 180px);
     &:nth-child(odd) {
-      margin-right: 3vw;
+      margin-right: 2.4vw;
     }
     &:nth-child(3n) {
       margin-right: 0;
     }
-    margin-right: 3vw;
+    margin-right: 2.4vw;
   }
   @include media-breakpoint-up(lg) {
     &:nth-child(odd) {
@@ -2985,11 +2996,11 @@ figure {
 
   @media (min-width: 1200px) {
     width: 20vw;
-    margin-right: 2.5vw;
+    margin-right: 2.1vw;
     height: calc(29vw + 50px);
     margin-bottom: 30px;
     &:nth-child(odd) {
-      margin-right: 2.5vw;
+      margin-right: 2.1vw;
     }
     &:nth-child(3n) {
       margin-right: 0;
@@ -3231,4 +3242,11 @@ figure {
     left: inherit;
     transform: translateY(-1px);
   }
+}
+
+.modal-dialog{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) !important;
 }

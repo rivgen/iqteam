@@ -272,7 +272,7 @@
             <div class="article-col">
                 <div class="article-row">
                     <div class="col-sm-6 col-md-3 technology">
-                        <p class="param">технологии</p>
+                        <p class="param">Технологии</p>
                         {% if app.request.get('_route') in ['articles_edit', 'articles_new'] %}
                             {{ form_widget(form.technology) }}
                             {{ form_errors(form.technology) }}
@@ -290,7 +290,7 @@
                         {% endif %}
                     </div>
                     <div class="col-sm-6 col-md-3 technology">
-                        <p class="param">клиент</p>
+                        <p class="param">Клиент</p>
                         {% if app.request.get('_route') in ['articles_edit', 'articles_new'] %}
                             {{ form_widget(form.client) }}
                             {{ form_errors(form.client) }}
@@ -308,7 +308,7 @@
                         {% endif %}
                     </div>
                     <div class="col-md-3 technology">
-                        <p class="param">год</p>
+                        <p class="param">Год</p>
                         {% if app.request.get('_route') in ['articles_edit', 'articles_new'] %}
                             <p class="paramText"> {{ form_widget(form.year) }}</p>
                             {{ form_errors(form.year) }}

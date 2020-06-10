@@ -1,6 +1,7 @@
 {% extends 'base.html.twig' %}
 {% block title %}{{ metaTags.title }}{% endblock %}
 {% block description %}{{ metaTags.description }}{% endblock %}
+{% import 'index/index.html.twig' as indexMacros %}
 {% block body %}
     <div class="titlePorfolio">
         <div class="slash-row">
@@ -13,6 +14,17 @@
         </div>
     </div>
     <div class="service">
+        <div class="slash-row">
+            <div class="text-center titlePortfolio">
+                <div class="navigationPortfolio">
+                    <a href="{{ path('index_index') }}">{% trans %}article.home{% endtrans %}</a>
+                    <span>/</span>
+                    <span class="articleTitle">
+                            {% trans %}article.services{% endtrans %}
+                            </span>
+                </div>
+            </div>
+        </div>
         {% for service in servisBlocks %}
             <div class="service-row justify-content-center align-items-center blockService">
                 <div class="service-col">
@@ -59,5 +71,8 @@
                 </div>
             </div>
         {% endfor %}
+    </div>
+    <div class="socialBlockHeight">
+        {{ indexMacros.downButton() }}
     </div>
 {% endblock %}

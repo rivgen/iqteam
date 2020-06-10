@@ -21,11 +21,11 @@ class ContactType extends AbstractType
         $builder
             ->add('name', TextType::class, [
                     'attr' => [
-                        'placeholder' => 'Имя',
+                        'placeholder' => 'contactForm.name',
                         'class' => 'form-control'],
-                    'label' => 'Ваше имя',
+                    'label' => 'contactForm.name',
                     'constraints' => [
-                        new NotBlank(["message" => "Пожалуйста, укажите ваше имя"])
+                        new NotBlank(["message" => "contactForm.constraints.message.enterName"])
                     ],
                 ]
             )
@@ -35,21 +35,21 @@ class ContactType extends AbstractType
                     'class' => 'form-control'],
                 'label' => 'e-mail',
                 'constraints' => [
-                    new NotBlank(["message" => "Пожалуйста, предоставьте действительный адрес электронной почты"]),
-                    new Email(["message" => "Ваш адрес электронной почты не является действительным"]),
+                    new NotBlank(["message" => "contactForm.constraints.message.validEmail"]),
+                    new Email(["message" => "contactForm.constraints.message.validEmail2"]),
                 ]
             ])
             ->add('message', TextareaType::class, [
                 'attr' => [
-                    'placeholder' => 'Сообщение',
+                    'placeholder' => 'contactForm.message',
                     'class' => 'form-control'],
-                'label' => 'сообщение',
+                'label' => 'contactForm.message',
                 'constraints' => [
-                    new NotBlank(["message" => "Пожалуйста, оставьте сообщение здесь"]),
+                    new NotBlank(["message" => "contactForm.constraints.message.leaveMessage"]),
                 ]
             ])
             ->add('file', FileType::class, [
-                'label' => '+ Прикрепить фаил',
+                'label' => 'contactForm.attach',
                 'mapped' => false,
                 'required' => false,
                 'multiple' => true,

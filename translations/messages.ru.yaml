@@ -1,5 +1,46 @@
 article:
     home: 'Главная'
     portfolio: 'Портфолио'
+    services: 'Услуги'
 
 privacyPolicy: 'политика конфиденциальности'
+terms: 'условия соглашения'
+
+adress: 'Минск, Республика Беларусь, пр. Партизанский 4'
+
+headMenu:
+    services: 'Услуги'
+    portfolio: 'Портфолио'
+    contacts: 'Контакты'
+
+leftMenu:
+    mainScreen: 'Главный экран'
+    aboutUs: 'О нас'
+    expertise: 'Экспертиза'
+    technologies: 'Технологии'
+    projects: 'Проекты'
+    home: 'Главная'
+
+footerMenu:
+    menu: 'Меню'
+    communication: 'связь'
+    newsletter: 'Подписка на новости'
+    news: 'Только актуальные новости<br>  и никакого спама'
+    iqclash: 'ООО "Ай кью Клаш"'
+
+btn:
+    contact: 'Связаться'
+    all: 'смотреть_все_проекты'
+
+contactForm:
+    write: 'Напишите нам'
+    name: 'Имя'
+    message: 'Сообщение'
+    attach: '+ Прикрепить фаил'
+    send: 'Отправить_запрос'
+    constraints:
+        message:
+            validEmail: 'Пожалуйста, предоставьте действительный адрес электронной почты'
+            validEmail2: 'Ваш адрес электронной почты не является действительным'
+            enterName: 'Пожалуйста, укажите ваше имя'
+            leaveMessage: 'Пожалуйста, оставьте сообщение здесь'

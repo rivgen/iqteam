@@ -6,7 +6,7 @@
     <p>издатель и разработчик мобильных и браузерных игр</p>
 {% endmacro %}
 {% macro printFeedback(class) %}
-    <button class="{{ class }}" role="button" data-toggle="modal" data-target="#exampleModal">Связаться</button>
+    <button class="{{ class }}" role="button" data-toggle="modal" data-target="#exampleModal">{% trans %}btn.contact{% endtrans %}</button>
 {% endmacro %}
 {% macro printSocialBlock() %}
     {% for block_soc in  socialGlobal %}
@@ -70,20 +70,20 @@
 
     <div class="menuClass">
         {% set menuAll = [
-        {'list': 'I', 'menu': 'главный экран', 'anchor': '#'},
-        {'list': 'Q', 'menu': 'о нас', 'anchor': '#letter-Q'},
-        {'list': '/', 'menu': 'экспертиза', 'anchor': '#slash'},
-        {'list': 'D', 'menu': 'технологии', 'anchor': '#letter-D'},
-        {'list': 'E', 'menu': 'проекты', 'anchor': '#letter-E'},
+        {'list': 'I', 'menu': 'leftMenu.mainScreen', 'anchor': '#parallax'},
+        {'list': 'Q', 'menu': 'leftMenu.aboutUs', 'anchor': '#letter-Q'},
+        {'list': '/', 'menu': 'leftMenu.expertise', 'anchor': '#slash'},
+        {'list': 'D', 'menu': 'leftMenu.technologies', 'anchor': '#letter-D'},
+        {'list': 'E', 'menu': 'leftMenu.projects', 'anchor': '#letter-E'},
 
         ] %}
         {#{'list': 'V', 'menu': 'контакты', 'anchor': '#letter-V'}#}
         {#{% set menuAll = [1->I, 2->Q] %}#}
-        <div class="menuLeft">
+        <div id="menuLeft" class="menuLeft">
             {% for menu in menuAll %}
                 <div class="menu-row">
                     {#<div class="col-md-2"><p>{{ menu.list }}</p></div>#}
-                    <div class="menu-col"><a href={{ menu.anchor }}><p>{{ menu.menu }}</p></a></div>
+                    <div class="menu-col"><a href={{ menu.anchor }}><p>{{ menu.menu|trans }}</p></a></div>
                 </div>
             {% endfor %}
         </div>
@@ -465,7 +465,7 @@
                     </div>
                     <div class="projects allProjects justify-content-center">
                         <a href="{{ path('articles_index') }}">
-                        <button id="viewAll" class="btn btnBlue hoverEffects" role="button">смотреть_все_проекты</button>
+                        <button id="viewAll" class="btn btnBlue hoverEffects" role="button">{% trans %}btn.all{% endtrans %}</button>
                         </a>
                     </div>
                 </div>

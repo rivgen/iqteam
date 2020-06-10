@@ -55,22 +55,12 @@ class IndexController extends AbstractController
         }
 //        dump($metaTags);
 
-        $url = $this->generateUrl('mail_index');
-        $form = $this->createForm(ContactType::class,null,[
-            // To set the action use $this->generateUrl('route_identifier')
-            'action' => $url,
-            'method' => 'POST'
-        ]);
-
-
         return $this->render('index/index.html.twig', [
             'articles' => $articles,
             'buttons' => $button,
             'images' => $images,
             'blockHome' => $blockHome,
-            'formContact' => $form->createView(),
             'metaTags' => $metaTags,
-//            'formHome' => $formHome->createView(),
         ]);
     }
 
@@ -137,5 +127,18 @@ class IndexController extends AbstractController
         $docksRepository = $em->getRepository(Docks::class);
         $url = $docksRepository->searchDocks($id, $local);
         return new Response($url);
+    }
+
+    public function contact()
+    {
+        $url = $this->generateUrl('mail_index');
+        $form = $this->createForm(ContactType::class,null,[
+            // To set the action use $this->generateUrl('route_identifier')
+            'action' => $url,
+            'method' => 'POST'
+        ]);
+        return $this->render('_contactForm.html.twig', [
+            'formContact' => $form->createView(),
+        ]);
     }
 }
