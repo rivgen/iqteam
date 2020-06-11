@@ -21,13 +21,13 @@
             >Admin Users</p></a>
     {% endif %}
 {% endmacro %}
-{% macro printLogo() %}
+{% macro printLogo(class) %}
     {% if  (app.request.get('_route') == 'index_index') %}
-        <object type="image/svg+xml" data="/images/logo.svg" class="embed-responsive logoHad">
+        <object type="image/svg+xml" data="/images/logo.svg" class="embed-responsive {{ class }}">
             <div class="internalText"></div>
         </object>
     {% else %}
-        <a href="{{ path('index_index') }}" class="logoSvg logoHad">
+        <a href="{{ path('locale_index', {'_locale': app.request.locale}) }}" class="logoSvg {{ class }}">
             <object type="image/svg+xml" data="/images/logo.svg">
                 <div class="internalText"></div>
             </object>
@@ -95,7 +95,7 @@
                 </div>
             </div>
             <div class="home-content-main">
-                {{ mainManuMacros.printLogo() }}
+                {{ mainManuMacros.printLogo('logoHad') }}
             </div>
             <div class="hadMenu">
                 <div class="row justify-content-between align-items-center">
@@ -172,7 +172,7 @@
                     <div class="footer-row footerMenu">
                         <div class="head-col">
                             <div class="footerHeader">
-                                {{ mainManuMacros.printLogo() }}
+                                {{ mainManuMacros.printLogo('logoFooter') }}
                             </div>
                             <p>{% trans %}footerMenu.iqclash{% endtrans %} <br>УНП&nbsp;192740628</p>
                             <div class="social">
@@ -261,7 +261,7 @@
         <div class="baseMenu animated">
             <div class="dropdown-overflow">
                 <div class="mainMenu logo">
-                    {{ mainManuMacros.printLogo() }}
+                    {{ mainManuMacros.printLogo('logoHad') }}
                 </div>
                 <div class="mainMenu menu">
                     {% if ( app.request.get('_route') == 'index_index' ) %}

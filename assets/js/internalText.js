@@ -37,7 +37,7 @@ $(document).on('scroll', function () {
             opacity = 0
             social.css('display', 'none')
         }
-        console.log(position, opacity)
+        // console.log(position, opacity)
         social.css('opacity', opacity);
     } else {
         social.removeAttr('style');

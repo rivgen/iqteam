@@ -2,11 +2,17 @@ article:
     home: 'Home'
     portfolio: 'Portfolio'
     services: 'Services'
+    show:
+            year: 'Year'
+            customer: 'Customer'
+            technologies: 'Technologies'
+            previous: 'Previous'
+            next: 'Next'
 
 privacyPolicy: 'Privacy Policy'
 terms: 'Terms of agreement'
 
-adress: 'Minsk, Republic of Belarus, Partizansky Ave. 4'
+adress: 'Minsk, Republic of Belarus, <br>Partizansky Ave. 4'
 
 headMenu:
     services: 'Services'
@@ -14,7 +20,7 @@ headMenu:
     contacts: 'Contacts'
 
 leftMenu:
-    mainScreen: 'Main screen'
+    mainScreen: 'Home page'
     aboutUs: 'About us'
     expertise: 'Expertise'
     technologies: 'Technologies'
@@ -34,13 +40,20 @@ btn:
 
 contactForm:
     write: 'Write to us'
-    name: 'Name'
+    name: 'Your name'
     message: 'Message'
     attach: '+ Attach file'
-    send: 'Send_request'
+    send: 'Submit_a_request'
     constraints:
         message:
             validEmail: 'Please provide a valid email address'
             validEmail2: 'Your email address is not valid'
             enterName: 'Please enter your name'
             leaveMessage: 'Please leave a message here'
+
+contact:
+    ready: 'Are you ready to start your next project?<br> There is only one step left: just contact us for cooperation!'
+    come: 'Come'
+    write: 'Leave your message'
+    call: 'Call'
+    look: 'Join us in social media'

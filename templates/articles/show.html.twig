@@ -272,7 +272,7 @@
             <div class="article-col">
                 <div class="article-row">
                     <div class="col-sm-6 col-md-3 technology">
-                        <p class="param">Технологии</p>
+                        <p class="param">{% trans %}article.show.technologies{% endtrans %}</p>
                         {% if app.request.get('_route') in ['articles_edit', 'articles_new'] %}
                             {{ form_widget(form.technology) }}
                             {{ form_errors(form.technology) }}
@@ -290,7 +290,7 @@
                         {% endif %}
                     </div>
                     <div class="col-sm-6 col-md-3 technology">
-                        <p class="param">Клиент</p>
+                        <p class="param">{% trans %}article.show.customer{% endtrans %}</p>
                         {% if app.request.get('_route') in ['articles_edit', 'articles_new'] %}
                             {{ form_widget(form.client) }}
                             {{ form_errors(form.client) }}
@@ -308,7 +308,7 @@
                         {% endif %}
                     </div>
                     <div class="col-md-3 technology">
-                        <p class="param">Год</p>
+                        <p class="param">{% trans %}article.show.year{% endtrans %}</p>
                         {% if app.request.get('_route') in ['articles_edit', 'articles_new'] %}
                             <p class="paramText"> {{ form_widget(form.year) }}</p>
                             {{ form_errors(form.year) }}
@@ -408,12 +408,12 @@
                             <div class="col-6 paddingNone">
                                 <a href={{ path('articles_show', {'id': prevNext.0.id}) }}>
                                     <img src="/images/next.svg" class="nextLeft">
-                                    <span>Предыдущий</span>
+                                    <span>{% trans %}article.show.previous{% endtrans %}</span>
                                 </a>
                             </div>
                             <div class="col-6 paddingNone">
                                 <a href={{ path('articles_show', {'id': prevNext.1.id}) }}>
-                                    <span>Следующий</span>
+                                    <span>{% trans %}article.show.next{% endtrans %}</span>
                                     <img src="/images/next.svg" class="nextRight">
                                 </a>
                             </div>

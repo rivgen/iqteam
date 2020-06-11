@@ -309,6 +309,43 @@ a p:hover {
   @include media-breakpoint-up(xl) {
     margin-top: 100px;
   }
+  .block {
+    @include make-row();
+    margin: 0;
+    .icon {
+      margin: 40px;
+      @media (max-width: 1570px) {
+        @include make-col-ready();
+        @include make-col(6);
+        max-width: 54px;
+      }
+      @include media-breakpoint-down(sm) {
+        margin: auto 15px;
+        -webkit-transform: translateY(-25%);
+        -moz-transform: translateY(-25%);
+        -ms-transform: translateY(-25%);
+        -o-transform: translateY(-25%);
+        transform: translateY(-25%);
+        max-width: 40px;
+        max-height: 40px;
+      }
+      max-width: 54px;
+      max-height: 54px;
+    }
+    p {
+      padding: 0 40px 40px 40px;
+      font-weight: bold;
+      font-size: 18px;
+      @media (max-width: 1570px) {
+        @include make-col-ready();
+        @include make-col(6);
+        padding: 30px;
+      }
+      @include media-breakpoint-down(lg) {
+        padding: 40px;
+      }
+    }
+  }
 }
 
 .letter-I-block .block, .slash .block {
@@ -318,10 +355,6 @@ a p:hover {
   box-shadow: 0px 10px 20px rgba(57, 100, 249, 0.1);
 }
 
-.letter-I-block .block {
-  @include make-row();
-  margin: 0;
-}
 
 .block-col {
   margin-top: 15px;
@@ -330,43 +363,8 @@ a p:hover {
   @include media-breakpoint-up(md) {
     @include make-col(6)
   }
-  @include media-breakpoint-up(xl) {
+  @media (min-width: 1570px) {
     @include make-col(3)
-  }
-}
-
-.letter-I-block .block .icon {
-  margin: 40px;
-  @include media-breakpoint-down(sm) {
-    margin: auto 15px;
-    -webkit-transform: translateY(-25%);
-    -moz-transform: translateY(-25%);
-    -ms-transform: translateY(-25%);
-    -o-transform: translateY(-25%);
-    transform: translateY(-25%);
-    max-width: 40px;
-    max-height: 40px;
-  }
-  @include media-breakpoint-down(lg) {
-    @include make-col-ready();
-    @include make-col(6);
-    max-width: 54px;
-  }
-  max-width: 54px;
-  max-height: 54px;
-}
-
-.letter-I-block .block p {
-  padding: 0 40px 40px 40px;
-  font-weight: bold;
-  font-size: 18px;
-  @include media-breakpoint-down(lg) {
-    @include make-col-ready();
-    @include make-col(6);
-    padding: 40px;
-  }
-  @include media-breakpoint-down(xs) {
-    padding: 30px;
   }
 }
 
@@ -444,7 +442,11 @@ a p:hover {
 }
 
 #slash, #letter-D, #letter-E, #letter-V, #letter-Q {
-  height: 120px;
+  height: 100px;
+  display: none;
+  @include media-breakpoint-up(xl){
+    display: block;
+  }
 }
 
 .slash {
@@ -482,19 +484,76 @@ a p:hover {
       padding: 50px;
     }
   }
+  .block-col {
+    @include make-col-ready();
+    @include make-col(12);
+    @include media-breakpoint-up(sm) {
+      @include make-col(6)
+    }
+  }
+  &.intoPage {
+    @include media-breakpoint-down(lg) {
+      background-size: calc(100vw / 4);
+    }
+    background-position: 50% 60%;
+    padding-top: 115px;
+    padding-bottom: 35px;
+    @include media-breakpoint-up(xl) {
+      padding-top: 40px;
+    }
+
+    //background-size: auto;
+  }
+  .block {
+    @include make-row();
+    //margin: 0 0 30px 0;
+    //padding: 30px;
+    margin: 0;
+    //padding: 50px;
+    .title {
+      font-weight: bold;
+      font-size: 18px;
+      line-height: 150%;
+      margin: auto 0;
+      color: #323232;
+      @include make-col-ready();
+      @include make-col(8);
+      padding-left: 40px;
+    }
+    .icon {
+      @include make-col-ready();
+      @include make-col(2);
+      transform: translate(-31%, -2%);
+      max-width: 50px;
+      max-height: 50px;
+    }
+  }
+  .text {
+    @include make-col-ready();
+    @include make-col(12);
+    padding: 0;
+    font-size: 12px;
+    line-height: 200%;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: #323232;
+  }
+  .textBold {
+    @media screen and (max-width: 767px) {
+      padding-bottom: 0;
+    }
+    p{
+      margin-bottom: 50px;
+      @include media-breakpoint-up(lg){
+        margin-bottom: 60px;
+      }
+    }
+  }
 }
 
 .slash .title, .slash .textBold {
   @include make-col-ready();
   @include make-col(12)
-}
-
-.slash .block-col {
-  @include make-col-ready();
-  @include make-col(12);
-  @include media-breakpoint-up(sm) {
-    @include make-col(6)
-  }
 }
 
 .letter-Q h2, .slash h2, .letter-D h2, .letter-E h2, .letter-V h2, .letter-V .mapContact, .portfolio h2 {
@@ -508,65 +567,6 @@ a p:hover {
 
 .portfolio h2 {
   margin-bottom: 30px;
-}
-
-.slash.intoPage {
-  @include media-breakpoint-down(lg) {
-    background-size: calc(100vw / 4);
-  }
-  background-position: 50% 60%;
-  padding-top: 115px;
-  padding-bottom: 35px;
-  @include media-breakpoint-up(xl) {
-    padding-top: 40px;
-  }
-
-  //background-size: auto;
-}
-
-.slash .block {
-  @include make-row();
-  //margin: 0 0 30px 0;
-  //padding: 30px;
-  margin: 0;
-  //padding: 50px;
-}
-
-//.slash .block .icon {
-//  width: 54px;
-//  height: 54px;
-//  @include make-col-ready();
-//  @include make-col(3);
-//}
-
-.slash .block .title {
-  font-weight: bold;
-  font-size: 18px;
-  line-height: 150%;
-  margin: auto 0;
-  color: #323232;
-  @include make-col-ready();
-  @include make-col(8);
-  padding-left: 40px;
-}
-
-.slash .block .icon {
-  @include make-col-ready();
-  @include make-col(2);
-  transform: translate(-31%, -2%);
-  max-width: 50px;
-  max-height: 50px;
-}
-
-.slash .text {
-  @include make-col-ready();
-  @include make-col(12);
-  padding: 0;
-  font-size: 12px;
-  line-height: 200%;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: #323232;
 }
 
 .letter-D-back {
@@ -1423,7 +1423,7 @@ button:focus {
   }
   @include media-breakpoint-up(xl) {
     .homeClass-row {
-      min-height: 150px;
+      min-height: 110px;
     }
     box-shadow: none;
     margin-bottom: 0;
@@ -1500,6 +1500,9 @@ button:focus {
         }
       }
     }
+    &.fixedInRight{
+      padding-right: 40px;
+    }
   }
 }
 
@@ -1514,8 +1517,13 @@ button:focus {
 }
 
 a.logoSvg {
-  position: relative;
   display: inline-block;
+  @media (max-width: 1200px) {
+    position: relative;
+    object {
+      max-height: 40px;
+    }
+  }
 }
 
 a.logoSvg:after {
@@ -2427,10 +2435,41 @@ textarea.form-control {
   left: 50%;
   transform: translateX(-50%);
   @media (min-width: 1200px) {
-    left: 0;
-    transform: translateX(0);
+    position: absolute;
+    width: 57%;
+    left: -2%;
+    transform: translate(13%, -50%) scale(1.05);
     max-height: 52px;
   }
+  @media (min-width: 1800px) {
+    position: relative;
+    left: -8%;
+    width: 100%;
+    //transform: translateX(0);
+  }
+  object{
+    width: 100%;
+  }
+}
+
+.logoFooter {
+  max-width: 178px;
+  max-height: 40px;
+  left: 0;
+  transform: translateX(-15px);
+  //@media (min-width: 1200px) {
+  //  position: absolute;
+  //  width: 57%;
+  //  left: -2%;
+  //  transform: translate(13%, -50%) scale(1.05);
+  //  max-height: 52px;
+  //}
+  //@media (min-width: 1800px) {
+  //  position: relative;
+  //  left: -8%;
+  //  width: 100%;
+  //  //transform: translateX(0);
+  //}
   object{
     width: 100%;
   }
@@ -2834,7 +2873,7 @@ textarea.form-control {
   @include media-breakpoint-up(xl) {
     position: absolute;
     top: 50%;
-    transform: translateY(-50%);
+    //transform: translateY(-50%);
   }
 }
 
@@ -3145,14 +3184,6 @@ figure {
     }
   }
 
-}
-
-.slash {
-  .textBold {
-    @media screen and (max-width: 767px) {
-      padding-bottom: 0;
-    }
-  }
 }
 
 .create {
