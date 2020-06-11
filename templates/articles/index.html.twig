@@ -81,7 +81,13 @@
             {% for menu in categories %}
                 <div class="menu-row">
                     {#<div class="col-md-2"><p>{{ menu.list }}</p></div>#}
-                    <div class="menu-col"><a href=#{{ menu.anchor }}><p>{{ menu.title }}</p></a></div>
+                    <div class="menu-col"><a href=#{{ menu.anchor }}><p>
+                                {% if app.request.locale == 'ru' %}
+                                    {{ menu.title }}
+                                {% else %}
+                                    {{ menu.titleEn }}
+                                {% endif %}
+                                </p></a></div>
                 </div>
             {% endfor %}
         </div>
@@ -102,9 +108,14 @@
                 </div>
                 {% for category in categories %}
                     <div class="category">
-                        {% if not loop.first %}
-                        <div class="menuHeight" id={{ category.anchor }}></div>{% endif %}
-                        <h2 {% if loop.first %}id={{ category.anchor }}{% endif %}>{{ category.title }}</h2>
+                        <div class="menuHeight" id={{ category.anchor }}></div>
+                        <h2>
+                            {% if app.request.locale == 'ru' %}
+                                {{ category.title }}
+                            {% else %}
+                                {{ category.titleEn }}
+                            {% endif %}
+                            </h2>
                         <div class="projects items">
                             {% for article in articles if article.category == category.id %}
                                 {% set id = article.alias?article.alias:article.id %}

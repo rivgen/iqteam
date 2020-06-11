@@ -21,7 +21,7 @@ class ArticlesCategoryRepository extends ServiceEntityRepository
 
     public function allCategory()
     {
-        $qb = $this->createQueryBuilder('c')->select('c.id, c.title, c.anchor');
+        $qb = $this->createQueryBuilder('c')->select('c.id, c.title, c.titleEn, c.anchor');
 
         return $qb->getQuery()->getResult();
     }

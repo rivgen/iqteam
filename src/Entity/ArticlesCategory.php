@@ -31,6 +31,13 @@ class ArticlesCategory
     /**
      * @var string
      *
+     * @ORM\Column(name="title_en", type="string", length=50, nullable=false, options={"default"="''"})
+     */
+    private $titleEn = '\'\'';
+
+    /**
+     * @var string
+     *
      * @ORM\Column(name="anchor", type="string", length=10)
      */
     private $anchor;
@@ -150,6 +157,22 @@ class ArticlesCategory
     public function setAnchor($anchor)
     {
         $this->anchor = $anchor;
+    }
+
+    /**
+     * @return string
+     */
+    public function getTitleEn(): string
+    {
+        return $this->titleEn;
+    }
+
+    /**
+     * @param string $titleEn
+     */
+    public function setTitleEn(string $titleEn)
+    {
+        $this->titleEn = $titleEn;
     }
 
 }
