@@ -4,6 +4,7 @@ namespace App\Form;
 
 use App\Entity\MetaTags;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -13,10 +14,32 @@ class MetaTagsType extends AbstractType
     {
         $builder
             ->add('title', null, [
-                'attr' => ['class' => 'form-control']
+                'attr' => [
+                    'class' => 'form-control',
+                    'placeholder' => 'не более 80 символов'
+                ],
+                'required' => false,
             ])
-            ->add('description', null, [
-                'attr' => ['class' => 'form-control']
+            ->add('titleEn', null, [
+                'attr' => [
+                    'class' => 'form-control',
+                    'placeholder' => 'не более 80 символов'
+                ],
+                'required' => false,
+            ])
+            ->add('description', TextareaType::class, [
+                'attr' => [
+                    'class' => 'form-control',
+                    'placeholder' => 'не более 180 символов'
+                ],
+                'required' => false,
+            ])
+            ->add('descriptionEn', TextareaType::class, [
+                'attr' => [
+                    'class' => 'form-control',
+                    'placeholder' => 'не более 180 символов'
+                ],
+                'required' => false,
             ])
         ;
     }

@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * MetaTags
@@ -24,16 +25,42 @@ class MetaTags
     /**
      * @var string|null
      *
-     * @ORM\Column(name="title", type="string", length=50, nullable=true)
+     * @ORM\Column(name="title", type="string", length=80, nullable=true)
+     *  @Assert\Length(
+     *      max = 80,
+     *      maxMessage = "Поле заполнено более чем на {{ limit }} символов")
      */
     private $title;
 
     /**
      * @var string|null
      *
-     * @ORM\Column(name="description", type="string", length=50, nullable=true)
+     * @ORM\Column(name="title_en", type="string", length=80, nullable=true)
+     *  @Assert\Length(
+     *      max = 80,
+     *      maxMessage = "Поле заполнено более чем на {{ limit }} символов")
+     */
+    private $titleEn;
+
+    /**
+     * @var string|null
+     *
+     * @ORM\Column(name="description", type="string", length=180, nullable=true)
+     *  @Assert\Length(
+     *      max = 180,
+     *      maxMessage = "Поле заполнено более чем на {{ limit }} символов")
      */
     private $description;
+
+    /**
+     * @var string|null
+     *
+     * @ORM\Column(name="description_en", type="string", length=180, nullable=true)
+     *  @Assert\Length(
+     *      max = 180,
+     *      maxMessage = "Поле заполнено более чем на {{ limit }} символов")
+     */
+    private $descriptionEn;
 
     /**
      * @var string|null
@@ -104,6 +131,38 @@ class MetaTags
     public function setUrl($url)
     {
         $this->url = $url;
+    }
+
+    /**
+     * @return null|string
+     */
+    public function getTitleEn()
+    {
+        return $this->titleEn;
+    }
+
+    /**
+     * @param null|string $titleEn
+     */
+    public function setTitleEn($titleEn)
+    {
+        $this->titleEn = $titleEn;
+    }
+
+    /**
+     * @return null|string
+     */
+    public function getDescriptionEn()
+    {
+        return $this->descriptionEn;
+    }
+
+    /**
+     * @param null|string $descriptionEn
+     */
+    public function setDescriptionEn($descriptionEn)
+    {
+        $this->descriptionEn = $descriptionEn;
     }
 
 }

@@ -2,14 +2,26 @@
 
 {% import _self as macros %}
 {% import 'index/index.html.twig' as indexMacros %}
-{% block title %}{{ metaTags.title }}{% endblock %}
-{% block description %}{{ metaTags.description }}{% endblock %}
+{% block title %}
+    {% if app.request.locale == 'ru' %}
+        {{ metaTags.title }}
+    {% else %}
+        {{ metaTags.titleEn }}
+    {% endif %}
+{% endblock %}
+{% block description %}
+    {% if app.request.locale == 'ru' %}
+        {{ metaTags.description }}
+    {% else %}
+        {{ metaTags.descriptionEn }}
+    {% endif %}
+{% endblock %}
 {% block body %}
     <div class="titlePorfolio">
         <div class="slash-row">
             <div class="text-center titlePortfolio">
                 {% if is_granted('ROLE_CONTENT_MANAGER') %}
-                    <a href="{{ path('meta_tags_edit', {'url': 'articles'}) }}">Редактировать мета тэги</a>
+                    <a href="{{ path('meta_tags_edit', {'url': 'article'}) }}">Редактировать мета тэги</a>
                 {% endif %}
                 {#                <h1>Портфолио</h1>#}
             </div>
@@ -87,7 +99,7 @@
                                 {% else %}
                                     {{ menu.titleEn }}
                                 {% endif %}
-                                </p></a></div>
+                            </p></a></div>
                 </div>
             {% endfor %}
         </div>
@@ -115,7 +127,7 @@
                             {% else %}
                                 {{ category.titleEn }}
                             {% endif %}
-                            </h2>
+                        </h2>
                         <div class="projects items">
                             {% for article in articles if article.category == category.id %}
                                 {% set id = article.alias?article.alias:article.id %}

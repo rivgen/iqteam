@@ -11,7 +11,7 @@ class MetaTagsRepository extends EntityRepository
     public function metaTag($url)
     {
 
-        $qb = $this->createQueryBuilder('mt')->select('mt.title, mt.description');
+        $qb = $this->createQueryBuilder('mt')->select('mt.title, mt.description, mt.titleEn, mt.descriptionEn');
         $qb->andWhere('mt.url = :url');
         $qb->setParameter('url', $url);
 

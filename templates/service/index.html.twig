@@ -1,6 +1,18 @@
 {% extends 'base.html.twig' %}
-{% block title %}{{ metaTags.title }}{% endblock %}
-{% block description %}{{ metaTags.description }}{% endblock %}
+{% block title %}
+    {% if app.request.locale == 'ru' %}
+        {{ metaTags.title }}
+    {% else %}
+        {{ metaTags.titleEn }}
+    {% endif %}
+{% endblock %}
+{% block description %}
+    {% if app.request.locale == 'ru' %}
+        {{ metaTags.description }}
+    {% else %}
+        {{ metaTags.descriptionEn }}
+    {% endif %}
+{% endblock %}
 {% import 'index/index.html.twig' as indexMacros %}
 {% block body %}
     <div class="titlePorfolio">

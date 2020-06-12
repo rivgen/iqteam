@@ -33,7 +33,7 @@ class ArticlesController extends AbstractController
         $button = $buttonArticlesRepository->buttonInArticle();
         $categories = $articlesCategoryRepository->allCategory();
         $images = $imgArticlesRepository->imageInArticle();
-        $metaTags = $metaTagsRepository->metaTag('articles');
+        $metaTags = $metaTagsRepository->metaTag('article');
 
         return $this->render('articles/index.html.twig', [
             'articles' => $articles,
@@ -104,6 +104,7 @@ class ArticlesController extends AbstractController
         $articlesRepository = $em->getRepository(Articles::class);
         $imgArticlesRepository = $em->getRepository(ImgArticles::class);
         if (!preg_match('/^\+?\d+$/', $id)){
+            dump($id);
             $id = $articlesRepository->findArticleId($id);
         }
 

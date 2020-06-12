@@ -28,7 +28,7 @@ class ServisBlockType extends AbstractType
                 'required' => false,
             ])
             ->add('title', TextType::class, [
-                'label' => 'Title EN',
+                'label' => 'Title',
                 'required' => false,
                 'attr' => [
                     'class' => 'form-control',
