@@ -83,10 +83,13 @@ a p:hover {
   padding-right: 30px;
   margin-bottom: 70px;
   @include media-breakpoint-up(xl) {
-    padding-top: 29px;
+    padding-top: 15px;
   }
   @media (min-width: 1800px) {
     width: 1200px;
+  }
+  @media (min-width: 1900px) {
+    padding-top: 29px;
   }
 }
 
@@ -109,6 +112,10 @@ a p:hover {
   @include make-row();
   position: relative;
   overflow: hidden;
+  padding-bottom: 25px;
+  @include media-breakpoint-up(md){
+    padding-bottom: 0;
+  }
 
   .vw680up {
     display: none;
@@ -140,6 +147,15 @@ a p:hover {
       height: 543px;
       position: relative;
     }
+    @include media-breakpoint-up(xl) {
+      height: 480px;
+    }
+    @media (min-width: 1500px) {
+      height: 660px;
+    }
+    @media (min-width: 1900px) {
+      height: 710px;
+    }
     @include media-breakpoint-down(xs) {
       margin: 60px 0;
     }
@@ -151,6 +167,9 @@ a p:hover {
       position: relative;
       height: 50%;
       @extend %center;
+      @media (min-width: 1900px) {
+        transform: translateY(-64%);
+      }
     }
 
     &:after {
@@ -184,7 +203,7 @@ a p:hover {
         top: 64%;
       }
       @include media-breakpoint-up(xl) {
-        height: 420px;
+        height: 350px;
         top: 42%;
       }
       @media (min-width: 1800px) {
@@ -225,6 +244,15 @@ a p:hover {
         margin-top: 0;
       }
       @extend %center;
+      @include media-breakpoint-up(xl) {
+        transform: translateY(-53%);
+      }
+      @media (min-width: 1500px) {
+        transform: translateY(-57%);
+      }
+      @media (min-width: 1900px) {
+        transform: translateY(-64%);
+      }
 
       .title {
         font-weight: bold;
@@ -235,6 +263,9 @@ a p:hover {
         //@media (min-width: 1200px) {
         @include media-breakpoint-up(xl) {
           //margin-top: 150px;
+          font-size: 72px;
+        }
+        @media (min-width: 1500px) {
           font-size: 96px;
         }
       }
@@ -249,6 +280,9 @@ a p:hover {
           font-size: calc(0.5rem + 10 * (100vw - 20px) / 880);
         }
         @include media-breakpoint-up(xl) {
+          font-size: 22px;
+        }
+        @media (min-width: 1500px) {
           font-size: 24px;
         }
       }
@@ -319,8 +353,12 @@ a p:hover {
         @include make-col(6);
         max-width: 54px;
       }
+      @include media-breakpoint-down(md) {
+        padding-left: 0;
+        margin: 30px;
+      }
       @include media-breakpoint-down(sm) {
-        margin: auto 15px;
+        margin: auto 30px;
         -webkit-transform: translateY(-25%);
         -moz-transform: translateY(-25%);
         -ms-transform: translateY(-25%);
@@ -344,6 +382,9 @@ a p:hover {
       @include media-breakpoint-down(lg) {
         padding: 40px;
       }
+      @include media-breakpoint-down(sm) {
+        padding-right: 0px;
+      }
     }
   }
 }
@@ -354,7 +395,6 @@ a p:hover {
   height: 100%;
   box-shadow: 0px 10px 20px rgba(57, 100, 249, 0.1);
 }
-
 
 .block-col {
   margin-top: 15px;
@@ -444,7 +484,7 @@ a p:hover {
 #slash, #letter-D, #letter-E, #letter-V, #letter-Q {
   height: 100px;
   display: none;
-  @include media-breakpoint-up(xl){
+  @include media-breakpoint-up(xl) {
     display: block;
   }
 }
@@ -542,9 +582,9 @@ a p:hover {
     @media screen and (max-width: 767px) {
       padding-bottom: 0;
     }
-    p{
+    p {
       margin-bottom: 50px;
-      @include media-breakpoint-up(lg){
+      @include media-breakpoint-up(lg) {
         margin-bottom: 60px;
       }
     }
@@ -567,6 +607,7 @@ a p:hover {
 
 .portfolio h2 {
   margin-bottom: 30px;
+  margin-left: -15px;
 }
 
 .letter-D-back {
@@ -644,11 +685,16 @@ a p:hover {
   background-repeat: no-repeat;
   background-position: 50% calc(100vw / 21 + 20px);
   background-size: contain;
-  @include media-breakpoint-up(xl) {
-    background-position: 50% 20px;
-  }
+  margin-bottom: 100px;
   @include media-breakpoint-up(md) {
     background-size: auto;
+  }
+  @include media-breakpoint-up(lg) {
+
+  }
+  @include media-breakpoint-up(xl) {
+    background-position: 50% 20px;
+    margin-bottom: 0;
   }
 }
 
@@ -711,7 +757,12 @@ a p:hover {
   //}
   .projects {
     @include make-row();
-
+    margin-right: 0;
+    margin-left: 0;
+    text-align: center;
+    @include media-breakpoint-up(sm){
+      display: block;
+    }
     .projects-home-col {
       @include make-col-ready();
       @include media-breakpoint-up(sm) {
@@ -1297,6 +1348,13 @@ button:focus {
 }
 
 .footerClass {
+  padding-top: 10px;
+  @include media-breakpoint-up(sm){
+    padding-top: 30px;
+  }
+  @include media-breakpoint-up(xl){
+    padding-top: 80px;
+  }
   %col {
     @include make-col-ready();
     @include make-col(12);
@@ -1316,9 +1374,6 @@ button:focus {
     @include media-breakpoint-up(md) {
       margin-bottom: 50px;
     }
-    @include media-breakpoint-up(lg) {
-      margin-top: 70px;
-    }
     .head-col {
       @extend %col;
     }
@@ -1330,7 +1385,6 @@ button:focus {
     }
   }
   .footerMenu {
-    padding-top: 50px;
     .head-col {
       margin-bottom: 35px;
       @include media-breakpoint-up(md) {
@@ -1500,7 +1554,7 @@ button:focus {
         }
       }
     }
-    &.fixedInRight{
+    &.fixedInRight {
       padding-right: 40px;
     }
   }
@@ -1630,7 +1684,7 @@ a.logoSvg:after {
     }
   }
 
-  @include media-breakpoint-up(lg){
+  @include media-breakpoint-up(lg) {
     display: flex;
   }
 }
@@ -2251,6 +2305,15 @@ textarea.form-control {
   top: 50%;
   right: 0;
   transform: translate(-50%, -50%);
+  @include media-breakpoint-up(xl){
+    transform: translate(-50%, -49%);
+  }
+  @media (min-width: 1500px) {
+    transform: translate(-50%, -53%);
+  }
+  @media (min-width: 1900px) {
+    transform: translate(-50%, -55%);
+  }
 
   .socialButton {
     @extend %buttonSocial;
@@ -2305,12 +2368,21 @@ textarea.form-control {
   width: 11%;
   top: 48%;
   left: -2%;
-  transform: translate(46%, -50%) scale(1.05);
-}
-
-.menuLeft .menu-row {
-  @include make-row();
-  padding-bottom: 30px;
+  --scale: 1.05;
+  transform: translate(46%, -50%) scale(var(--scale));
+  .menu-row {
+    @include make-row();
+    padding-bottom: 30px;
+  }
+  @include media-breakpoint-up(xl) {
+    transform: translate(46%, -36%) scale(var(--scale));
+  }
+  @media (min-width: 1500px) {
+    transform: translate(46%, -39%) scale(var(--scale));
+  }
+  @media (min-width: 1900px) {
+    transform: translate(46%, -43%) scale(var(--scale));
+  }
 }
 
 .menu-col {
@@ -2447,7 +2519,7 @@ textarea.form-control {
     width: 100%;
     //transform: translateX(0);
   }
-  object{
+  object {
     width: 100%;
   }
 }
@@ -2470,7 +2542,7 @@ textarea.form-control {
   //  width: 100%;
   //  //transform: translateX(0);
   //}
-  object{
+  object {
     width: 100%;
   }
 }
@@ -3005,10 +3077,13 @@ figure {
     //}
   }
   @include media-breakpoint-up(sm) {
-    width: 45vw;
+    width: 44vw;
     height: calc(29vw + 285px);
     &:nth-child(odd) {
-      margin-right: 4.3vw;
+      float: left;
+    }
+    &:nth-child(even) {
+      float: right;
     }
     margin-bottom: 20px;
   }
@@ -3016,46 +3091,57 @@ figure {
     width: 30vw;
     height: calc(29vw + 180px);
     &:nth-child(odd) {
-      margin-right: 2.4vw;
+      //margin-right: 2.4vw;
+      float: none;
+    }
+    &:nth-child(even) {
+      float: none;
     }
     &:nth-child(3n) {
-      margin-right: 0;
+      //margin-right: 0;
+      float: right;
     }
-    margin-right: 2.4vw;
+    &:nth-child(3n+2) {
+      float: inherit;
+    }
+    &:nth-child(3n+1) {
+      float: left;
+    }
+    //margin-right: 2.4vw;
   }
   @include media-breakpoint-up(lg) {
-    &:nth-child(odd) {
-      margin-right: 3.5vw;
-    }
-    &:nth-child(3n) {
-      margin-right: 0;
-    }
-    margin-right: 3.5vw;
+    //&:nth-child(odd) {
+    //  margin-right: 3.5vw;
+    //}
+    //&:nth-child(3n) {
+    //  margin-right: 0;
+    //}
+    //margin-right: 3.5vw;
   }
 
   @media (min-width: 1200px) {
     width: 20vw;
-    margin-right: 2.1vw;
+    //margin-right: 2.1vw;
     height: calc(29vw + 50px);
     margin-bottom: 30px;
-    &:nth-child(odd) {
-      margin-right: 2.1vw;
-    }
-    &:nth-child(3n) {
-      margin-right: 0;
-    }
+    //&:nth-child(odd) {
+    //  margin-right: 2.1vw;
+    //}
+    //&:nth-child(3n) {
+    //  margin-right: 0;
+    //}
   }
   @media (min-width: 1800px) {
     width: 365px;
-    margin-right: 37px;
+    //margin-right: 37px;
     margin-bottom: 20px;
     height: 545px;
-    &:nth-child(odd) {
-      margin-right: 37px;
-    }
-    &:nth-child(3n) {
-      margin-right: 0;
-    }
+    //&:nth-child(odd) {
+    //  margin-right: 37px;
+    //}
+    //&:nth-child(3n) {
+    //  margin-right: 0;
+    //}
   }
   .aImg {
     border-radius: 20px;
@@ -3123,14 +3209,16 @@ figure {
   display: flex;
   background-color: #fff;
   box-shadow: 0px 10px 20px rgba(57, 100, 249, 0.1);
-  padding: 50px;
+  padding: 30px;
   height: 100%;
   -webkit-flex-direction: column;
   -ms-flex-direction: column;
   flex-direction: column;
   justify-content: flex-end;
   border-radius: 20px;
-
+  @include media-breakpoint-up(sm){
+    padding: 50px;
+  }
   .card_title {
     font-weight: bold;
     font-size: 18px;
@@ -3275,9 +3363,19 @@ figure {
   }
 }
 
-.modal-dialog{
+.modal-dialog {
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%) !important;
+}
+
+.portfolioBottom{
+  margin-bottom: 10px;
+  @include media-breakpoint-up(sm){
+    margin-bottom: 0;
+  }
+  @include media-breakpoint-up(xl){
+    margin-bottom: 50px;
+  }
 }
