@@ -174,7 +174,7 @@
                             <div class="footerHeader">
                                 {{ mainManuMacros.printLogo('logoFooter') }}
                             </div>
-                            <p>{% trans %}footerMenu.iqclash{% endtrans %} <br>УНП&nbsp;192740628</p>
+                            <p>{% trans %}footerMenu.iqclash{% endtrans %} <br>{% trans %}UPN{% endtrans %}&nbsp;192740628</p>
                             <div class="social">
                                 {{ mainManuMacros.social() }}
                             </div>
@@ -194,7 +194,7 @@
                                 <div class="input-group">
                                     <input type="text" class="form-control footerForm"
                                            aria-label="Dollar amount (with dot and two decimal places)"
-                                           placeholder="ваш e-mail">
+                                           placeholder="{% trans %}footerForm.placeholder{% endtrans %}">
                                     <div class="input-group-append" type="submit">
                                         <img src="/images/footerFormSubmit.svg">
                                     </div>

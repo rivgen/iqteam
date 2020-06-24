@@ -59,3 +59,8 @@ contact:
     write: 'пишите'
     call: 'звоните'
     look: 'ищите в соцсетях'
+
+footerForm:
+    placeholder: 'ваш e-mail'
+
+UPN: 'УНП'

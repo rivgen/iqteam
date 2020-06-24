@@ -6,6 +6,33 @@ $(document).ready(function () {
             top = $(id).offset().top;
         $('body,html').animate({scrollTop: top}, 1500);
     });
+    if ($("*").is('#menuLeft')) {
+        let menuLeft = $("#menuLeft"),
+            lastId,
+            menuItems = menuLeft.find("a"),
+            scrollItems = menuItems.map(function () {
+                let item = $($(this).attr("href"));
+                if (item.length) {
+                    return item;
+                }
+            });
+        $(window).scroll(() => {
+            let windowTop = $(window).scrollTop();
+            let cur = scrollItems.map(function () {
+                if ($(this).offset().top < windowTop + 10)
+                    return this;
+            });
+            cur = cur[cur.length - 1];
+            let id = cur && cur.length ? cur[0].id : "";
+            if (lastId !== id) {
+                lastId = id;
+                menuItems
+                    .parent().removeClass("activeMenu")
+                    .end().filter("[href='#" + id + "']").parent().addClass("activeMenu");
+            }
+        })
+
+    }
 });
 
 document.querySelectorAll('.hoverEffects').forEach(button =>
@@ -43,4 +70,6 @@ $(document).on('scroll', function () {
         social.removeAttr('style');
     }
 });
+
+
 

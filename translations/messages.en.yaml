@@ -57,3 +57,8 @@ contact:
     write: 'Leave your message'
     call: 'Call'
     look: 'Join us in social media'
+
+footerForm:
+    placeholder: 'you e-mail'
+
+UPN: 'UPN'

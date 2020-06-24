@@ -2368,7 +2368,7 @@ textarea.form-control {
   width: 11%;
   top: 48%;
   left: -2%;
-  --scale: 1.05;
+  --scale: 1.14;
   transform: translate(46%, -50%) scale(var(--scale));
   .menu-row {
     @include make-row();
@@ -2382,6 +2382,11 @@ textarea.form-control {
   }
   @media (min-width: 1900px) {
     transform: translate(46%, -43%) scale(var(--scale));
+  }
+  .activeMenu{
+    p{
+      color: #3964F9;
+    }
   }
 }
 
@@ -3076,6 +3081,9 @@ figure {
     //  transform: scale(1.2);
     //}
   }
+  &:last-child {
+    margin-right: 0;
+  }
   @include media-breakpoint-up(sm) {
     width: 44vw;
     height: calc(29vw + 285px);
@@ -3084,6 +3092,9 @@ figure {
     }
     &:nth-child(even) {
       float: right;
+    }
+    &:last-child {
+      float: inherit;
     }
     margin-bottom: 20px;
   }
@@ -3106,6 +3117,9 @@ figure {
     }
     &:nth-child(3n+1) {
       float: left;
+    }
+    &:last-child {
+      margin-right: 31.5%;
     }
     //margin-right: 2.4vw;
   }
@@ -3158,9 +3172,6 @@ figure {
     }
     margin-bottom: 5px;
 
-  }
-  &:last-child {
-    margin-right: 0;
   }
   img {
     //height: 363px;
@@ -3378,4 +3389,14 @@ figure {
   @include media-breakpoint-up(xl){
     margin-bottom: 50px;
   }
+}
+
+.svgObj{
+  object{
+    pointer-events: none;
+  }
+}
+
+.displayNone{
+  display: none;
 }

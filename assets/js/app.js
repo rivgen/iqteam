@@ -17,16 +17,16 @@ $(document).ready(function() {
 
 new WOW().init();
 
-import './filtr'
+// import './filtr'
 import './internalText'
 import './dropMenu'
 import './scriptCadEffect.js'
 // import './modalForAdmin'
 // import './viewAll'
 
-$(window).on('beforeunload', function () {
-    window.scrollTo(0, 0);
-});
+// $(window).on('beforeunload', function () {
+//     window.scrollTo(0, 0);
+// });
 
 // class App extends React.Component {
 //     render() {
