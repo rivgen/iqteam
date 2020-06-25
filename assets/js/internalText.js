@@ -31,7 +31,6 @@ $(document).ready(function () {
                     .end().filter("[href='#" + id + "']").parent().addClass("activeMenu");
             }
         })
-
     }
 });
 
@@ -51,7 +50,11 @@ let position = 0,
 $(document).on('scroll', function () {
     var positionBottom = $(window).scrollTop() + $(window).height(),
         positionTop = $(window).scrollTop() + $(window).height() / 2,
+        block_position;
+        if ($('#letter-E').length > 0)
+    {
         block_position = $('#letter-E').offset().top
+    }
 
 
     if (positionBottom > block_position) {

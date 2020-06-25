@@ -68,15 +68,15 @@
             f.parentNode.insertBefore(j, f);
         })(window, document, 'script', 'dataLayer', 'GTM-W6XH4XZ');</script>
     <!-- End Google Tag Manager -->
-    <script
-            src="https://code.jquery.com/jquery-3.4.1.min.js"
-            integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
-            crossorigin="anonymous"></script>
+    {#<script#}
+            {#src="https://code.jquery.com/jquery-3.4.1.min.js"#}
+            {#integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="#}
+            {#crossorigin="anonymous"></script>#}
     {% block stylesheets %}
         {{ encore_entry_link_tags('app') }}
     {% endblock %}
 </head>
-<body {% if (app.request.get('_route') == 'index_index') %}class="white-backgraund"{% endif %}>
+<body {% if (app.request.get('_route') == 'index_index') %}class="white-backgraund"{% endif %} id="bodyId">
 <!-- Google Tag Manager (noscript) -->
 <noscript>
     <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-W6XH4XZ"

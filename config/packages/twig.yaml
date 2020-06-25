@@ -20,4 +20,5 @@ twig:
                 img: '/images/block_V/instagram.svg'
                 url: 'https://www.instagram.com/iq_dev_by/'
         mailGlobal: 'info@iqdev.com'
-        phoneGlobal: '+375 29 853-90-25'
+#        phoneGlobal: '+375 29 853-90-25'
+        phoneGlobal: ''

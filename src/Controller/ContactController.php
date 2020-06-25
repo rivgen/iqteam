@@ -11,18 +11,31 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\HttpFoundation\JsonResponse;
 
 /**
  * @Route("/{_locale}/contact")
  */
 class ContactController extends AbstractController
 {
-    /**
-     * @Route("/", name="contact_index", methods="GET")
-     */
-    public function index()
+    private $session;
+
+    public function __construct(SessionInterface $session)
     {
+        $this->session = $session;
+    }
+
+    /**
+     * @Route("/", name="contact_index", methods={"GET", "POST"})
+     */
+    public function index(Request $request)
+    {
+        $message = null;
+        if($this->session->has('message')){
+            $message = $this->session->get('message');
+        }
         $em = $this->getDoctrine()->getManager();
         $metaTagsRepository = $em->getRepository(MetaTags::class);
         $metaTags = $metaTagsRepository->metaTag('contact');
@@ -32,9 +45,11 @@ class ContactController extends AbstractController
             'action' => $url,
             'method' => 'POST'
         ]);
+        $this->session->clear();
         return $this->render('contact/index.html.twig', [
             'form' => $form->createView(),
             'metaTags' => $metaTags,
+            'message' => $message,
         ]);
     }
 
@@ -45,6 +60,7 @@ class ContactController extends AbstractController
     {
         $form = $this->createForm(ContactType::class);
         $message = 'Письмо не отправлено.';
+
         if ($request->isMethod('POST')) {
             $form->handleRequest($request);
             $newFilename = [];
@@ -62,12 +78,16 @@ class ContactController extends AbstractController
             }
         }
         if (($request->isMethod('GET'))){
-            $message = '';
+//            $message = '';
         }
 
-        return $this->render('contact/mail.html.twig',[
-            'message' => $message,
-        ]);
+//        return $this->render('contact/mail.html.twig',[
+//            'message' => $message,
+//        ]);
+        $this->session->set('message', $message);
+//        return new JsonResponse($message);
+        return $this->redirectToRoute('contact_index', [],307);
+//        return $this->forward('App\Controller\ContactController::index', ['message' => $message]);
     }
 
     private function sendEmail($data, $filenames){

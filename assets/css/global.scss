@@ -482,7 +482,7 @@ a p:hover {
 }
 
 #slash, #letter-D, #letter-E, #letter-V, #letter-Q {
-  height: 100px;
+  height: 110px;
   display: none;
   @include media-breakpoint-up(xl) {
     display: block;
@@ -1825,30 +1825,40 @@ a.logoSvg:after {
     height: calc(100vw / 1.2);
   }
   .mapBlock {
-    width: 310px;
-    padding: 0 15px;
-    position: absolute;
-    top: 0;
-    left: 0;
-    @include media-breakpoint-down(sm) {
-      transform: translateY(45px);
+    padding: 0;
+    @include media-breakpoint-up(sm){
+      margin-left: 15px;
     }
+    @include media-breakpoint-up(md){
+      width: 310px;
+      padding: 0 15px;
+      position: absolute;
+      top: 0;
+      left: 0;
+    }
+    //@include media-breakpoint-down(sm) {
+    //  transform: translateY(45px);
+    //}
     .slash-col {
       @include media-breakpoint-only(sm) {
         @include make-col(4)
       }
     }
     .mapInfo {
+      @include make-row();
       background-color: white;
       box-shadow: 0px 10px 20px rgba(57, 100, 249, 0.1);
       line-height: 0.5;
-      padding: 50px;
+      padding: 20px;
       width: 100%;
       @include media-breakpoint-down(xs) {
         margin: 15px auto;
       }
       @include media-breakpoint-only(sm) {
         padding: calc(100vw / 20);
+      }
+      @include media-breakpoint-up(sm){
+        padding: 50px;
       }
       .titleInfo {
         color: #3964F9;
@@ -1867,6 +1877,15 @@ a.logoSvg:after {
       }
       .social a {
         margin-right: 16px;
+      }
+      .mapCol {
+        @include make-col-ready();
+        @include media-breakpoint-up(sm) {
+          @include make-col(6);
+        }
+        @include media-breakpoint-up(md){
+          @include make-col(12)
+        }
       }
     }
   }
@@ -2368,7 +2387,16 @@ textarea.form-control {
   width: 11%;
   top: 48%;
   left: -2%;
-  --scale: 1.14;
+  --scale: 1.13;
+  @include media-breakpoint-up(xl){
+    --scale: 1.12;
+  }
+  @media (min-width: 1300px)  {
+    --scale: 1.12;
+  }
+  //@media (min-width: 1920px)  {
+  //  --scale: 1.13;
+  //}
   transform: translate(46%, -50%) scale(var(--scale));
   .menu-row {
     @include make-row();
@@ -2984,7 +3012,7 @@ textarea.form-control {
 
 .blockToFix {
   display: none;
-  height: 150px;
+  height: 100px;
 }
 
 .button label {
@@ -3399,4 +3427,11 @@ figure {
 
 .displayNone{
   display: none;
+}
+
+#modalMessage{
+  .modal-body{
+    font-size: 19px;
+    font-weight: bold;
+  }
 }
