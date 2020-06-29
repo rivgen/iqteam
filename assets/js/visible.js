@@ -19,7 +19,7 @@ function showVisible() {
         if (isVisible(img)) {
             // отключение кеширования
             // эта строка должна быть удалена в "боевом" коде
-            realSrc += '?nocache=' + Math.random();
+            // realSrc += '?nocache=' + Math.random();
 
             img.src = realSrc;
 
