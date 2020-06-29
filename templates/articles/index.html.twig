@@ -23,73 +23,11 @@
                 {% if is_granted('ROLE_CONTENT_MANAGER') %}
                     <a href="{{ path('meta_tags_edit', {'url': 'article'}) }}">Редактировать мета тэги</a>
                 {% endif %}
-                {#                <h1>Портфолио</h1>#}
             </div>
         </div>
     </div>
-    {#    <div class="infoPortfolio">#}
-    {#        <div class="infoPortfolio-row justify-content-center">#}
-    {#            <div class="infoPortfolio-col">#}
-    {#                <object class="img1" type="image/svg+xml" data="/images/35.svg">#}
-    {#                    <div class="internalText"></div>#}
-    {#                </object>#}
-    {#                <p class="textInfo1">Проектов</p>#}
-    {#            </div>#}
-    {#            <div class="infoPortfolio-col">#}
-    {#                <object class="img2" type="image/svg+xml" data="/images/1mln.svg">#}
-    {#                    <div class="internalText"></div>#}
-    {#                </object>#}
-    {#                <p class="textInfo2">Пользователей</p>#}
-    {#            </div>#}
-    {#            <div class="infoPortfolio-col">#}
-    {#                <object class="img3" type="image/svg+xml" data="/images/2mln.svg">#}
-    {#                    <div class="internalText"></div>#}
-    {#                </object>#}
-    {#                <p class="textInfo3">Загрузок</p>#}
-    {#            </div>#}
-    {#        </div>#}
-    {#    </div>#}
-    {#<div class="filterButton">#}
-    {#<div class="letter-E-row justify-content-center">#}
-    {#<div class="letter-E-col">#}
-    {#<div class="filterButton-row">#}
-    {#<button class="btn filter-button active" data-filter="all">Все</button>#}
-    {#{% for category in categories %}#}
-    {#<button class="btn filter-button" data-filter={{ category.id }}>{{ category.title }}</button>#}
-    {#{% endfor %}#}
-    {#</div>#}
-    {#</div>#}
-    {#</div>#}
-    {#</div>#}
-    {#<div class="filterButton360vw">#}
-    {#<div class="btn-group filterButton-row">#}
-    {#<button id="button360vw" class="btn active" type="button">Все#}
-    {#<object id="downButton" type="image/svg+xml" data="/images/downBlack.svg">#}
-    {#<div class="internalText"></div>#}
-    {#</object>#}
-    {#</button>#}
-    {#</div>#}
-    {#modal#}
-    {#<div id="fixedBackground" style="display: none"></div>#}
-    {#<div id="filterMenu" style="display: none">#}
-    {#<div class="filterMenu animated">#}
-    {#<button class="filter-button active" type="button" data-filter="all" value="Все<object id='downButton' type='image/svg+xml' data='/images/downBlack.svg'>#}
-    {#<div class='internalText'></div>#}
-    {#</object>">Все#}
-    {#</button>#}
-    {#{% for category in categories %}#}
-    {#<button class="filter-button" type="button"#}
-    {#data-filter={{ category.id }} value="{{ category.title }}<object id='downButton'#}
-    {#type='image/svg+xml' data='/images/downBlack.svg'>#}
-    {#<div class='internalText'></div>#}
-    {#</object>{{ category.title }}</button>#}
-    {#{% endfor %}#}
-    {#</div>#}
-    {#</div>#}
-    {#end modal#}
-    {#</div>#}
     <div class="menuClass">
-        <div class="menuLeft" id="menuLeft">
+        <div class="menuLeft menu-left" id="menuLeft">
             {% for menu in categories %}
                 <div class="menu-row">
                     {#<div class="col-md-2"><p>{{ menu.list }}</p></div>#}
@@ -132,14 +70,10 @@
                             {% for article in articles if article.category == category.id %}
                                 {% set id = article.alias?article.alias:article.id %}
                                 <div class="filter {{ article.category }} wow fadeInUp item">
-                                    {#<div class="squareImg ">#}
-                                    {#<div class="item">#}
-                                    {#<div class="img target" style="background-image: url('{{ uploaded_asset(article.id, article.icon) }}');"></div>#}
                                     <a href={{ path('articles_show', {'id': id}) }} class="aImg">
-                                        <img src={{ uploaded_asset(article.id, article.icon) }} alt=""
+                                        <img data-src={{ uploaded_asset(article.id, article.icon) }} alt=""
                                              class="embed-responsive target"/>
                                     </a>
-                                    {#</div>#}
                                     <div class="blockText align-self-center">
                                         <a href={{ path('articles_show', {'id': id}) }}>
                                             {% if app.request.locale == 'ru' %}
@@ -154,20 +88,6 @@
                                             <p>{{ article.textPreviewEn }}</p>
                                         {% endif %}
                                     </div>
-                                    {#                            {% for button in buttons %}#}
-                                    {#                                {% if button.id == article.id %}#}
-                                    {#                                    <a href="{{ button.url }}" class="btn hrefButton" role="button"#}
-                                    {#                                       target="_blank"#}
-                                    {#                                       rel="nofollow noopener noreferrer">#}
-                                    {#                                        <div class="svgObj">#}
-                                    {#                                            <object type="image/svg+xml"#}
-                                    {#                                                    data="/images/batton/{{ button.icon }}">#}
-                                    {#                                                <div class="internalText"></div>#}
-                                    {#                                            </object>#}
-                                    {#                                        </div>#}
-                                    {#                                    </a>#}
-                                    {#                                {% endif %}#}
-                                    {#                            {% endfor %}#}
                                     {% if is_granted('ROLE_CONTENT_MANAGER') %}
                                         <a href="{{ path('articles_edit', {'id': article.id}) }}">edit</a>
                                     {% endif %}

@@ -1,0 +1,12 @@
+{% if formSubscription is defined %}
+    {#<form class="form-subscription">#}
+        {{ form_start(formSubscription) }}
+        <div class="input-group">
+            {{ form_widget(formSubscription.email) }}
+            {{ form_errors(formSubscription.email) }}
+            <div class="input-group-append" type="submit">
+                <img src="/images/footerFormSubmit.svg" onclick="document.forms['subscription'].submit();">
+            </div>
+        </div>
+    {{ form_end(formSubscription) }}
+{% endif %}

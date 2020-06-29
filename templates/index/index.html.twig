@@ -91,7 +91,7 @@
         ] %}
         {#{'list': 'V', 'menu': 'контакты', 'anchor': '#letter-V'}#}
         {#{% set menuAll = [1->I, 2->Q] %}#}
-        <div id="menuLeft" class="menuLeft">
+        <div id="menuLeft" class="menuLeft menu-left">
             {% for menu in menuAll %}
                 <div class="menu-row">
                     {#<div class="col-md-2"><p>{{ menu.list }}</p></div>#}
@@ -241,7 +241,7 @@
                     {% endfor %}
                 </div>
                 <div class="letter-Q-row imgQ wow fadeInUp">
-                    <img src="/images/block_Q/about.svg">
+                    <img data-src="/images/block_Q/about.svg">
                 </div>
             </div>
         </div>
@@ -437,7 +437,7 @@
                                 {#<div class="item">#}
                                 {#<div class="img target" style="background-image: url('{{ uploaded_asset(article.id, article.icon) }}');"></div>#}
                                 <a href={{ path('articles_show', {'id': id}) }} class="aImg">
-                                    <img src={{ uploaded_asset(article.id, article.icon) }} alt=""
+                                    <img data-src={{ uploaded_asset(article.id, article.icon) }} alt=""
                                          class="embed-responsive target"/>
                                 </a>
                                 {#</div>#}
@@ -485,7 +485,7 @@
         </div>
     </div>
     {#<div id="letter-V-back">#}
-    <div id="letter-V"></div>
+    {#<div id="letter-V"></div>#}
     {#<div class="letter-V">#}
     {#<div class="letter-V-row justify-content-center letter-fullwidth-container">#}
     {#<div class="letter-V-col">#}

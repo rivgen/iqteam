@@ -98,7 +98,7 @@
                 <div class="article-row headArticle justify-content-center">
                     <div class="col-sm-3 col-xl-2 icon">
                         {% if article.icon %}
-                            <img src="{{ uploaded_asset(article.id, article.icon) }}"/>
+                            <img data-src="{{ uploaded_asset(article.id, article.icon) }}"/>
                         {% endif %}
                         {% if app.request.get('_route') in ['articles_edit', 'articles_new'] %}
                             <div class="button adminIcon">
@@ -178,7 +178,7 @@
                                         <div class="carousel-inner">
                                             {% for image in images %}
                                                 <div class="carousel-item {% if image.general %}active{% endif %}">
-                                                    <img src="{{ uploaded_asset(article.id, image.img) }}"
+                                                    <img data-src="{{ uploaded_asset(article.id, image.img) }}"
                                                          class="d-block w-100"
                                                          alt=""/>
                                                 </div>
@@ -215,7 +215,7 @@
                                     </div>
                                 {% else %}
                                     {% for image in images %}
-                                        <img src="{{ uploaded_asset(article.id, image.img) }}" alt=""/>
+                                        <img data-src="{{ uploaded_asset(article.id, image.img) }}" alt=""/>
                                     {% endfor %}
                                 {% endif %}
                             {% endif %}
@@ -405,14 +405,16 @@
                 <div class="row">
                     {% if app.request.get('_route') not in ['articles_new', 'articles_edit'] %}
                         {% if prevNext %}
-                            <div class="col-6 paddingNone">
-                                <a href={{ path('articles_show', {'id': prevNext.0.id}) }}>
+                            {% set id_0 = prevNext.0.alias?prevNext.0.alias:prevNext.0.id %}
+                            {% set id_1 = prevNext.1.alias?prevNext.1.alias:prevNext.1.id %}
+                            <div class="col-6 paddingNone prev">
+                                <a href={{ path('articles_show', {'id': id_0}) }}>
                                     <img src="/images/next.svg" class="nextLeft">
                                     <span>{% trans %}article.show.previous{% endtrans %}</span>
                                 </a>
                             </div>
-                            <div class="col-6 paddingNone">
-                                <a href={{ path('articles_show', {'id': prevNext.1.id}) }}>
+                            <div class="col-6 paddingNone next">
+                                <a href={{ path('articles_show', {'id': id_1}) }}>
                                     <span>{% trans %}article.show.next{% endtrans %}</span>
                                     <img src="/images/next.svg" class="nextRight">
                                 </a>

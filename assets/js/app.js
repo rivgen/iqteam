@@ -21,6 +21,7 @@ new WOW().init();
 import './internalText'
 import './dropMenu'
 import './scriptCadEffect.js'
+import './visible'
 // import './modalForAdmin'
 // import './viewAll'
 

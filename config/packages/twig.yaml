@@ -4,18 +4,18 @@ twig:
     strict_variables: '%kernel.debug%'
     globals:
         socialGlobal:
-            0:
-                img: '/images/block_V/telegram.svg'
-                url: '#'
+#            0:
+#                img: '/images/block_V/telegram.svg'
+#                url: '#'
             1:
                 img: '/images/block_V/vk.svg'
                 url: 'https://vk.com/iq_dev'
-            2:
-                img: '/images/block_V/facebook.svg'
-                url: '#'
-            3:
-                img: '/images/block_V/twitter.svg'
-                url: '#'
+#            2:
+#                img: '/images/block_V/facebook.svg'
+#                url: '#'
+#            3:
+#                img: '/images/block_V/twitter.svg'
+#                url: '#'
             4:
                 img: '/images/block_V/instagram.svg'
                 url: 'https://www.instagram.com/iq_dev_by/'

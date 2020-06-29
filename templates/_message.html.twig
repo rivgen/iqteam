@@ -1,0 +1,23 @@
+{#modal message#}
+<div class="modal fade" id="modalMessage" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+     aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-body">
+                {{ message }}
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+{#{% block javascripts %}#}
+    {#{% if message is defined and message is not empty %}#}
+    {#{% if message is defined %}#}
+    {#{{ encore_entry_script_tags('modalBootstrap') }}#}
+    {#{% endif %}#}
+{#{% endblock %}#}

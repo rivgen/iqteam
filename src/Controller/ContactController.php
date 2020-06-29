@@ -3,7 +3,9 @@
 namespace App\Controller;
 
 use App\Entity\MetaTags;
+use App\Entity\Subscription;
 use App\Form\ContactType;
+use App\Form\SubscriptionType;
 use App\Service\UploaderHelper;
 use Symfony\Component\Filesystem\Filesystem;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
@@ -32,10 +34,6 @@ class ContactController extends AbstractController
      */
     public function index(Request $request)
     {
-        $message = null;
-        if($this->session->has('message')){
-            $message = $this->session->get('message');
-        }
         $em = $this->getDoctrine()->getManager();
         $metaTagsRepository = $em->getRepository(MetaTags::class);
         $metaTags = $metaTagsRepository->metaTag('contact');
@@ -43,18 +41,17 @@ class ContactController extends AbstractController
         $form = $this->createForm(ContactType::class,null,[
             // To set the action use $this->generateUrl('route_identifier')
             'action' => $url,
-            'method' => 'POST'
+            'method' => 'POST',
+            'attr' => ['class'=>'form-contact']
         ]);
-        $this->session->clear();
         return $this->render('contact/index.html.twig', [
             'form' => $form->createView(),
             'metaTags' => $metaTags,
-            'message' => $message,
         ]);
     }
 
     /**
-     * @Route("/mail", name="mail_index", methods="POST")
+     * @Route("/mail", name="mail_index", methods={"GET", "POST"})
      */
     public function mail(Request $request, UploaderHelper $uploaderHelper)
     {
@@ -85,9 +82,8 @@ class ContactController extends AbstractController
 //            'message' => $message,
 //        ]);
         $this->session->set('message', $message);
-//        return new JsonResponse($message);
-        return $this->redirectToRoute('contact_index', [],307);
-//        return $this->forward('App\Controller\ContactController::index', ['message' => $message]);
+
+        return $this->redirect($request->headers->get('referer'));
     }
 
     private function sendEmail($data, $filenames){
@@ -130,6 +126,25 @@ class ContactController extends AbstractController
             }
             return true;
         } else {return false;}
+    }
+
+    /**
+     * @Route("/subscription", name="subscription_base_edit", methods="POST")
+     */
+    public function subscription(Request $request)
+    {
+        $subscription = new Subscription();
+        $form = $this->createForm(SubscriptionType::class);
+        $form->handleRequest($request);
+//        dd($request);
+        if ($form->isSubmitted() && $form->isValid()) {
+            $subscription->setEmail($form['email']->getData());
+            $entityManager = $this->getDoctrine()->getManager();
+            $entityManager->persist($subscription);
+            $entityManager->flush();
+        }
+
+        return $this->redirect($request->headers->get('referer'));
     }
 
 }

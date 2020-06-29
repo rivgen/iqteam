@@ -89,7 +89,7 @@ class ArticlesRepository extends ServiceEntityRepository
             ->select(['MAX(b.id)'])
             ->where($expr->lt('b.id', ':id'));
         $query = $this->createQueryBuilder('m')
-            ->select(['m.id'])
+            ->select(['m.id', 'm.alias'])
             ->where($expr->orX(
                 $expr->eq('m.id', '(' . $qbNext->getDQL() . ')'),
                 $expr->eq('m.id', '(' . $qbPrevious->getDQL() . ')')

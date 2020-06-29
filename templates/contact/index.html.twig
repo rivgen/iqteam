@@ -84,11 +84,11 @@
                             <label class="col-form-label">{% trans %}contact.come{% endtrans %}</label>
                             <p class="textInfo">{% trans %}adress{% endtrans %}</p>
                             <label class="col-form-label">{% trans %}contact.write{% endtrans %}</label>
-                            <p class="textInfo">{{ mailGlobal }}</p>
+                            <p class="textInfo"><a href="mailto:{{ mailGlobal }}">{{ mailGlobal }}</a></p>
                         </div>
                         <div class="mapCol">
-                            <label class="col-form-label">{% trans %}contact.call{% endtrans %}</label>
-                            <p class="textInfo">{{ phoneGlobal }}</p>
+                            {#<label class="col-form-label">{% trans %}contact.call{% endtrans %}</label>#}
+                            {#<p class="textInfo">{{ phoneGlobal }}</p>#}
                             <label class="col-form-label">{% trans %}contact.look{% endtrans %}</label>
                             <div class="social">
                                 {{ baseMacros.social() }}
@@ -105,26 +105,26 @@
         {{ indexMacros.downButton() }}
     </div>
     {#modal message#}
-    <div class="modal fade" id="modalMessage" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-         aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-body">
-                    {{ message }}
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                </div>
-            </div>
-        </div>
-    </div>
+    {#<div class="modal fade" id="modalMessage" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"#}
+         {#aria-hidden="true">#}
+        {#<div class="modal-dialog" role="document">#}
+            {#<div class="modal-content">#}
+                {#<div class="modal-body">#}
+                    {#{{ message }}#}
+                    {#<button type="button" class="close" data-dismiss="modal" aria-label="Close">#}
+                        {#<span aria-hidden="true">&times;</span>#}
+                    {#</button>#}
+                {#</div>#}
+                {#<div class="modal-footer">#}
+                    {#<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>#}
+                {#</div>#}
+            {#</div>#}
+        {#</div>#}
+    {#</div>#}
 {% endblock %}
 {% block javascripts %}
     {{ parent() }}
-    {% if message %}
-        {{ encore_entry_script_tags('modalBootstrap') }}
-    {% endif %}
+    {#{% if message %}#}
+        {#{{ encore_entry_script_tags('modalBootstrap') }}#}
+    {#{% endif %}#}
 {% endblock %}

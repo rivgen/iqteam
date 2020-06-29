@@ -8,19 +8,29 @@ use App\Entity\Docks;
 use App\Entity\HomeBlock;
 use App\Entity\ImgArticles;
 use App\Entity\MetaTags;
+use App\Entity\Subscription;
 use App\Form\ContactType;
 use App\Form\DocksType;
 use App\Form\HomeBlockType;
+use App\Form\SubscriptionType;
 use App\Repository\DocksRepository;
 use App\Service\UploaderHelper;
 use PhpParser\Comment\Doc;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Symfony\Component\Routing\Annotation\Route;
 
 class IndexController extends AbstractController
 {
+    private $session;
+
+    public function __construct(SessionInterface $session)
+    {
+        $this->session = $session;
+    }
+
     /**
      * @Route("/", name="index_index", methods="GET")
      * @Route("/{_locale}", name="locale_index", methods="GET")
@@ -135,10 +145,36 @@ class IndexController extends AbstractController
         $form = $this->createForm(ContactType::class,null,[
             // To set the action use $this->generateUrl('route_identifier')
             'action' => $url,
-            'method' => 'POST'
+            'method' => 'POST',
+            'attr' => ['class'=>'form-contact']
         ]);
         return $this->render('_contactForm.html.twig', [
             'formContact' => $form->createView(),
+        ]);
+    }
+
+    public function subscription()
+    {
+        $url = $this->generateUrl('subscription_base_edit');
+        $form = $this->createForm(SubscriptionType::class,null,[
+            // To set the action use $this->generateUrl('route_identifier')
+            'action' => $url,
+            'method' => 'POST',
+            'attr' => ['class'=>'form-contact']
+        ]);
+        return $this->render('_subscriptionForm.html.twig', [
+            'formSubscription' => $form->createView(),
+        ]);
+    }
+
+    public function message(){
+        $message = null;
+        if($this->session->has('message')){
+            $message = $this->session->get('message');
+        }
+//        $this->session->clear();
+        return $this->render('_message.html.twig', [
+            'message' => $message,
         ]);
     }
 }

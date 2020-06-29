@@ -116,13 +116,14 @@ class ArticlesController extends AbstractController
         if (!empty($prevNext)) {
             if (empty($prevNext[1]) and $prevNext[0]['id'] > $id) {
                 $endId = $articlesRepository->endId();
-                array_unshift($prevNext, ['id' => $endId]);
+                $alias = $articlesRepository->findArticle($endId);
+                array_unshift($prevNext, ['id' => $endId, 'alias' => $alias['alias']]);
             } elseif (empty($prevNext[1]) and $prevNext[0]['id'] < $id) {
                 $startId = $articlesRepository->startId();
-                array_push($prevNext, ['id' => $startId]);
+                $alias = $articlesRepository->findArticle($startId);
+                array_push($prevNext, ['id' => $startId, 'alias' => $alias['alias']]);
             }
-        }
-
+        };
         return $this->render('articles/show.html.twig', [
             'article' => $article,
             'buttons' => $button,

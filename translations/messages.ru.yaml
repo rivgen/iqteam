@@ -7,7 +7,7 @@ article:
         customer: 'Клиент'
         technologies: 'Технологии'
         previous: 'Предыдущий'
-        next: 'Next'
+        next: 'Следующий'
 
 privacyPolicy: 'политика конфиденциальности'
 terms: 'условия соглашения'
@@ -55,10 +55,10 @@ contactForm:
 
 contact:
     ready: 'Готовы начать свой следующий проект?<br>  Для обсуждения или сотрудничества просто свяжитесь с нами.'
-    come: 'приезжайте'
-    write: 'пишите'
-    call: 'звоните'
-    look: 'ищите в соцсетях'
+    come: 'Приезжайте'
+    write: 'Пишите'
+    call: 'Звоните'
+    look: 'Ищите в соцсетях'
 
 footerForm:
     placeholder: 'ваш e-mail'

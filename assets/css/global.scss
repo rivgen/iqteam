@@ -3351,8 +3351,9 @@ figure {
     --y: var(--move-hover);
     --shadow: var(--shadow-hover);
   }
-  width: 44px;
-  height: 44px;
+  //width: 44px;
+  //height: 44px;
+  padding: 11px;
   background: #FFFFFF;
   border-radius: 5px;
   border: none;
@@ -3360,6 +3361,12 @@ figure {
   transition: transform var(--duration) ease, box-shadow var(--duration) ease;
   box-shadow: var(--shadow);
   .svgObj {
+    height: 21px;
+    width: 21px;
+    object {
+      height: 21px;
+      width: 21px;
+    }
     .title {
       margin-left: 20px;
       color: #FFFFFF;
@@ -3368,6 +3375,12 @@ figure {
     }
   }
 }
+
+button.btnIcon {
+  font-size: initial;
+  line-height: initial;
+}
+
 
 .marginBottom25 {
   margin-bottom: 25px;

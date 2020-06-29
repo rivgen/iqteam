@@ -1,4 +1,4 @@
-{% import _self as mainManuMacros %}
+{% import _self as mainMenuMacros %}
 {% import 'index/index.html.twig' as indexMacros %}
 {% macro printMainMenu() %}
     {% set menu = [
@@ -69,9 +69,9 @@
         })(window, document, 'script', 'dataLayer', 'GTM-W6XH4XZ');</script>
     <!-- End Google Tag Manager -->
     {#<script#}
-            {#src="https://code.jquery.com/jquery-3.4.1.min.js"#}
-            {#integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="#}
-            {#crossorigin="anonymous"></script>#}
+    {#src="https://code.jquery.com/jquery-3.4.1.min.js"#}
+    {#integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="#}
+    {#crossorigin="anonymous"></script>#}
     {% block stylesheets %}
         {{ encore_entry_link_tags('app') }}
     {% endblock %}
@@ -95,12 +95,12 @@
                 </div>
             </div>
             <div class="home-content-main">
-                {{ mainManuMacros.printLogo('logoHad') }}
+                {{ mainMenuMacros.printLogo('logoHad') }}
             </div>
             <div class="hadMenu">
                 <div class="row justify-content-between align-items-center">
                     <div class="menuFlex inLeft pl-0">
-                        {{ mainManuMacros.printMainMenu() }}
+                        {{ mainMenuMacros.printMainMenu() }}
                     </div>
                     <div class="menuFlex inRight contact-info-block">
                         {#<object type="image/svg+xml" data="/images/imgEmail.svg">#}
@@ -163,7 +163,7 @@
                 <div class="footer-col">
                     {#<div class="footer-row footerHeader">#}
                     {#<div class="head-col">#}
-                    {#{{ mainManuMacros.printLogo() }}#}
+                    {#{{ mainMenuMacros.printLogo() }}#}
                     {#</div>#}
                     {#<div class="head-col align-self-center"><p>Меню</p></div>#}
                     {#<div class="head-col align-self-center"><p>связь</p></div>#}
@@ -172,34 +172,39 @@
                     <div class="footer-row footerMenu">
                         <div class="head-col">
                             <div class="footerHeader">
-                                {{ mainManuMacros.printLogo('logoFooter') }}
+                                {{ mainMenuMacros.printLogo('logoFooter') }}
                             </div>
-                            <p>{% trans %}footerMenu.iqclash{% endtrans %} <br>{% trans %}UPN{% endtrans %}&nbsp;192740628</p>
-                            <div class="social">
-                                {{ mainManuMacros.social() }}
+                            <p>{% trans %}footerMenu.iqclash{% endtrans %} <br>{% trans %}UPN{% endtrans %}&nbsp;192740628
+                            </p>
+                            <div class="social socialButton">
+                                {{ mainMenuMacros.social() }}
                             </div>
                         </div>
                         <div class="head-col">
-                            <div class="footerHeader align-self-center"><p>{% trans %}footerMenu.menu{% endtrans %}</p></div>
-                            {{ mainManuMacros.printMainMenu() }}
+                            <div class="footerHeader align-self-center"><p>{% trans %}footerMenu.menu{% endtrans %}</p>
+                            </div>
+                            {{ mainMenuMacros.printMainMenu() }}
                         </div>
                         <div class="head-col">
-                            <div class="footerHeader align-self-center"><p>{% trans %}footerMenu.communication{% endtrans %}</p></div>
+                            <div class="footerHeader align-self-center"><p>{% trans %}
+                                    footerMenu.communication{% endtrans %}</p></div>
                             <p><a href="mailto:{{ mailGlobal }}">{{ mailGlobal }}</a></p>
                             <p><a href="tel:{{ phoneGlobal|replace({'-': '', ' ':''}) }}">{{ phoneGlobal }}</a></p>
                         </div>
                         <div class="head-col align-self-center">
-                            <div class="footerHeader align-self-center"><p>{% trans %}footerMenu.newsletter{% endtrans %}</p></div>
-                            <form>
-                                <div class="input-group">
-                                    <input type="text" class="form-control footerForm"
-                                           aria-label="Dollar amount (with dot and two decimal places)"
-                                           placeholder="{% trans %}footerForm.placeholder{% endtrans %}">
-                                    <div class="input-group-append" type="submit">
-                                        <img src="/images/footerFormSubmit.svg">
-                                    </div>
-                                </div>
-                            </form>
+                            <div class="footerHeader align-self-center"><p>{% trans %}
+                                    footerMenu.newsletter{% endtrans %}</p></div>
+                            {{ render(controller('App\\Controller\\IndexController::subscription')) }}
+                            {#<form class="form-subscription">#}
+                            {#<div class="input-group">#}
+                            {#<input type="text" class="form-control footerForm"#}
+                            {#aria-label="Dollar amount (with dot and two decimal places)"#}
+                            {#placeholder="{% trans %}footerForm.placeholder{% endtrans %}">#}
+                            {#<div class="input-group-append" type="submit">#}
+                            {#<img src="/images/footerFormSubmit.svg">#}
+                            {#</div>#}
+                            {#</div>#}
+                            {#</form>#}
                             <p>{% trans %}footerMenu.news{% endtrans %}</p>
                         </div>
                     </div>
@@ -261,7 +266,7 @@
         <div class="baseMenu animated">
             <div class="dropdown-overflow">
                 <div class="mainMenu logo">
-                    {{ mainManuMacros.printLogo('logoHad') }}
+                    {{ mainMenuMacros.printLogo('logoHad') }}
                 </div>
                 <div class="mainMenu menu">
                     {% if ( app.request.get('_route') == 'index_index' ) %}
@@ -269,7 +274,7 @@
                     {% else %}
                         <p><a href="/">{% trans %}leftMenu.home{% endtrans %}</a></p>
                     {% endif %}
-                    {{ mainManuMacros.printMainMenu() }}
+                    {{ mainMenuMacros.printMainMenu() }}
                 </div>
                 <div class="mainMenu">
                     <a href="/documents/{{ privacy }}" target="_blank" rel="noreferrer"><p>{% trans %}
@@ -298,6 +303,7 @@
         </div>
         {#end dropdown-menu#}
     </div>
+    {{ render(controller('App\\Controller\\IndexController::message')) }}
 {% endblock %}
 {#{% block sidebar %}#}
 {#{{ render_esi(controller('Symfony\\Bundle\\FrameworkBundle\\Controller\\TemplateController::templateAction', {#}
@@ -309,6 +315,10 @@
 
 {% block javascripts %}
     {{ encore_entry_script_tags('app') }}
+    {% if app.session.get('message') %}
+        {{ encore_entry_script_tags('modalBootstrap') }}
+        {{ app.session.remove('message') }}
+    {% endif %}
 {% endblock %}
 </body>
 </html>
