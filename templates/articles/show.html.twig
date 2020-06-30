@@ -407,14 +407,14 @@
                         {% if prevNext %}
                             {% set id_0 = prevNext.0.alias?prevNext.0.alias:prevNext.0.id %}
                             {% set id_1 = prevNext.1.alias?prevNext.1.alias:prevNext.1.id %}
-                            <div class="col-6 paddingNone prev">
-                                <a href={{ path('articles_show', {'id': id_0}) }}>
+                            <div class="col-6 paddingNone">
+                                <a href={{ path('articles_show', {'id': id_0}) }} class="prev">
                                     <img src="/images/next.svg" class="nextLeft">
                                     <span>{% trans %}article.show.previous{% endtrans %}</span>
                                 </a>
                             </div>
-                            <div class="col-6 paddingNone next">
-                                <a href={{ path('articles_show', {'id': id_1}) }}>
+                            <div class="col-6 paddingNone">
+                                <a href={{ path('articles_show', {'id': id_1}) }} class="next">
                                     <span>{% trans %}article.show.next{% endtrans %}</span>
                                     <img src="/images/next.svg" class="nextRight">
                                 </a>

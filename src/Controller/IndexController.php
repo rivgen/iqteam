@@ -160,7 +160,7 @@ class IndexController extends AbstractController
             // To set the action use $this->generateUrl('route_identifier')
             'action' => $url,
             'method' => 'POST',
-            'attr' => ['class'=>'form-contact']
+            'attr' => ['class'=>'form-subscription']
         ]);
         return $this->render('_subscriptionForm.html.twig', [
             'formSubscription' => $form->createView(),

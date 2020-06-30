@@ -27,11 +27,11 @@
         </div>
     </div>
     <div class="menuClass">
-        <div class="menuLeft menu-left" id="menuLeft">
+        <div class="menuLeft" id="menuLeft">
             {% for menu in categories %}
                 <div class="menu-row">
                     {#<div class="col-md-2"><p>{{ menu.list }}</p></div>#}
-                    <div class="menu-col"><a href=#{{ menu.anchor }}><p>
+                    <div class="menu-col"><a href=#{{ menu.anchor }} class="menu-left"><p>
                                 {% if app.request.locale == 'ru' %}
                                     {{ menu.title }}
                                 {% else %}

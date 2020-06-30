@@ -91,11 +91,11 @@
         ] %}
         {#{'list': 'V', 'menu': 'контакты', 'anchor': '#letter-V'}#}
         {#{% set menuAll = [1->I, 2->Q] %}#}
-        <div id="menuLeft" class="menuLeft menu-left">
+        <div id="menuLeft" class="menuLeft">
             {% for menu in menuAll %}
                 <div class="menu-row">
                     {#<div class="col-md-2"><p>{{ menu.list }}</p></div>#}
-                    <div class="menu-col"><a href={{ menu.anchor }}><p>{{ menu.menu|trans }}</p></a></div>
+                    <div class="menu-col"><a href={{ menu.anchor }} class="menu-left"><p>{{ menu.menu|trans }}</p></a></div>
                 </div>
             {% endfor %}
         </div>

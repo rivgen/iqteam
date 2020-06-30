@@ -36,7 +36,7 @@
 {% endmacro %}
 {% macro social() %}
     {% for block_soc in socialGlobal %}
-        <a href={{ block_soc.url }} target="_blank" rel="noreferrer">
+        <a href={{ block_soc.url }} target="_blank" rel="noreferrer" class="socialButton">
             <img src={{ block_soc.img }} alt=""/>
             {#<object type="image/svg+xml" data={{ block_V.img }}>#}
             {#Your browser does not support SVG#}
@@ -176,7 +176,7 @@
                             </div>
                             <p>{% trans %}footerMenu.iqclash{% endtrans %} <br>{% trans %}UPN{% endtrans %}&nbsp;192740628
                             </p>
-                            <div class="social socialButton">
+                            <div class="social">
                                 {{ mainMenuMacros.social() }}
                             </div>
                         </div>
